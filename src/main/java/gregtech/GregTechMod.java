@@ -33,7 +33,7 @@ import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.worldgen.LootTableHelper;
 import gregtech.client.utils.BloomEffectUtil;
-import gregtech.integration.theoneprobe.TheOneProbeCompatibility;
+import gregtech.integration.screeninfo.ScreenInfoRegistrar;
 import gregtech.loaders.dungeon.DungeonLootLoader;
 import net.minecraftforge.classloading.FMLForgePlugin;
 import net.minecraftforge.common.MinecraftForge;
@@ -146,9 +146,8 @@ public class GregTechMod {
             }
         }
 
-        if (GTValues.isModLoaded(GTValues.MODID_TOP)) {
-            GTLog.logger.info("TheOneProbe found. Enabling integration...");
-            TheOneProbeCompatibility.registerCompatibility();
+        if (GTValues.isModLoaded(GTValues.MODID_TOP) || GTValues.isModLoaded(GTValues.MODID_WAILA)) {
+            ScreenInfoRegistrar.registerProviders();
         }
 
         WorldGenRegistry.INSTANCE.initializeRegistry();

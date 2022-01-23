@@ -1,6 +1,7 @@
-package gregtech.integration.theoneprobe.provider;
+package gregtech.integration.screeninfo.provider;
 
 import gregtech.api.util.GTLog;
+import gregtech.integration.screeninfo.ICapabilityProvider;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
@@ -12,13 +13,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 
-public abstract class CapabilityInfoProvider<T> implements IProbeInfoProvider {
+// TODO REMOVE
+public abstract class CapabilityInfoProvider<T> implements IProbeInfoProvider, ICapabilityProvider<T> {
 
-    protected abstract Capability<T> getCapability();
+    public abstract Capability<T> getCapability();
 
-    protected abstract void addProbeInfo(T capability, IProbeInfo probeInfo, TileEntity tileEntity, EnumFacing sideHit);
+    public abstract void addProbeInfo(T capability, IProbeInfo probeInfo, TileEntity tileEntity, EnumFacing sideHit);
 
-    protected boolean allowDisplaying(T capability) {
+    public boolean allowDisplaying(T capability) {
         return true;
     }
 

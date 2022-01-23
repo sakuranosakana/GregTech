@@ -1,4 +1,4 @@
-package gregtech.integration.theoneprobe.provider;
+package gregtech.integration.screeninfo.provider;
 
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class DebugPipeNetInfoProvider implements IProbeInfoProvider {
+
     @Override
     public String getID() {
         return "gregtech:debug_pipe_net_provider";

@@ -1,4 +1,4 @@
-package gregtech.integration.theoneprobe.provider;
+package gregtech.integration.screeninfo.provider;
 
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IControllable;

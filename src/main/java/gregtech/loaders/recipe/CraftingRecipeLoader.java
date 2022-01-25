@@ -104,6 +104,11 @@ public class CraftingRecipeLoader {
         ModHandler.addShapedRecipe("universal_fluid_cell", FLUID_CELL_UNIVERSAL.getStackForm(), "C ", "  ", 'C', FLUID_CELL);
         ModHandler.addShapedRecipe("universal_fluid_cell_revert", FLUID_CELL.getStackForm(), "C ", "  ", 'C', FLUID_CELL_UNIVERSAL);
 
+        ModHandler.addShapedRecipe("destructopack", DESTRUCTOPACK.getStackForm(), "CPC", "PLP", "CPC",
+                'C', new UnificationEntry(OrePrefix.circuit, Tier.Basic),
+                'P', new UnificationEntry(OrePrefix.plateDouble, Materials.Steel),
+                'L', new ItemStack(Items.LAVA_BUCKET));
+
         ///////////////////////////////////////////////////
         //               Shapes and Molds                //
         ///////////////////////////////////////////////////

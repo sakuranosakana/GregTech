@@ -203,6 +203,11 @@ public class ConfigHolder {
 
         @Config.Comment({"Whether Wrenches should require Plates instead of Ingots to craft.", "Default: false"})
         public boolean plateWrenches = false;
+
+        @Config.Comment({"Whether the smelting of Ores should be nerfed to promote extended Ore Processing.",
+                "It is STRONGLY recommended that you leave this config ON, as ore processing is balanced around it.",
+                "Default: true"})
+        public boolean harderOreProcessing = true;
     }
 
     public static class CompatibilityOptions {

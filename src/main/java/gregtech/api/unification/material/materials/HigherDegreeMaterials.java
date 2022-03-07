@@ -14,7 +14,7 @@ public class HigherDegreeMaterials {
     public static void register() {
 
         Electrotine = new Material.Builder(2507, "electrotine")
-                .dust().ore(4, 1, true)
+                .dust().ore(2, 1, true)
                 .color(0x3CB4C8).iconSet(SHINY)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Redstone, 1, Electrum, 1)
@@ -57,6 +57,7 @@ public class HigherDegreeMaterials {
                 .components(Olivine, 1, Calcite, 3, Flint, 8, DarkAsh, 4)
                 .build();
 
+        // todo processing
         GraniticMineralSand = new Material.Builder(2513, "granitic_mineral_sand")
                 .dust(1).ore()
                 .color(0x283C3C).iconSet(SAND)
@@ -70,6 +71,7 @@ public class HigherDegreeMaterials {
                 .components(Calcite, 2, Flint, 1)
                 .build();
 
+        // todo processing
         GarnetSand = new Material.Builder(2515, "garnet_sand")
                 .dust(1).ore()
                 .color(0xC86400).iconSet(SAND)
@@ -96,6 +98,7 @@ public class HigherDegreeMaterials {
                 .fluidTemp(1400)
                 .build();
 
+        // todo processing
         BasalticMineralSand = new Material.Builder(2518, "basaltic_mineral_sand")
                 .dust(1).ore()
                 .color(0x283228).iconSet(SAND)

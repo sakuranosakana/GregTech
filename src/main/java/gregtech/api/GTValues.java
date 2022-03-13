@@ -8,6 +8,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.time.LocalDate;
 import java.util.Random;
+import java.util.UUID;
 import java.util.function.Supplier;
 
 import static net.minecraft.util.text.TextFormatting.*;
@@ -146,4 +147,9 @@ public class GTValues {
         String[] yearMonthDay = LocalDate.now().toString().split("-");
         return yearMonthDay[1].equals("04") && yearMonthDay[2].equals("01");
     };
+
+    /**
+     * Used Client Side as a placeholder for "is owned by someone other than you"
+     */
+    public static final UUID NOT_THE_PLAYER = new UUID(+1, -1);
 }

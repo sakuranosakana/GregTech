@@ -389,12 +389,12 @@ public abstract class TileEntityBase extends TileEntity implements ITickableTile
     // Useful to check if a Player or any other Entity is actually allowed to access or interact with this Block.
 
     @Override
-    public boolean allowInteraction(Entity aEntity) {
+    public boolean allowInteraction(Entity entity) {
         return true;
     }
 
-    public boolean allowRightClick(Entity aEntity) {
-        return allowInteraction(aEntity);
+    public boolean allowRightClick(Entity entity) {
+        return allowInteraction(entity);
     }
 
     public float getPlayerRelativeBlockHardness(EntityPlayer aPlayer, float aOriginal) {

@@ -3,7 +3,6 @@ package gregtech.api.multitileentity;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -46,17 +45,17 @@ public interface IMultiTileEntity {
     /**
      * This ID MUST be saved inside the NBT of the TileEntity itself. It gets set by the Registry when the TileEntity is placed.
      */
-    short getMultiTileEntityId();
+    ResourceLocation getMultiTileEntityId();
 
     /**
      * This ID MUST be saved inside the NBT of the TileEntity itself. It gets set by the Registry when the TileEntity is placed.
      */
-    short getMultiTileEntityRegistryID();
+    short getItemStackMeta();
 
     /**
      * Called by the Registry with the default NBT Parameters and the two IDs to save when the TileEntity is created.
      */
-    void initFromNBT(@Nullable NBTTagCompound nbtTagCompound, short multiTileEntityID, short multiTileEntityRegistry);
+    void initFromNBT(@Nullable NBTTagCompound nbtTagCompound, ResourceLocation multiTileEntityID, short itemStackMeta);
 
     /**
      * Writes eventual Item Data to the NBT.
@@ -211,6 +210,7 @@ public interface IMultiTileEntity {
     interface IMTEGetRenderLayer                 extends IMultiTileEntity {@SideOnly(Side.CLIENT) BlockRenderLayer getRenderLayer();}
     interface IMTEAddHitEffects                  extends IMultiTileEntity {@SideOnly(Side.CLIENT) boolean addHitEffects(IBlockState state, World worldObj, RayTraceResult target, ParticleManager manager);}
     interface IMTEAddDestroyEffects              extends IMultiTileEntity {@SideOnly(Side.CLIENT) boolean addDestroyEffects(World world, BlockPos pos, ParticleManager manager);}
+    interface IMTEPaintable                      extends IMultiTileEntity {boolean onPaint(EnumFacing facing, int rgb);}
 
     interface IMTEAddTooltips extends IMultiTileEntity {
         /** Adds ToolTips to the Item */
@@ -219,5 +219,10 @@ public interface IMultiTileEntity {
 
     interface IMTEGetDebugInfo extends IMultiTileEntity {
         List<String> getDebugInfo(int scanLevel);
+    }
+
+    interface IMTEOnRegistrationFirst extends IMultiTileEntity {
+        /** Called when a TileEntity of this particular Class is being registered first at any MultiTileEntity Registry. So basically one call per Class. */
+        void onRegistrationFirst(MultiTileEntityRegistry registry, short ID);
     }
 }

@@ -1,0 +1,802 @@
+package gregtech.api.multitileentity;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.EnumPushReaction;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Predicate;
+
+/**
+ * Interfaces to override {@link net.minecraft.block.Block} functionality
+ */
+public interface IMultiTileEntity {
+
+    /**
+     * This ID MUST be saved inside the NBT of the TileEntity itself. It gets set by the Registry when the TileEntity is placed.
+     */
+    short getMultiTileEntityId();
+
+    /**
+     * This ID MUST be saved inside the NBT of the TileEntity itself. It gets set by the Registry when the TileEntity is placed.
+     */
+    short getMultiTileEntityRegistryID();
+
+    /**
+     * Called by the Registry with the default NBT Parameters and the two IDs to save when the TileEntity is created.
+     */
+    void initFromNBT(@Nullable NBTTagCompound nbtTagCompound, short multiTileEntityID, short multiTileEntityRegistry);
+
+    /**
+     * Writes eventual Item Data to the NBT.
+     */
+    NBTTagCompound writeItemNBT(NBTTagCompound nbtTagCompound);
+
+    /**
+     * Sets the Item Display Name. Use null to reset it.
+     */
+    void setCustomName(@Nullable String name);
+
+    /**
+     * @return the Item Display Name.
+     */
+    String getCustomName();
+
+    void setShouldRefresh(boolean shouldRefresh);
+
+
+    /*
+     * Hooks into the Block Class. Implement them in order to overwrite the Default Behaviours.
+     */
+
+    interface IMTEIsTopSolid extends IMultiTileEntity {
+        boolean isTopSolid(IBlockState state);
+    }
+
+    interface IMTEIsFullBlock extends IMultiTileEntity {
+        boolean isFullBlock(IBlockState state);
+    }
+
+    interface IMTECanEntitySpawn extends IMultiTileEntity {
+        boolean canEntitySpawn(IBlockState state, Entity entityIn);
+    }
+
+    interface IMTEGetLightOpacity extends IMultiTileEntity {
+        int getLightOpacity(IBlockState state);
+
+        default int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
+            return getLightOpacity(state);
+        }
+    }
+
+    interface IMTEIsTranslucent extends IMultiTileEntity {
+        boolean isTranslucent(IBlockState state);
+    }
+
+    interface IMTEGetLightValue extends IMultiTileEntity {
+        int getLightValue(IBlockState state);
+
+        int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEGetUseNeighborBrightness extends IMultiTileEntity {
+        boolean getUseNeighborBrightness(IBlockState state);
+    }
+
+    interface IMTEGetMaterial extends IMultiTileEntity {
+        Material getMaterial(IBlockState state);
+    }
+
+    interface IMTEGetMapColor extends IMultiTileEntity {
+        MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos);
+    }
+
+    interface IMTEIsBlockNormalCube extends IMultiTileEntity {
+        boolean isBlockNormalCube(IBlockState state);
+    }
+
+    interface IMTEIsNormalCube extends IMultiTileEntity {
+        boolean isNormalCube(IBlockState state);
+
+        boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTECausesSuffocation extends IMultiTileEntity {
+        boolean causesSuffocation(IBlockState state);
+    }
+
+    interface IMTEIsFullCube extends IMultiTileEntity {
+        boolean isFullCube(IBlockState state);
+    }
+
+    interface IMTEHasCustomBreakingProgress extends IMultiTileEntity {
+        boolean hasCustomBreakingProgress(IBlockState state);
+    }
+
+    interface IMTEIsPassable extends IMultiTileEntity {
+        boolean isPassable(IBlockAccess worldIn, BlockPos pos);
+    }
+
+    interface IMTEGetRenderType extends IMultiTileEntity {
+        EnumBlockRenderType getRenderType(IBlockState state);
+    }
+
+    interface IMTEIsReplaceable extends IMultiTileEntity {
+        boolean isReplaceable(IBlockAccess worldIn, BlockPos pos);
+    }
+
+    interface IMTESetHardness extends IMultiTileEntity {
+        Block setHardness(float hardness);
+    }
+
+    interface IMTESetBlockUnbreakable extends IMultiTileEntity {
+        Block setBlockUnbreakable();
+    }
+
+    interface IMTEGetBlockHardness extends IMultiTileEntity {
+        float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos);
+    }
+
+    interface IMTESetTickRandomly extends IMultiTileEntity {
+        Block setTickRandomly(boolean shouldTick);
+    }
+
+    interface IMTEGetTickRandomly extends IMultiTileEntity {
+        boolean getTickRandomly();
+    }
+
+    interface IMTEHasTileEntity extends IMultiTileEntity {
+        boolean hasTileEntity();
+
+        boolean hasTileEntity(IBlockState state);
+    }
+
+    interface IMTEGetBoundingBox extends IMultiTileEntity {
+        AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos);
+    }
+
+    interface IMTEGetLightmapPackedCoords extends IMultiTileEntity {
+        int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos);
+    }
+
+    interface IMTEShouldSideBeRendered extends IMultiTileEntity {
+        boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side);
+    }
+
+    interface IMTEGetBlockFaceShape extends IMultiTileEntity {
+        BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face);
+    }
+
+    interface IMTEGetCollisionBoundingBox extends IMultiTileEntity {
+        @Nullable
+        AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos);
+    }
+
+    interface IMTEGetSelectedBoundingBox extends IMultiTileEntity {
+        @SideOnly(Side.CLIENT)
+        AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos);
+    }
+
+    interface IMTEIsOpaqueCube extends IMultiTileEntity {
+        boolean isOpaqueCube(IBlockState state);
+    }
+
+    interface IMTECanCollideCheck extends IMultiTileEntity {
+        boolean canCollideCheck(IBlockState state, boolean hitIfLiquid);
+    }
+
+    interface IMTEIsCollidable extends IMultiTileEntity {
+        boolean isCollidable();
+    }
+
+    interface IMTERandomTick extends IMultiTileEntity {
+        void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random);
+    }
+
+    interface IMTEUpdateTick extends IMultiTileEntity {
+        void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand);
+    }
+
+    interface IMTERandomDisplayTick extends IMultiTileEntity {
+        @SideOnly(Side.CLIENT)
+        void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand);
+    }
+
+    interface IMTEOnPlayerDestroy extends IMultiTileEntity {
+        void onPlayerDestroy(World worldIn, BlockPos pos, IBlockState state);
+    }
+
+    interface IMTEOnNeighborChanged extends IMultiTileEntity {
+        void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos);
+    }
+
+    interface IMTETickRate extends IMultiTileEntity {
+        int tickRate(World worldIn);
+    }
+
+    interface IMTEOnBlockAdded extends IMultiTileEntity {
+        void onBlockAdded(World worldIn, BlockPos pos, IBlockState state);
+    }
+
+    interface IMTEBreakBlock extends IMultiTileEntity {
+        void breakBlock(World worldIn, BlockPos pos, IBlockState state);
+    }
+
+    interface IMTEQuantityDropped extends IMultiTileEntity {
+        int quantityDropped(Random random);
+
+        int quantityDropped(IBlockState state, int fortune, Random random);
+    }
+
+    interface IMTEGetItemDropped extends IMultiTileEntity {
+        Item getItemDropped(IBlockState state, Random rand, int fortune);
+    }
+
+    interface IMTEGetPlayerRelativeBlockHardness extends IMultiTileEntity {
+        float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World worldIn, BlockPos pos);
+    }
+
+    interface IMTEDropBlockAsItemWithChance extends IMultiTileEntity {
+        void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune);
+    }
+
+    interface IMTEDropXpOnBlockBreak extends IMultiTileEntity {
+        void dropXpOnBlockBreak(World worldIn, BlockPos pos, int amount);
+    }
+
+    interface IMTEDamageDropped extends IMultiTileEntity {
+        int damageDropped(IBlockState state);
+    }
+
+    interface IMTEGetExplosionResistance extends IMultiTileEntity {
+        float getExplosionResistance(Entity exploder);
+
+        default float getExplosionResistance(World world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
+            return getExplosionResistance(exploder);
+        }
+    }
+
+    interface IMTECollisionRayTrace extends IMultiTileEntity {
+        @Nullable
+        RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end);
+    }
+
+    interface IMTERayTrace extends IMultiTileEntity {
+        @Nullable
+        RayTraceResult rayTrace(BlockPos pos, Vec3d start, Vec3d end, AxisAlignedBB boundingBox);
+    }
+
+    interface IMTEOnExplosionDestroy extends IMultiTileEntity {
+        void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn);
+    }
+
+    interface IMTEGetRenderLayer extends IMultiTileEntity {
+        @SideOnly(Side.CLIENT)
+        BlockRenderLayer getRenderLayer();
+    }
+
+    interface IMTECanPlaceBlockOnSide extends IMultiTileEntity {
+        boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side);
+    }
+
+    interface IMTECanPlaceBlockAt extends IMultiTileEntity {
+        boolean canPlaceBlockAt(World worldIn, BlockPos pos);
+    }
+
+    interface IMTEOnBlockActivated extends IMultiTileEntity {
+        boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ);
+    }
+
+    interface IMTEOnEntityWalk extends IMultiTileEntity {
+        void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn);
+    }
+
+    interface IMTEGetStateForPlacement extends IMultiTileEntity {
+        IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer);
+
+        default IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+            return getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+        }
+    }
+
+    interface IMTEOnBlockClicked extends IMultiTileEntity {
+        void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn);
+    }
+
+    interface IMTEModifyAcceleration extends IMultiTileEntity {
+        Vec3d modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3d motion);
+    }
+
+    interface IMTEGetWeakPower extends IMultiTileEntity {
+        int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side);
+    }
+
+    interface IMTECanProvidePower extends IMultiTileEntity {
+        boolean canProvidePower(IBlockState state);
+    }
+
+    interface IMTEOnEntityCollision extends IMultiTileEntity {
+        void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn);
+    }
+
+    interface IMTEGetStrongPower extends IMultiTileEntity {
+        int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side);
+    }
+
+    interface IMTEHarvestBlock extends IMultiTileEntity {
+        void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack);
+    }
+
+    interface IMTECanSilkHarvest extends IMultiTileEntity {
+        boolean canSilkHarvest();
+
+        boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player);
+    }
+
+    interface IMTEGetSilkTouchDrop extends IMultiTileEntity {
+        @Nonnull
+        ItemStack getSilkTouchDrop(IBlockState state);
+    }
+
+    interface IMTEQuantityDroppedWithBonus extends IMultiTileEntity {
+        int quantityDroppedWithBonus(int fortune, Random random);
+    }
+
+    interface IMTEOnBlockPlacedBy extends IMultiTileEntity {
+        void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack);
+    }
+
+    interface IMTECanSpawnInBlock extends IMultiTileEntity {
+        boolean canSpawnInBlock();
+    }
+
+    interface IMTESetTranslationKey extends IMultiTileEntity {
+        Block setTranslationKey(String key);
+    }
+
+    interface IMTEGetLocalizedName extends IMultiTileEntity {
+        String getLocalizedName();
+    }
+
+    interface IMTEGetTranslationKey extends IMultiTileEntity {
+        String getTranslationKey();
+    }
+
+    interface IMTEEventRecieved extends IMultiTileEntity {
+        boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param);
+    }
+
+    interface IMTEGetEnableStats extends IMultiTileEntity {
+        boolean getEnableStats();
+    }
+
+    interface IMTEDisableStats extends IMultiTileEntity {
+        Block disableStats();
+    }
+
+    interface IMTEGetPushReaction extends IMultiTileEntity {
+        EnumPushReaction getPushReaction(IBlockState state);
+    }
+
+    interface IMTEGetAmbientOcclusionLightValue extends IMultiTileEntity {
+        @SideOnly(Side.CLIENT)
+        float getAmbientOcclusionLightValue(IBlockState state);
+    }
+
+    interface IMTEOnBlockFallenUpon extends IMultiTileEntity {
+        void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance);
+    }
+
+    interface IMTEOnLanded extends IMultiTileEntity {
+        void onLanded(World worldIn, Entity entityIn);
+    }
+
+    interface IMTEGetItem extends IMultiTileEntity {
+        @Nonnull
+        ItemStack getItem(World worldIn, BlockPos pos, IBlockState state);
+    }
+
+    interface IMTEGetSubBlocks extends IMultiTileEntity {
+        void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items);
+    }
+
+    interface IMTEGetCreativeTab extends IMultiTileEntity {
+        CreativeTabs getCreativeTab();
+    }
+
+    interface IMTESetCreativeTab extends IMultiTileEntity {
+        Block setCreativeTab(CreativeTabs tab);
+    }
+
+    interface IMTEOnBlockHarvested extends IMultiTileEntity {
+        void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player);
+    }
+
+    interface IMTEFillWithRain extends IMultiTileEntity {
+        void fillWithRain(World worldIn, BlockPos pos);
+    }
+
+    interface IMTERequiresUpdates extends IMultiTileEntity {
+        boolean requiresUpdates();
+    }
+
+    interface IMTECanDropFromExplosion extends IMultiTileEntity {
+        boolean canDropFromExplosion(Explosion explosionIn);
+    }
+
+    interface IMTEIsAssociatedBlock extends IMultiTileEntity {
+        boolean isAssociatedBlock(Block other);
+    }
+
+    interface IMTEHasComparatorInputOverride extends IMultiTileEntity {
+        boolean hasComparatorInputOverride(IBlockState state);
+    }
+
+    interface IMTEGetComparatorInputOverride extends IMultiTileEntity {
+        int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos);
+    }
+
+    interface IMTECreateBlockState extends IMultiTileEntity {
+        BlockStateContainer createBlockState();
+    }
+
+    interface IMTEGetBlockState extends IMultiTileEntity {
+        BlockStateContainer getBlockState();
+    }
+
+    interface IMTEGetOffsetType extends IMultiTileEntity {
+        Block.EnumOffsetType getOffsetType();
+    }
+
+    interface IMTEGetOffset extends IMultiTileEntity {
+        Vec3d getOffset(IBlockState state, IBlockAccess worldIn, BlockPos pos);
+    }
+
+    interface IMTEGetSoundType extends IMultiTileEntity {
+        SoundType getSoundType();
+
+        default SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
+            return getSoundType();
+        }
+    }
+
+    interface IMTEToString extends IMultiTileEntity {
+        String toString();
+    }
+
+    interface IMTEAddInformation extends IMultiTileEntity {
+        @SideOnly(Side.CLIENT)
+        void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn);
+    }
+
+    interface IMTEGetSlipperiness extends IMultiTileEntity {
+        float getSlipperiness(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity entity);
+    }
+
+    interface IMTESetDefaultSlipperiness extends IMultiTileEntity {
+        void setDefaultSlipperiness(float slipperiness);
+    }
+
+    interface IMTEIsLadder extends IMultiTileEntity {
+        boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity);
+    }
+
+    interface IMTEDoesSideBlockRendering extends IMultiTileEntity {
+        boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face);
+    }
+
+    interface IMTEIsSideSolid extends IMultiTileEntity {
+        boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side);
+    }
+
+    interface IMTEIsBurning extends IMultiTileEntity {
+        boolean isBurning(IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEIsAir extends IMultiTileEntity {
+        boolean isAir(IBlockState state, IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTECanHarvestBlock extends IMultiTileEntity {
+        boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player);
+    }
+
+    interface IMTERemovedByPlayer extends IMultiTileEntity {
+        boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest);
+    }
+
+    interface IMTEGetFlammability extends IMultiTileEntity {
+        int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face);
+    }
+
+    interface IMTEIsFlammable extends IMultiTileEntity {
+        boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face);
+    }
+
+    interface IMTEGetFireSpreadSpeed extends IMultiTileEntity {
+        int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face);
+    }
+
+    interface IMTEIsFireSource extends IMultiTileEntity {
+        boolean isFireSource(World world, BlockPos pos, EnumFacing side);
+    }
+
+    interface IMTECreateTileEntity extends IMultiTileEntity {
+        @Nullable
+        TileEntity createTileEntity(World world, IBlockState state);
+    }
+
+    interface IMTEGetDrops extends IMultiTileEntity {
+        default List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+            NonNullList<ItemStack> ret = NonNullList.create();
+            this.getDrops(ret, world, pos, state, fortune);
+            return ret;
+        }
+
+        void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune);
+    }
+
+    interface IMTECanCreatureSpawn extends IMultiTileEntity {
+        boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving.SpawnPlacementType type);
+    }
+
+    interface IMTEIsBed extends IMultiTileEntity {
+        boolean isBed(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity player);
+    }
+
+    interface IMTEGetBedSpawnPosition extends IMultiTileEntity {
+        @Nullable
+        BlockPos getBedSpawnPosition(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable EntityPlayer player);
+    }
+
+    interface IMTESetBedOccupied extends IMultiTileEntity {
+        void setBedOccupied(IBlockAccess world, BlockPos pos, EntityPlayer player, boolean occupied);
+    }
+
+    interface IMTEGetBedDirection extends IMultiTileEntity {
+        EnumFacing getBedDirection(IBlockState state, IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEIsBedFoot extends IMultiTileEntity {
+        boolean isBedFoot(IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEBeginLeavesDecay extends IMultiTileEntity {
+        void beginLeavesDecay(IBlockState state, World world, BlockPos pos);
+    }
+
+    interface IMTECanSustainLeaves extends IMultiTileEntity {
+        boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEIsLeaves extends IMultiTileEntity {
+        boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTECanBeReplacedByLeaves extends IMultiTileEntity {
+        boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEIsWood extends IMultiTileEntity {
+        boolean isWood(IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEIsReplacableByOregen extends IMultiTileEntity {
+        boolean isReplaceableOreGen(IBlockState state, IBlockAccess world, BlockPos pos, Predicate<IBlockState> target);
+    }
+
+    interface IMTEOnBlockExploded extends IMultiTileEntity {
+        void onBlockExploded(World world, BlockPos pos, Explosion explosion);
+    }
+
+    interface IMTECanConnectRedstone extends IMultiTileEntity {
+        boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable EnumFacing side);
+    }
+
+    interface IMTECanPlaceTorchOnTop extends IMultiTileEntity {
+        boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEGetPickBlock extends IMultiTileEntity {
+        @Nonnull
+        ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player);
+    }
+
+    interface IMTEIsFoliage extends IMultiTileEntity {
+        boolean isFoliage(IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEAddLandingEffects extends IMultiTileEntity {
+        boolean addLandingEffects(IBlockState state, WorldServer worldObj, BlockPos blockPosition, IBlockState iblockstate, EntityLivingBase entity, int numberOfParticles);
+    }
+
+    interface IMTEAddRunningEffects extends IMultiTileEntity {
+        boolean addRunningEffects(IBlockState state, World world, BlockPos pos, Entity entity);
+    }
+
+    interface IMTEAddHitEffects extends IMultiTileEntity {
+        @SideOnly(Side.CLIENT)
+        boolean addHitEffects(IBlockState state, World worldObj, RayTraceResult target, ParticleManager manager);
+    }
+
+    interface IMTEAddDestroyEffects extends IMultiTileEntity {
+        @SideOnly(Side.CLIENT)
+        boolean addDestroyEffects(World world, BlockPos pos, ParticleManager manager);
+    }
+
+    interface IMTECanSustainPlant extends IMultiTileEntity {
+        boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable);
+    }
+
+    interface IMTEOnPlantGrow extends IMultiTileEntity {
+        void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source);
+    }
+
+    interface IMTEIsFertile extends IMultiTileEntity {
+        boolean isFertile(World world, BlockPos pos);
+    }
+
+    interface IMTECanEntityDestroy extends IMultiTileEntity {
+        boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity);
+    }
+
+    interface IMTEIsBeaconBase extends IMultiTileEntity {
+        boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon);
+    }
+
+    interface IMTERotateBlock extends IMultiTileEntity {
+        boolean rotateBlock(World world, BlockPos pos, EnumFacing axis);
+    }
+
+    interface IMTEGetValidRotations extends IMultiTileEntity {
+        @Nullable
+        EnumFacing[] getValidRotations(World world, BlockPos pos);
+    }
+
+    interface IMTEGetEnchantPowerBonus extends IMultiTileEntity {
+        float getEnchantPowerBonus(World world, BlockPos pos);
+    }
+
+    interface IMTERecolorBlock extends IMultiTileEntity {
+        boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color);
+    }
+
+    interface IMTEGetExpDrop extends IMultiTileEntity {
+        int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune);
+    }
+
+    interface IMTEOnNeighborChange extends IMultiTileEntity {
+        void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor);
+    }
+
+    interface IMTEObservedNeighborChange extends IMultiTileEntity {
+        void observedNeighborChange(IBlockState observerState, World world, BlockPos observerPos, Block changedBlock, BlockPos changedBlockPos);
+    }
+
+    interface IMTEShouldCheckWeakPower extends IMultiTileEntity {
+        boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side);
+    }
+
+    interface IMTEGetWeakChanges extends IMultiTileEntity {
+        boolean getWeakChanges(IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTESetHarvestLevel extends IMultiTileEntity {
+        void setHarvestLevel(String toolClass, int level);
+
+        void setHarvestLevel(String toolClass, int level, IBlockState state);
+    }
+
+    interface IMTEGetHarvestTool extends IMultiTileEntity {
+        @Nullable
+        String getHarvestTool(IBlockState state);
+    }
+
+    interface IMTEGetHarvestLevel extends IMultiTileEntity {
+        int getHarvestLevel(IBlockState state);
+    }
+
+    interface IMTEIsToolEffective extends IMultiTileEntity {
+        boolean isToolEffective(String type, IBlockState state);
+    }
+
+    interface IMTEGetExtendedState extends IMultiTileEntity {
+        IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos);
+    }
+
+    interface IMTEIsEntityInsideMaterial extends IMultiTileEntity {
+        @Nullable
+        Boolean isEntityInsideMaterial(IBlockAccess world, BlockPos blockpos, IBlockState iblockstate, Entity entity, double yToTest, Material materialIn, boolean testingHead);
+    }
+
+    interface IMTEIsAABBInsideMaterial extends IMultiTileEntity {
+        @Nullable
+        Boolean isAABBInsideMaterial(World world, BlockPos pos, AxisAlignedBB boundingBox, Material materialIn);
+    }
+
+    interface IMTEIsAABBInsideLiquid extends IMultiTileEntity {
+        @Nullable
+        Boolean isAABBInsideLiquid(World world, BlockPos pos, AxisAlignedBB boundingBox);
+    }
+
+    interface IMTEGetBlockLiquidHeight extends IMultiTileEntity {
+        float getBlockLiquidHeight(World world, BlockPos pos, IBlockState state, Material material);
+    }
+
+    interface IMTECanRenderInLayer extends IMultiTileEntity {
+        boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer);
+    }
+
+    interface IMTECaptureDrops extends IMultiTileEntity {
+        NonNullList<ItemStack> captureDrops(boolean start);
+    }
+
+    interface IMTEGetBeaconColorMultiplier extends IMultiTileEntity {
+        @Nullable
+        float[] getBeaconColorMultiplier(IBlockState state, World world, BlockPos pos, BlockPos beaconPos);
+    }
+
+    interface IMTEGetFogColor extends IMultiTileEntity {
+        @SideOnly(Side.CLIENT)
+        Vec3d getFogColor(World world, BlockPos pos, IBlockState state, Entity entity, Vec3d originalColor, float partialTicks);
+    }
+
+    interface IMTEGetStateAtViewpoint extends IMultiTileEntity {
+        IBlockState getStateAtViewpoint(IBlockState state, IBlockAccess world, BlockPos pos, Vec3d viewpoint);
+    }
+
+    interface IMTECanBeConnectedTo extends IMultiTileEntity {
+        boolean canBeConnectedTo(IBlockAccess world, BlockPos pos, EnumFacing facing);
+    }
+
+    interface IMTEGetAIPathNodeType extends IMultiTileEntity {
+        @Nullable
+        PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos);
+
+        @Nullable
+        default PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable EntityLiving entity) {
+            return getAiPathNodeType(state, world, pos);
+        }
+    }
+
+    interface IMTEDoesSideBlockChestOpening extends IMultiTileEntity {
+        boolean doesSideBlockChestOpening(IBlockState blockState, IBlockAccess world, BlockPos pos, EnumFacing side);
+    }
+
+    interface IMTEIsStickyBlock extends IMultiTileEntity {
+        boolean isStickyBlock(IBlockState state);
+    }
+}

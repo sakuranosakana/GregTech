@@ -67,7 +67,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickableTile
     }
 
     @Override
-    public void onAdjacentBlockChange(BlockPos pos) {
+    public void onAdjacentBlockChangeBase(BlockPos pos) {
         //
     }
 
@@ -399,5 +399,15 @@ public abstract class TileEntityBase extends TileEntity implements ITickableTile
 
     public float getPlayerRelativeBlockHardness(EntityPlayer aPlayer, float aOriginal) {
         return allowInteraction(aPlayer) ? Math.max(aOriginal, 0.0001F) : 0;
+    }
+
+    @Override
+    public TileEntity getTileEntityAtSideAndDistance(EnumFacing facing, int distance) {
+        return getTileEntity(getPos().offset(facing).add(distance, distance, distance));
+    }
+
+    @Override
+    public BlockPos getOffset(@Nonnull EnumFacing facing, int multiplier) {
+        return pos.add(facing.getXOffset() * multiplier, facing.getYOffset() * multiplier, facing.getZOffset() * multiplier);
     }
 }

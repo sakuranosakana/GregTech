@@ -31,7 +31,7 @@ public interface ITickableTileEntity extends IHasWorldAndPosition, ITileEntityUn
      * if (tTileEntity instanceof ITileEntity) ((ITileEntity)tTileEntity).onAdjacentBlockChange(aX, aY, aZ);
      * }
      */
-    void onAdjacentBlockChange(BlockPos pos);
+    void onAdjacentBlockChangeBase(BlockPos pos);
 
     /**
      * Called after the TileEntity has been placed and set up.

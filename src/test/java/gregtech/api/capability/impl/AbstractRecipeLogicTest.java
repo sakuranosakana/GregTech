@@ -2,6 +2,7 @@ package gregtech.api.capability.impl;
 
 import gregtech.Bootstrap;
 import gregtech.api.GTValues;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
@@ -51,7 +52,7 @@ public class AbstractRecipeLogicTest {
                                 map,
                                 null,
                                 1, false));
-        MetaTileEntity atte = new MetaTileEntityHolder().setMetaTileEntity(at);
+        IMetaTileEntity atte = new MetaTileEntityHolder().setMetaTileEntity(at);
         atte.getHolder().setWorld(world);
         map.recipeBuilder()
                 .inputs(new ItemStack(Blocks.COBBLESTONE))
@@ -59,7 +60,7 @@ public class AbstractRecipeLogicTest {
                 .EUt(1).duration(1)
                 .buildAndRegister();
 
-        AbstractRecipeLogic arl = new AbstractRecipeLogic(atte, map) {
+        AbstractRecipeLogic arl = new AbstractRecipeLogic((MetaTileEntity) atte, map) {
             @Override
             protected long getEnergyInputPerSecond() {
                 return Long.MAX_VALUE;

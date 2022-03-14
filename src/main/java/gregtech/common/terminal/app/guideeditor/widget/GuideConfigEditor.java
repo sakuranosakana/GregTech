@@ -9,6 +9,7 @@ import gregtech.api.gui.resources.ColorRectTexture;
 import gregtech.api.gui.resources.TextTexture;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.gui.widgets.tab.IGuiTextureTabInfo;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.terminal.TerminalRegistry;
 import gregtech.api.terminal.app.AbstractApplication;
@@ -257,7 +258,7 @@ public class GuideConfigEditor extends TabGroup<AbstractWidgetGroup> {
                         }
                     } else if ((app instanceof MultiBlockGuideApp || app instanceof SimpleMachineGuideApp)
                             && stack.getItem() instanceof MachineItemBlock) {
-                        MetaTileEntity mte = GregTechAPI.MTE_REGISTRY.getObjectById(stack.getItemDamage());
+                        IMetaTileEntity mte = GregTechAPI.MTE_REGISTRY.getObjectById(stack.getItemDamage());
                         if (mte != null) {
                             jsonObject.addProperty("metatileentity", GregTechAPI.MTE_REGISTRY.getNameForObject(mte).getPath());
                         } else {

@@ -7,6 +7,7 @@ import gregtech.api.capability.IControllable;
 import gregtech.api.capability.IMultipleRecipeMaps;
 import gregtech.api.capability.impl.AbstractRecipeLogic;
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.SteamMetaTileEntity;
 import gregtech.api.recipes.Recipe;
@@ -125,7 +126,8 @@ public class GTJeiPlugin implements IModPlugin {
         }
 
         for (ResourceLocation metaTileEntityId : GregTechAPI.MTE_REGISTRY.getKeys()) {
-            MetaTileEntity metaTileEntity = GregTechAPI.MTE_REGISTRY.getObject(metaTileEntityId);
+            // TODO Bad cast!!
+            MetaTileEntity metaTileEntity = (MetaTileEntity) GregTechAPI.MTE_REGISTRY.getObject(metaTileEntityId);
             assert metaTileEntity != null;
             if (metaTileEntity.getCapability(GregtechTileCapabilities.CAPABILITY_CONTROLLABLE, null) != null) {
                 IControllable workableCapability = metaTileEntity.getCapability(GregtechTileCapabilities.CAPABILITY_CONTROLLABLE, null);

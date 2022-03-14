@@ -34,8 +34,9 @@ public class MachineItemBlock extends ItemBlock {
         setHasSubtypes(true);
     }
 
+    // TODO Bad cast!!
     public static MetaTileEntity getMetaTileEntity(ItemStack itemStack) {
-        return GregTechAPI.MTE_REGISTRY.getObjectById(itemStack.getItemDamage());
+        return (MetaTileEntity) GregTechAPI.MTE_REGISTRY.getObjectById(itemStack.getItemDamage());
     }
 
     @Nonnull

@@ -15,6 +15,7 @@ import gregtech.api.cover.CoverBehavior;
 import gregtech.api.cover.ICoverable;
 import gregtech.api.cover.IFacadeCover;
 import gregtech.api.items.toolitem.IToolStats;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.pipenet.IBlockAppearance;
@@ -241,12 +242,12 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
     @Override
     public void onBlockPlacedBy(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull EntityLivingBase placer, ItemStack stack) {
         MetaTileEntityHolder holder = (MetaTileEntityHolder) worldIn.getTileEntity(pos);
-        MetaTileEntity sampleMetaTileEntity = GregTechAPI.MTE_REGISTRY.getObjectById(stack.getItemDamage());
+        IMetaTileEntity sampleMetaTileEntity = GregTechAPI.MTE_REGISTRY.getObjectById(stack.getItemDamage());
         if (holder != null && sampleMetaTileEntity != null) {
             if (stack.hasDisplayName()) {
                 holder.setCustomName(stack.getDisplayName());
             }
-            MetaTileEntity metaTileEntity = holder.setMetaTileEntity(sampleMetaTileEntity);
+            IMetaTileEntity metaTileEntity = holder.setMetaTileEntity(sampleMetaTileEntity);
             if (stack.hasTagCompound()) {
                 //noinspection ConstantConditions
                 metaTileEntity.initFromItemStackData(stack.getTagCompound());
@@ -444,7 +445,7 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
 
     @Override
     public void getSubBlocks(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> items) {
-        for (MetaTileEntity metaTileEntity : GregTechAPI.MTE_REGISTRY) {
+        for (IMetaTileEntity metaTileEntity : GregTechAPI.MTE_REGISTRY) {
             metaTileEntity.getSubItems(tab, items);
         }
     }

@@ -6,18 +6,19 @@ import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.gui.resources.IGuiTexture;
 import gregtech.api.gui.resources.ItemStackTexture;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.util.ResourceLocation;
 
-public class MultiBlockGuideApp extends GuideApp<MetaTileEntity> {
+public class MultiBlockGuideApp extends GuideApp<IMetaTileEntity> {
 
     public MultiBlockGuideApp() {
         super("multiblocks", new ItemStackTexture(MetaTileEntities.ELECTRIC_BLAST_FURNACE.getStackForm()));
     }
 
     @Override
-    public MetaTileEntity ofJson(JsonObject json) {
+    public IMetaTileEntity ofJson(JsonObject json) {
         String[] valids = {"multiblock", "metatileentity"};
         if (json.isJsonObject()) {
             for (String valid : valids) {
@@ -30,17 +31,17 @@ public class MultiBlockGuideApp extends GuideApp<MetaTileEntity> {
     }
 
     @Override
-    protected IGuiTexture itemIcon(MetaTileEntity item) {
+    protected IGuiTexture itemIcon(IMetaTileEntity item) {
         return new ItemStackTexture(item.getStackForm());
     }
 
     @Override
-    protected String itemName(MetaTileEntity item) {
+    protected String itemName(IMetaTileEntity item) {
         return item.getStackForm().getDisplayName();
     }
 
     @Override
-    protected String rawItemName(MetaTileEntity item) {
-        return item.metaTileEntityId.getPath();
+    protected String rawItemName(IMetaTileEntity item) {
+        return item.getMetaTileEntityId().getPath();
     }
 }

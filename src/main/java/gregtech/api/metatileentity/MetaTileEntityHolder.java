@@ -42,7 +42,7 @@ import static gregtech.api.capability.GregtechDataCodes.INITIALIZE_MTE;
 
 public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIHolder, IWorldNameable {
 
-    MetaTileEntity metaTileEntity;
+    IMetaTileEntity metaTileEntity;
     private boolean needToUpdateLightning = false;
     private String customName;
     @SideOnly(Side.CLIENT)
@@ -53,7 +53,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
     private int lagWarningCount = 0;
 
     public MetaTileEntity getMetaTileEntity() {
-        return metaTileEntity;
+        return (MetaTileEntity) metaTileEntity; // todo dont cast this
     }
 
     /**
@@ -62,7 +62,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
      * so it is safe to call it on sample meta tile entities
      * Also can use certain data to preinit the block before data is synced
      */
-    public MetaTileEntity setMetaTileEntity(MetaTileEntity sampleMetaTileEntity, Object... data) {
+    public IMetaTileEntity setMetaTileEntity(IMetaTileEntity sampleMetaTileEntity, Object... data) {
         Preconditions.checkNotNull(sampleMetaTileEntity, "metaTileEntity");
         setRawMetaTileEntity(sampleMetaTileEntity.createMetaTileEntity(this));
         this.metaTileEntity.onAttached(data);
@@ -77,9 +77,9 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
         return metaTileEntity;
     }
 
-    protected void setRawMetaTileEntity(MetaTileEntity metaTileEntity) {
+    protected void setRawMetaTileEntity(IMetaTileEntity metaTileEntity) {
         this.metaTileEntity = metaTileEntity;
-        this.metaTileEntity.holder = this;
+        this.metaTileEntity.setHolder(this);
     }
 
     private void updateBlockOpacity() {
@@ -108,7 +108,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
         if (compound.hasKey("MetaId", NBT.TAG_STRING)) {
             String metaTileEntityIdRaw = compound.getString("MetaId");
             ResourceLocation metaTileEntityId = new ResourceLocation(metaTileEntityIdRaw);
-            MetaTileEntity sampleMetaTileEntity = GregTechAPI.MTE_REGISTRY.getObject(metaTileEntityId);
+            IMetaTileEntity sampleMetaTileEntity = GregTechAPI.MTE_REGISTRY.getObject(metaTileEntityId);
             NBTTagCompound metaTileEntityData = compound.getCompoundTag("MetaTileEntity");
             if (sampleMetaTileEntity != null) {
                 setRawMetaTileEntity(sampleMetaTileEntity.createMetaTileEntity(this));
@@ -126,7 +126,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
         super.writeToNBT(compound);
         compound.setString("CustomName", getName());
         if (metaTileEntity != null) {
-            compound.setString("MetaId", metaTileEntity.metaTileEntityId.toString());
+            compound.setString("MetaId", metaTileEntity.getMetaTileEntityId().toString());
             NBTTagCompound metaTileEntityData = new NBTTagCompound();
             metaTileEntity.writeToNBT(metaTileEntityData);
             compound.setTag("MetaTileEntity", metaTileEntityData);
@@ -239,7 +239,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
 
     public void sendInitialSyncData() {
         writeCustomData(INITIALIZE_MTE, buffer -> {
-            buffer.writeVarInt(GregTechAPI.MTE_REGISTRY.getIdByObjectName(metaTileEntity.metaTileEntityId));
+            buffer.writeVarInt(GregTechAPI.MTE_REGISTRY.getIdByObjectName(metaTileEntity.getMetaTileEntityId()));
             metaTileEntity.writeInitialSyncData(buffer);
         });
     }
@@ -249,7 +249,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
         buf.writeString(getName());
         if (metaTileEntity != null) {
             buf.writeBoolean(true);
-            buf.writeVarInt(GregTechAPI.MTE_REGISTRY.getIdByObjectName(metaTileEntity.metaTileEntityId));
+            buf.writeVarInt(GregTechAPI.MTE_REGISTRY.getIdByObjectName(metaTileEntity.getMetaTileEntityId()));
             metaTileEntity.writeInitialSyncData(buf);
         } else buf.writeBoolean(false);
     }

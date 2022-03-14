@@ -1,6 +1,7 @@
 package gregtech.api.pattern;
 
 import gregtech.api.GregTechAPI;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
@@ -333,9 +334,9 @@ public class BlockPattern {
                             world.setBlockState(pos, state);
                             TileEntity holder = world.getTileEntity(pos);
                             if (holder instanceof MetaTileEntityHolder) {
-                                MetaTileEntity sampleMetaTileEntity = GregTechAPI.MTE_REGISTRY.getObjectById(found.getItemDamage());
+                                IMetaTileEntity sampleMetaTileEntity = GregTechAPI.MTE_REGISTRY.getObjectById(found.getItemDamage());
                                 if (sampleMetaTileEntity != null) {
-                                    MetaTileEntity metaTileEntity = ((MetaTileEntityHolder) holder).setMetaTileEntity(sampleMetaTileEntity);
+                                    IMetaTileEntity metaTileEntity = ((MetaTileEntityHolder) holder).setMetaTileEntity(sampleMetaTileEntity);
                                     blocks.put(pos, metaTileEntity);
                                     if (found.hasTagCompound()) {
                                         metaTileEntity.initFromItemStackData(found.getTagCompound());

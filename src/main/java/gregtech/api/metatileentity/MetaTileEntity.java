@@ -29,7 +29,6 @@ import gregtech.common.ConfigHolder;
 import gregtech.common.advancement.GTTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.client.audio.ISound;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -60,14 +59,13 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
 
-public abstract class MetaTileEntity implements ICoverable, IVoidable {
+public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable {
 
     public static final IndexedCuboid6 FULL_CUBE_COLLISION = new IndexedCuboid6(null, Cuboid6.full);
     public static final String TAG_KEY_PAINTING_COLOR = "PaintingColor";
@@ -111,6 +109,15 @@ public abstract class MetaTileEntity implements ICoverable, IVoidable {
     public MetaTileEntity(ResourceLocation metaTileEntityId) {
         this.metaTileEntityId = metaTileEntityId;
         initializeInventory();
+    }
+
+    @Override
+    public ResourceLocation getMetaTileEntityId() {
+        return metaTileEntityId;
+    }
+
+    public void setHolder(MetaTileEntityHolder holder) {
+        this.holder = holder;
     }
 
     protected void initializeInventory() {

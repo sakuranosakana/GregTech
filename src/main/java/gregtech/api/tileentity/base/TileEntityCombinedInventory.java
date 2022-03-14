@@ -1,6 +1,10 @@
 package gregtech.api.tileentity.base;
 
 import gregtech.api.GTValues;
+import gregtech.api.capability.impl.FluidHandlerProxy;
+import gregtech.api.capability.impl.FluidTankList;
+import gregtech.api.capability.impl.ItemHandlerProxy;
+import gregtech.api.capability.impl.NotifiableItemStackHandler;
 import gregtech.api.util.GTUtility;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -33,67 +37,94 @@ import static gregtech.api.multitileentity.IMultiTileEntity.IMTEOnBlockExploded;
 public abstract class TileEntityCombinedInventory extends TileEntityBaseCoverable implements IMTEOnBlockExploded, IMTEBreakBlock {
 
     public static final String ITEM_INVENTORY_TAG = "Inventory";
+    public static final String INVENTORY_INPUTS_TAG = "ImportInventory";
+    public static final String INVENTORY_OUTPUTS_TAG = "ExportInventory";
+
     public static final String FLUID_INVENTORY_TAG = "FluidInventory";
+    public static final String INVENTORY_FLUID_INPUTS_TAG = "ImportFluidInventory";
+    public static final String INVENTORY_FLUID_OUTPUTS_TAG = "ExportFluidInventory";
+
+    protected final boolean hasSeparateIO;
 
     protected IItemHandler itemInventory;
+    protected IItemHandlerModifiable importItemInventory;
+    protected IItemHandlerModifiable exportItemInventory;
+
     protected IFluidHandler fluidInventory;
+    protected FluidTankList importFluidInventory;
+    protected FluidTankList exportFluidInventory;
 
     public boolean itemInventoryChanged = false;
     public boolean fluidInventoryChanged = false;
 
-    public TileEntityCombinedInventory() {
+    public TileEntityCombinedInventory(boolean hasSeparateIO) {
         super();
+        this.hasSeparateIO = hasSeparateIO;
         initializeInventory();
     }
 
     protected void initializeInventory() {
-        this.itemInventory = new ItemStackHandler(getMinimumItemInventorySize());
-        this.fluidInventory = new FluidTank(getMinimumFluidInventorySize());
+        if (hasSeparateIO) {
+            this.importItemInventory = new NotifiableItemStackHandler(getDefaultItemInventorySize(), this, false);
+            this.exportItemInventory = new NotifiableItemStackHandler(getDefaultItemInventorySize(), this, true);
+            this.itemInventory = new ItemHandlerProxy(importItemInventory, exportItemInventory);
+
+            this.importFluidInventory = new FluidTankList(false);
+            this.exportFluidInventory = new FluidTankList(false);
+            this.fluidInventory = new FluidHandlerProxy(importFluidInventory, exportFluidInventory);
+        } else {
+            this.itemInventory = new ItemStackHandler(getDefaultItemInventorySize());
+
+            this.fluidInventory = new FluidTank(getDefaultFluidInventorySize());
+        }
     }
 
     @Nonnull
     @Override
     public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound data) {
         super.writeToNBT(data);
-        itemInventory = getDefaultItemInventory(data);
-        GTUtility.writeItems(itemInventory, ITEM_INVENTORY_TAG, data);
+        super.writeToNBT(data);
+        if (hasSeparateIO) {
+            GTUtility.writeItems(importItemInventory, INVENTORY_INPUTS_TAG, data);
+            GTUtility.writeItems(exportItemInventory, INVENTORY_OUTPUTS_TAG, data);
 
-        fluidInventory = getDefaultFluidInventory(data);
-        //noinspection ConstantConditions
-        if (fluidInventory instanceof FluidTank) {
-            data.setTag(FLUID_INVENTORY_TAG, ((FluidTank) fluidInventory).writeToNBT(new NBTTagCompound()));
+            data.setTag(INVENTORY_FLUID_INPUTS_TAG, importFluidInventory.serializeNBT());
+            data.setTag(INVENTORY_FLUID_OUTPUTS_TAG, exportFluidInventory.serializeNBT());
+        } else {
+            if (itemInventory instanceof IItemHandlerModifiable) {
+                GTUtility.writeItems(itemInventory, ITEM_INVENTORY_TAG, data);
+            }
+            if (fluidInventory instanceof FluidTank) {
+                data.setTag(FLUID_INVENTORY_TAG, ((FluidTank) fluidInventory).writeToNBT(new NBTTagCompound()));
+            }
         }
-
         return data;
     }
 
     @Override
     public void readFromNBT(@Nonnull NBTTagCompound data) {
         super.readFromNBT(data);
-        if (itemInventory instanceof IItemHandlerModifiable) {
-            GTUtility.readItems((IItemHandlerModifiable) itemInventory, ITEM_INVENTORY_TAG, data);
+        if (hasSeparateIO) {
+            GTUtility.readItems(importItemInventory, INVENTORY_INPUTS_TAG, data);
+            GTUtility.readItems(exportItemInventory, INVENTORY_OUTPUTS_TAG, data);
+
+            importFluidInventory.deserializeNBT(data.getCompoundTag(INVENTORY_FLUID_INPUTS_TAG));
+            exportFluidInventory.deserializeNBT(data.getCompoundTag(INVENTORY_FLUID_OUTPUTS_TAG));
+        } else {
+            if (itemInventory instanceof IItemHandlerModifiable) {
+                GTUtility.readItems((IItemHandlerModifiable) itemInventory, ITEM_INVENTORY_TAG, data);
+            }
+            if (fluidInventory instanceof FluidTank) {
+                ((FluidTank) fluidInventory).readFromNBT(data.getCompoundTag(FLUID_INVENTORY_TAG));
+            }
         }
-        if (fluidInventory instanceof FluidTank) {
-            ((FluidTank) fluidInventory).readFromNBT(data.getCompoundTag(FLUID_INVENTORY_TAG));
-        }
     }
 
-    @Nonnull
-    public ItemStackHandler getDefaultItemInventory(@Nonnull NBTTagCompound data) {
-        return new ItemStackHandler(Math.max(getMinimumItemInventorySize(), data.getTagList(ITEM_INVENTORY_TAG, 0).tagList.size()));
-    }
-
-    @Nonnull
-    public FluidTank getDefaultFluidInventory(@Nonnull NBTTagCompound data) {
-        return new FluidTank(Math.max(getMinimumFluidInventorySize(), data.getCompoundTag(FLUID_INVENTORY_TAG).getInteger("Amount")));
-    }
-
-    public int getMinimumItemInventorySize() {
+    public int getDefaultItemInventorySize() {
         return 0;
     }
 
-
-    public int getMinimumFluidInventorySize() {
+    public int getDefaultFluidInventorySize() {
         return 0;
     }
 
@@ -102,6 +133,17 @@ public abstract class TileEntityCombinedInventory extends TileEntityBaseCoverabl
         super.onTickResetChecks(timer, isServerSide);
         itemInventoryChanged = false;
         fluidInventoryChanged = false;
+    }
+
+    /**
+     * Override this if the MTE will keep its Item inventory on-break.
+     * If this is overridden to return True, you MUST take care to handle
+     * the ItemStacks in the MTE's inventory otherwise they will be voided on break.
+     *
+     * @return True if MTE inventory is kept as an ItemStack, false otherwise
+     */
+    public boolean keepsItemInventory() {
+        return false;
     }
 
     /**
@@ -118,7 +160,7 @@ public abstract class TileEntityCombinedInventory extends TileEntityBaseCoverabl
     @Override
     public void initFromNBT(NBTTagCompound compound, ResourceLocation multiTileEntityId, short itemStackMeta) {
         super.initFromNBT(compound, multiTileEntityId, itemStackMeta);
-        if (fluidInventory instanceof FluidTank && itemStack.hasKey(FluidHandlerItemStack.FLUID_NBT_KEY, Constants.NBT.TAG_COMPOUND)) {
+        if (keepsFluidInventory() && fluidInventory instanceof FluidTank && itemStack.hasKey(FluidHandlerItemStack.FLUID_NBT_KEY, Constants.NBT.TAG_COMPOUND)) {
             FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(itemStack.getCompoundTag(FluidHandlerItemStack.FLUID_NBT_KEY));
             ((FluidTank) fluidInventory).setFluid(fluidStack);
         }
@@ -126,7 +168,7 @@ public abstract class TileEntityCombinedInventory extends TileEntityBaseCoverabl
 
     @Override
     public NBTTagCompound writeItemNBT(NBTTagCompound nbtTagCompound) {
-        if (fluidInventory instanceof FluidTank) {
+        if (keepsFluidInventory() && fluidInventory instanceof FluidTank) {
             FluidStack fluidStack = ((FluidTank) fluidInventory).getFluid();
             if (fluidStack != null && fluidStack.amount > 0) {
                 NBTTagCompound tagCompound = new NBTTagCompound();
@@ -138,21 +180,10 @@ public abstract class TileEntityCombinedInventory extends TileEntityBaseCoverabl
         return nbtTagCompound;
     }
 
-    /**
-     * Override this if the MTE will keep its Item inventory on-break.
-     * If this is overridden to return True, you MUST take care to handle
-     * the ItemStacks in the MTE's inventory otherwise they will be voided on break.
-     *
-     * @return True if MTE inventory is kept as an ItemStack, false otherwise
-     */
-    public boolean keepsInventory() {
-        return false;
-    }
-
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         super.getDrops(drops, world, pos, state, fortune);
-        if (keepsInventory()) {
+        if (keepsItemInventory()) {
             for (int i = 0; i < itemInventory.getSlots(); i++) {
                 ItemStack stack = itemInventory.getStackInSlot(i);
                 if (!stack.isEmpty()) drops.add(stack);
@@ -175,7 +206,7 @@ public abstract class TileEntityCombinedInventory extends TileEntityBaseCoverabl
         itemInventoryChanged = true;
     }
 
-    public boolean doExplosionsVoidItems() {
+    public boolean doesExplosionsVoidItems() {
         return false;
     }
 
@@ -183,7 +214,7 @@ public abstract class TileEntityCombinedInventory extends TileEntityBaseCoverabl
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
         if (itemInventory instanceof IItemHandlerModifiable) {
             for (int i = 0; i < itemInventory.getSlots(); i++) {
-                if (doExplosionsVoidItems() && GTValues.RNG.nextInt(3) != 0) {
+                if (doesExplosionsVoidItems() && GTValues.RNG.nextInt(3) != 0) {
                     ((IItemHandlerModifiable) itemInventory).setStackInSlot(i, ItemStack.EMPTY);
                 }
             }
@@ -195,19 +226,36 @@ public abstract class TileEntityCombinedInventory extends TileEntityBaseCoverabl
         return this.itemInventory;
     }
 
-    public void setItemInventory(IItemHandler handler) {
-        this.itemInventory = handler;
+    public IItemHandler getImportInventory() {
+        return this.importItemInventory;
+    }
+
+    public IItemHandler getExportItemInventory() {
+        return this.exportItemInventory;
     }
 
     public IFluidHandler getFluidInventory() {
         return this.fluidInventory;
     }
 
-    public void setFluidInventory(IFluidHandler handler) {
-        this.fluidInventory = handler;
+    public FluidTankList getImportFluidInventory() {
+        return this.importFluidInventory;
     }
 
-    public static void clearInventory(NonNullList<ItemStack> itemBuffer, @Nonnull IItemHandlerModifiable inventory) {
+    public FluidTankList getExportFluidInventory() {
+        return this.exportFluidInventory;
+    }
+
+    public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
+        if (hasSeparateIO) {
+            clearItemInventory(itemBuffer, importItemInventory);
+            clearItemInventory(itemBuffer, exportItemInventory);
+        } else if (itemInventory instanceof IItemHandlerModifiable) {
+            clearItemInventory(itemBuffer, (IItemHandlerModifiable) itemInventory);
+        }
+    }
+
+    public static void clearItemInventory(NonNullList<ItemStack> itemBuffer, @Nonnull IItemHandlerModifiable inventory) {
         for (int i = 0; i < inventory.getSlots(); i++) {
             ItemStack stackInSlot = inventory.getStackInSlot(i);
             if (!stackInSlot.isEmpty()) {
@@ -215,10 +263,6 @@ public abstract class TileEntityCombinedInventory extends TileEntityBaseCoverabl
                 itemBuffer.add(stackInSlot);
             }
         }
-    }
-
-    public static void clearFluidInventory(@Nonnull NonNullList<FluidStack> fluidBuffer, @Nonnull IFluidHandler fluidInventory) {
-        fluidBuffer.add(fluidInventory.drain(Integer.MAX_VALUE, true));
     }
 
     @Nullable

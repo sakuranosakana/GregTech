@@ -1,6 +1,8 @@
 package gregtech.api.tileentity.base;
 
 import gregtech.api.GTValues;
+import gregtech.api.capability.impl.ItemHandlerProxy;
+import gregtech.api.capability.impl.NotifiableItemStackHandler;
 import gregtech.api.util.GTUtility;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -26,44 +28,58 @@ import static gregtech.api.multitileentity.IMultiTileEntity.IMTEOnBlockExploded;
 public abstract class TileEntityItemInventory extends TileEntityBaseCoverable implements IMTEOnBlockExploded, IMTEBreakBlock {
 
     public static final String ITEM_INVENTORY_TAG = "Inventory";
+    public static final String INVENTORY_INPUTS_TAG = "ImportInventory";
+    public static final String INVENTORY_OUTPUTS_TAG = "ExportInventory";
+
+    protected final boolean hasSeparateIO;
 
     protected IItemHandler itemInventory;
+    protected IItemHandlerModifiable importItemInventory;
+    protected IItemHandlerModifiable exportItemInventory;
 
     public boolean itemInventoryChanged = false;
 
-    public TileEntityItemInventory() {
+    public TileEntityItemInventory(boolean hasSeparateIO) {
         super();
+        this.hasSeparateIO = hasSeparateIO;
         initializeInventory();
     }
 
     protected void initializeInventory() {
-        this.itemInventory = new ItemStackHandler(getMinimumItemInventorySize());
+        if (hasSeparateIO) {
+            this.importItemInventory = new NotifiableItemStackHandler(getDefaultItemInventorySize(), this, false);
+            this.exportItemInventory = new NotifiableItemStackHandler(getDefaultItemInventorySize(), this, true);
+            this.itemInventory = new ItemHandlerProxy(importItemInventory, exportItemInventory);
+        } else {
+            this.itemInventory = new ItemStackHandler(getDefaultItemInventorySize());
+        }
     }
 
     @Nonnull
     @Override
     public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound data) {
         super.writeToNBT(data);
-        itemInventory = getDefaultItemInventory(data);
-        GTUtility.writeItems(itemInventory, ITEM_INVENTORY_TAG, data);
-
+        if (hasSeparateIO) {
+            GTUtility.writeItems(importItemInventory, INVENTORY_INPUTS_TAG, data);
+            GTUtility.writeItems(exportItemInventory, INVENTORY_OUTPUTS_TAG, data);
+        } else if (itemInventory instanceof IItemHandlerModifiable) {
+            GTUtility.writeItems(itemInventory, ITEM_INVENTORY_TAG, data);
+        }
         return data;
     }
 
     @Override
     public void readFromNBT(@Nonnull NBTTagCompound data) {
         super.readFromNBT(data);
-        if (itemInventory instanceof IItemHandlerModifiable) {
+        if (hasSeparateIO) {
+            GTUtility.readItems(importItemInventory, INVENTORY_INPUTS_TAG, data);
+            GTUtility.readItems(exportItemInventory, INVENTORY_OUTPUTS_TAG, data);
+        } else if (itemInventory instanceof IItemHandlerModifiable) {
             GTUtility.readItems((IItemHandlerModifiable) itemInventory, ITEM_INVENTORY_TAG, data);
         }
     }
 
-    @Nonnull
-    public ItemStackHandler getDefaultItemInventory(@Nonnull NBTTagCompound data) {
-        return new ItemStackHandler(Math.max(getMinimumItemInventorySize(), data.getTagList(ITEM_INVENTORY_TAG, 0).tagList.size()));
-    }
-
-    public int getMinimumItemInventorySize() {
+    public int getDefaultItemInventorySize() {
         return 0;
     }
 
@@ -80,14 +96,14 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
      *
      * @return True if MTE inventory is kept as an ItemStack, false otherwise
      */
-    public boolean keepsInventory() {
+    public boolean keepsItemInventory() {
         return false;
     }
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         super.getDrops(drops, world, pos, state, fortune);
-        if (keepsInventory()) {
+        if (keepsItemInventory()) {
             for (int i = 0; i < itemInventory.getSlots(); i++) {
                 ItemStack stack = itemInventory.getStackInSlot(i);
                 if (!stack.isEmpty()) drops.add(stack);
@@ -105,15 +121,26 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
         itemInventoryChanged = true;
     }
 
-    public boolean doExplosionsVoidItems() {
+    public boolean doesExplosionsVoidItems() {
         return false;
     }
 
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
-        if (itemInventory instanceof IItemHandlerModifiable) {
+        if (hasSeparateIO) {
+            for (int i = 0; i < importItemInventory.getSlots(); i++) {
+                if (doesExplosionsVoidItems() && GTValues.RNG.nextInt(3) != 0) {
+                    importItemInventory.setStackInSlot(i, ItemStack.EMPTY);
+                }
+            }
+            for (int i = 0; i < exportItemInventory.getSlots(); i++) {
+                if (doesExplosionsVoidItems() && GTValues.RNG.nextInt(3) != 0) {
+                    exportItemInventory.setStackInSlot(i, ItemStack.EMPTY);
+                }
+            }
+        } else if (itemInventory instanceof IItemHandlerModifiable) {
             for (int i = 0; i < itemInventory.getSlots(); i++) {
-                if (doExplosionsVoidItems() && GTValues.RNG.nextInt(3) != 0) {
+                if (doesExplosionsVoidItems() && GTValues.RNG.nextInt(3) != 0) {
                     ((IItemHandlerModifiable) itemInventory).setStackInSlot(i, ItemStack.EMPTY);
                 }
             }
@@ -125,8 +152,21 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
         return this.itemInventory;
     }
 
-    public void setItemInventory(IItemHandler handler) {
-        this.itemInventory = handler;
+    public IItemHandler getImportInventory() {
+        return this.importItemInventory;
+    }
+
+    public IItemHandler getExportItemInventory() {
+        return this.exportItemInventory;
+    }
+
+    public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
+        if (hasSeparateIO) {
+            clearItemInventory(itemBuffer, importItemInventory);
+            clearItemInventory(itemBuffer, exportItemInventory);
+        } else if (itemInventory instanceof IItemHandlerModifiable) {
+            clearItemInventory(itemBuffer, (IItemHandlerModifiable) itemInventory);
+        }
     }
 
     public static void clearItemInventory(NonNullList<ItemStack> itemBuffer, @Nonnull IItemHandlerModifiable inventory) {

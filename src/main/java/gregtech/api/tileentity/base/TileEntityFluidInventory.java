@@ -1,8 +1,9 @@
 package gregtech.api.tileentity.base;
 
+import gregtech.api.capability.impl.FluidHandlerProxy;
+import gregtech.api.capability.impl.FluidTankList;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
@@ -18,28 +19,42 @@ import javax.annotation.Nullable;
 public abstract class TileEntityFluidInventory extends TileEntityBaseCoverable {
 
     public static final String FLUID_INVENTORY_TAG = "FluidInventory";
+    public static final String INVENTORY_FLUID_INPUTS_TAG = "ImportFluidInventory";
+    public static final String INVENTORY_FLUID_OUTPUTS_TAG = "ExportFluidInventory";
+
+    protected final boolean hasSeparateIO;
 
     protected IFluidHandler fluidInventory;
+    protected FluidTankList importFluidInventory;
+    protected FluidTankList exportFluidInventory;
 
     public boolean fluidInventoryChanged = false;
 
-    public TileEntityFluidInventory() {
+    public TileEntityFluidInventory(boolean hasSeparateIO) {
         super();
+        this.hasSeparateIO = hasSeparateIO;
         initializeInventory();
     }
 
     protected void initializeInventory() {
-        this.fluidInventory = new FluidTank(getMinimumFluidInventorySize());
+        if (hasSeparateIO) {
+            this.importFluidInventory = new FluidTankList(false);
+            this.exportFluidInventory = new FluidTankList(false);
+            this.fluidInventory = new FluidHandlerProxy(importFluidInventory, exportFluidInventory);
+        } else {
+            this.fluidInventory = new FluidTank(getDefaultFluidInventorySize());
+        }
     }
 
     @Nonnull
     @Override
     public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound data) {
         super.writeToNBT(data);
-        fluidInventory = getDefaultFluidInventory(data);
 
-        //noinspection ConstantConditions
-        if (fluidInventory instanceof FluidTank) {
+        if (this.hasSeparateIO) {
+            data.setTag(INVENTORY_FLUID_INPUTS_TAG, importFluidInventory.serializeNBT());
+            data.setTag(INVENTORY_FLUID_OUTPUTS_TAG, exportFluidInventory.serializeNBT());
+        } else if (fluidInventory instanceof FluidTank) {
             data.setTag(FLUID_INVENTORY_TAG, ((FluidTank) fluidInventory).writeToNBT(new NBTTagCompound()));
         }
 
@@ -50,17 +65,15 @@ public abstract class TileEntityFluidInventory extends TileEntityBaseCoverable {
     public void readFromNBT(@Nonnull NBTTagCompound data) {
         super.readFromNBT(data);
 
-        if (fluidInventory instanceof FluidTank) {
+        if (this.hasSeparateIO) {
+            importFluidInventory.deserializeNBT(data.getCompoundTag(INVENTORY_FLUID_INPUTS_TAG));
+            exportFluidInventory.deserializeNBT(data.getCompoundTag(INVENTORY_FLUID_OUTPUTS_TAG));
+        } else if (fluidInventory instanceof FluidTank) {
             ((FluidTank) fluidInventory).readFromNBT(data.getCompoundTag(FLUID_INVENTORY_TAG));
         }
     }
 
-    @Nonnull
-    public FluidTank getDefaultFluidInventory(@Nonnull NBTTagCompound data) {
-        return new FluidTank(Math.max(getMinimumFluidInventorySize(), data.getCompoundTag(FLUID_INVENTORY_TAG).getInteger("Amount")));
-    }
-
-    public int getMinimumFluidInventorySize() {
+    public int getDefaultFluidInventorySize() {
         return 0;
     }
 
@@ -84,7 +97,7 @@ public abstract class TileEntityFluidInventory extends TileEntityBaseCoverable {
     @Override
     public void initFromNBT(NBTTagCompound compound, ResourceLocation multiTileEntityId, short itemStackMeta) {
         super.initFromNBT(compound, multiTileEntityId, itemStackMeta);
-        if (fluidInventory instanceof FluidTank && itemStack.hasKey(FluidHandlerItemStack.FLUID_NBT_KEY, Constants.NBT.TAG_COMPOUND)) {
+        if (keepsFluidInventory() && fluidInventory instanceof FluidTank && itemStack.hasKey(FluidHandlerItemStack.FLUID_NBT_KEY, Constants.NBT.TAG_COMPOUND)) {
             FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(itemStack.getCompoundTag(FluidHandlerItemStack.FLUID_NBT_KEY));
             ((FluidTank) fluidInventory).setFluid(fluidStack);
         }
@@ -92,7 +105,7 @@ public abstract class TileEntityFluidInventory extends TileEntityBaseCoverable {
 
     @Override
     public NBTTagCompound writeItemNBT(NBTTagCompound nbtTagCompound) {
-        if (fluidInventory instanceof FluidTank) {
+        if (keepsFluidInventory() && fluidInventory instanceof FluidTank) {
             FluidStack fluidStack = ((FluidTank) fluidInventory).getFluid();
             if (fluidStack != null && fluidStack.amount > 0) {
                 NBTTagCompound tagCompound = new NBTTagCompound();
@@ -118,12 +131,12 @@ public abstract class TileEntityFluidInventory extends TileEntityBaseCoverable {
         return this.fluidInventory;
     }
 
-    public void setFluidInventory(IFluidHandler handler) {
-        this.fluidInventory = handler;
+    public FluidTankList getImportFluidInventory() {
+        return importFluidInventory;
     }
 
-    public static void clearFluidInventory(@Nonnull NonNullList<FluidStack> fluidBuffer, @Nonnull IFluidHandler fluidInventory) {
-        fluidBuffer.add(fluidInventory.drain(Integer.MAX_VALUE, true));
+    public FluidTankList getExportFluidInventory() {
+        return exportFluidInventory;
     }
 
     @Nullable

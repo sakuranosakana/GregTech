@@ -25,7 +25,6 @@ public abstract class TileEntityFluidInventoryIO extends TileEntityFluidInventor
     @Override
     public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound data) {
         super.writeToNBT(data);
-
         data.setTag(INVENTORY_FLUID_INPUTS_TAG, importFluidInventory.serializeNBT());
         data.setTag(INVENTORY_FLUID_OUTPUTS_TAG, exportFluidInventory.serializeNBT());
         return data;
@@ -34,7 +33,6 @@ public abstract class TileEntityFluidInventoryIO extends TileEntityFluidInventor
     @Override
     public void readFromNBT(@Nonnull NBTTagCompound data) {
         super.readFromNBT(data);
-
         importFluidInventory.deserializeNBT(data.getCompoundTag(INVENTORY_FLUID_INPUTS_TAG));
         exportFluidInventory.deserializeNBT(data.getCompoundTag(INVENTORY_FLUID_OUTPUTS_TAG));
     }

@@ -25,11 +25,11 @@ import static gregtech.api.multitileentity.IMultiTileEntity.IMTEOnBlockExploded;
 
 public abstract class TileEntityItemInventory extends TileEntityBaseCoverable implements IMTEOnBlockExploded, IMTEBreakBlock {
 
-    public static final String INVENTORY_TAG = "Inventory";
+    public static final String ITEM_INVENTORY_TAG = "Inventory";
 
-    protected IItemHandler inventory;
+    protected IItemHandler itemInventory;
 
-    public boolean inventoryChanged = false;
+    public boolean itemInventoryChanged = false;
 
     public TileEntityItemInventory() {
         super();
@@ -37,15 +37,15 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
     }
 
     protected void initializeInventory() {
-        this.inventory = new ItemStackHandler(getMinimumInventorySize());
+        this.itemInventory = new ItemStackHandler(getMinimumItemInventorySize());
     }
 
     @Nonnull
     @Override
     public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound data) {
         super.writeToNBT(data);
-        inventory = getDefaultInventory(data);
-        GTUtility.writeItems(inventory, INVENTORY_TAG, data);
+        itemInventory = getDefaultItemInventory(data);
+        GTUtility.writeItems(itemInventory, ITEM_INVENTORY_TAG, data);
 
         return data;
     }
@@ -53,23 +53,24 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
     @Override
     public void readFromNBT(@Nonnull NBTTagCompound data) {
         super.readFromNBT(data);
-        if (inventory instanceof IItemHandlerModifiable) {
-            GTUtility.readItems((IItemHandlerModifiable) inventory, INVENTORY_TAG, data);
+        if (itemInventory instanceof IItemHandlerModifiable) {
+            GTUtility.readItems((IItemHandlerModifiable) itemInventory, ITEM_INVENTORY_TAG, data);
         }
     }
 
-    public ItemStackHandler getDefaultInventory(@Nonnull NBTTagCompound data) {
-        return new ItemStackHandler(Math.max(getMinimumInventorySize(), data.getTagList(INVENTORY_TAG, 0).tagList.size()));
+    @Nonnull
+    public ItemStackHandler getDefaultItemInventory(@Nonnull NBTTagCompound data) {
+        return new ItemStackHandler(Math.max(getMinimumItemInventorySize(), data.getTagList(ITEM_INVENTORY_TAG, 0).tagList.size()));
     }
 
-    public int getMinimumInventorySize() {
+    public int getMinimumItemInventorySize() {
         return 0;
     }
 
     @Override
     public void onTickResetChecks(long timer, boolean isServerSide) {
         super.onTickResetChecks(timer, isServerSide);
-        inventoryChanged = false;
+        itemInventoryChanged = false;
     }
 
     /**
@@ -87,8 +88,8 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         super.getDrops(drops, world, pos, state, fortune);
         if (keepsInventory()) {
-            for (int i = 0; i < inventory.getSlots(); i++) {
-                ItemStack stack = inventory.getStackInSlot(i);
+            for (int i = 0; i < itemInventory.getSlots(); i++) {
+                ItemStack stack = itemInventory.getStackInSlot(i);
                 if (!stack.isEmpty()) drops.add(stack);
             }
         }
@@ -97,11 +98,11 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
     @Override
     public void markDirty() {
         super.markDirty();
-        updateInventory();
+        updateItemInventory();
     }
 
-    public void updateInventory() {
-        inventoryChanged = true;
+    public void updateItemInventory() {
+        itemInventoryChanged = true;
     }
 
     public boolean doExplosionsVoidItems() {
@@ -110,25 +111,25 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
 
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
-        if (inventory instanceof IItemHandlerModifiable) {
-            for (int i = 0; i < inventory.getSlots(); i++) {
+        if (itemInventory instanceof IItemHandlerModifiable) {
+            for (int i = 0; i < itemInventory.getSlots(); i++) {
                 if (doExplosionsVoidItems() && GTValues.RNG.nextInt(3) != 0) {
-                    ((IItemHandlerModifiable) inventory).setStackInSlot(i, ItemStack.EMPTY);
+                    ((IItemHandlerModifiable) itemInventory).setStackInSlot(i, ItemStack.EMPTY);
                 }
             }
         }
         setToAir();
     }
 
-    public IItemHandler getInventory() {
-        return this.inventory;
+    public IItemHandler getItemInventory() {
+        return this.itemInventory;
     }
 
-    public void setInventory(IItemHandler handler) {
-        this.inventory = handler;
+    public void setItemInventory(IItemHandler handler) {
+        this.itemInventory = handler;
     }
 
-    public static void clearInventory(NonNullList<ItemStack> itemBuffer, @Nonnull IItemHandlerModifiable inventory) {
+    public static void clearItemInventory(NonNullList<ItemStack> itemBuffer, @Nonnull IItemHandlerModifiable inventory) {
         for (int i = 0; i < inventory.getSlots(); i++) {
             ItemStack stackInSlot = inventory.getStackInSlot(i);
             if (!stackInSlot.isEmpty()) {
@@ -144,8 +145,8 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
         T result = super.getCapability(capability, facing);
         if (result != null) return result;
 
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && getInventory().getSlots() > 0) {
-            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(getInventory());
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && getItemInventory().getSlots() > 0) {
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(getItemInventory());
         }
         return null;
     }
@@ -154,6 +155,6 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
         if (super.hasCapability(capability, facing))
             return true;
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && getInventory().getSlots() > 0;
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && getItemInventory().getSlots() > 0;
     }
 }

@@ -297,7 +297,7 @@ public abstract class TileEntityBaseCoverable extends TileEntityBaseMultiTileEnt
     }
 
     @Override
-    public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+    public boolean isSideSolid(EnumFacing side) {
         return hasAnyCover() && getCoverAtSide(side) != null;
     }
 

@@ -53,14 +53,7 @@ public interface IMetaTileEntity {
         items.add(getStackForm());
     }
 
-    // TODO Pull out into their own ifaces, unless it seems completely necessary for all MTEs
-    void onLoad();
-    void onUnload();
-    void onAttached(Object... data);
-    void invalidate();
-    void update();
-
-    // TODO Pull out into iface like, "IMTECovers"
+    // TODO Pull out into iface like, "IMTECovers" (or just stick in ICoverable)
     CoverBehavior getCoverAtSide(EnumFacing facing);
     <T> T getCoverCapability(Capability<T> capability, EnumFacing facing);
 
@@ -69,6 +62,24 @@ public interface IMetaTileEntity {
     EnumFacing getFrontFacing();
     boolean isValidFrontFacing(EnumFacing facing);
 
-    // TODO Pull out into iface like, "IMTEHasItemStackNBT"
-    void initFromItemStackData(NBTTagCompound tag);
+    // Hooks into the TileEntity Class. Implement them in order to overwrite the Default Behaviours.
+    // TODO more here
+    interface IMTEOnLoad        extends IMetaTileEntity {void onLoad();}
+    interface IMTEOnChunkUnload extends IMetaTileEntity {void onChunkUnload();}
+    interface IMTEInvalidate    extends IMetaTileEntity {void invalidate();}
+    interface IMTEUpdate        extends IMetaTileEntity {void update();}
+
+    // Hooks into the Block Class. Implement them in order to overwrite the Default Behaviours.
+    // TODO
+
+    // Custom interfaces that add new behavior
+    // TODO Javadoc these!!
+    interface IMTEOnAttached    extends IMetaTileEntity {void onAttached(Object... data);}
+
+    /**
+     * Called from ItemBlock to initialize this MTE with data contained in ItemStack
+     */
+    interface IMTEItemStackData extends IMetaTileEntity {
+        void initFromItemStackData(NBTTagCompound data);
+    }
 }

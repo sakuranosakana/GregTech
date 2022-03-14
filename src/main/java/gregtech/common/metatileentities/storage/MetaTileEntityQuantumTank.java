@@ -15,6 +15,7 @@ import gregtech.api.cover.ICoverable;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.*;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEItemStackData;
 import gregtech.api.metatileentity.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
@@ -51,7 +52,7 @@ import java.util.List;
 import static gregtech.api.capability.GregtechDataCodes.*;
 import static net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack.FLUID_NBT_KEY;
 
-public class MetaTileEntityQuantumTank extends MetaTileEntity implements ITieredMetaTileEntity, IActiveOutputSide {
+public class MetaTileEntityQuantumTank extends MetaTileEntity implements ITieredMetaTileEntity, IActiveOutputSide, IMTEItemStackData {
 
     // This field (ranging from 1 to 99) is the percentage filled
     // at which the Partial Void feature will start voiding Fluids.
@@ -161,7 +162,6 @@ public class MetaTileEntityQuantumTank extends MetaTileEntity implements ITiered
 
     @Override
     public void initFromItemStackData(NBTTagCompound itemStack) {
-        super.initFromItemStackData(itemStack);
         if (itemStack.hasKey(FLUID_NBT_KEY, Constants.NBT.TAG_COMPOUND)) {
             fluidTank.setFluid(FluidStack.loadFluidStackFromNBT(itemStack.getCompoundTag(FLUID_NBT_KEY)));
         }

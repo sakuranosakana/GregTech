@@ -16,6 +16,7 @@ import gregtech.api.cover.ICoverable;
 import gregtech.api.cover.IFacadeCover;
 import gregtech.api.items.toolitem.IToolStats;
 import gregtech.api.metatileentity.IMetaTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.pipenet.IBlockAppearance;
@@ -248,9 +249,8 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
                 holder.setCustomName(stack.getDisplayName());
             }
             IMetaTileEntity metaTileEntity = holder.setMetaTileEntity(sampleMetaTileEntity);
-            if (stack.hasTagCompound()) {
-                //noinspection ConstantConditions
-                metaTileEntity.initFromItemStackData(stack.getTagCompound());
+            if (stack.hasTagCompound() && metaTileEntity instanceof IMTEItemStackData) {
+                ((IMTEItemStackData) metaTileEntity).initFromItemStackData(stack.getTagCompound());
             }
             if (metaTileEntity.isValidFrontFacing(EnumFacing.UP)) {
                 metaTileEntity.setFrontFacing(EnumFacing.getDirectionFromEntityLiving(pos, placer));

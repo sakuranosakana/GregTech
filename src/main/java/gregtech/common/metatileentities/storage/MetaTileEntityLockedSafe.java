@@ -16,6 +16,7 @@ import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.gui.widgets.ServerWidgetGroup;
 import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEItemStackData;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.recipes.CountableIngredient;
@@ -54,7 +55,7 @@ import java.util.function.DoubleSupplier;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_CONTENTS_SEED;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_LOCKED_STATE;
 
-public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRenderMetaTileEntity {
+public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEItemStackData {
 
     private static final int MAX_UNLOCK_PROGRESS = 100;
     private static Component[] ALLOWED_COMPONENTS;
@@ -317,7 +318,6 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
 
     @Override
     public void initFromItemStackData(NBTTagCompound itemStack) {
-        super.initFromItemStackData(itemStack);
         if (itemStack.hasKey("ComponentTier", NBT.TAG_ANY_NUMERIC)) {
             this.unlockComponentTier = itemStack.getInteger("ComponentTier");
         }

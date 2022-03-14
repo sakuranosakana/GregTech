@@ -23,7 +23,6 @@ import gregtech.client.renderer.CubeRendererState;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.ModCompatibility;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -37,7 +36,6 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -51,7 +49,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class MetaTileEntityRenderer implements ICCBlockRenderer, IItemRenderer {
@@ -121,16 +118,6 @@ public class MetaTileEntityRenderer implements ICCBlockRenderer, IItemRenderer {
         }
 
         metaTileEntity.renderCovers(renderState, translation.copy(), renderLayer);
-
-        if (metaTileEntity.isFragile() && renderLayer == BlockRenderLayer.CUTOUT) {
-            TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
-            Random posRand = new Random(MathHelper.getPositionRandom(pos));
-            int destroyStage = posRand.nextInt(10);
-            TextureAtlasSprite atlasSprite = textureMap.getAtlasSprite("minecraft:blocks/destroy_stage_" + destroyStage);
-            for (EnumFacing face : EnumFacing.VALUES) {
-                Textures.renderFace(renderState, translation, new IVertexOperation[0], face, Cuboid6.full, atlasSprite, null);
-            }
-        }
         Textures.RENDER_STATE.set(null);
         return true;
     }

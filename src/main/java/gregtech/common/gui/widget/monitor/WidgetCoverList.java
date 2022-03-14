@@ -39,7 +39,7 @@ public class WidgetCoverList extends ScrollableListWidget {
         widgetMap = new HashMap<>();
         this.onSelected = onSelected;
         for (CoverDigitalInterface cover : covers) {
-            ItemStack itemStack = cover.coverHolder.getStackForm();
+            ItemStack itemStack = cover.coverHolder.getStackForm(); // TODO This is a bit of a problem
             BlockPos pos = cover.coverHolder.getPos();
             if (cover.coverHolder instanceof PipeCoverableImplementation) {
                 itemStack = null;

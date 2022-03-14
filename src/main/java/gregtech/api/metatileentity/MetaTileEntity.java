@@ -19,6 +19,7 @@ import gregtech.api.cover.CoverBehavior;
 import gregtech.api.cover.CoverDefinition;
 import gregtech.api.cover.ICoverable;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.sound.GTSoundManager;
 import gregtech.api.recipes.FluidKey;
 import gregtech.api.recipes.RecipeMap;
@@ -30,7 +31,6 @@ import gregtech.common.advancement.GTTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -65,11 +65,10 @@ import java.util.function.Consumer;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
 
-public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable {
+public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable, IMTEOnLoad, IMTEUpdate, IMTEInvalidate {
 
     public static final IndexedCuboid6 FULL_CUBE_COLLISION = new IndexedCuboid6(null, Cuboid6.full);
     public static final String TAG_KEY_PAINTING_COLOR = "PaintingColor";
-    public static final String TAG_KEY_FRAGILE = "Fragile";
     public static final String TAG_KEY_MUFFLED = "Muffled";
 
     public final ResourceLocation metaTileEntityId;
@@ -94,7 +93,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     private final int[] sidedRedstoneInput = new int[6];
     private int cachedComparatorValue;
     private int cachedLightValue;
-    protected boolean isFragile = false;
 
     private final CoverBehavior[] coverBehaviors = new CoverBehavior[6];
     protected List<IItemHandlerModifiable> notifiedItemOutputList = new ArrayList<>();
@@ -230,17 +228,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     }
 
     /**
-     * Called from ItemBlock to initialize this MTE with data contained in ItemStack
-     *
-     * @param itemStack itemstack of itemblock
-     */
-    public void initFromItemStackData(NBTTagCompound itemStack) {
-        if (itemStack.hasKey(TAG_KEY_FRAGILE)) {
-            setFragile(itemStack.getBoolean(TAG_KEY_FRAGILE));
-        }
-    }
-
-    /**
      * Called to write MTE specific data when it is destroyed to save it's state
      * into itemblock, which can be placed later to get {@link #initFromItemStackData} called
      *
@@ -263,6 +250,13 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     public final String getMetaFullName() {
         return getMetaName() + ".name";
+    }
+
+    // TODO Only doing this for now to avoid an error
+    @Override
+    public ItemStack getStackForm() {
+        int metaTileEntityId = GregTechAPI.MTE_REGISTRY.getIdByObjectName(getMetaTileEntityId());
+        return new ItemStack(GregTechAPI.MACHINE, 1, metaTileEntityId);
     }
 
     public <T> void addNotifiedInput(T input) {
@@ -525,14 +519,12 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return !isOpaqueCube();
     }
 
+    // TODO This can probably go somewhere else
     public void onLoad() {
         this.cachedComparatorValue = getActualComparatorValue();
         for (EnumFacing side : EnumFacing.VALUES) {
             this.sidedRedstoneInput[side.getIndex()] = GTUtility.getRedstonePower(getWorld(), getPos(), side);
         }
-    }
-
-    public void onUnload() {
     }
 
     public final boolean canConnectRedstone(@Nullable EnumFacing side) {
@@ -761,7 +753,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
                 buf.writeVarInt(-1);
             }
         }
-        buf.writeBoolean(isFragile);
         buf.writeBoolean(muffled);
     }
 
@@ -787,7 +778,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
                 this.coverBehaviors[coverSide.getIndex()] = coverBehavior;
             }
         }
-        this.isFragile = buf.readBoolean();
         this.muffled = buf.readBoolean();
     }
 
@@ -843,9 +833,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             if (coverBehavior != null) {
                 coverBehavior.readUpdateData(internalId, buf);
             }
-        } else if (dataId == UPDATE_IS_FRAGILE) {
-            this.isFragile = buf.readBoolean();
-            getHolder().scheduleChunkForRenderUpdate();
         } else if (dataId == UPDATE_SOUND_MUFFLED) {
             this.muffled = buf.readBoolean();
             if (muffled) {
@@ -1154,15 +1141,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return ConfigHolder.client.defaultPaintingColor;
     }
 
-    public void setFragile(boolean fragile) {
-        this.isFragile = fragile;
-        if (getWorld() != null && !getWorld().isRemote) {
-            getHolder().notifyBlockUpdate();
-            markDirty();
-            writeCustomData(UPDATE_IS_FRAGILE, buf -> buf.writeBoolean(fragile));
-        }
-    }
-
     public boolean isValidFrontFacing(EnumFacing facing) {
         return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
     }
@@ -1211,7 +1189,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             }
         }
         data.setTag("Covers", coversList);
-        data.setBoolean(TAG_KEY_FRAGILE, isFragile);
         data.setBoolean(TAG_KEY_MUFFLED, muffled);
         return data;
     }
@@ -1249,7 +1226,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             }
         }
 
-        this.isFragile = data.getBoolean(TAG_KEY_FRAGILE);
         this.muffled = data.getBoolean(TAG_KEY_MUFFLED);
     }
 
@@ -1273,9 +1249,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         }
     }
 
-    public void onAttached(Object... data) {
-    }
-
     /**
      * Called from breakBlock right before meta tile entity destruction
      * at this stage tile entity inventory is already dropped on ground, but drops aren't fetched yet
@@ -1284,6 +1257,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     public void onRemoval() {
     }
 
+    // TODO Should be somewhere else if sounds move off this
     public void invalidate() {
         if (getWorld() != null && getWorld().isRemote) {
             GTSoundManager.stopTileSound(getPos());
@@ -1347,12 +1321,8 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return notifiedFluidOutputList;
     }
 
-    public boolean isFragile() {
-        return isFragile;
-    }
-
     public boolean shouldDropWhenDestroyed() {
-        return !isFragile();
+        return true;
     }
 
     public float getBlockHardness() {

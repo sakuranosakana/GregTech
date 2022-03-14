@@ -2,11 +2,11 @@ package gregtech.api.pattern;
 
 import gregtech.api.GregTechAPI;
 import gregtech.api.metatileentity.IMetaTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEItemStackData;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.api.util.BlockInfo;
-import gregtech.api.util.GTLog;
 import gregtech.api.util.RelativeDirection;
 import gregtech.common.blocks.MetaBlocks;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
@@ -338,8 +338,8 @@ public class BlockPattern {
                                 if (sampleMetaTileEntity != null) {
                                     IMetaTileEntity metaTileEntity = ((MetaTileEntityHolder) holder).setMetaTileEntity(sampleMetaTileEntity);
                                     blocks.put(pos, metaTileEntity);
-                                    if (found.hasTagCompound()) {
-                                        metaTileEntity.initFromItemStackData(found.getTagCompound());
+                                    if (found.hasTagCompound() && metaTileEntity instanceof IMTEItemStackData) {
+                                        ((IMTEItemStackData) metaTileEntity).initFromItemStackData(found.getTagCompound());
                                     }
                                 }
                             }

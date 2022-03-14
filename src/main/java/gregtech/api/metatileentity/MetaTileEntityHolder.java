@@ -5,6 +5,7 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.block.machines.BlockMachine;
 import gregtech.api.cover.CoverBehavior;
 import gregtech.api.gui.IUIHolder;
+import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.net.NetworkHandler;
 import gregtech.api.net.packets.CPacketRecoverMTE;
 import gregtech.api.util.GTLog;
@@ -65,7 +66,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
     public IMetaTileEntity setMetaTileEntity(IMetaTileEntity sampleMetaTileEntity, Object... data) {
         Preconditions.checkNotNull(sampleMetaTileEntity, "metaTileEntity");
         setRawMetaTileEntity(sampleMetaTileEntity.createMetaTileEntity(this));
-        this.metaTileEntity.onAttached(data);
+        if (metaTileEntity instanceof IMTEOnAttached) ((IMTEOnAttached) metaTileEntity).onAttached(data);
         if (hasWorld() && !getWorld().isRemote) {
             updateBlockOpacity();
             sendInitialSyncData();
@@ -112,7 +113,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
             NBTTagCompound metaTileEntityData = compound.getCompoundTag("MetaTileEntity");
             if (sampleMetaTileEntity != null) {
                 setRawMetaTileEntity(sampleMetaTileEntity.createMetaTileEntity(this));
-                this.metaTileEntity.onAttached();
+                if (metaTileEntity instanceof IMTEOnAttached) ((IMTEOnAttached) metaTileEntity).onAttached();
                 this.metaTileEntity.readFromNBT(metaTileEntityData);
             } else {
                 GTLog.logger.error("Failed to load MetaTileEntity with invalid ID " + metaTileEntityIdRaw);
@@ -135,14 +136,6 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
     }
 
     @Override
-    public void invalidate() {
-        if (metaTileEntity != null) {
-            metaTileEntity.invalidate();
-        }
-        super.invalidate();
-    }
-
-    @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
         Object metaTileEntityValue = metaTileEntity == null ? null : metaTileEntity.getCoverCapability(capability, facing);
         return metaTileEntityValue != null || super.hasCapability(capability, facing);
@@ -158,13 +151,15 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
     @Override
     public void update() {
         long tickTime = System.nanoTime();
-        if (metaTileEntity != null) {
-            metaTileEntity.update();
-        } else if (world.isRemote) { // recover the mte
-            NetworkHandler.channel.sendToServer(new CPacketRecoverMTE(world.provider.getDimension(), getPos()).toFMLPacket());
-        } else { // remove the block
-            if (world.getBlockState(pos).getBlock() instanceof BlockMachine) {
-                world.setBlockToAir(pos);
+        if (metaTileEntity instanceof IMTEUpdate) {
+            ((IMTEUpdate) metaTileEntity).update();
+        } else if (metaTileEntity == null) {
+            if (world.isRemote) { // recover the mte
+                NetworkHandler.channel.sendToServer(new CPacketRecoverMTE(world.provider.getDimension(), getPos()).toFMLPacket());
+            } else { // remove the block
+                if (world.getBlockState(pos).getBlock() instanceof BlockMachine) {
+                    world.setBlockToAir(pos);
+                }
             }
         }
 
@@ -294,21 +289,10 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
         markDirty();
     }
 
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        if (metaTileEntity != null) {
-            metaTileEntity.onLoad();
-        }
-    }
-
-    @Override
-    public void onChunkUnload() {
-        super.onChunkUnload();
-        if (metaTileEntity != null) {
-            metaTileEntity.onUnload();
-        }
-    }
+    // Passthrough methods for interfaces
+    @Override public final void onLoad() {if (metaTileEntity instanceof IMTEOnLoad) ((IMTEOnLoad) metaTileEntity).onLoad();}
+    @Override public final void onChunkUnload() {if (metaTileEntity instanceof IMTEOnChunkUnload) ((IMTEOnChunkUnload) metaTileEntity).onChunkUnload();}
+    @Override public final void invalidate() {if (metaTileEntity instanceof IMTEInvalidate) ((IMTEInvalidate) metaTileEntity).invalidate(); super.invalidate();}
 
     @Override
     public boolean shouldRefresh(@Nonnull World world, @Nonnull BlockPos pos, IBlockState oldState, IBlockState newState) {

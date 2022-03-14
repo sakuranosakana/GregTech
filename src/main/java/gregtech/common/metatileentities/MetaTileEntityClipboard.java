@@ -14,10 +14,7 @@ import gregtech.api.items.gui.PlayerInventoryHolder;
 import gregtech.api.items.itemhandlers.InaccessibleItemStackHandler;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
-import gregtech.api.metatileentity.MetaTileEntityUIFactory;
+import gregtech.api.metatileentity.*;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.GregFakePlayer;
@@ -57,7 +54,7 @@ import static gregtech.api.capability.GregtechDataCodes.*;
 import static gregtech.client.renderer.texture.Textures.CLIPBOARD_RENDERER;
 import static gregtech.common.items.MetaItems.CLIPBOARD;
 
-public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRenderMetaTileEntity {
+public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRenderMetaTileEntity, IMetaTileEntity.IMTEOnAttached {
     private static final AxisAlignedBB CLIPBOARD_AABB = new AxisAlignedBB(2.75 / 16.0, 0.0, 0.0, 13.25 / 16.0, 1.0, 0.4 / 16.0);
     public static final float scale = 1;
     public FakeModularGui guiCache;
@@ -390,7 +387,6 @@ public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRend
 
     @Override
     public void onAttached(Object... data) {
-        super.onAttached(data);
         if (data.length != 0 && data[0] instanceof ItemStack)
             this.setClipboard((ItemStack) data[0]);
     }

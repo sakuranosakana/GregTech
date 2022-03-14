@@ -7,6 +7,7 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IMultiblockController;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEOnAttached;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.pattern.*;
@@ -47,7 +48,7 @@ import java.util.function.Supplier;
 
 import static gregtech.api.capability.GregtechDataCodes.STRUCTURE_FORMED;
 
-public abstract class MultiblockControllerBase extends MetaTileEntity implements IMultiblockController {
+public abstract class MultiblockControllerBase extends MetaTileEntity implements IMultiblockController, IMTEOnAttached {
 
     public BlockPattern structurePattern;
 
@@ -61,7 +62,6 @@ public abstract class MultiblockControllerBase extends MetaTileEntity implements
 
     @Override
     public void onAttached(Object... data) {
-        super.onAttached(data);
         reinitializeStructurePattern();
     }
 

@@ -2,6 +2,7 @@ package gregtech.api;
 
 import gregtech.GregTechVersion;
 import gregtech.api.util.XSTR;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
@@ -152,4 +153,9 @@ public class GTValues {
      * Used Client Side as a placeholder for "is owned by someone other than you"
      */
     public static final UUID NOT_THE_PLAYER = new UUID(+1, -1);
+
+    /**
+     * Gets set when a TileEntity gets broken, in order to be able to access it for Drops, even though it just got deleted
+     */
+    public static ThreadLocal<TileEntity> LAST_BROKEN_TILEENTITY = new ThreadLocal<>();
 }

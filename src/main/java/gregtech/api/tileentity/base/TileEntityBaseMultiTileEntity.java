@@ -329,7 +329,9 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
 
     public void popOff() {
         if (isDead()) return;
-        for (ItemStack stack : getDrops(getWorld(), getPos(), getState(getPos()), 0)) {
+        NonNullList<ItemStack> drops = NonNullList.create();
+        getDrops(drops, 0, false);
+        for (ItemStack stack : drops) {
             Block.spawnAsEntity(getWorld(), getPos(), stack);
         }
         setToAir();
@@ -337,7 +339,9 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
 
     public void popOff(Entity entity) {
         if (isDead()) return;
-        for (ItemStack stack : getDrops(getWorld(), getPos(), getState(getPos()), 0))
+        NonNullList<ItemStack> drops = NonNullList.create();
+        getDrops(drops, 0, false);
+        for (ItemStack stack : drops)
             Block.spawnAsEntity(entity.world, entity.getPosition(), stack);
         setToAir();
     }
@@ -345,21 +349,27 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
     public void popOff(World world, double x, double y, double z) {
         if (isDead()) return;
         BlockPos pos = new BlockPos(x, y, z);
-        for (ItemStack stack : getDrops(getWorld(), getPos(), getState(getPos()), 0))
+        NonNullList<ItemStack> drops = NonNullList.create();
+        getDrops(drops, 0, false);
+        for (ItemStack stack : drops)
             Block.spawnAsEntity(world, pos, stack);
         setToAir();
     }
 
     public void popOff(World world, BlockPos pos) {
         if (isDead()) return;
-        for (ItemStack stack : getDrops(world, pos, getState(getPos()), 0))
+        NonNullList<ItemStack> drops = NonNullList.create();
+        getDrops(drops, 0, false);
+        for (ItemStack stack : drops)
             Block.spawnAsEntity(world, pos, stack);
         setToAir();
     }
 
     public void burnOff() {
         if (isDead()) return;
-        for (ItemStack stack : getDrops(getWorld(), getPos(), getState(getPos()), 0)) {
+        NonNullList<ItemStack> drops = NonNullList.create();
+        getDrops(drops, 0, false);
+        for (ItemStack stack : drops) {
             Block.spawnAsEntity(getWorld(), getPos(), stack);
         }
         setToFire();
@@ -367,7 +377,9 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
 
     public void burnOff(Entity entity) {
         if (isDead()) return;
-        for (ItemStack stack : getDrops(getWorld(), getPos(), getState(getPos()), 0))
+        NonNullList<ItemStack> drops = NonNullList.create();
+        getDrops(drops, 0, false);
+        for (ItemStack stack : drops)
             Block.spawnAsEntity(entity.world, entity.getPosition(), stack);
         setToFire();
     }
@@ -375,14 +387,18 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
     public void burnOff(World world, double x, double y, double z) {
         if (isDead()) return;
         BlockPos pos = new BlockPos(x, y, z);
-        for (ItemStack stack : getDrops(getWorld(), getPos(), getState(getPos()), 0))
+        NonNullList<ItemStack> drops = NonNullList.create();
+        getDrops(drops, 0, false);
+        for (ItemStack stack : drops)
             Block.spawnAsEntity(world, pos, stack);
         setToFire();
     }
 
     public void burnOff(World world, BlockPos aCoords) {
         if (isDead()) return;
-        for (ItemStack stack : getDrops(world, pos, getState(getPos()), 0))
+        NonNullList<ItemStack> drops = NonNullList.create();
+        getDrops(drops, 0, false);
+        for (ItemStack stack : drops)
             Block.spawnAsEntity(world, pos, stack);
         setToFire();
     }

@@ -126,7 +126,7 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
     }
 
     @Override
-    public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
+    public void onBlockExploded(Explosion explosion) {
         if (hasSeparateIO) {
             for (int i = 0; i < importItemInventory.getSlots(); i++) {
                 if (doesExplosionsVoidItems() && GTValues.RNG.nextInt(3) != 0) {

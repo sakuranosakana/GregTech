@@ -18,6 +18,7 @@ import gregtech.api.items.toolitem.ToolMetaItem;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.WorkableTieredMetaTileEntity;
+import gregtech.api.tileentity.ITileEntityUnloadable;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.ConfigHolder;
@@ -47,6 +48,7 @@ import net.minecraft.util.Tuple;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeHooks;
@@ -74,6 +76,7 @@ import java.util.stream.Collector;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static gregtech.api.GTValues.LAST_BROKEN_TILEENTITY;
 import static gregtech.api.GTValues.V;
 
 public class GTUtility {
@@ -1006,4 +1009,20 @@ public class GTUtility {
         return !world.getChunkProvider().provideChunk(pos.getX() >> 4, pos.getZ() >> 4).isEmpty();
     }
 
+    /** to get a TileEntity properly, according to my additional Interfaces. Normally you should set aLoadUnloadedChunks to false, unless you have already checked these Coordinates, or you want to load Chunks */
+    public static TileEntity getTileEntity(World world, BlockPos pos, boolean loadUnloadedChunks) {
+        if (loadUnloadedChunks || world.isBlockLoaded(pos)) {
+            return getTileEntityForced(world, pos);
+        }
+        return null;
+    }
+
+    public static TileEntity getTileEntityForced(IBlockAccess world, BlockPos pos) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if (tileEntity instanceof ITileEntityUnloadable && ((ITileEntityUnloadable) tileEntity).isDead()) return null;
+        if (tileEntity != null) return tileEntity;
+        tileEntity = LAST_BROKEN_TILEENTITY.get();
+        if (tileEntity != null && arePosEqual(tileEntity.getPos(), pos)) return tileEntity;
+        return null;
+    }
 }

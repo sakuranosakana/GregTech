@@ -5,16 +5,20 @@ import gregtech.api.util.GTUtility;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static gregtech.api.multitileentity.IMultiTileEntity.IMTEBreakBlock;
 import static gregtech.api.multitileentity.IMultiTileEntity.IMTEOnBlockExploded;
@@ -132,5 +136,24 @@ public abstract class TileEntityItemInventory extends TileEntityBaseCoverable im
                 itemBuffer.add(stackInSlot);
             }
         }
+    }
+
+    @Nullable
+    @Override
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+        T result = super.getCapability(capability, facing);
+        if (result != null) return result;
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && getInventory().getSlots() > 0) {
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(getInventory());
+        }
+        return null;
+    }
+
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+        if (super.hasCapability(capability, facing))
+            return true;
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && getInventory().getSlots() > 0;
     }
 }

@@ -26,7 +26,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -144,7 +143,7 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
     }
 
     @Override
-    public final void initFromNBT(NBTTagCompound compound, ResourceLocation multiTileEntityId, short itemStackMeta) {
+    public void initFromNBT(NBTTagCompound compound, ResourceLocation multiTileEntityId, short itemStackMeta) {
         // Set ID and Registry ID.
         this.multiTileEntityId = multiTileEntityId;
         this.itemStackMeta = itemStackMeta;
@@ -238,7 +237,6 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
 
     public void receiveCustomData(int discriminator, PacketBuffer buffer) {
         if (discriminator == INITIALIZE_MTE) {
-            int metaTileEntityId = buffer.readVarInt();
             receiveInitialSyncData(buffer);
             scheduleChunkForRenderUpdate();
             this.needToUpdateLighting = true;

@@ -21,6 +21,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -242,9 +244,29 @@ public abstract class TileEntityBaseCoverable extends TileEntityBaseMultiTileEnt
         return 0.0;
     }
 
-    @Override
+    /**
+     * ItemStack currently being rendered by this multi tile entity
+     * Use this to obtain itemstack-specific data like contained fluid, painting color
+     * Generally useful in combination with {@link #initFromNBT(NBTTagCompound, ResourceLocation, short)}
+     */
+    @SideOnly(Side.CLIENT)
+    protected ItemStack renderContextStack;
+
+    @SideOnly(Side.CLIENT)
+    public void setRenderContextStack(ItemStack itemStack) {
+        this.renderContextStack = itemStack;
+    }
+
+    @SideOnly(Side.CLIENT)
     public int getPaintingColorForRendering() {
-        return 0;
+        //noinspection ConstantConditions
+        if (getWorld() == null && renderContextStack != null) {
+            NBTTagCompound tagCompound = renderContextStack.getTagCompound();
+            if (tagCompound != null && tagCompound.hasKey(TAG_KEY_PAINTING_COLOR, Constants.NBT.TAG_INT)) {
+                return tagCompound.getInteger(TAG_KEY_PAINTING_COLOR);
+            }
+        }
+        return isPainted() ? getPaintingColor() : getDefaultPaintingColor();
     }
 
     @Override

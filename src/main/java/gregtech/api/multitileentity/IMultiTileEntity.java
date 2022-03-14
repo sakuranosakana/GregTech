@@ -7,8 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.particle.ParticleManager;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,7 +15,6 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -27,7 +24,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -146,7 +142,7 @@ public interface IMultiTileEntity {
     interface IMTEGetFlammability                extends IMultiTileEntity {int getFlammability(EnumFacing face, boolean original);}
     interface IMTEGetFireSpreadSpeed             extends IMultiTileEntity {int getFireSpreadSpeed(EnumFacing face, boolean original);}
     interface IMTEIsFireSource                   extends IMultiTileEntity {boolean isFireSource(EnumFacing side);}
-    interface IMTEGetDrops                       extends IMultiTileEntity {List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune); void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune);}
+    interface IMTEGetDrops                       extends IMultiTileEntity {default List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) { return NonNullList.create(); } void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune);}
     interface IMTECanCreatureSpawn               extends IMultiTileEntity {boolean canCreatureSpawn(EntityLiving.SpawnPlacementType type);}
     interface IMTEBeginLeavesDecay               extends IMultiTileEntity {void beginLeavesDecay();}
     interface IMTECanSustainLeaves               extends IMultiTileEntity {boolean canSustainLeaves();}

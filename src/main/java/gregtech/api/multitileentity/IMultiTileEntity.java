@@ -84,14 +84,14 @@ public interface IMultiTileEntity {
     interface IMTECanEntitySpawn                 extends IMultiTileEntity {boolean canEntitySpawn(IBlockState state, Entity entityIn);}
     interface IMTEGetLightOpacity                extends IMultiTileEntity {int getLightOpacity(IBlockState state); default int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {return getLightOpacity(state);}}
     interface IMTEIsTranslucent                  extends IMultiTileEntity {boolean isTranslucent(IBlockState state);}
-    interface IMTEGetLightValue                  extends IMultiTileEntity {int getLightValue(IBlockState state); int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos);}
+    interface IMTEGetLightValue                  extends IMultiTileEntity {int getLightValue();}
     interface IMTECausesSuffocation              extends IMultiTileEntity {boolean causesSuffocation(IBlockState state);}
     interface IMTEHasCustomBreakingProgress      extends IMultiTileEntity {boolean hasCustomBreakingProgress(IBlockState state);}
     interface IMTEIsPassable                     extends IMultiTileEntity {boolean isPassable(IBlockAccess worldIn, BlockPos pos);}
     interface IMTEGetRenderType                  extends IMultiTileEntity {EnumBlockRenderType getRenderType(IBlockState state);}
     interface IMTEIsReplaceable                  extends IMultiTileEntity {boolean isReplaceable(IBlockAccess worldIn, BlockPos pos);}
     interface IMTESetHardness                    extends IMultiTileEntity {Block setHardness(float hardness);}
-    interface IMTEGetBlockHardness               extends IMultiTileEntity {float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos);}
+    interface IMTEGetBlockHardness               extends IMultiTileEntity {float getBlockHardness();}
     interface IMTEGetBoundingBox                 extends IMultiTileEntity {AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos);}
     interface IMTEGetLightmapPackedCoords        extends IMultiTileEntity {int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos);}
     interface IMTEShouldSideBeRendered           extends IMultiTileEntity {boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side);}
@@ -104,34 +104,32 @@ public interface IMultiTileEntity {
     interface IMTEOnPlayerDestroy                extends IMultiTileEntity {void onPlayerDestroy(World worldIn, BlockPos pos, IBlockState state);}
     interface IMTEOnNeighborChanged              extends IMultiTileEntity {void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos);}
     interface IMTETickRate                       extends IMultiTileEntity {int tickRate(World worldIn);}
-    interface IMTEOnBlockAdded                   extends IMultiTileEntity {void onBlockAdded(World worldIn, BlockPos pos, IBlockState state);}
+    interface IMTEOnBlockAdded                   extends IMultiTileEntity {void onBlockAdded();}
     interface IMTEBreakBlock                     extends IMultiTileEntity {boolean breakBlock();}
     interface IMTEQuantityDropped                extends IMultiTileEntity {int quantityDropped(Random random); int quantityDropped(IBlockState state, int fortune, Random random);}
     interface IMTEGetItemDropped                 extends IMultiTileEntity {Item getItemDropped(IBlockState state, Random rand, int fortune);}
-    interface IMTEGetPlayerRelativeBlockHardness extends IMultiTileEntity {float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World worldIn, BlockPos pos);}
-    interface IMTEDropBlockAsItemWithChance      extends IMultiTileEntity {void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune);}
-    interface IMTEDropXpOnBlockBreak             extends IMultiTileEntity {void dropXpOnBlockBreak(World worldIn, BlockPos pos, int amount);}
+    interface IMTEGetPlayerRelativeBlockHardness extends IMultiTileEntity {float getPlayerRelativeBlockHardness(EntityPlayer player, float original);}
+    interface IMTEDropXpOnBlockBreak             extends IMultiTileEntity {void dropXpOnBlockBreak(int amount);}
     interface IMTEDamageDropped                  extends IMultiTileEntity {int damageDropped(IBlockState state);}
     interface IMTEGetExplosionResistance         extends IMultiTileEntity {float getExplosionResistance(Entity exploder); default float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {return getExplosionResistance(exploder);}}
-    interface IMTECollisionRayTrace              extends IMultiTileEntity {RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end);}
+    interface IMTECollisionRayTrace              extends IMultiTileEntity {RayTraceResult collisionRayTrace(Vec3d start, Vec3d end);}
     interface IMTERayTrace                       extends IMultiTileEntity {RayTraceResult rayTrace(BlockPos pos, Vec3d start, Vec3d end, AxisAlignedBB boundingBox);}
     interface IMTEOnExplosionDestroy             extends IMultiTileEntity {void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn);}
     interface IMTECanPlaceBlockOnSide            extends IMultiTileEntity {boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side);}
     interface IMTECanPlaceBlockAt                extends IMultiTileEntity {boolean canPlaceBlockAt(World worldIn, BlockPos pos);}
-    interface IMTEOnBlockActivated               extends IMultiTileEntity {boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ);}
-    interface IMTEOnEntityWalk                   extends IMultiTileEntity {void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn);}
+    interface IMTEOnBlockActivated               extends IMultiTileEntity {boolean onBlockActivated(EntityPlayer playerIn, EnumFacing facing, float hitX, float hitY, float hitZ);}
+    interface IMTEOnEntityWalk                   extends IMultiTileEntity {void onEntityWalk(Entity entityIn);}
     interface IMTEGetStateForPlacement           extends IMultiTileEntity {IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer); default IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) { return getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);}}
-    interface IMTEOnBlockClicked                 extends IMultiTileEntity {void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn);}
+    interface IMTEOnBlockClicked                 extends IMultiTileEntity {void onBlockClicked(EntityPlayer playerIn);}
     interface IMTEModifyAcceleration             extends IMultiTileEntity {Vec3d modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3d motion);}
     interface IMTEGetWeakPower                   extends IMultiTileEntity {int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side);}
     interface IMTECanProvidePower                extends IMultiTileEntity {boolean canProvidePower(IBlockState state);}
-    interface IMTEOnEntityCollision              extends IMultiTileEntity {void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn);}
+    interface IMTEOnEntityCollision              extends IMultiTileEntity {void onEntityCollision(Entity entityIn);}
     interface IMTEGetStrongPower                 extends IMultiTileEntity {int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side);}
     interface IMTEHarvestBlock                   extends IMultiTileEntity {void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack);}
     interface IMTEQuantityDroppedWithBonus       extends IMultiTileEntity {int quantityDroppedWithBonus(int fortune, Random random);}
     interface IMTEOnBlockPlacedBy                extends IMultiTileEntity {void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack);}
     interface IMTECanSpawnInBlock                extends IMultiTileEntity {boolean canSpawnInBlock();}
-    interface IMTEEventReceived                  extends IMultiTileEntity {boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param);}
     interface IMTEGetPushReaction                extends IMultiTileEntity {EnumPushReaction getPushReaction(IBlockState state);}
     interface IMTEOnBlockFallenUpon              extends IMultiTileEntity {void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance);}
     interface IMTEOnLanded                       extends IMultiTileEntity {void onLanded(World worldIn, Entity entityIn);}
@@ -148,13 +146,12 @@ public interface IMultiTileEntity {
     interface IMTEGetOffsetType                  extends IMultiTileEntity {Block.EnumOffsetType getOffsetType();}
     interface IMTEGetOffset                      extends IMultiTileEntity {Vec3d getOffset(IBlockState state, IBlockAccess worldIn, BlockPos pos);}
     interface IMTEGetSoundType                   extends IMultiTileEntity {SoundType getSoundType(); default SoundType getSoundType(IBlockState state, World world, BlockPos pos, Entity entity) {return getSoundType();}}
-    interface IMTEGetSlipperiness                extends IMultiTileEntity {float getSlipperiness(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity);}
-    interface IMTESetDefaultSlipperiness         extends IMultiTileEntity {void setDefaultSlipperiness(float slipperiness);}
-    interface IMTEIsLadder                       extends IMultiTileEntity {boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity);}
+    interface IMTEIsLadder                       extends IMultiTileEntity {boolean isLadder(EntityLivingBase entity);}
+    interface IMTEIsNormalCube                   extends IMultiTileEntity {boolean isNormalCube();}
     interface IMTEDoesSideBlockRendering         extends IMultiTileEntity {boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face);}
-    interface IMTEIsSideSolid                    extends IMultiTileEntity {boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side);}
-    interface IMTEIsBurning                      extends IMultiTileEntity {boolean isBurning(IBlockAccess world, BlockPos pos);}
-    interface IMTEIsAir                          extends IMultiTileEntity {boolean isAir(IBlockState state, IBlockAccess world, BlockPos pos);}
+    interface IMTEIsSideSolid                    extends IMultiTileEntity {boolean isSideSolid(EnumFacing side);}
+    interface IMTEIsBurning                      extends IMultiTileEntity {boolean isBurning();}
+    interface IMTEIsAir                          extends IMultiTileEntity {boolean isAir();}
     interface IMTECanHarvestBlock                extends IMultiTileEntity {boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player);}
     interface IMTERemovedByPlayer                extends IMultiTileEntity {boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest);}
     interface IMTEGetFlammability                extends IMultiTileEntity {int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face);}
@@ -162,34 +159,33 @@ public interface IMultiTileEntity {
     interface IMTEGetFireSpreadSpeed             extends IMultiTileEntity {int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face);}
     interface IMTEIsFireSource                   extends IMultiTileEntity {boolean isFireSource(World world, BlockPos pos, EnumFacing side);}
     interface IMTEGetDrops                       extends IMultiTileEntity {List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune); void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune);}
-    interface IMTECanCreatureSpawn               extends IMultiTileEntity {boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving.SpawnPlacementType type);}
-    interface IMTEBeginLeavesDecay               extends IMultiTileEntity {void beginLeavesDecay(IBlockState state, World world, BlockPos pos);}
-    interface IMTECanSustainLeaves               extends IMultiTileEntity {boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos);}
-    interface IMTEIsLeaves                       extends IMultiTileEntity {boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos);}
-    interface IMTECanBeReplacedByLeaves          extends IMultiTileEntity {boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos);}
-    interface IMTEIsWood                         extends IMultiTileEntity {boolean isWood(IBlockAccess world, BlockPos pos);}
-    interface IMTEIsReplaceableByOreGen          extends IMultiTileEntity {boolean isReplaceableOreGen(IBlockState state, IBlockAccess world, BlockPos pos, Predicate<IBlockState> target);}
+    interface IMTECanCreatureSpawn               extends IMultiTileEntity {boolean canCreatureSpawn(EntityLiving.SpawnPlacementType type);}
+    interface IMTEBeginLeavesDecay               extends IMultiTileEntity {void beginLeavesDecay();}
+    interface IMTECanSustainLeaves               extends IMultiTileEntity {boolean canSustainLeaves();}
+    interface IMTEIsLeaves                       extends IMultiTileEntity {boolean isLeaves();}
+    interface IMTECanBeReplacedByLeaves          extends IMultiTileEntity {boolean canBeReplacedByLeaves();}
+    interface IMTEIsWood                         extends IMultiTileEntity {boolean isWood();}
+    interface IMTEIsReplaceableOreGen            extends IMultiTileEntity {boolean isReplaceableOreGen(Predicate<IBlockState> target);}
     interface IMTEOnBlockExploded                extends IMultiTileEntity {void onBlockExploded(World world, BlockPos pos, Explosion explosion);}
-    interface IMTECanConnectRedstone             extends IMultiTileEntity {boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side);}
-    interface IMTECanPlaceTorchOnTop             extends IMultiTileEntity {boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos);}
+    interface IMTECanConnectRedstone             extends IMultiTileEntity {boolean canConnectRedstone(EnumFacing side);}
+    interface IMTECanPlaceTorchOnTop             extends IMultiTileEntity {boolean canPlaceTorchOnTop();}
     interface IMTEGetPickBlock                   extends IMultiTileEntity {ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player);}
-    interface IMTEIsFoliage                      extends IMultiTileEntity {boolean isFoliage(IBlockAccess world, BlockPos pos);}
+    interface IMTEIsFoliage                      extends IMultiTileEntity {boolean isFoliage();}
     interface IMTEAddLandingEffects              extends IMultiTileEntity {boolean addLandingEffects(IBlockState state, WorldServer worldObj, BlockPos blockPosition, IBlockState iblockstate, EntityLivingBase entity, int numberOfParticles);}
     interface IMTEAddRunningEffects              extends IMultiTileEntity {boolean addRunningEffects(IBlockState state, World world, BlockPos pos, Entity entity);}
-    interface IMTECanSustainPlant                extends IMultiTileEntity {boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable);}
-    interface IMTEOnPlantGrow                    extends IMultiTileEntity {void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source);}
-    interface IMTEIsFertile                      extends IMultiTileEntity {boolean isFertile(World world, BlockPos pos);}
+    interface IMTECanSustainPlant                extends IMultiTileEntity {boolean canSustainPlant(EnumFacing direction, IPlantable plantable);}
+    interface IMTEOnPlantGrow                    extends IMultiTileEntity {void onPlantGrow(BlockPos source);}
+    interface IMTEIsFertile                      extends IMultiTileEntity {boolean isFertile();}
     interface IMTECanEntityDestroy               extends IMultiTileEntity {boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity);}
-    interface IMTEIsBeaconBase                   extends IMultiTileEntity {boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon);}
-    interface IMTERotateBlock                    extends IMultiTileEntity {boolean rotateBlock(World world, BlockPos pos, EnumFacing axis);}
-    interface IMTEGetValidRotations              extends IMultiTileEntity {EnumFacing[] getValidRotations(World world, BlockPos pos);}
-    interface IMTEGetEnchantPowerBonus           extends IMultiTileEntity {float getEnchantPowerBonus(World world, BlockPos pos);}
-    interface IMTERecolorBlock                   extends IMultiTileEntity {boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color);}
-    interface IMTEGetExpDrop                     extends IMultiTileEntity {int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune);}
+    interface IMTEIsBeaconBase                   extends IMultiTileEntity {boolean isBeaconBase(BlockPos pos);}
+    interface IMTERotateBlock                    extends IMultiTileEntity {boolean rotateBlock(EnumFacing facing);}
+    interface IMTEGetValidRotations              extends IMultiTileEntity {EnumFacing[] getValidRotations();}
+    interface IMTEGetEnchantPowerBonus           extends IMultiTileEntity {float getEnchantPowerBonus();}
+    interface IMTERecolorBlock                   extends IMultiTileEntity {boolean recolorBlock(EnumFacing side, EnumDyeColor color);}
     interface IMTEOnNeighborChange               extends IMultiTileEntity {void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor);}
     interface IMTEObservedNeighborChange         extends IMultiTileEntity {void observedNeighborChange(IBlockState observerState, World world, BlockPos observerPos, Block changedBlock, BlockPos changedBlockPos);}
-    interface IMTEShouldCheckWeakPower           extends IMultiTileEntity {boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side);}
-    interface IMTEGetWeakChanges                 extends IMultiTileEntity {boolean getWeakChanges(IBlockAccess world, BlockPos pos);}
+    interface IMTEShouldCheckWeakPower           extends IMultiTileEntity {boolean shouldCheckWeakPower(EnumFacing side);}
+    interface IMTEGetWeakChanges                 extends IMultiTileEntity {boolean getWeakChanges();}
     interface IMTEGetHarvestTool                 extends IMultiTileEntity {String getHarvestTool(IBlockState state);}
     interface IMTEGetHarvestLevel                extends IMultiTileEntity {int getHarvestLevel(IBlockState state);}
     interface IMTEIsToolEffective                extends IMultiTileEntity {boolean isToolEffective(String type, IBlockState state);}
@@ -204,7 +200,6 @@ public interface IMultiTileEntity {
     interface IMTECanBeConnectedTo               extends IMultiTileEntity {boolean canBeConnectedTo(IBlockAccess world, BlockPos pos, EnumFacing facing);}
     interface IMTEGetAIPathNodeType              extends IMultiTileEntity {PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos); default PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving entity) {return getAiPathNodeType(state, world, pos);}}
     interface IMTEDoesSideBlockChestOpening      extends IMultiTileEntity {boolean doesSideBlockChestOpening(IBlockState blockState, IBlockAccess world, BlockPos pos, EnumFacing side);}
-    interface IMTEIsStickyBlock                  extends IMultiTileEntity {boolean isStickyBlock(IBlockState state);}
     interface IMTEGetSelectedBoundingBox         extends IMultiTileEntity {@SideOnly(Side.CLIENT) AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos);}
     interface IMTERandomDisplayTick              extends IMultiTileEntity {@SideOnly(Side.CLIENT) void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand);}
     interface IMTEGetRenderLayer                 extends IMultiTileEntity {@SideOnly(Side.CLIENT) BlockRenderLayer getRenderLayer();}

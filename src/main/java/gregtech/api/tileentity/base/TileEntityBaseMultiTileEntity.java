@@ -294,7 +294,7 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(EntityPlayer playerIn, EnumFacing facing, float hitX, float hitY, float hitZ) {
         try {
             return allowRightClick(playerIn) && checkObstruction(playerIn, facing, hitX, hitY, hitZ);
         } catch (Throwable e) {
@@ -410,7 +410,7 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
     }
 
     @Override
-    public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, @Nonnull EnumDyeColor color) {
+    public boolean recolorBlock(EnumFacing side, @Nonnull EnumDyeColor color) {
         if (getPaintingColor() == color.colorValue)
             return false;
         setPaintingColor(color.colorValue);

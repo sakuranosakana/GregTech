@@ -122,10 +122,10 @@ public interface IMultiTileEntity {
     interface IMTEGetStateForPlacement           extends IMultiTileEntity {IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer); default IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) { return getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);}}
     interface IMTEOnBlockClicked                 extends IMultiTileEntity {void onBlockClicked(EntityPlayer playerIn);}
     interface IMTEModifyAcceleration             extends IMultiTileEntity {Vec3d modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3d motion);}
-    interface IMTEGetWeakPower                   extends IMultiTileEntity {int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side);}
+    interface IMTEGetWeakPower                   extends IMultiTileEntity {int getWeakPower(EnumFacing side);}
     interface IMTECanProvidePower                extends IMultiTileEntity {boolean canProvidePower(IBlockState state);}
     interface IMTEOnEntityCollision              extends IMultiTileEntity {void onEntityCollision(Entity entityIn);}
-    interface IMTEGetStrongPower                 extends IMultiTileEntity {int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side);}
+    interface IMTEGetStrongPower                 extends IMultiTileEntity {int getStrongPower(EnumFacing side);}
     interface IMTEHarvestBlock                   extends IMultiTileEntity {void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack);}
     interface IMTEQuantityDroppedWithBonus       extends IMultiTileEntity {int quantityDroppedWithBonus(int fortune, Random random);}
     interface IMTEOnBlockPlacedBy                extends IMultiTileEntity {void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack);}

@@ -277,7 +277,7 @@ public abstract class TileEntityBaseCoverable extends TileEntityBaseMultiTileEnt
     }
 
     @Override
-    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, @Nonnull EnumFacing side) {
+    public int getWeakPower(EnumFacing side) {
         EnumFacing actualSide = side.getOpposite();
         if (hasAnyCover()) {
             CoverBehavior coverBehavior = getCoverAtSide(actualSide);
@@ -287,7 +287,7 @@ public abstract class TileEntityBaseCoverable extends TileEntityBaseMultiTileEnt
     }
 
     @Override
-    public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, @Nonnull EnumFacing side) {
+    public int getStrongPower(EnumFacing side) {
         EnumFacing actualSide = side.getOpposite();
         if (hasAnyCover()) {
             CoverBehavior coverBehavior = getCoverAtSide(actualSide);

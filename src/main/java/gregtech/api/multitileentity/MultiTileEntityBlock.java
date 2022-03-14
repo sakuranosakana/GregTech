@@ -326,18 +326,10 @@ public class MultiTileEntityBlock extends Block {
         return super.modifyAcceleration(worldIn, pos, entityIn, motion);
     }
 
-    @Override
-    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return super.getWeakPower(blockState, blockAccess, pos, side);
-    }
-
+    @Override public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {TileEntity te = blockAccess.getTileEntity(pos); return te instanceof IMTEGetWeakPower ? ((IMTEGetWeakPower) te).getWeakPower(side) : 0;}
     @Override public boolean canProvidePower(IBlockState state) {return !normalCube;}
     @Override public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTEOnEntityCollision) ((IMTEOnEntityCollision) te).onEntityCollision(entityIn);}
-
-    @Override
-    public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return super.getStrongPower(blockState, blockAccess, pos, side);
-    }
+    @Override public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {TileEntity te = blockAccess.getTileEntity(pos); return te instanceof IMTEGetStrongPower ? ((IMTEGetStrongPower) te).getStrongPower(side) : 0;}
 
     @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {

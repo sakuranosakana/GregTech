@@ -17,10 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.Constants;
@@ -336,5 +333,27 @@ public abstract class TileEntityBaseCoverable extends TileEntityBaseMultiTileEnt
                 this.coverBehaviors[coverSide.getIndex()] = coverBehavior;
             }
         }
+    }
+
+    @Override
+    public boolean hasAnyCover() {
+        for (EnumFacing facing : EnumFacing.VALUES) {
+            if (getCoverAtSide(facing) != null) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+        for (EnumFacing facing : EnumFacing.VALUES) {
+            CoverBehavior coverBehavior = getCoverAtSide(facing);
+            if (coverBehavior != null) drops.addAll(coverBehavior.getDrops());
+        }
+    }
+
+    @Override
+    public boolean canConnectRedstone(EnumFacing side) {
+        CoverBehavior coverBehavior = getCoverAtSide(side);
+        return coverBehavior != null && coverBehavior.canConnectRedstone();
     }
 }

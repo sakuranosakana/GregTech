@@ -184,6 +184,7 @@ public interface IMultiTileEntity {
     interface IMTERandomDisplayTick              extends IMultiTileEntity {@SideOnly(Side.CLIENT) void randomDisplayTick(Random rand);}
     interface IMTEGetRenderLayer                 extends IMultiTileEntity {@SideOnly(Side.CLIENT) BlockRenderLayer getRenderLayer();}
     interface IMTEPaintable                      extends IMultiTileEntity {boolean onPaint(EnumFacing facing, int rgb);}
+    interface IMTEGetFacade                      extends IMultiTileEntity {IBlockState getFacade(EnumFacing side);}
 
     interface IMTEAddTooltips extends IMultiTileEntity {
         /** Adds ToolTips to the Item */

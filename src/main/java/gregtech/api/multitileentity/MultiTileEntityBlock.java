@@ -3,7 +3,10 @@ package gregtech.api.multitileentity;
 import com.google.common.base.Predicate;
 import gregtech.api.block.BlockCustomParticle;
 import gregtech.api.multitileentity.IMultiTileEntity.*;
+import gregtech.api.pipenet.IBlockAppearance;
+import gregtech.integration.ctm.IFacadeWrapper;
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
@@ -20,7 +23,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -39,7 +41,7 @@ import java.util.Map;
 import java.util.Random;
 
 @SuppressWarnings("ALL")
-public class MultiTileEntityBlock extends BlockCustomParticle {
+public class MultiTileEntityBlock extends BlockCustomParticle implements ITileEntityProvider, IFacadeWrapper, IBlockAppearance {
 
     // todo register these in the event
     private static final Map<String, MultiTileEntityBlock> MULTI_TILE_ENTITY_BLOCK_MAP = new HashMap<>();
@@ -504,4 +506,10 @@ public class MultiTileEntityBlock extends BlockCustomParticle {
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
         return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
     }
+
+    @Override public boolean supportsVisualConnections() {return true;}
+    @Override public IBlockState getFacade(IBlockAccess world, BlockPos pos, EnumFacing side) {TileEntity te = world.getTileEntity(pos); if (te instanceof IMTEGetFacade) return ((IMTEGetFacade) te).getFacade(side); return null;}
+    @Override public IBlockState getVisualState(IBlockAccess world, BlockPos pos, EnumFacing side) {return getFacade(world, pos, side);}
+    @Override public IBlockState getFacade(IBlockAccess world, BlockPos pos, EnumFacing side, BlockPos connection) {return getFacade(world, pos, side);}
+    @Override public TileEntity createNewTileEntity(World world, int i) {return null;}
 }

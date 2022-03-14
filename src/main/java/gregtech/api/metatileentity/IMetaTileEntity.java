@@ -10,6 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public interface IMetaTileEntity {
 
@@ -80,6 +81,15 @@ public interface IMetaTileEntity {
      * Called from ItemBlock to initialize this MTE with data contained in ItemStack
      */
     interface IMTEItemStackData extends IMetaTileEntity {
+        void writeItemStackData(NBTTagCompound data);
+
         void initFromItemStackData(NBTTagCompound data);
+    }
+
+    /**
+     *
+     */
+    interface IMTEItemStackCapability extends IMetaTileEntity {
+        ICapabilityProvider initItemStackCapabilities(ItemStack stack);
     }
 }

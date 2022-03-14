@@ -9,7 +9,7 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.api.capability.impl.FilteredFluidHandler;
 import gregtech.api.capability.impl.ThermalFluidHandlerItemStack;
 import gregtech.api.gui.ModularUI;
-import gregtech.api.metatileentity.IMetaTileEntity.IMTEItemStackData;
+import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.client.renderer.texture.Textures;
@@ -46,7 +46,7 @@ import static gregtech.api.capability.GregtechDataCodes.*;
 import static gregtech.api.recipes.ModHandler.isMaterialWood;
 import static gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE;
 
-public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackData {
+public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackData, IMTEItemStackCapability {
 
     private final int tankSize;
     private final Material material;
@@ -111,7 +111,6 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
 
     @Override
     public void writeItemStackData(NBTTagCompound itemStack) {
-        super.writeItemStackData(itemStack);
         FluidStack fluidStack = fluidTank.getFluid();
         if (fluidStack != null && fluidStack.amount > 0) {
             NBTTagCompound tagCompound = new NBTTagCompound();

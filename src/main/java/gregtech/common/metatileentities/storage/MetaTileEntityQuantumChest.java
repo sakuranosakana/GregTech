@@ -245,7 +245,6 @@ public class MetaTileEntityQuantumChest extends MetaTileEntity implements ITiere
 
     @Override
     public void writeItemStackData(NBTTagCompound itemStack) {
-        super.writeItemStackData(itemStack);
         if (!this.itemStack.isEmpty()) {
             itemStack.setTag(NBT_ITEMSTACK, this.itemStack.writeToNBT(new NBTTagCompound()));
             itemStack.setLong(NBT_ITEMCOUNT, itemsStoredInside + this.itemStack.getMaxStackSize());

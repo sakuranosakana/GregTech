@@ -227,23 +227,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return isPainted() ? paintingColor : getDefaultPaintingColor();
     }
 
-    /**
-     * Called to write MTE specific data when it is destroyed to save it's state
-     * into itemblock, which can be placed later to get {@link #initFromItemStackData} called
-     *
-     * @param itemStack itemstack from which this MTE is being placed
-     */
-    public void writeItemStackData(NBTTagCompound itemStack) {
-    }
-
-    public String getItemSubTypeId(ItemStack itemStack) {
-        return "";
-    }
-
-    public ICapabilityProvider initItemStackCapabilities(ItemStack itemStack) {
-        return null;
-    }
-
     public final String getMetaName() {
         return String.format("%s.machine.%s", metaTileEntityId.getNamespace(), metaTileEntityId.getPath());
     }

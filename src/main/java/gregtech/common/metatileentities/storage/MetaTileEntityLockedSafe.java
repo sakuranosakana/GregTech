@@ -317,6 +317,10 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
     }
 
     @Override
+    public void writeItemStackData(NBTTagCompound data) {
+    }
+
+    @Override
     public void initFromItemStackData(NBTTagCompound itemStack) {
         if (itemStack.hasKey("ComponentTier", NBT.TAG_ANY_NUMERIC)) {
             this.unlockComponentTier = itemStack.getInteger("ComponentTier");

@@ -2,6 +2,7 @@ package gregtech.api.block.machines;
 
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
+import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.metatileentity.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.pipenet.block.BlockPipe;
@@ -80,8 +81,8 @@ public class MachineItemBlock extends ItemBlock {
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable NBTTagCompound nbt) {
-        MetaTileEntity metaTileEntity = getMetaTileEntity(stack);
-        return metaTileEntity == null ? null : metaTileEntity.initItemStackCapabilities(stack);
+        MetaTileEntity mte = getMetaTileEntity(stack);
+        return mte instanceof IMTEItemStackCapability ? ((IMTEItemStackCapability) mte).initItemStackCapabilities(stack) : null;
     }
 
     @Override

@@ -72,12 +72,6 @@ public abstract class TileEntityBase extends TileEntity implements ITickableTile
     }
 
     @Override
-    public void markDirty() {
-        // TODO confirm this
-        /* Oh no, I won't let this do anything anymore! It's only useful for Comparators and that didn't work properly anyways! */
-    }
-
-    @Override
     public boolean isServerSide() {
         return world == null ? FMLCommonHandler.instance().getEffectiveSide().isServer() : !world.isRemote;
     }

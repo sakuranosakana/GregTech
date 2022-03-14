@@ -176,7 +176,7 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
 
     @Nonnull
     @Override
-    public final NBTTagCompound writeToNBT(@Nonnull NBTTagCompound data) {
+    public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound data) {
         super.writeToNBT(data);
         data.setString("CustomName", getName());
         data.setString("MetaId", multiTileEntityId.toString());

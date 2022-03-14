@@ -137,7 +137,7 @@ public abstract class TileEntityBaseCoverable extends TileEntityBaseMultiTileEnt
         if (!ignoreCover && getCoverAtSide(side) != null) {
             return 0; //covers block input redstone signal for machine
         }
-        return Math.max(getWeakPower(getState(getPos()), world, getPos(), side), getStrongPower(getState(getPos()), world, getPos(), side));
+        return Math.max(getWeakPower(side), getStrongPower(side));
     }
 
     public boolean isSideUsed(EnumFacing face) {

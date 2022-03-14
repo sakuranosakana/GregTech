@@ -1,6 +1,7 @@
 package gregtech.api.multitileentity;
 
 import com.google.common.base.Predicate;
+import gregtech.api.block.BlockCustomParticle;
 import gregtech.api.multitileentity.IMultiTileEntity.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -10,7 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -29,8 +30,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.IPlantable;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +39,7 @@ import java.util.Map;
 import java.util.Random;
 
 @SuppressWarnings("ALL")
-public class MultiTileEntityBlock extends Block {
+public class MultiTileEntityBlock extends BlockCustomParticle {
 
     // todo register these in the event
     private static final Map<String, MultiTileEntityBlock> MULTI_TILE_ENTITY_BLOCK_MAP = new HashMap<>();
@@ -50,7 +51,7 @@ public class MultiTileEntityBlock extends Block {
     // todo
     public static String getName() {return "";}
 
-    public static MultiTileEntityBlock getOrCreate(String modID, String name, Material material, SoundType ) {}
+    //public static MultiTileEntityBlock getOrCreate(String modID, String name, Material material, SoundType ) {}
 
     private MultiTileEntityBlock(String modID, String name, Material material, SoundType stepOnSound, String harvestTool, int harvestLevel, boolean opaque, boolean normalCube) {
         super(material);
@@ -67,6 +68,11 @@ public class MultiTileEntityBlock extends Block {
         this.harvestLevel = harvestLevel;
         this.lightOpacity = opaque ? 255 : 0;
         // ST.hide(this);
+    }
+
+    @Override
+    protected Pair<TextureAtlasSprite, Integer> getParticleTexture(World world, BlockPos blockPos) {
+        return null; // todo need to get this from the MTE
     }
 
     @Override
@@ -147,10 +153,7 @@ public class MultiTileEntityBlock extends Block {
         return super.hasCustomBreakingProgress(state);
     }
 
-    @Override
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
-        return super.isPassable(worldIn, pos);
-    }
+    @Override public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {TileEntity te = worldIn.getTileEntity(pos); return !(te instanceof IMTEIsPassable) || ((IMTEIsPassable) te).isPassable();}
 
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
@@ -224,29 +227,12 @@ public class MultiTileEntityBlock extends Block {
     @Override public boolean isOpaqueCube(IBlockState state) {return opaque;}
 
     @Override
-    public boolean canCollideCheck(IBlockState state, boolean hitIfLiquid) {
-        return super.canCollideCheck(state, hitIfLiquid);
-    }
-
-    @Override
-    public boolean isCollidable() {
-        return super.isCollidable();
-    }
-
-    @Override
     public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random) {
         super.randomTick(worldIn, pos, state, random);
     }
 
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        super.updateTick(worldIn, pos, state, rand);
-    }
-
-    @Override
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        super.randomDisplayTick(stateIn, worldIn, pos, rand);
-    }
+    @Override public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTEUpdateTick) ((IMTEUpdateTick) te).updateTick(rand);}
+    @Override public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTERandomDisplayTick) ((IMTERandomDisplayTick) te).randomDisplayTick(rand); else super.randomDisplayTick(stateIn, worldIn, pos, rand);}
 
     @Override
     public void onPlayerDestroy(World worldIn, BlockPos pos, IBlockState state) {
@@ -264,11 +250,6 @@ public class MultiTileEntityBlock extends Block {
     }
 
     @Override public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTEOnBlockAdded) ((IMTEOnBlockAdded) te).onBlockAdded();}
-
-    @Override
-    public int quantityDropped(Random random) {
-        return super.quantityDropped(random);
-    }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
@@ -291,27 +272,11 @@ public class MultiTileEntityBlock extends Block {
     }
 
     @Override
-    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
-        super.onExplosionDestroy(worldIn, pos, explosionIn);
-    }
-
-    @Override
     public BlockRenderLayer getRenderLayer() {
         return super.getRenderLayer();
     }
 
-    @Override
-    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side) {
-        return super.canPlaceBlockOnSide(worldIn, pos, side);
-    }
-
-    @Override
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-        return super.canPlaceBlockAt(worldIn, pos);
-    }
-
     @Override public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {TileEntity te = worldIn.getTileEntity(pos); return te instanceof IMTEOnBlockActivated && ((IMTEOnBlockActivated) te).onBlockActivated(playerIn, facing, hitX, hitY, hitZ);}
-
     @Override public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTEOnEntityWalk) ((IMTEOnEntityWalk) te).onEntityWalk(entityIn);}
 
     @Override
@@ -320,12 +285,7 @@ public class MultiTileEntityBlock extends Block {
     }
 
     @Override public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTEOnBlockClicked) ((IMTEOnBlockClicked) te).onBlockClicked(playerIn);}
-
-    @Override
-    public Vec3d modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3d motion) {
-        return super.modifyAcceleration(worldIn, pos, entityIn, motion);
-    }
-
+    @Override public Vec3d modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3d motion) {TileEntity te = worldIn.getTileEntity(pos); return te instanceof IMTEModifyAcceleration ? ((IMTEModifyAcceleration) te).modifyAcceleration(entityIn, motion) : super.modifyAcceleration(worldIn, pos, entityIn, motion);}
     @Override public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {TileEntity te = blockAccess.getTileEntity(pos); return te instanceof IMTEGetWeakPower ? ((IMTEGetWeakPower) te).getWeakPower(side) : 0;}
     @Override public boolean canProvidePower(IBlockState state) {return !normalCube;}
     @Override public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTEOnEntityCollision) ((IMTEOnEntityCollision) te).onEntityCollision(entityIn);}
@@ -337,16 +297,6 @@ public class MultiTileEntityBlock extends Block {
     }
 
     @Override protected boolean canSilkHarvest() {return false;}
-
-    @Override
-    protected ItemStack getSilkTouchDrop(IBlockState state) {
-        return super.getSilkTouchDrop(state);
-    }
-
-    @Override
-    public int quantityDroppedWithBonus(int fortune, Random random) {
-        return super.quantityDroppedWithBonus(fortune, random);
-    }
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
@@ -371,63 +321,10 @@ public class MultiTileEntityBlock extends Block {
         return super.getPushReaction(state);
     }
 
-    @Override
-    public float getAmbientOcclusionLightValue(IBlockState state) {
-        return super.getAmbientOcclusionLightValue(state);
-    }
-
-    @Override
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
-        super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
-    }
-
-    @Override
-    public void onLanded(World worldIn, Entity entityIn) {
-        super.onLanded(worldIn, entityIn);
-    }
-
-    @Override
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        return super.getItem(worldIn, pos, state);
-    }
-
+    @Override public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTEOnFallenUpon) ((IMTEOnFallenUpon) te).onFallenUpon(entityIn, fallDistance); else super.onFallenUpon(worldIn, pos, entityIn, fallDistance);}
     @Override public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {/**/}
-
-    @Override
-    public CreativeTabs getCreativeTab() {
-        return super.getCreativeTab();
-    }
-
-    @Override
-    public Block setCreativeTab(CreativeTabs tab) {
-        return super.setCreativeTab(tab);
-    }
-
-    @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-        super.onBlockHarvested(worldIn, pos, state, player);
-    }
-
-    @Override
-    public void fillWithRain(World worldIn, BlockPos pos) {
-        super.fillWithRain(worldIn, pos);
-    }
-
-    @Override
-    public boolean requiresUpdates() {
-        return super.requiresUpdates();
-    }
-
-    @Override
-    public boolean canDropFromExplosion(Explosion explosionIn) {
-        return super.canDropFromExplosion(explosionIn);
-    }
-
-    @Override
-    public boolean isAssociatedBlock(Block other) {
-        return super.isAssociatedBlock(other);
-    }
-
+    @Override public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTEOnBlockHarvested) ((IMTEOnBlockHarvested) te).onBlockHarvested(state, player);}
+    @Override public void fillWithRain(World worldIn, BlockPos pos) {TileEntity te = worldIn.getTileEntity(pos); if (te instanceof IMTEFillWithRain) ((IMTEFillWithRain) te).fillWithRain();}
     @Override public boolean hasComparatorInputOverride(IBlockState state) {return true;}
 
     //@Override
@@ -487,33 +384,11 @@ public class MultiTileEntityBlock extends Block {
         return super.removedByPlayer(state, world, pos, player, willHarvest);
     }
 
-    @Override
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return super.getFlammability(world, pos, face);
-    }
-
-    @Override
-    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return super.isFlammable(world, pos, face);
-    }
-
-    @Override
-    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return super.getFireSpreadSpeed(world, pos, face);
-    }
-
-    @Override
-    public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
-        return super.isFireSource(world, pos, side);
-    }
-
+    @Override public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTEGetFlammability ? ((IMTEGetFlammability) te).getFlammability(face, getMaterial(null).getCanBurn()) : getMaterial(null).getCanBurn() ? 150 : 0;}
+    @Override public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTEGetFireSpreadSpeed ? ((IMTEGetFireSpreadSpeed) te).getFireSpreadSpeed(face, getMaterial(null).getCanBurn()) : getMaterial(null).getCanBurn() ? 150 : 0;}
+    @Override public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTEIsFireSource && ((IMTEIsFireSource) te).isFireSource(side);}
     @Override public boolean hasTileEntity(IBlockState state) {return true;}
     @Override public TileEntity createTileEntity(World world, IBlockState state) {return null;}
-
-    @Override
-    public int quantityDropped(IBlockState state, int fortune, Random random) {
-        return super.quantityDropped(state, fortune, random);
-    }
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
@@ -537,10 +412,7 @@ public class MultiTileEntityBlock extends Block {
                 : super.isReplaceableOreGen(state, world, pos, target);
     }
 
-    @Override
-    public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        return super.getExplosionResistance(world, pos, exploder, explosion);
-    }
+    @Override public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTEGetExplosionResistance ? ((IMTEGetExplosionResistance) te).getExplosionResistance(exploder, explosion) : 1.0F;}
 
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
@@ -549,44 +421,13 @@ public class MultiTileEntityBlock extends Block {
 
     @Override public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTECanConnectRedstone ? ((IMTECanConnectRedstone) te).canConnectRedstone(side) : super.canConnectRedstone(state, world, pos, side);}
     @Override public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTECanPlaceTorchOnTop ? ((IMTECanPlaceTorchOnTop) te).canPlaceTorchOnTop() : isSideSolid(state, world, pos, EnumFacing.UP);}
-
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return super.getPickBlock(state, target, world, pos, player);
-    }
-
+    @Override public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTEGetPickBlock ? ((IMTEGetPickBlock) te).getPickBlock(target) : null;}
     @Override public boolean isFoliage(IBlockAccess world, BlockPos pos) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTEIsFoliage && ((IMTEIsFoliage) te).isFoliage();}
-
-    @Override
-    public boolean addLandingEffects(IBlockState state, WorldServer worldObj, BlockPos blockPosition, IBlockState iblockstate, EntityLivingBase entity, int numberOfParticles) {
-        return super.addLandingEffects(state, worldObj, blockPosition, iblockstate, entity, numberOfParticles);
-    }
-
-    @Override
-    public boolean addRunningEffects(IBlockState state, World world, BlockPos pos, Entity entity) {
-        return super.addRunningEffects(state, world, pos, entity);
-    }
-
-    @Override
-    public boolean addHitEffects(IBlockState state, World worldObj, RayTraceResult target, ParticleManager manager) {
-        return super.addHitEffects(state, worldObj, target, manager);
-    }
-
-    @Override
-    public boolean addDestroyEffects(World world, BlockPos pos, ParticleManager manager) {
-        return super.addDestroyEffects(world, pos, manager);
-    }
-
     @Override public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTECanSustainPlant ? ((IMTECanSustainPlant) te).canSustainPlant(direction, plantable) : super.canSustainPlant(state, world, pos, direction, plantable);}
     @Override public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source) {TileEntity te = world.getTileEntity(pos); if (te instanceof IMTEOnPlantGrow) ((IMTEOnPlantGrow) te).onPlantGrow(source);}
     @Override public boolean isFertile(World world, BlockPos pos) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTEIsFertile && ((IMTEIsFertile) te).isFertile();}
     @Override public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTEGetLightOpacity ? ((IMTEGetLightOpacity) te).getLightOpacity(state, world, pos) : opaque ? 255 : 0;}
-
-    @Override
-    public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {
-        return super.canEntityDestroy(state, world, pos, entity);
-    }
-
+    @Override public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {TileEntity te = world.getTileEntity(pos); return !(te instanceof IMTECanEntityDestroy) || ((IMTECanEntityDestroy) te).canEntityDestroy(entity);}
     @Override public boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon) {TileEntity te = worldObj.getTileEntity(pos); return te instanceof IMTEIsBeaconBase && ((IMTEIsBeaconBase) te).isBeaconBase(pos);}
     @Override public boolean rotateBlock(World world, BlockPos pos, EnumFacing axis) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTERotateBlock && ((IMTERotateBlock) te).rotateBlock(axis);}
     @Override public EnumFacing[] getValidRotations(World world, BlockPos pos) {TileEntity te = world.getTileEntity(pos); return te instanceof IMTEGetValidRotations ? ((IMTEGetValidRotations) te).getValidRotations() : null;}
@@ -662,25 +503,5 @@ public class MultiTileEntityBlock extends Block {
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
         return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
-    }
-
-    @Override
-    public boolean canBeConnectedTo(IBlockAccess world, BlockPos pos, EnumFacing facing) {
-        return super.canBeConnectedTo(world, pos, facing);
-    }
-
-    @Override
-    public PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return super.getAiPathNodeType(state, world, pos);
-    }
-
-    @Override
-    public PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving entity) {
-        return super.getAiPathNodeType(state, world, pos, entity);
-    }
-
-    @Override
-    public boolean doesSideBlockChestOpening(IBlockState blockState, IBlockAccess world, BlockPos pos, EnumFacing side) {
-        return super.doesSideBlockChestOpening(blockState, world, pos, side);
     }
 }

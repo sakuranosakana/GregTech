@@ -273,7 +273,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickableTile
 
     public void updateLightValue() {
         if (this instanceof IMultiTileEntity.IMTEGetLightValue) {
-            world.setLightFor(EnumSkyBlock.BLOCK, pos, ((IMultiTileEntity.IMTEGetLightValue) this).getLightValue(getState(pos)));
+            world.setLightFor(EnumSkyBlock.BLOCK, pos, ((IMultiTileEntity.IMTEGetLightValue) this).getLightValue());
             for (EnumFacing facing : EnumFacing.HORIZONTALS)
                 world.checkLightFor(EnumSkyBlock.BLOCK, pos.offset(facing));
         }

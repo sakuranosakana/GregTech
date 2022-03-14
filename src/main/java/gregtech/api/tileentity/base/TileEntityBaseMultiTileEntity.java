@@ -442,7 +442,7 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
     }
 
     @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+    public ItemStack getPickBlock(RayTraceResult target) {
         if (target instanceof CuboidRayTraceResult) {
             IndexedCuboid6 hitCuboid = ((CuboidRayTraceResult) (target)).cuboid6;
             if (hitCuboid.data == null || hitCuboid.data instanceof ICoverable.PrimaryBoxData) {

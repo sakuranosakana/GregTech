@@ -104,7 +104,8 @@ public abstract class TileEntityBaseMultiTileEntity extends TileEntityTicksAndSy
     }
 
     public final String getMetaName() {
-        return String.format("%s.machine.%s", multiTileEntityId.getNamespace(), multiTileEntityId.getPath());
+        //TODO
+        return String.format("%s.%s.%s", multiTileEntityId.getNamespace(), blockType.getRegistryName(), multiTileEntityId.getPath());
     }
 
     @Nonnull

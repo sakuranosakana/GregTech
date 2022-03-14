@@ -249,10 +249,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     public void writeItemStackData(NBTTagCompound itemStack) {
     }
 
-    public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> subItems) {
-        subItems.add(getStackForm());
-    }
-
     public String getItemSubTypeId(ItemStack itemStack) {
         return "";
     }
@@ -673,15 +669,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             GTSoundManager.stopTileSound(getPos());
             playSoundCooldown = 0;
         }
-    }
-
-    public final ItemStack getStackForm(int amount) {
-        int metaTileEntityIntId = GregTechAPI.MTE_REGISTRY.getIdByObjectName(metaTileEntityId);
-        return new ItemStack(GregTechAPI.MACHINE, amount, metaTileEntityIntId);
-    }
-
-    public final ItemStack getStackForm() {
-        return getStackForm(1);
     }
 
     /**

@@ -20,6 +20,7 @@ import gregtech.api.metatileentity.interfaces.IDataInfoProvider;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.sound.GTSounds;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -254,7 +255,7 @@ public class MetaTileEntityMiner extends TieredMetaTileEntity implements IMiner,
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
-        clearInventory(itemBuffer, chargerInventory);
+        InventoryUtils.clearInventory(itemBuffer, chargerInventory);
     }
 
     @Override

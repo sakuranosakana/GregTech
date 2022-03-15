@@ -87,7 +87,7 @@ public class MetaTileEntityDiode extends TieredMetaTileEntity {
         if (!getWorld().isRemote) {
             reinitializeEnergyContainer();
             writeCustomData(AMP_INDEX, b -> b.writeInt(amps));
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             markDirty();
         }
     }

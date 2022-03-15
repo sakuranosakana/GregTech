@@ -12,7 +12,6 @@ import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.ITieredMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
@@ -20,6 +19,7 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -235,7 +235,7 @@ public class MetaTileEntityFluidDrill extends MultiblockWithDisplayBase implemen
     }
 
     public boolean fillTanks(FluidStack stack, boolean simulate) {
-        return MetaTileEntity.addFluidsToFluidHandler(outputFluidInventory, simulate, Collections.singletonList(stack));
+        return GTFluidUtils.addFluidsToFluidHandler(outputFluidInventory, simulate, Collections.singletonList(stack));
     }
 
     public int getEnergyTier() {

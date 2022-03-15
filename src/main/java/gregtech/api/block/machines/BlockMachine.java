@@ -21,7 +21,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
-import gregtech.api.metatileentity.interfaces.ITurnable;
+import gregtech.api.metatileentity.interfaces.IRotatable;
 import gregtech.api.pipenet.IBlockAppearance;
 import gregtech.client.renderer.handler.MetaTileEntityRenderer;
 import gregtech.common.ConfigHolder;
@@ -202,10 +202,10 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
         return RayTracer.rayTraceCuboidsClosest(start, end, pos, getCollisionBox(worldIn, pos));
     }
 
-    /** Method passed through to {@link ITurnable}. Default false */
-    @Override public final boolean rotateBlock(World world, BlockPos pos, EnumFacing axis) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof ITurnable && ((ITurnable) mte).rotateBlock(axis);}
-    /** Method passed through to {@link ITurnable}. Default null */
-    @Override public final EnumFacing[] getValidRotations(World world, BlockPos pos) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof ITurnable ? ((ITurnable) mte).getValidRotations() : null;}
+    /** Method passed through to {@link IRotatable}. Default false */
+    @Override public final boolean rotateBlock(World world, BlockPos pos, EnumFacing axis) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IRotatable && ((IRotatable) mte).rotateBlock(axis);}
+    /** Method passed through to {@link IRotatable}. Default null */
+    @Override public final EnumFacing[] getValidRotations(World world, BlockPos pos) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IRotatable ? ((IRotatable) mte).getValidRotations() : null;}
 
     /** Method passed through to {@link IMTERecolorBlock}. Default false */
     @Override public final boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IMTERecolorBlock && ((IMTERecolorBlock) mte).recolorBlock(color);}
@@ -222,8 +222,8 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
             if (stack.hasTagCompound() && metaTileEntity instanceof IMTEItemStackData) {
                 ((IMTEItemStackData) metaTileEntity).initFromItemStackData(stack.getTagCompound());
             }
-            if (metaTileEntity instanceof ITurnable) {
-                ITurnable turnable = (ITurnable) metaTileEntity;
+            if (metaTileEntity instanceof IRotatable) {
+                IRotatable turnable = (IRotatable) metaTileEntity;
                 if (turnable.isValidFrontFacing(EnumFacing.UP)) {
                     turnable.setFrontFacing(EnumFacing.getDirectionFromEntityLiving(pos, placer));
                 } else {

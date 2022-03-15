@@ -18,6 +18,7 @@ import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.util.GTFluidUtils;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer;
 import gregtech.common.covers.filter.FluidFilterContainer;
@@ -276,7 +277,7 @@ public class CoverPump extends CoverBehavior implements CoverWithUI, ITickable, 
     @Override
     public void onRemoved() {
         NonNullList<ItemStack> drops = NonNullList.create();
-        MetaTileEntity.clearInventory(drops, fluidFilter.getFilterInventory());
+        InventoryUtils.clearInventory(drops, fluidFilter.getFilterInventory());
         for (ItemStack itemStack : drops) {
             Block.spawnAsEntity(coverHolder.getWorld(), coverHolder.getPos(), itemStack);
         }

@@ -12,6 +12,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetComparatorInputOverride;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.unification.material.Material;
 import gregtech.api.util.GTUtility;
@@ -79,7 +80,7 @@ public class MetaTileEntityCrate extends MetaTileEntity implements IMTEGetCompar
 
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
-        clearInventory(itemBuffer, inventory);
+        InventoryUtils.clearInventory(itemBuffer, inventory);
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.Arrays;
  * <p>
  * Provides useful defaults for commonly used methods on the Block and TileEntity classes.
  */
-public interface ITurnable {
+public interface IRotatable {
 
     /**
      * Get the front-facing of this Block.
@@ -43,9 +43,10 @@ public interface ITurnable {
      * @return An array of all valid front-facings
      */
     default EnumFacing[] getValidRotations() {
-        return Arrays.stream(EnumFacing.VALUES)
+        EnumFacing[] facings = Arrays.stream(EnumFacing.VALUES)
                 .filter(this::isValidFrontFacing)
                 .toArray(EnumFacing[]::new);
+        return facings.length == 0 ? null : facings;
     }
 
     /**
@@ -78,7 +79,7 @@ public interface ITurnable {
     /**
      * Mirror this Block via a passed Mirror.
      * <p>
-     * Sourced from: {@link net.minecraft.tileentity.TileEntity#rotate}
+     * Sourced from: {@link net.minecraft.tileentity.TileEntity#mirror}
      *
      * @param mirror The Mirror to flip on
      */

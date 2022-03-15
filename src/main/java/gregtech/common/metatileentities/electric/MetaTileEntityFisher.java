@@ -10,6 +10,7 @@ import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.unification.OreDictUnifier;
 import net.minecraft.block.BlockLiquid;
@@ -97,8 +98,8 @@ public class MetaTileEntityFisher extends TieredMetaTileEntity {
                 LootTable table = world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING);
                 NonNullList<ItemStack> itemStacks = NonNullList.create();
                 itemStacks.addAll(table.generateLootForPools(world.rand, new LootContext.Builder(world).build()));
-                if (addItemsToItemHandler(exportItems, true, itemStacks)) {
-                    addItemsToItemHandler(exportItems, false, itemStacks);
+                if (InventoryUtils.addItemsToItemHandler(exportItems, true, itemStacks)) {
+                    InventoryUtils.addItemsToItemHandler(exportItems, false, itemStacks);
                     energyContainer.removeEnergy(energyAmountPerFish);
                     baitStack.shrink(1);
                 }

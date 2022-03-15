@@ -22,6 +22,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.CountableIngredient;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTUtility;
@@ -99,7 +100,7 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         if (isSafeUnlocked()) {
-            clearInventory(itemBuffer, safeLootInventory);
+            InventoryUtils.clearInventory(itemBuffer, safeLootInventory);
         }
     }
 
@@ -273,7 +274,7 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
         this.isSafeUnlocked = safeUnlocked;
         if (getWorld() != null && !getWorld().isRemote) {
             writeCustomData(UPDATE_LOCKED_STATE, buf -> buf.writeBoolean(safeUnlocked));
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             markDirty();
         }
     }

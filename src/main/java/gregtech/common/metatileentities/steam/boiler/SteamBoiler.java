@@ -18,6 +18,7 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.sound.GTSounds;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer;
@@ -321,7 +322,7 @@ public abstract class SteamBoiler extends MetaTileEntity implements IDataInfoPro
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
-        clearInventory(itemBuffer, containerInventory);
+        InventoryUtils.clearInventory(itemBuffer, containerInventory);
     }
 
     @Nonnull

@@ -15,6 +15,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.capability.impl.NotifiableFluidTank;
@@ -69,7 +70,7 @@ public class MetaTileEntityFluidHatch extends MetaTileEntityMultiblockNotifiable
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
-        clearInventory(itemBuffer, containerInventory);
+        InventoryUtils.clearInventory(itemBuffer, containerInventory);
     }
 
     @Override

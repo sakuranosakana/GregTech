@@ -90,7 +90,7 @@ public class MetaTileEntityTransformer extends TieredMetaTileEntity {
         if (!getWorld().isRemote) {
             reinitializeEnergyContainer();
             writeCustomData(SYNC_TILE_MODE, b -> b.writeBoolean(isTransformUp));
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             markDirty();
         }
     }

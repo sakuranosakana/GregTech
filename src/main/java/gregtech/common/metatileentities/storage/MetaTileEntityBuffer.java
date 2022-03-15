@@ -13,6 +13,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.util.GTUtility;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -136,6 +137,6 @@ public class MetaTileEntityBuffer extends MetaTileEntity implements ITieredMetaT
 
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
-        clearInventory(itemBuffer, itemStackHandler);
+        InventoryUtils.clearInventory(itemBuffer, itemStackHandler);
     }
 }

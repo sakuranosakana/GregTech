@@ -17,6 +17,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -73,7 +74,7 @@ public class MetaTileEntitySteamHatch extends MetaTileEntityMultiblockPart imple
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
-        clearInventory(itemBuffer, containerInventory);
+        InventoryUtils.clearInventory(itemBuffer, containerInventory);
     }
 
     @Override

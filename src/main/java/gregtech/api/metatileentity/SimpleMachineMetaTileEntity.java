@@ -21,6 +21,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.client.resources.I18n;
@@ -286,7 +287,7 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
         this.outputFacingItems = outputFacing;
         this.outputFacingFluids = outputFacing;
         if (!getWorld().isRemote) {
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             writeCustomData(UPDATE_OUTPUT_FACING, buf -> {
                 buf.writeByte(outputFacingItems.getIndex());
                 buf.writeByte(outputFacingFluids.getIndex());
@@ -298,7 +299,7 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
     public void setOutputFacingItems(EnumFacing outputFacing) {
         this.outputFacingItems = outputFacing;
         if (!getWorld().isRemote) {
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             writeCustomData(UPDATE_OUTPUT_FACING, buf -> {
                 buf.writeByte(outputFacingItems.getIndex());
                 buf.writeByte(outputFacingFluids.getIndex());
@@ -310,7 +311,7 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
     public void setOutputFacingFluids(EnumFacing outputFacing) {
         this.outputFacingFluids = outputFacing;
         if (!getWorld().isRemote) {
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             writeCustomData(UPDATE_OUTPUT_FACING, buf -> {
                 buf.writeByte(outputFacingItems.getIndex());
                 buf.writeByte(outputFacingFluids.getIndex());
@@ -390,8 +391,8 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
-        clearInventory(itemBuffer, chargerInventory);
-        clearInventory(itemBuffer, circuitInventory);
+        InventoryUtils.clearInventory(itemBuffer, chargerInventory);
+        InventoryUtils.clearInventory(itemBuffer, circuitInventory);
     }
 
     @Override

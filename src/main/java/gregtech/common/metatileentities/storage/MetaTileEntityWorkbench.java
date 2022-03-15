@@ -18,6 +18,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.storage.ICraftingStorage;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.api.util.Position;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.gui.widget.craftingstation.CraftingSlotWidget;
@@ -167,8 +168,8 @@ public class MetaTileEntityWorkbench extends MetaTileEntity implements ICrafting
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
-        clearInventory(itemBuffer, internalInventory);
-        clearInventory(itemBuffer, toolInventory);
+        InventoryUtils.clearInventory(itemBuffer, internalInventory);
+        InventoryUtils.clearInventory(itemBuffer, toolInventory);
     }
 
     private AbstractWidgetGroup createItemListTab() {

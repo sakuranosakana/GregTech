@@ -99,7 +99,7 @@ public class MetaTileEntityConverter extends TieredMetaTileEntity implements IMT
         converterTrait.setFeToEu(feToEu);
         if (!getWorld().isRemote) {
             writeCustomData(SYNC_TILE_MODE, b -> b.writeBoolean(converterTrait.isFeToEu()));
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             markDirty();
         }
     }

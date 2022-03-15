@@ -14,7 +14,7 @@ import gregtech.api.cover.ICoverable;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.*;
-import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.util.FluidTankSwitchShim;
 import gregtech.api.util.GTFluidUtils;
@@ -96,7 +96,7 @@ public class CoverEnderFluidLink extends CoverBehavior implements CoverWithUI, I
     @Override
     public void onRemoved() {
         NonNullList<ItemStack> drops = NonNullList.create();
-        MetaTileEntity.clearInventory(drops, fluidFilter.getFilterInventory());
+        InventoryUtils.clearInventory(drops, fluidFilter.getFilterInventory());
         for (ItemStack itemStack : drops) {
             Block.spawnAsEntity(coverHolder.getWorld(), coverHolder.getPos(), itemStack);
         }

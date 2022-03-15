@@ -85,13 +85,15 @@ public interface IMetaTileEntity {
     <T> T getCoverCapability(Capability<T> capability, EnumFacing facing);
 
     // Hooks into the TileEntity Class. Implement them in order to overwrite the Default Behaviours.
-    // TODO more here
+    // Open an issue or PR to add more pass-throughs here if you need them for your addon.
+    // Nearly ANY method from TileEntity could be passed along here if needed.
     interface IMTEOnLoad        extends IMetaTileEntity {void onLoad();}
     interface IMTEOnChunkUnload extends IMetaTileEntity {void onChunkUnload();}
     interface IMTEInvalidate    extends IMetaTileEntity {void invalidate();}
 
     // Hooks into the Block Class. Implement them in order to overwrite the Default Behaviours.
-    // TODO more here
+    // Open an issue or PR to add more pass-throughs here if you need them for your addon.
+    // Nearly ANY method from Block could be passed along here if needed.
     interface IMTEGetDrops                   extends IMetaTileEntity {void getDrops(NonNullList<ItemStack> drops, EntityPlayer harvester);}
     interface IMTECanEntityDestroy           extends IMetaTileEntity {boolean canEntityDestroy(Entity entity);}
     interface IMTENeighborChanged            extends IMetaTileEntity {void neighborChanged();}

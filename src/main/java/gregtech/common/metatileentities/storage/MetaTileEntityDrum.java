@@ -185,7 +185,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     private void toggleOutput() {
         isAutoOutput = !isAutoOutput;
         if (!getWorld().isRemote) {
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             writeCustomData(UPDATE_AUTO_OUTPUT, buf -> buf.writeBoolean(isAutoOutput));
             markDirty();
         }

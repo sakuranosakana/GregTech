@@ -88,7 +88,7 @@ public class MetaTileEntityAdjustableTransformer extends MetaTileEntityTransform
         if (!getWorld().isRemote) {
             reinitializeEnergyContainer();
             writeCustomData(AMP_INDEX, b -> b.writeInt(ampIndex));
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             markDirty();
         }
     }

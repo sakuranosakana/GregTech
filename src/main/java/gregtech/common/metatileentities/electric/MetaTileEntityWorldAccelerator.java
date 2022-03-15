@@ -195,7 +195,7 @@ public class MetaTileEntityWorldAccelerator extends TieredMetaTileEntity impleme
         tileMode = inverted;
         if (!getWorld().isRemote) {
             writeCustomData(SYNC_TILE_MODE, b -> b.writeBoolean(tileMode));
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             markDirty();
         }
     }
@@ -262,7 +262,7 @@ public class MetaTileEntityWorldAccelerator extends TieredMetaTileEntity impleme
     @Override
     public void setWorkingEnabled(boolean b) {
         isPaused = !b;
-        getTileEntity().notifyBlockUpdate();
+        notifyBlockUpdate();
     }
 
     @Override

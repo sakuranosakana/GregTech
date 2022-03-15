@@ -1,6 +1,5 @@
 package gregtech.api.metatileentity;
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
 import com.google.common.base.Preconditions;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.machines.BlockMachine;
@@ -295,10 +294,10 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
     /** Method passed through to {@link IMTEInvalidate} */
     @Override public final void invalidate() {if (metaTileEntity instanceof IMTEInvalidate) ((IMTEInvalidate) metaTileEntity).invalidate(); super.invalidate();}
 
-    /** Method passed through to {@link ITurnable} */
-    @Override public final void rotate(@Nonnull Rotation rotationIn) {if (metaTileEntity instanceof ITurnable) ((ITurnable) metaTileEntity).rotate(rotationIn);}
-    /** Method passed through to {@link ITurnable} */
-    @Override public final void mirror(@Nonnull Mirror mirrorIn) {if (metaTileEntity instanceof ITurnable) ((ITurnable) metaTileEntity).mirror(mirrorIn);}
+    /** Method passed through to {@link IRotatable} */
+    @Override public final void rotate(@Nonnull Rotation rotationIn) {if (metaTileEntity instanceof IRotatable) ((IRotatable) metaTileEntity).rotate(rotationIn);}
+    /** Method passed through to {@link IRotatable} */
+    @Override public final void mirror(@Nonnull Mirror mirrorIn) {if (metaTileEntity instanceof IRotatable) ((IRotatable) metaTileEntity).mirror(mirrorIn);}
 
     /** Method passed through to {@link IFastRenderMetaTileEntity}. Default full bounding box */
     @Override public final AxisAlignedBB getRenderBoundingBox() {return metaTileEntity instanceof IFastRenderMetaTileEntity ? ((IFastRenderMetaTileEntity) metaTileEntity).getRenderBoundingBox() : new AxisAlignedBB(getPos());}

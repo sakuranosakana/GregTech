@@ -20,6 +20,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
 import gregtech.api.metatileentity.interfaces.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.util.GTUtility;
 import gregtech.api.gui.widgets.PhantomTankWidget;
@@ -184,7 +185,7 @@ public class MetaTileEntityQuantumTank extends MetaTileEntity implements ITiered
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
-        clearInventory(itemBuffer, containerInventory);
+        InventoryUtils.clearInventory(itemBuffer, containerInventory);
     }
 
     @Override
@@ -339,7 +340,7 @@ public class MetaTileEntityQuantumTank extends MetaTileEntity implements ITiered
     public void setOutputFacing(EnumFacing outputFacing) {
         this.outputFacing = outputFacing;
         if (!getWorld().isRemote) {
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             writeCustomData(UPDATE_OUTPUT_FACING, buf -> buf.writeByte(outputFacing.getIndex()));
             markDirty();
         }

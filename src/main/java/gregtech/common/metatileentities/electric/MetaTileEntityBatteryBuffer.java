@@ -91,7 +91,7 @@ public class MetaTileEntityBatteryBuffer extends TieredMetaTileEntity implements
     @Override
     public void setWorkingEnabled(boolean isActivationAllowed) {
         this.allowEnergyOutput = isActivationAllowed;
-        getTileEntity().notifyBlockUpdate();
+        notifyBlockUpdate();
     }
 
     @Override

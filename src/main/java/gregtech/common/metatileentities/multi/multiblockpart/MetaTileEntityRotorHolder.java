@@ -14,6 +14,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.advancement.GTTriggers;
 import gregtech.common.items.behaviors.TurbineRotorBehavior;
@@ -274,7 +275,7 @@ public class MetaTileEntityRotorHolder extends MetaTileEntityMultiblockPart impl
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
-        clearInventory(itemBuffer, inventory);
+        InventoryUtils.clearInventory(itemBuffer, inventory);
     }
 
     @Override

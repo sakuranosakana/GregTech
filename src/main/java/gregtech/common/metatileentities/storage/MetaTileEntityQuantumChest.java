@@ -20,6 +20,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
 import gregtech.api.metatileentity.interfaces.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.util.GTUtility;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -284,7 +285,7 @@ public class MetaTileEntityQuantumChest extends MetaTileEntity implements ITiere
     public void setOutputFacing(EnumFacing outputFacing) {
         this.outputFacing = outputFacing;
         if (!getWorld().isRemote) {
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             writeCustomData(UPDATE_OUTPUT_FACING, buf -> buf.writeByte(outputFacing.getIndex()));
             markDirty();
         }
@@ -393,7 +394,7 @@ public class MetaTileEntityQuantumChest extends MetaTileEntity implements ITiere
 
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
-        clearInventory(itemBuffer, importItems);
+        InventoryUtils.clearInventory(itemBuffer, importItems);
     }
 
     @Override

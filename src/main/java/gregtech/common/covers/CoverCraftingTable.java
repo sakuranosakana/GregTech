@@ -12,6 +12,7 @@ import gregtech.api.cover.ICoverable;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.storage.ICraftingStorage;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.inventory.handlers.SingleItemStackHandler;
 import gregtech.common.inventory.handlers.ToolItemStackHandler;
@@ -31,8 +32,6 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static gregtech.api.metatileentity.MetaTileEntity.clearInventory;
 
 /**
  * Code from this class is mostly copied from {@link MetaTileEntityWorkbench}
@@ -99,8 +98,8 @@ public class CoverCraftingTable extends CoverBehavior implements CoverWithUI, IT
     }
 
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
-        clearInventory(itemBuffer, internalInventory);
-        clearInventory(itemBuffer, toolInventory);
+        InventoryUtils.clearInventory(itemBuffer, internalInventory);
+        InventoryUtils.clearInventory(itemBuffer, toolInventory);
     }
 
     private CraftingRecipeLogic getRecipeLogic() {

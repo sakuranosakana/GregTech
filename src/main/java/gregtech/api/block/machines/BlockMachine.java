@@ -205,7 +205,7 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
     /** Method passed through to {@link ITurnable}. Default false */
     @Override public final boolean rotateBlock(World world, BlockPos pos, EnumFacing axis) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof ITurnable && ((ITurnable) mte).rotateBlock(axis);}
     /** Method passed through to {@link ITurnable}. Default null */
-    @Override public final EnumFacing[] getValidRotations(@Nonnull World world, @Nonnull BlockPos pos) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof ITurnable ? ((ITurnable) mte).getValidRotations() : null;}
+    @Override public final EnumFacing[] getValidRotations(World world, BlockPos pos) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof ITurnable ? ((ITurnable) mte).getValidRotations() : null;}
 
     /** Method passed through to {@link IMTERecolorBlock}. Default false */
     @Override public final boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IMTERecolorBlock && ((IMTERecolorBlock) mte).recolorBlock(color);}

@@ -10,4 +10,6 @@ public interface IMTETickable {
     void update();
 
     void onTickFailed(boolean isServerSide);
+
+    long getOffsetTimer();
 }

@@ -17,8 +17,6 @@ public interface IHasWorldObjectAndCoords {
         return getWorld() != null && getWorld().isRemote;
     }
 
-    long getOffsetTimer();
-
     void markDirty();
 
     void notifyBlockUpdate();

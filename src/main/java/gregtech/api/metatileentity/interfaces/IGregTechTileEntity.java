@@ -18,4 +18,6 @@ public interface IGregTechTileEntity extends IHasWorldObjectAndCoords, IUIHolder
     IMetaTileEntity setMetaTileEntity(IMetaTileEntity metaTileEntity);
 
     void writeCustomData(int discriminator, Consumer<PacketBuffer> dataWriter);
+
+    long getOffsetTimer();
 }

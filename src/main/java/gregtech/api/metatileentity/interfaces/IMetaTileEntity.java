@@ -13,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
@@ -24,7 +23,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 
-public interface IMetaTileEntity {
+public interface IMetaTileEntity extends IDataSyncable {
 
     // Needed
     void setTileEntity(IGregTechTileEntity tileEntity);
@@ -32,17 +31,8 @@ public interface IMetaTileEntity {
     // TODO Try to remove this?
     IGregTechTileEntity getTileEntity();
 
-    void scheduleRenderUpdate();
-
     // TODO Can potentially refactor holder out of this, and should return IMetaTileEntity
     IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity);
-
-    // TODO Separate these out into their own ifaces? Maybe, maybe not
-    void writeInitialSyncData(PacketBuffer buf);
-    void receiveInitialSyncData(PacketBuffer buf);
-    void receiveCustomData(int discriminator, PacketBuffer buf);
-    void readFromNBT(NBTTagCompound data);
-    NBTTagCompound writeToNBT(NBTTagCompound data);
 
     // Needed
     ResourceLocation getMetaTileEntityId();

@@ -19,10 +19,14 @@ import gregtech.api.cover.CoverDefinition;
 import gregtech.api.cover.ICoverable;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.metatileentity.interfaces.*;
-import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
-import gregtech.api.sound.GTSoundManager;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetBlockFaceShape;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEInvalidate;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEOnLoad;
 import gregtech.api.recipes.RecipeMap;
-import gregtech.api.util.*;
+import gregtech.api.sound.GTSoundManager;
+import gregtech.api.util.GTFluidUtils;
+import gregtech.api.util.GTUtility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.utils.BloomEffectUtil;
 import gregtech.common.ConfigHolder;
@@ -32,7 +36,6 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -47,7 +50,10 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.*;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.annotation.Nullable;
@@ -57,10 +63,9 @@ import java.util.function.Consumer;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
 
-public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable, IMTEOnLoad, IMTETickable, IMTEInvalidate, IRotatable, IMTEGetBlockFaceShape, IMTERecolorBlock {
+public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable, IMTEOnLoad, IMTETickable, IMTEInvalidate, IRotatable, IMTEGetBlockFaceShape, IPaintable {
 
     public static final IndexedCuboid6 FULL_CUBE_COLLISION = new IndexedCuboid6(null, Cuboid6.full);
-    public static final String TAG_KEY_PAINTING_COLOR = "PaintingColor";
     public static final String TAG_KEY_MUFFLED = "Muffled";
 
     public final ResourceLocation metaTileEntityId;
@@ -175,11 +180,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return renderLayer == BlockRenderLayer.CUTOUT_MIPPED ||
                 renderLayer == BloomEffectUtil.getRealBloomLayer() ||
                 (renderLayer == BlockRenderLayer.TRANSLUCENT && !getWorld().getBlockState(getPos()).getValue(BlockMachine.OPAQUE));
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int getPaintingColorForRendering() {
-        return paintingColor == -1 ? paintingColor : getDefaultPaintingColor();
     }
 
     public final String getMetaName() {
@@ -820,22 +820,13 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     }
 
     @Override
-    public boolean recolorBlock(EnumDyeColor color) {
-        int colorValue = color == null ? -1 : color.colorValue;
-        if (paintingColor != colorValue) {
-            paintingColor = colorValue;
-            if (isServerSide()) {
-                notifyBlockUpdate();
-                markDirty();
-                writeCustomData(UPDATE_PAINTING_COLOR, buf -> buf.writeInt(paintingColor));
-            }
-            return true;
-        }
-        return false;
+    public int getPaintingColor() {
+        return paintingColor;
     }
 
-    public int getDefaultPaintingColor() {
-        return ConfigHolder.client.defaultPaintingColor;
+    @Override
+    public void setPaintingColor(int color) {
+        this.paintingColor = color;
     }
 
     @Override
@@ -859,7 +850,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         data.setInteger("FrontFacing", frontFacing.getIndex());
         if (paintingColor != -1) {
-            data.setInteger(TAG_KEY_PAINTING_COLOR, paintingColor);
+            data.setInteger(IPaintable.TAG_KEY_PAINTING_COLOR, paintingColor);
         }
 
         if (shouldSerializeInventories()) {
@@ -893,8 +884,8 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     public void readFromNBT(NBTTagCompound data) {
         this.frontFacing = EnumFacing.VALUES[data.getInteger("FrontFacing")];
-        if (data.hasKey(TAG_KEY_PAINTING_COLOR)) {
-            this.paintingColor = data.getInteger(TAG_KEY_PAINTING_COLOR);
+        if (data.hasKey(IPaintable.TAG_KEY_PAINTING_COLOR)) {
+            this.paintingColor = data.getInteger(IPaintable.TAG_KEY_PAINTING_COLOR);
         }
 
         if (shouldSerializeInventories()) {

@@ -8,10 +8,12 @@ import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.*;
 import gregtech.api.metatileentity.interfaces.IHasWorldObjectAndCoords;
+import gregtech.api.metatileentity.interfaces.IPaintable;
 import gregtech.api.pipenet.block.BlockPipe;
 import gregtech.api.pipenet.block.BlockPipe.PipeConnectionData;
 import gregtech.api.util.GTUtility;
 import gregtech.client.utils.RenderUtil;
+import gregtech.common.ConfigHolder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -51,8 +53,6 @@ public interface ICoverable extends IHasWorldObjectAndCoords {
 
     double getCoverPlateThickness();
 
-    int getPaintingColorForRendering();
-
     boolean shouldRenderBackSide();
 
     default boolean hasAnyCover() {
@@ -66,7 +66,9 @@ public interface ICoverable extends IHasWorldObjectAndCoords {
     default void renderCovers(CCRenderState renderState, Matrix4 translation, BlockRenderLayer layer) {
         renderState.lightMatrix.locate(getWorld(), getPos());
         double coverPlateThickness = getCoverPlateThickness();
-        IVertexOperation[] platePipeline = new IVertexOperation[]{renderState.lightMatrix, new ColourMultiplier(GTUtility.convertRGBtoOpaqueRGBA_CL(getPaintingColorForRendering()))};
+        //TODO color seems to be multiplied twice when covers are placed on pipes - compare a machine vs cover on pipe
+        int paintingColor = this instanceof IPaintable ? GTUtility.convertRGBtoOpaqueRGBA_CL(((IPaintable) this).getPaintingColorForRendering()) : ConfigHolder.client.defaultPaintingColor;
+        IVertexOperation[] platePipeline = new IVertexOperation[]{renderState.lightMatrix, new ColourMultiplier(paintingColor)};
         IVertexOperation[] coverPipeline = new IVertexOperation[]{renderState.lightMatrix};
 
         for (EnumFacing sideFacing : EnumFacing.values()) {
@@ -206,4 +208,6 @@ public interface ICoverable extends IHasWorldObjectAndCoords {
     default boolean canRenderMachineGrid() {
         return true;
     }
+
+    long getOffsetTimer();
 }

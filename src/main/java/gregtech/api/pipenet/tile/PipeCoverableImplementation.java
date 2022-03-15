@@ -4,9 +4,9 @@ import com.google.common.base.Preconditions;
 import gregtech.api.cover.CoverBehavior;
 import gregtech.api.cover.CoverDefinition;
 import gregtech.api.cover.ICoverable;
+import gregtech.api.metatileentity.interfaces.IMTETickable;
 import gregtech.api.pipenet.block.BlockPipe;
 import gregtech.api.util.GTUtility;
-import gregtech.common.ConfigHolder;
 import gregtech.common.advancement.GTTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +29,7 @@ import java.util.function.Consumer;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
 
-public class PipeCoverableImplementation implements ICoverable {
+public class PipeCoverableImplementation implements ICoverable, IMTETickable {
 
     private final IPipeTile<?, ?> holder;
     private final CoverBehavior[] coverBehaviors = new CoverBehavior[6];
@@ -171,11 +171,6 @@ public class PipeCoverableImplementation implements ICoverable {
     }
 
     @Override
-    public int getPaintingColorForRendering() {
-        return ConfigHolder.client.defaultPaintingColor;
-    }
-
-    @Override
     public boolean shouldRenderBackSide() {
         return false;
     }
@@ -218,6 +213,10 @@ public class PipeCoverableImplementation implements ICoverable {
         return highestSignal;
     }
 
+    @Override
+    public void onFirstTick() {
+    }
+
     public void update() {
         if (!getWorld().isRemote) {
             for (CoverBehavior coverBehavior : coverBehaviors) {
@@ -226,6 +225,10 @@ public class PipeCoverableImplementation implements ICoverable {
                 }
             }
         }
+    }
+
+    @Override
+    public void onTickFailed(boolean isServerSide) {
     }
 
     @Override

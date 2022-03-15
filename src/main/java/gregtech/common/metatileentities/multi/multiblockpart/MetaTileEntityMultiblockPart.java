@@ -70,8 +70,8 @@ public abstract class MetaTileEntityMultiblockPart extends MetaTileEntity implem
                 this.controllerTile = (MultiblockControllerBase) BlockMachine.getMetaTileEntity(getWorld(), controllerPos);
             }
         }
-        if (controllerTile != null && (controllerTile.getHolder() == null ||
-                controllerTile.getHolder().isInvalid() || !(getWorld().isRemote || controllerTile.getMultiblockParts().contains(this)))) {
+        if (controllerTile != null && (controllerTile.getTileEntity() == null ||
+                !controllerTile.getTileEntity().isValid() || !(getWorld().isRemote || controllerTile.getMultiblockParts().contains(this)))) {
             //tile can become invalid for many reasons, and can also forgot to remove us once we aren't in structure anymore
             //so check it here to prevent bugs with dangling controller reference and wrong texture
             this.controllerTile = null;
@@ -133,7 +133,7 @@ public abstract class MetaTileEntityMultiblockPart extends MetaTileEntity implem
                 this.controllerPos = null;
                 this.controllerTile = null;
             }
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         }
     }
 

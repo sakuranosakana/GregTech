@@ -10,8 +10,8 @@ import gregtech.api.gui.impl.FakeModularGui;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.items.behavior.MonitorPluginBaseBehavior;
 import gregtech.api.items.behavior.ProxyHolderPluginBehavior;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.api.pattern.PatternMatchContext;
@@ -31,12 +31,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 
-import java.lang.reflect.Method;
 import java.util.*;
 
 public class FakeGuiPluginBehavior extends ProxyHolderPluginBehavior {
@@ -49,10 +47,6 @@ public class FakeGuiPluginBehavior extends ProxyHolderPluginBehavior {
     private BlockPos partPos;
     private FakeModularUIPluginContainer fakeModularUIContainer;
     private GregFakePlayer fakePlayer;
-    private static final Method methodCreateUI = ObfuscationReflectionHelper.findMethod(MetaTileEntity.class, "createUI", ModularUI.class, EntityPlayer.class);
-    static{
-        methodCreateUI.setAccessible(true);
-    }
 
     public void setConfig(int partIndex) {
         if(this.partIndex == partIndex || partIndex < 0) return;
@@ -62,28 +56,28 @@ public class FakeGuiPluginBehavior extends ProxyHolderPluginBehavior {
         markDirty();
     }
 
-    public MetaTileEntity getRealMTE() {
-        MetaTileEntity target = this.holder.getMetaTileEntity();
+    public IMetaTileEntity getRealMTE() {
+        IMetaTileEntity target = this.holder.getMetaTileEntity();
         if (target instanceof MultiblockControllerBase && partIndex > 0) {
             if (partPos != null) {
                 TileEntity entity = this.screen.getWorld().getTileEntity(partPos);
-                if (entity instanceof MetaTileEntityHolder) {
-                    return ((MetaTileEntityHolder) entity).getMetaTileEntity();
+                if (entity instanceof IGregTechTileEntity) {
+                    return ((IGregTechTileEntity) entity).getMetaTileEntity();
                 } else {
                     partPos = null;
                     return null;
                 }
             }
-            PatternMatchContext context = ((MultiblockControllerBase) target).structurePattern.checkPatternFastAt(target.getWorld(), target.getPos(), target.getFrontFacing().getOpposite());
+            PatternMatchContext context = ((MultiblockControllerBase) target).structurePattern.checkPatternFastAt(holder.getWorld(), holder.getPos(), target.getFrontFacing().getOpposite());
             if (context == null) {
                 return null;
             }
             Set<IMultiblockPart> rawPartsSet = context.getOrCreate("MultiblockParts", HashSet::new);
             List<IMultiblockPart> parts = new ArrayList<>(rawPartsSet);
-            parts.sort(Comparator.comparing((it) -> ((MetaTileEntity)it).getPos().hashCode()));
-            if (parts.size() > partIndex - 1 && parts.get(partIndex - 1) instanceof MetaTileEntity) {
-                target = (MetaTileEntity) parts.get(partIndex - 1);
-                partPos = target.getPos();
+            parts.sort(Comparator.comparing((it) -> ((IMetaTileEntity)it).getTileEntity().getPos().hashCode()));
+            if (parts.size() > partIndex - 1 && parts.get(partIndex - 1) instanceof IMetaTileEntity) {
+                target = (IMetaTileEntity) parts.get(partIndex - 1);
+                partPos = holder.getPos();
             } else {
                 return null;
             }
@@ -95,7 +89,7 @@ public class FakeGuiPluginBehavior extends ProxyHolderPluginBehavior {
         if (this.holder == null || this.screen == null || !this.screen.isValid()) return;
         try {
             fakePlayer = new GregFakePlayer(this.screen.getWorld());
-            MetaTileEntity mte = getRealMTE();
+            IMetaTileEntity mte = getRealMTE();
             if (mte == null || (this.partIndex > 0 && this.holder.getMetaTileEntity() == mte)) {
                 fakeModularUIContainer = null;
                 if (this.screen.getWorld().isRemote) {
@@ -103,7 +97,7 @@ public class FakeGuiPluginBehavior extends ProxyHolderPluginBehavior {
                 }
                 return;
             }
-            ModularUI ui = (ModularUI) methodCreateUI.invoke(mte, fakePlayer);
+            ModularUI ui = mte.createUI(fakePlayer);
             if (ui == null) {
                 fakeModularUIContainer = null;
                 if (this.screen.getWorld().isRemote) {
@@ -163,7 +157,7 @@ public class FakeGuiPluginBehavior extends ProxyHolderPluginBehavior {
     }
 
     @Override
-    public void onHolderChanged(MetaTileEntityHolder lastHolder) {
+    public void onHolderChanged(IGregTechTileEntity lastHolder) {
         if (holder == null) {
             if (this.screen.getWorld() != null && this.screen.getWorld().isRemote) {
                 fakeModularGui = null;
@@ -226,7 +220,7 @@ public class FakeGuiPluginBehavior extends ProxyHolderPluginBehavior {
             float scale = 0.5f / Math.max(halfW, halfH);
             int mouseX = (int) ((x / scale) + (halfW > halfH? 0: (halfW - halfH)));
             int mouseY = (int) ((y / scale) + (halfH > halfW? 0: (halfH - halfW)));
-            MetaTileEntity mte = getRealMTE();
+            IMetaTileEntity mte = getRealMTE();
             if (mte != null && 0 <= mouseX && mouseX <= width && 0 <= mouseY&& mouseY <= height) {
                 if (playerIn.isSneaking()) {
                     writePluginData(GregtechDataCodes.UPDATE_PLUGIN_CLICK, buf->{

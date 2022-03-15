@@ -71,7 +71,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     public static final String TAG_KEY_MUFFLED = "Muffled";
 
     public final ResourceLocation metaTileEntityId;
-    MetaTileEntityHolder holder;
+    IGregTechTileEntity holder;
 
     protected IItemHandlerModifiable importItems;
     protected IItemHandlerModifiable exportItems;
@@ -111,8 +111,8 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return metaTileEntityId;
     }
 
-    public void setHolder(MetaTileEntityHolder holder) {
-        this.holder = holder;
+    public void setTileEntity(IGregTechTileEntity tileEntity) {
+        this.holder = tileEntity;
     }
 
     protected void initializeInventory() {
@@ -125,11 +125,9 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         this.fluidInventory = new FluidHandlerProxy(importFluids, exportFluids);
     }
 
-    public MetaTileEntityHolder getHolder() {
+    public IGregTechTileEntity getTileEntity() {
         return holder;
     }
-
-    public abstract MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder);
 
     public World getWorld() {
         return holder == null ? null : holder.getWorld();
@@ -143,6 +141,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         if (holder != null) holder.markDirty();
     }
 
+    // todo
     public boolean isFirstTick() {
         return holder != null && holder.isFirstTick();
     }
@@ -282,14 +281,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return true;
     }
 
-    /**
-     * Creates a UI instance for player opening inventory of this meta tile entity
-     *
-     * @param entityPlayer player opening inventory
-     * @return freshly created UI instance
-     */
-    protected abstract ModularUI createUI(EntityPlayer entityPlayer);
-
     public ModularUI getModularUI(EntityPlayer entityPlayer) {
         return createUI(entityPlayer);
     }
@@ -335,7 +326,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     public boolean onRightClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, CuboidRayTraceResult hitResult) {
         if (!playerIn.isSneaking() && openGUIOnRightClick()) {
             if (getWorld() != null && !getWorld().isRemote) {
-                MetaTileEntityUIFactory.INSTANCE.openUI(getHolder(), (EntityPlayerMP) playerIn);
+                MetaTileEntityUIFactory.INSTANCE.openUI(getTileEntity(), (EntityPlayerMP) playerIn);
             }
             return true;
         } else if (playerIn.isSneaking() && playerIn.getHeldItemMainhand().isEmpty()) {
@@ -403,9 +394,9 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             buffer.writeVarInt(CoverDefinition.getNetworkIdForCover(coverDefinition));
             coverBehavior.writeInitialSyncData(buffer);
         });
-        if (getHolder() != null) {
-            getHolder().notifyBlockUpdate();
-            getHolder().markDirty();
+        if (getTileEntity() != null) {
+            getTileEntity().notifyBlockUpdate();
+            getTileEntity().markDirty();
         }
         GTTriggers.FIRST_COVER_PLACE.trigger((EntityPlayerMP) player);
         return true;
@@ -424,9 +415,9 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             Block.spawnAsEntity(getWorld(), getPos(), dropStack);
         }
         writeCustomData(COVER_REMOVED_MTE, buffer -> buffer.writeByte(side.getIndex()));
-        if (getHolder() != null) {
-            getHolder().notifyBlockUpdate();
-            getHolder().markDirty();
+        if (getTileEntity() != null) {
+            getTileEntity().notifyBlockUpdate();
+            getTileEntity().markDirty();
         }
         return true;
     }
@@ -690,10 +681,10 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     public void receiveCustomData(int dataId, PacketBuffer buf) {
         if (dataId == UPDATE_FRONT_FACING) {
             this.frontFacing = EnumFacing.VALUES[buf.readByte()];
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         } else if (dataId == UPDATE_PAINTING_COLOR) {
             this.paintingColor = buf.readInt();
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         } else if (dataId == SYNC_MTE_TRAITS) {
             int traitNetworkId = buf.readVarInt();
             MTETrait trait = mteTraits.stream().filter(otherTrait -> otherTrait.getNetworkID() == traitNetworkId).findAny().get();
@@ -707,12 +698,12 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             CoverBehavior coverBehavior = coverDefinition.createCoverBehavior(this, placementSide);
             this.coverBehaviors[placementSide.getIndex()] = coverBehavior;
             coverBehavior.readInitialSyncData(buf);
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         } else if (dataId == COVER_REMOVED_MTE) {
             //cover removed event
             EnumFacing placementSide = EnumFacing.VALUES[buf.readByte()];
             this.coverBehaviors[placementSide.getIndex()] = null;
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         } else if (dataId == UPDATE_COVER_DATA_MTE) {
             //cover custom data received
             EnumFacing coverSide = EnumFacing.VALUES[buf.readByte()];
@@ -997,19 +988,19 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     @Override
     public void notifyBlockUpdate() {
-        getHolder().notifyBlockUpdate();
+        getTileEntity().notifyBlockUpdate();
     }
 
     @Override
     public void scheduleRenderUpdate() {
-        getHolder().scheduleChunkForRenderUpdate();
+        getTileEntity().scheduleRenderUpdate();
     }
 
     public void setFrontFacing(EnumFacing frontFacing) {
         Preconditions.checkNotNull(frontFacing, "frontFacing");
         this.frontFacing = frontFacing;
         if (getWorld() != null && !getWorld().isRemote) {
-            getHolder().notifyBlockUpdate();
+            getTileEntity().notifyBlockUpdate();
             markDirty();
             writeCustomData(UPDATE_FRONT_FACING, buf -> buf.writeByte(frontFacing.getIndex()));
             mteTraits.forEach(trait -> trait.onFrontFacingSet(frontFacing));
@@ -1019,7 +1010,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     public void setPaintingColor(int paintingColor) {
         this.paintingColor = paintingColor;
         if (getWorld() != null && !getWorld().isRemote) {
-            getHolder().notifyBlockUpdate();
+            getTileEntity().notifyBlockUpdate();
             markDirty();
             writeCustomData(UPDATE_PAINTING_COLOR, buf -> buf.writeInt(paintingColor));
         }
@@ -1117,7 +1108,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     @Override
     public boolean isValid() {
-        return getHolder() != null && getHolder().isValid();
+        return getTileEntity() != null && getTileEntity().isValid();
     }
 
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {

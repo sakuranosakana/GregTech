@@ -10,9 +10,7 @@ import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.items.behavior.MonitorPluginBaseBehavior;
 import gregtech.api.items.behavior.ProxyHolderPluginBehavior;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
-import gregtech.api.metatileentity.MetaTileEntityUIFactory;
+import gregtech.api.metatileentity.*;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.api.pipenet.tile.TileEntityPipeBase;
 import gregtech.api.util.BlockPosFace;
@@ -458,12 +456,12 @@ public class MetaTileEntityMonitorScreen extends MetaTileEntityMultiblockPart {
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder metaTileEntityHolder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity metaTileEntityHolder) {
         return new MetaTileEntityMonitorScreen(this.metaTileEntityId);
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
         MultiblockControllerBase controller = this.getController();
         if (controller instanceof MetaTileEntityCentralMonitor && ((MetaTileEntityCentralMonitor) controller).isActive()) {
             int width = 330;
@@ -519,7 +517,7 @@ public class MetaTileEntityMonitorScreen extends MetaTileEntityMultiblockPart {
                             }))
                     .widget(new ClickButtonWidget(80, 130, 40, 20, "monitor.gui.title.config", (data) -> {
                         if (plugin != null && mainGroup.isVisible()) {
-                            plugin.customUI(pluginWidget, this.getHolder(), entityPlayer);
+                            plugin.customUI(pluginWidget, this.getTileEntity(), entityPlayer);
                             mainGroup.setVisible(false);
                         }
                     }) {
@@ -527,7 +525,7 @@ public class MetaTileEntityMonitorScreen extends MetaTileEntityMultiblockPart {
                         protected void triggerButton() {
                             super.triggerButton();
                             if (plugin != null && mainGroup.isVisible()) {
-                                plugin.customUI(pluginWidget, getHolder(), entityPlayer);
+                                plugin.customUI(pluginWidget, getTileEntity(), entityPlayer);
                                 mainGroup.setVisible(false);
                             }
                         }
@@ -555,7 +553,7 @@ public class MetaTileEntityMonitorScreen extends MetaTileEntityMultiblockPart {
                     .widget(new LabelWidget(15, 13, "gregtech.machine.monitor_screen.name", 0XFFFFFFFF))
                     .widget(new ClickButtonWidget(15, 25, 40, 20, "monitor.gui.title.back", data -> {
                         if (mainGroup.isVisible() && ((MetaTileEntityCentralMonitor) controller).isActive() && controller.isValid()) {
-                            MetaTileEntityUIFactory.INSTANCE.openUI(controller.getHolder(), (EntityPlayerMP) entityPlayer);
+                            MetaTileEntityUIFactory.INSTANCE.openUI(controller.getTileEntity(), (EntityPlayerMP) entityPlayer);
                         } else if (!mainGroup.isVisible()) {
                             pluginWidget.removePluginWidget();
                             mainGroup.setVisible(true);
@@ -581,7 +579,7 @@ public class MetaTileEntityMonitorScreen extends MetaTileEntityMultiblockPart {
                             plugin.markDirty();
                         }
                     })
-                    .build(this.getHolder(), entityPlayer);
+                    .build(this.getTileEntity(), entityPlayer);
         }
         return null;
     }
@@ -722,7 +720,7 @@ public class MetaTileEntityMonitorScreen extends MetaTileEntityMultiblockPart {
     @Override
     public boolean onScrewdriverClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, CuboidRayTraceResult hitResult) {
         if (!playerIn.isSneaking() && this.getWorld() != null && !this.getWorld().isRemote) {
-            MetaTileEntityUIFactory.INSTANCE.openUI(this.getHolder(), (EntityPlayerMP) playerIn);
+            MetaTileEntityUIFactory.INSTANCE.openUI(this.getTileEntity(), (EntityPlayerMP) playerIn);
             return true;
         } else {
             return false;

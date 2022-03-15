@@ -115,7 +115,7 @@ public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRend
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityClipboard(metaTileEntityId);
     }
 
@@ -204,7 +204,7 @@ public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRend
     public boolean onRightClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, CuboidRayTraceResult hitResult) {
         if (!playerIn.isSneaking()) {
             if (getWorld() != null && !getWorld().isRemote) {
-                MetaTileEntityUIFactory.INSTANCE.openUI(getHolder(), (EntityPlayerMP) playerIn);
+                MetaTileEntityUIFactory.INSTANCE.openUI(getTileEntity(), (EntityPlayerMP) playerIn);
             }
         } else {
             breakClipboard(playerIn);

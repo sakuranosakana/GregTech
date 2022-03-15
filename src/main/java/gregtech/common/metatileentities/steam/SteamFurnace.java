@@ -4,8 +4,8 @@ import gregtech.api.capability.impl.NotifiableItemStackHandler;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.SteamMetaTileEntity;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.client.renderer.texture.Textures;
@@ -20,7 +20,7 @@ public class SteamFurnace extends SteamMetaTileEntity {
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new SteamFurnace(metaTileEntityId, isHighPressure);
     }
 
@@ -46,6 +46,6 @@ public class SteamFurnace extends SteamMetaTileEntity {
                 .progressBar(workableHandler::getProgressPercent, 79, 26, 20, 16,
                         GuiTextures.PROGRESS_BAR_ARROW_STEAM.get(isHighPressure), MoveType.HORIZONTAL, workableHandler.getRecipeMap())
                 .slot(this.exportItems, 0, 107, 25, true, false, GuiTextures.SLOT_STEAM.get(isHighPressure))
-                .build(getHolder(), player);
+                .build(getTileEntity(), player);
     }
 }

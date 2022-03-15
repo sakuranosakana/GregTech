@@ -13,9 +13,7 @@ import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.Widget;
 import gregtech.api.gui.widgets.AdvancedTextWidget;
 import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.*;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
@@ -356,7 +354,7 @@ public class MetaTileEntityCentralMonitor extends MultiblockWithDisplayBase impl
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder metaTileEntityHolder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity metaTileEntityHolder) {
         return new MetaTileEntityCentralMonitor(metaTileEntityId);
     }
 
@@ -552,7 +550,7 @@ public class MetaTileEntityCentralMonitor extends MultiblockWithDisplayBase impl
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
         if (!isActive()) {
             return super.createUI(entityPlayer);
         } else {
@@ -585,7 +583,7 @@ public class MetaTileEntityCentralMonitor extends MultiblockWithDisplayBase impl
             }
             return ModularUI.builder(GuiTextures.BOXED_BACKGROUND, 28 * width, 28 * height)
                     .widget(group)
-                    .build(this.getHolder(), entityPlayer);
+                    .build(this.getTileEntity(), entityPlayer);
         }
     }
 

@@ -1,8 +1,8 @@
 package gregtech.common.metatileentities.multi.steam;
 
 import gregtech.api.capability.impl.SteamMultiWorkable;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController;
 import gregtech.api.pattern.BlockPattern;
@@ -30,7 +30,7 @@ public class MetaTileEntitySteamGrinder extends RecipeMapSteamMultiblockControll
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder metaTileEntityHolder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity metaTileEntityHolder) {
         return new MetaTileEntitySteamGrinder(metaTileEntityId);
     }
 

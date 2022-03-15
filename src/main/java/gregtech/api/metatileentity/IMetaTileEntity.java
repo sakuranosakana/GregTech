@@ -1,7 +1,9 @@
 package gregtech.api.metatileentity;
 
+import codechicken.lib.raytracer.CuboidRayTraceResult;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverBehavior;
+import gregtech.api.gui.ModularUI;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -17,13 +20,13 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 public interface IMetaTileEntity {
 
     // Needed
-    void setHolder(MetaTileEntityHolder holder);
+    void setTileEntity(IGregTechTileEntity tileEntity);
 
     // TODO Try to remove this?
-    MetaTileEntityHolder getHolder();
+    IGregTechTileEntity getTileEntity();
 
     // TODO Can potentially refactor holder out of this, and should return IMetaTileEntity
-    MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder);
+    IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity);
 
     // TODO Separate these out into their own ifaces? Maybe, maybe not
     void writeInitialSyncData(PacketBuffer buf);
@@ -49,8 +52,19 @@ public interface IMetaTileEntity {
         return new ItemStack(GregTechAPI.MACHINE, amount, metaTileEntityId);
     }
 
+    /**
+     * Creates a UI instance for player opening inventory of this meta tile entity
+     *
+     * @param player player opening inventory
+     * @return freshly created UI instance
+     */
+    ModularUI createUI(EntityPlayer player);
+
     // TODO Try to refactor off to block?
     boolean isOpaqueCube();
+
+    // TODO
+    boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing facing, CuboidRayTraceResult hitResult);
 
     // TODO Pull out into iface like, "IMTECovers" (or just stick in ICoverable)
     CoverBehavior getCoverAtSide(EnumFacing facing);

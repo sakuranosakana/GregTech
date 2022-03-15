@@ -52,7 +52,7 @@ public class MetaTileEntityBatteryBuffer extends TieredMetaTileEntity implements
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityBatteryBuffer(metaTileEntityId, getTier(), inventorySize);
     }
 
@@ -88,7 +88,7 @@ public class MetaTileEntityBatteryBuffer extends TieredMetaTileEntity implements
     @Override
     public void setWorkingEnabled(boolean isActivationAllowed) {
         this.allowEnergyOutput = isActivationAllowed;
-        getHolder().notifyBlockUpdate();
+        getTileEntity().notifyBlockUpdate();
     }
 
     @Override
@@ -133,7 +133,7 @@ public class MetaTileEntityBatteryBuffer extends TieredMetaTileEntity implements
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
         int rowSize = (int) Math.sqrt(inventorySize);
         int colSize = rowSize;
         if (inventorySize == 8) {
@@ -153,7 +153,7 @@ public class MetaTileEntityBatteryBuffer extends TieredMetaTileEntity implements
         }
 
         builder.bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 7, 18 + 18 * colSize + 12);
-        return builder.build(getHolder(), entityPlayer);
+        return builder.build(getTileEntity(), entityPlayer);
     }
 
     @Override

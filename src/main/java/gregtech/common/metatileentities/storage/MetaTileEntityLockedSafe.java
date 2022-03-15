@@ -16,9 +16,10 @@ import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.gui.widgets.ServerWidgetGroup;
 import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.recipes.CountableIngredient;
 import gregtech.api.recipes.ModHandler;
 import gregtech.client.renderer.texture.Textures;
@@ -103,7 +104,7 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityLockedSafe(metaTileEntityId);
     }
 
@@ -272,7 +273,7 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
         this.isSafeUnlocked = safeUnlocked;
         if (getWorld() != null && !getWorld().isRemote) {
             writeCustomData(UPDATE_LOCKED_STATE, buf -> buf.writeBoolean(safeUnlocked));
-            getHolder().notifyBlockUpdate();
+            getTileEntity().notifyBlockUpdate();
             markDirty();
         }
     }
@@ -375,7 +376,7 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
         DoubleSupplier supplier = () -> 0.2 + (unlockProgress / (MAX_UNLOCK_PROGRESS * 1.0)) * 0.8;
         ModularUI.Builder builder = ModularUI.defaultBuilder()
                 .widget(new ProgressWidget(supplier, 5, 5, 166, 74,
@@ -403,6 +404,6 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
 
         return builder.widget(unlockedGroup)
                 .widget(lockedGroup)
-                .build(getHolder(), entityPlayer);
+                .build(getTileEntity(), entityPlayer);
     }
 }

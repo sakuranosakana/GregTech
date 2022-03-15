@@ -9,8 +9,8 @@ import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.TankWidget;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.unification.material.Materials;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +35,7 @@ public class SteamLavaBoiler extends SteamBoiler implements IFuelable {
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new SteamLavaBoiler(metaTileEntityId, isHighPressure);
     }
 
@@ -103,10 +103,10 @@ public class SteamLavaBoiler extends SteamBoiler implements IFuelable {
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
         return createUITemplate(entityPlayer)
                 .widget(new TankWidget(fuelFluidTank, 119, 26, 10, 54)
                         .setBackgroundTexture(GuiTextures.PROGRESS_BAR_BOILER_EMPTY.get(isHighPressure)))
-                .build(getHolder(), entityPlayer);
+                .build(getTileEntity(), entityPlayer);
     }
 }

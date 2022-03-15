@@ -13,8 +13,9 @@ import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.gui.widgets.TabGroup.TabLocation;
 import gregtech.api.gui.widgets.tab.ItemTabInfo;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.storage.ICraftingStorage;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.Position;
@@ -92,7 +93,7 @@ public class MetaTileEntityWorkbench extends MetaTileEntity implements ICrafting
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityWorkbench(metaTileEntityId);
     }
 
@@ -181,7 +182,7 @@ public class MetaTileEntityWorkbench extends MetaTileEntity implements ICrafting
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
 
         createCraftingRecipeLogic(entityPlayer);
 
@@ -197,7 +198,7 @@ public class MetaTileEntityWorkbench extends MetaTileEntity implements ICrafting
         builder.widget(tabGroup);
         builder.bindCloseListener(() -> discardRecipeResolver(entityPlayer));
 
-        return builder.build(getHolder(), entityPlayer);
+        return builder.build(getTileEntity(), entityPlayer);
     }
 
     public void discardRecipeResolver(EntityPlayer entityPlayer) {

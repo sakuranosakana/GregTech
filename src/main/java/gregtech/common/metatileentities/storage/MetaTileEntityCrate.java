@@ -7,9 +7,10 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.ModularUI.Builder;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetComparatorInputOverride;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.recipes.ModHandler;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.unification.material.Material;
@@ -45,7 +46,7 @@ public class MetaTileEntityCrate extends MetaTileEntity implements IMTEGetCompar
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityCrate(metaTileEntityId, material, inventorySize);
     }
 
@@ -111,14 +112,14 @@ public class MetaTileEntityCrate extends MetaTileEntity implements IMTEGetCompar
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
         int factor = inventorySize / 9 > 8 ? 18 : 9;
         Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 176 + (factor == 18 ? 176 : 0), 8 + inventorySize / factor * 18 + 104).label(5, 5, getMetaFullName());
         for (int i = 0; i < inventorySize; i++) {
             builder.slot(inventory, i, 7 * (factor == 18 ? 2 : 1) + i % factor * 18, 18 + i / factor * 18, GuiTextures.SLOT);
         }
         builder.bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 7 + (factor == 18 ? 88 : 0), 18 + inventorySize / factor * 18 + 11);
-        return builder.build(getHolder(), entityPlayer);
+        return builder.build(getTileEntity(), entityPlayer);
     }
 
     @Override

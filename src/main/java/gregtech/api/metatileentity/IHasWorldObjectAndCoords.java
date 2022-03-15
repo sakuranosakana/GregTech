@@ -10,14 +10,18 @@ public interface IHasWorldObjectAndCoords {
     BlockPos getPos();
 
     default boolean isServerSide() {
-        return !getWorld().isRemote;
+        return getWorld() != null && !getWorld().isRemote;
     }
 
     default boolean isClientSide() {
-        return getWorld().isRemote;
+        return getWorld() != null && getWorld().isRemote;
     }
 
     long getOffsetTimer();
 
     void markDirty();
+
+    void scheduleRenderUpdate();
+
+    void notifyBlockUpdate();
 }

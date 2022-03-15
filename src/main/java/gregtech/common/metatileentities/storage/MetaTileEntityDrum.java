@@ -9,9 +9,10 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.api.capability.impl.FilteredFluidHandler;
 import gregtech.api.capability.impl.ThermalFluidHandlerItemStack;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.unification.material.Material;
 import gregtech.api.util.GTUtility;
@@ -61,7 +62,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityDrum(metaTileEntityId, material, tankSize);
     }
 
@@ -153,7 +154,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
         super.receiveCustomData(dataId, buf);
         if (dataId == UPDATE_AUTO_OUTPUT) {
             this.isAutoOutput = buf.readBoolean();
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         }
     }
 
@@ -189,7 +190,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     private void toggleOutput() {
         isAutoOutput = !isAutoOutput;
         if (!getWorld().isRemote) {
-            getHolder().notifyBlockUpdate();
+            getTileEntity().notifyBlockUpdate();
             writeCustomData(UPDATE_AUTO_OUTPUT, buf -> buf.writeBoolean(isAutoOutput));
             markDirty();
         }
@@ -244,7 +245,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
         return null;
     }
 

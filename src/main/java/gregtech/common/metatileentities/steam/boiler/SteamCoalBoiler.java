@@ -7,8 +7,8 @@ import gregtech.api.capability.impl.ItemFuelInfo;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.recipes.ModHandler;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +32,7 @@ public class SteamCoalBoiler extends SteamBoiler implements IFuelable {
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new SteamCoalBoiler(metaTileEntityId, isHighPressure);
     }
 
@@ -114,6 +114,6 @@ public class SteamCoalBoiler extends SteamBoiler implements IFuelable {
                         GuiTextures.SLOT_STEAM.get(isHighPressure), GuiTextures.DUST_OVERLAY_STEAM.get(isHighPressure))
                 .progressBar(this::getFuelLeftPercent, 115, 44, 18, 18,
                         GuiTextures.PROGRESS_BAR_BOILER_FUEL.get(isHighPressure), MoveType.VERTICAL)
-                .build(getHolder(), player);
+                .build(getTileEntity(), player);
     }
 }

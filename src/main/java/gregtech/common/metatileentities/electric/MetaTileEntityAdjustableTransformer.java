@@ -8,8 +8,8 @@ import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.impl.EnergyContainerHandler;
 import gregtech.api.capability.tool.ISoftHammerItem;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.utils.PipelineUtil;
@@ -44,7 +44,7 @@ public class MetaTileEntityAdjustableTransformer extends MetaTileEntityTransform
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityAdjustableTransformer(metaTileEntityId, getTier());
     }
 
@@ -88,7 +88,7 @@ public class MetaTileEntityAdjustableTransformer extends MetaTileEntityTransform
         if (!getWorld().isRemote) {
             reinitializeEnergyContainer();
             writeCustomData(AMP_INDEX, b -> b.writeInt(ampIndex));
-            getHolder().notifyBlockUpdate();
+            getTileEntity().notifyBlockUpdate();
             markDirty();
         }
     }

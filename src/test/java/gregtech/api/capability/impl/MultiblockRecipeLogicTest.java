@@ -114,12 +114,12 @@ public class MultiblockRecipeLogicTest {
         try {
             Field field = MetaTileEntityHolder.class.getDeclaredField("metaTileEntity");
             field.setAccessible(true);
-            field.set(mbt.getHolder(), mbt);
+            field.set(mbt.getTileEntity(), mbt);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
 
-        mbt.getHolder().setWorld(world);
+        mbt.getTileEntity().setWorld(world);
 
         //Controller and isAttachedToMultiBlock need the world so we fake it here.
         MetaTileEntityItemBus importItemBus = new MetaTileEntityItemBus(gregtechId("item_bus.export.lv"), 1, false) {
@@ -349,12 +349,12 @@ public class MultiblockRecipeLogicTest {
         try {
             Field field = MetaTileEntityHolder.class.getDeclaredField("metaTileEntity");
             field.setAccessible(true);
-            field.set(mbt.getHolder(), mbt);
+            field.set(mbt.getTileEntity(), mbt);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
 
-        mbt.getHolder().setWorld(world);
+        mbt.getTileEntity().setWorld(world);
 
         try {
             Field field = RecipeMapMultiblockController.class.getDeclaredField("isDistinct");

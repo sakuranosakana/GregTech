@@ -64,9 +64,9 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
     public IMetaTileEntity setMetaTileEntity(IMetaTileEntity sampleMetaTileEntity) {
         Preconditions.checkNotNull(sampleMetaTileEntity, "metaTileEntity");
         metaTileEntity = sampleMetaTileEntity.createMetaTileEntity(this);
-        metaTileEntity.setHolder(this);
+        metaTileEntity.setTileEntity(this);
         if (metaTileEntity instanceof IMTEOnAttached) ((IMTEOnAttached) metaTileEntity).onAttached();
-        if (hasWorld() && !getWorld().isRemote) {
+        if (isServerSide()) {
             updateBlockOpacity();
             sendInitialSyncData();
             //just to update neighbours so cables and other things will work properly
@@ -85,7 +85,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
         }
     }
 
-    public void scheduleChunkForRenderUpdate() {
+    public void scheduleRenderUpdate() {
         BlockPos pos = getPos();
         getWorld().markBlockRangeForRenderUpdate(
                 pos.getX() - 1, pos.getY() - 1, pos.getZ() - 1,
@@ -107,7 +107,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
             NBTTagCompound metaTileEntityData = compound.getCompoundTag("MetaTileEntity");
             if (sampleMetaTileEntity != null) {
                 metaTileEntity = sampleMetaTileEntity.createMetaTileEntity(this);
-                metaTileEntity.setHolder(this);
+                metaTileEntity.setTileEntity(this);
                 if (metaTileEntity instanceof IMTEOnAttached) ((IMTEOnAttached) metaTileEntity).onAttached();
                 this.metaTileEntity.readFromNBT(metaTileEntityData);
             } else {
@@ -251,7 +251,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
             int metaTileEntityId = buf.readVarInt();
             setMetaTileEntity(GregTechAPI.MTE_REGISTRY.getObjectById(metaTileEntityId));
             this.metaTileEntity.receiveInitialSyncData(buf);
-            scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
             this.needToUpdateLightning = true;
         }
     }
@@ -262,7 +262,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
             int metaTileEntityId = buffer.readVarInt();
             setMetaTileEntity(GregTechAPI.MTE_REGISTRY.getObjectById(metaTileEntityId));
             this.metaTileEntity.receiveInitialSyncData(buffer);
-            scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
             this.needToUpdateLightning = true;
         } else if (metaTileEntity != null) {
             metaTileEntity.receiveCustomData(discriminator, buffer);

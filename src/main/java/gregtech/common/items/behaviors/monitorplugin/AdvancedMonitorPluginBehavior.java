@@ -11,7 +11,8 @@ import gregtech.api.gui.widgets.LabelWidget;
 import gregtech.api.gui.widgets.ToggleButtonWidget;
 import gregtech.api.items.behavior.MonitorPluginBaseBehavior;
 import gregtech.api.items.behavior.ProxyHolderPluginBehavior;
-import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.api.pattern.PatternMatchContext;
@@ -222,9 +223,9 @@ public class AdvancedMonitorPluginBehavior extends ProxyHolderPluginBehavior {
                     for (MetaTileEntityMonitorScreen[] monitorScreens : ((MetaTileEntityCentralMonitor) this.screen.getController()).screens) {
                         for (MetaTileEntityMonitorScreen screen : monitorScreens) {
                             if (screen != null && screen.plugin instanceof FakeGuiPluginBehavior && ((FakeGuiPluginBehavior) screen.plugin).getHolder() == this.holder) {
-                                MetaTileEntity met = ((FakeGuiPluginBehavior) screen.plugin).getRealMTE();
+                                IMetaTileEntity met = ((FakeGuiPluginBehavior) screen.plugin).getRealMTE();
                                 if (met != null) {
-                                    BlockPos pos = met.getPos();
+                                    BlockPos pos = holder.getPos();
                                     Pair<List<MetaTileEntityMonitorScreen>, Vector3f> tuple = connections.getOrDefault(pos, new MutablePair<>(new ArrayList<>(), null));
                                     tuple.getLeft().add(screen);
                                     connections.put(pos, tuple);
@@ -369,7 +370,7 @@ public class AdvancedMonitorPluginBehavior extends ProxyHolderPluginBehavior {
     }
 
     @Override
-    protected void onHolderChanged(MetaTileEntityHolder lastHolder) {
+    protected void onHolderChanged(IGregTechTileEntity lastHolder) {
         if (!this.screen.getWorld().isRemote) {
             validPos = null;
             isValid = false;

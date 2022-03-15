@@ -11,8 +11,8 @@ import gregtech.api.gui.widgets.ClickButtonWidget;
 import gregtech.api.gui.widgets.ImageWidget;
 import gregtech.api.gui.widgets.SimpleTextWidget;
 import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -63,7 +63,7 @@ public class MetaTileEntityItemCollector extends TieredMetaTileEntity {
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityItemCollector(metaTileEntityId, getTier(), maxItemSuckingRange);
     }
 
@@ -97,7 +97,7 @@ public class MetaTileEntityItemCollector extends TieredMetaTileEntity {
         super.receiveCustomData(dataId, buf);
         if (dataId == IS_WORKING) {
             this.isWorking = buf.readBoolean();
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         }
     }
 
@@ -218,7 +218,7 @@ public class MetaTileEntityItemCollector extends TieredMetaTileEntity {
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
         int rowSize = (int) Math.sqrt(exportItems.getSlots());
         Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 176,
                 45 + rowSize * 18 + 105 + 82)
@@ -239,6 +239,6 @@ public class MetaTileEntityItemCollector extends TieredMetaTileEntity {
 
         this.itemFilter.initUI(45 + rowSize * 18 + 5, builder::widget);
         builder.bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 7, 45 + rowSize * 18 + 105);
-        return builder.build(getHolder(), entityPlayer);
+        return builder.build(getTileEntity(), entityPlayer);
     }
 }

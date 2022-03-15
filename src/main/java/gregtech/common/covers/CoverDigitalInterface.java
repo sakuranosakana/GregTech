@@ -15,7 +15,7 @@ import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
@@ -177,8 +177,8 @@ public class CoverDigitalInterface extends CoverBehavior implements IFastRenderM
     }
 
     public TileEntity getCoveredTE() {
-        if (this.coverHolder instanceof MetaTileEntity){
-            return ((MetaTileEntity) this.coverHolder).getHolder();
+        if (this.coverHolder instanceof IMetaTileEntity){
+            return (TileEntity) ((IMetaTileEntity) this.coverHolder).getTileEntity();
         }
         return null;
     }

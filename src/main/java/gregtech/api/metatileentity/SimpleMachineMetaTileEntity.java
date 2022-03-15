@@ -79,7 +79,7 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new SimpleMachineMetaTileEntity(metaTileEntityId, workable.getRecipeMap(), renderer, getTier(), hasFrontFacing, getTankScalingFunction());
     }
 
@@ -262,13 +262,13 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
         if (dataId == UPDATE_OUTPUT_FACING) {
             this.outputFacingItems = EnumFacing.VALUES[buf.readByte()];
             this.outputFacingFluids = EnumFacing.VALUES[buf.readByte()];
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         } else if (dataId == UPDATE_AUTO_OUTPUT_ITEMS) {
             this.autoOutputItems = buf.readBoolean();
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         } else if (dataId == UPDATE_AUTO_OUTPUT_FLUIDS) {
             this.autoOutputFluids = buf.readBoolean();
-            getHolder().scheduleChunkForRenderUpdate();
+            scheduleRenderUpdate();
         }
     }
 
@@ -284,7 +284,7 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
         this.outputFacingItems = outputFacing;
         this.outputFacingFluids = outputFacing;
         if (!getWorld().isRemote) {
-            getHolder().notifyBlockUpdate();
+            getTileEntity().notifyBlockUpdate();
             writeCustomData(UPDATE_OUTPUT_FACING, buf -> {
                 buf.writeByte(outputFacingItems.getIndex());
                 buf.writeByte(outputFacingFluids.getIndex());
@@ -296,7 +296,7 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
     public void setOutputFacingItems(EnumFacing outputFacing) {
         this.outputFacingItems = outputFacing;
         if (!getWorld().isRemote) {
-            getHolder().notifyBlockUpdate();
+            getTileEntity().notifyBlockUpdate();
             writeCustomData(UPDATE_OUTPUT_FACING, buf -> {
                 buf.writeByte(outputFacingItems.getIndex());
                 buf.writeByte(outputFacingFluids.getIndex());
@@ -308,7 +308,7 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
     public void setOutputFacingFluids(EnumFacing outputFacing) {
         this.outputFacingFluids = outputFacing;
         if (!getWorld().isRemote) {
-            getHolder().notifyBlockUpdate();
+            getTileEntity().notifyBlockUpdate();
             writeCustomData(UPDATE_OUTPUT_FACING, buf -> {
                 buf.writeByte(outputFacingItems.getIndex());
                 buf.writeByte(outputFacingFluids.getIndex());
@@ -479,8 +479,8 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
-        return createGuiTemplate(entityPlayer).build(getHolder(), entityPlayer);
+    public ModularUI createUI(EntityPlayer entityPlayer) {
+        return createGuiTemplate(entityPlayer).build(getTileEntity(), entityPlayer);
     }
 
     @Override

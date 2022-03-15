@@ -1,6 +1,9 @@
 package gregtech.api.metatileentity;
 
 import gregtech.api.gui.IUIHolder;
+import net.minecraft.network.PacketBuffer;
+
+import java.util.function.Consumer;
 
 /**
  * A simple compound Interface for all my TileEntities.
@@ -13,4 +16,9 @@ public interface IGregTechTileEntity extends IHasWorldObjectAndCoords, IUIHolder
     IMetaTileEntity getMetaTileEntity();
 
     IMetaTileEntity setMetaTileEntity(IMetaTileEntity metaTileEntity);
+
+    void writeCustomData(int discriminator, Consumer<PacketBuffer> dataWriter);
+
+    // todo remove this
+    boolean isFirstTick();
 }

@@ -5,9 +5,10 @@ import gregtech.api.capability.impl.RecipeLogicSteam;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.IMetaTileEntity.IMTENeighborChanged;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.SteamMetaTileEntity;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
@@ -35,7 +36,7 @@ public class SteamRockBreaker extends SteamMetaTileEntity implements IMTENeighbo
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new SteamRockBreaker(metaTileEntityId, isHighPressure);
     }
 
@@ -86,7 +87,7 @@ public class SteamRockBreaker extends SteamMetaTileEntity implements IMTENeighbo
                 .slot(exportItems, 1, 125, 25, true, false, GuiTextures.SLOT_STEAM.get(isHighPressure), GuiTextures.CRUSHED_ORE_OVERLAY_STEAM.get(isHighPressure))
                 .slot(exportItems, 2, 107, 43, true, false, GuiTextures.SLOT_STEAM.get(isHighPressure), GuiTextures.CRUSHED_ORE_OVERLAY_STEAM.get(isHighPressure))
                 .slot(exportItems, 3, 125, 43, true, false, GuiTextures.SLOT_STEAM.get(isHighPressure), GuiTextures.CRUSHED_ORE_OVERLAY_STEAM.get(isHighPressure))
-                .build(getHolder(), player);
+                .build(getTileEntity(), player);
     }
 
     @Override

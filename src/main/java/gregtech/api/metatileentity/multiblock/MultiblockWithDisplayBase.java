@@ -8,7 +8,6 @@ import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.Widget.ClickData;
 import gregtech.api.gui.widgets.AdvancedTextWidget;
-import gregtech.api.gui.widgets.CycleButtonWidget;
 import gregtech.api.gui.widgets.ImageCycleButtonWidget;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
@@ -16,7 +15,6 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.GTUtility;
-import gregtech.api.util.LocalizationUtils;
 import gregtech.common.ConfigHolder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -376,7 +374,7 @@ public abstract class MultiblockWithDisplayBase extends MultiblockControllerBase
         this.getNotifiedItemInputList().addAll(this.getAbilities(MultiblockAbility.IMPORT_ITEMS));
 
 
-        this.getHolder().markDirty();
+        this.getTileEntity().markDirty();
     }
 
     private String getVoidingModeTooltip(int mode) {
@@ -384,8 +382,8 @@ public abstract class MultiblockWithDisplayBase extends MultiblockControllerBase
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
-        return createUITemplate(entityPlayer).build(getHolder(), entityPlayer);
+    public ModularUI createUI(EntityPlayer entityPlayer) {
+        return createUITemplate(entityPlayer).build(getTileEntity(), entityPlayer);
     }
 
     @Override

@@ -9,9 +9,9 @@ import gregtech.api.capability.IRotorHolder;
 import gregtech.api.damagesources.DamageSources;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.ITieredMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.client.renderer.texture.Textures;
@@ -57,17 +57,17 @@ public class MetaTileEntityRotorHolder extends MetaTileEntityMultiblockPart impl
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityRotorHolder(metaTileEntityId, getTier());
     }
 
     @Override
-    protected ModularUI createUI(@Nonnull EntityPlayer entityPlayer) {
+    public ModularUI createUI(@Nonnull EntityPlayer entityPlayer) {
         return ModularUI.defaultBuilder()
                 .label(6, 6, getMetaFullName())
                 .slot(inventory, 0, 79, 36, GuiTextures.SLOT, GuiTextures.TURBINE_OVERLAY)
                 .bindPlayerInventory(entityPlayer.inventory)
-                .build(getHolder(), entityPlayer);
+                .build(getTileEntity(), entityPlayer);
     }
 
     @Override
@@ -321,7 +321,7 @@ public class MetaTileEntityRotorHolder extends MetaTileEntityMultiblockPart impl
         this.isRotorSpinning = buf.readBoolean();
         this.rotorColor = buf.readInt();
         this.frontFaceFree = buf.readBoolean();
-        getHolder().scheduleChunkForRenderUpdate();
+        scheduleRenderUpdate();
     }
 
     @Override

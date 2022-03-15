@@ -283,9 +283,9 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
             ((IMTEItemStackData) metaTileEntity).writeItemStackData(tag);
             itemStack.setTagCompound(tag);
         }
-        if (metaTileEntity.getHolder().hasCustomName()) {
-            itemStack.setStackDisplayName(metaTileEntity.getHolder().getName());
-        }
+        //if (metaTileEntity.getTileEntity().hasCustomName()) {
+        //    itemStack.setStackDisplayName(metaTileEntity.getTileEntity().getName());
+        //}
         drops.add(itemStack);
         if (metaTileEntity instanceof IMTEGetDrops) ((IMTEGetDrops) metaTileEntity).getDrops(drops, harvesters.get());
     }

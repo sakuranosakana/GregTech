@@ -9,8 +9,8 @@ import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.impl.EnergyContainerHandler;
 import gregtech.api.capability.tool.ISoftHammerItem;
 import gregtech.api.gui.ModularUI;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -42,7 +42,7 @@ public class MetaTileEntityTransformer extends TieredMetaTileEntity {
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
+    public IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityTransformer(metaTileEntityId, getTier());
     }
 
@@ -90,7 +90,7 @@ public class MetaTileEntityTransformer extends TieredMetaTileEntity {
         if (!getWorld().isRemote) {
             reinitializeEnergyContainer();
             writeCustomData(SYNC_TILE_MODE, b -> b.writeBoolean(isTransformUp));
-            getHolder().notifyBlockUpdate();
+            getTileEntity().notifyBlockUpdate();
             markDirty();
         }
     }
@@ -162,7 +162,7 @@ public class MetaTileEntityTransformer extends TieredMetaTileEntity {
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
+    public ModularUI createUI(EntityPlayer entityPlayer) {
         return null;
     }
 

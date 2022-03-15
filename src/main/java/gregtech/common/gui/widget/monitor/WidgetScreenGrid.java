@@ -91,7 +91,7 @@ public class WidgetScreenGrid extends Widget {
         super.handleClientAction(id, buffer);
         if (id == 1) {
             if (monitorScreen != null) {
-                MetaTileEntityUIFactory.INSTANCE.openUI(monitorScreen.getHolder(), (EntityPlayerMP) this.gui.entityPlayer);
+                MetaTileEntityUIFactory.INSTANCE.openUI(monitorScreen.getTileEntity(), (EntityPlayerMP) this.gui.entityPlayer);
             }
         }
     }

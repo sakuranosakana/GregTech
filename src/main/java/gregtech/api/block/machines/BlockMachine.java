@@ -294,7 +294,7 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
             itemStack.setStackDisplayName(metaTileEntity.getHolder().getName());
         }
         drops.add(itemStack);
-        metaTileEntity.getDrops(drops, harvesters.get());
+        if (metaTileEntity instanceof IMTEGetDrops) ((IMTEGetDrops) metaTileEntity).getDrops(drops, harvesters.get());
     }
 
     @Override
@@ -366,10 +366,10 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
 
     @Override
     public void neighborChanged(@Nonnull IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull Block blockIn, @Nonnull BlockPos fromPos) {
-        MetaTileEntity metaTileEntity = getMetaTileEntity(worldIn, pos);
-        if (metaTileEntity != null) {
-            metaTileEntity.updateInputRedstoneSignals();
-            metaTileEntity.onNeighborChanged();
+        MetaTileEntity mte = getMetaTileEntity(worldIn, pos);
+        if (mte != null) {
+            mte.updateInputRedstoneSignals();
+            if (mte instanceof IMTENeighborChanged) ((IMTENeighborChanged) mte).neighborChanged();
         }
     }
 
@@ -430,16 +430,14 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
 
     @Override
     public int getLightValue(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
-        //why mc is so fucking retarded to call this method on fucking NEIGHBOUR BLOCKS!
-        MetaTileEntity metaTileEntity = getMetaTileEntity(world, pos);
-        return metaTileEntity == null ? 0 : metaTileEntity.getLightValue();
+        MetaTileEntity mte = getMetaTileEntity(world, pos);
+        return mte instanceof IMTEGetLightValue ? ((IMTEGetLightValue) mte).getLightValue() : 0;
     }
 
     @Override
     public int getLightOpacity(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
-        //why mc is so fucking retarded to call this method on fucking NEIGHBOUR BLOCKS!
-        MetaTileEntity metaTileEntity = getMetaTileEntity(world, pos);
-        return metaTileEntity == null ? 0 : metaTileEntity.getLightOpacity();
+        MetaTileEntity mte = getMetaTileEntity(world, pos);
+        return mte instanceof IMTEGetLightOpacity ? ((IMTEGetLightOpacity) mte).getLightOpacity() : 255;
     }
 
     @Override
@@ -487,10 +485,7 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
 
     @Override
     public boolean canEntityDestroy(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull Entity entity) {
-        MetaTileEntity metaTileEntity = getMetaTileEntity(world, pos);
-        if(metaTileEntity == null) {
-            return super.canEntityDestroy(state, world, pos, entity);
-        }
-        return !((entity instanceof EntityWither || entity instanceof EntityWitherSkull) && metaTileEntity.getWitherProof());
+        MetaTileEntity mte = getMetaTileEntity(world, pos);
+        return mte instanceof IMTECanEntityDestroy ? ((IMTECanEntityDestroy) mte).canEntityDestroy(entity) : super.canEntityDestroy(state, world, pos, entity);
     }
 }

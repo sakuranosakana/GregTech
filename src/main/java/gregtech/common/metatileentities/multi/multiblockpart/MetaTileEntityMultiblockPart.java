@@ -5,6 +5,7 @@ import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.api.block.machines.BlockMachine;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetLightValue;
 import gregtech.api.metatileentity.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -23,7 +24,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import static gregtech.api.capability.GregtechDataCodes.SYNC_CONTROLLER;
 
-public abstract class MetaTileEntityMultiblockPart extends MetaTileEntity implements IMultiblockPart, ITieredMetaTileEntity {
+public abstract class MetaTileEntityMultiblockPart extends MetaTileEntity implements IMultiblockPart, ITieredMetaTileEntity, IMTEGetLightValue {
 
     private final int tier;
     private BlockPos controllerPos;
@@ -54,7 +55,7 @@ public abstract class MetaTileEntityMultiblockPart extends MetaTileEntity implem
     }
 
     @Override
-    public int getActualLightValue() {
+    public int getLightValue() {
         MultiblockControllerBase controller = getController();
         return controller == null ? 0 : controller.getLightValueForPart(this);
     }

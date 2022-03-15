@@ -5,6 +5,7 @@ import gregtech.api.capability.impl.RecipeLogicSteam;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTENeighborChanged;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.SteamMetaTileEntity;
@@ -20,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class SteamRockBreaker extends SteamMetaTileEntity {
+public class SteamRockBreaker extends SteamMetaTileEntity implements IMTENeighborChanged {
 
     private boolean hasValidFluids;
 
@@ -39,8 +40,7 @@ public class SteamRockBreaker extends SteamMetaTileEntity {
     }
 
     @Override
-    public void onNeighborChanged() {
-        super.onNeighborChanged();
+    public void neighborChanged() {
         checkAdjacentFluids();
     }
 

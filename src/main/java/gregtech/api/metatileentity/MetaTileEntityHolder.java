@@ -174,7 +174,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
                 timeStatistics[timeStatisticsIndex] = (int) tickTime;
                 timeStatisticsIndex = (timeStatisticsIndex + 1) % timeStatistics.length;
             }
-            if (tickTime > 100_000_000L && getMetaTileEntity().doTickProfileMessage() && lagWarningCount++ < 10)
+            if (tickTime > 100_000_000L && lagWarningCount++ < 10)
                 GTLog.logger.warn("WARNING: Possible Lag Source at [" + getPos().getX() + ", " + getPos().getY() + ", " + getPos().getZ() + "] in Dimension " + world.provider.getDimension() + " with " + tickTime + "ns caused by an instance of " + getMetaTileEntity().getClass());
         }
 

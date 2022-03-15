@@ -15,6 +15,7 @@ import gregtech.api.items.itemhandlers.InaccessibleItemStackHandler;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
 import gregtech.api.metatileentity.*;
+import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.GregFakePlayer;
@@ -54,7 +55,7 @@ import static gregtech.api.capability.GregtechDataCodes.*;
 import static gregtech.client.renderer.texture.Textures.CLIPBOARD_RENDERER;
 import static gregtech.common.items.MetaItems.CLIPBOARD;
 
-public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRenderMetaTileEntity, IMetaTileEntity.IMTEOnAttached {
+public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEOnAttached, IMTEGetDrops, IMTENeighborChanged, IMTEGetLightOpacity {
     private static final AxisAlignedBB CLIPBOARD_AABB = new AxisAlignedBB(2.75 / 16.0, 0.0, 0.0, 13.25 / 16.0, 1.0, 0.4 / 16.0);
     public static final float scale = 1;
     public FakeModularGui guiCache;
@@ -228,7 +229,7 @@ public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRend
     }
 
     @Override
-    public void onNeighborChanged() {
+    public void neighborChanged() {
         if (!getWorld().isRemote && didSetFacing) {
             BlockPos pos = getPos().offset(getFrontFacing());
             IBlockState state = getWorld().getBlockState(pos);

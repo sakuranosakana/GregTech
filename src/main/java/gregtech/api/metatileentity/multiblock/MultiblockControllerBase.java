@@ -7,7 +7,7 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IMultiblockController;
-import gregtech.api.metatileentity.IMetaTileEntity.IMTEOnAttached;
+import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.pattern.*;
@@ -100,6 +100,10 @@ public abstract class MultiblockControllerBase extends MetaTileEntity implements
         return true;
     }
 
+    public int getLightValueForPart(IMultiblockPart part) {
+        return 0;
+    }
+
     /**
      * Override this method to change the Controller overlay
      *
@@ -113,15 +117,6 @@ public abstract class MultiblockControllerBase extends MetaTileEntity implements
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getFrontDefaultTexture() {
         return getFrontOverlay().getParticleSprite();
-    }
-
-    public int getLightValueForPart(IMultiblockPart sourcePart) {
-        return 0;
-    }
-
-    @Override
-    public final int getActualLightValue() {
-        return getLightValueForPart(null);
     }
 
     public static TraceabilityPredicate tilePredicate(@Nonnull BiFunction<BlockWorldState, MetaTileEntity, Boolean> predicate, @Nullable Supplier<BlockInfo[]> candidates) {

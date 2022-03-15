@@ -3,6 +3,8 @@ package gregtech.api.metatileentity;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverBehavior;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
@@ -71,7 +73,12 @@ public interface IMetaTileEntity {
     interface IMTEUpdate        extends IMetaTileEntity {void update();}
 
     // Hooks into the Block Class. Implement them in order to overwrite the Default Behaviours.
-    // TODO
+    // TODO more here
+    interface IMTEGetDrops         extends IMetaTileEntity {void getDrops(NonNullList<ItemStack> drops, EntityPlayer harvester);}
+    interface IMTECanEntityDestroy extends IMetaTileEntity {boolean canEntityDestroy(Entity entity);}
+    interface IMTENeighborChanged  extends IMetaTileEntity {void neighborChanged();}
+    interface IMTEGetLightValue    extends IMetaTileEntity {int getLightValue();}
+    interface IMTEGetLightOpacity  extends IMetaTileEntity {int getLightOpacity();}
 
     // Custom interfaces that add new behavior
     // TODO Javadoc these!!

@@ -1,7 +1,7 @@
 package gregtech.common.metatileentities.multi.steam;
 
-
 import gregtech.api.capability.impl.SteamMultiWorkable;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetLightValue;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -24,7 +24,7 @@ import javax.annotation.Nonnull;
 
 import static gregtech.api.capability.GregtechDataCodes.IS_WORKING;
 
-public class MetaTileEntitySteamOven extends RecipeMapSteamMultiblockController {
+public class MetaTileEntitySteamOven extends RecipeMapSteamMultiblockController implements IMTEGetLightValue {
 
     private boolean isActive;
 
@@ -134,8 +134,8 @@ public class MetaTileEntitySteamOven extends RecipeMapSteamMultiblockController 
     }
 
     @Override
-    public int getLightValueForPart(IMultiblockPart sourcePart) {
-        return sourcePart == null ? 0 : (isActive ? 15 : 0);
+    public int getLightValue() {
+        return isActive ? 15 : 0;
     }
 
     @Override

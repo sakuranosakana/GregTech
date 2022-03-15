@@ -2,6 +2,7 @@ package gregtech.common.metatileentities.electric;
 
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.RecipeLogicEnergy;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTENeighborChanged;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
@@ -17,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.function.Supplier;
 
-public class MetaTileEntityRockBreaker extends SimpleMachineMetaTileEntity {
+public class MetaTileEntityRockBreaker extends SimpleMachineMetaTileEntity implements IMTENeighborChanged {
 
     private boolean hasValidFluids;
 
@@ -38,8 +39,7 @@ public class MetaTileEntityRockBreaker extends SimpleMachineMetaTileEntity {
     }
 
     @Override
-    public void onNeighborChanged() {
-        super.onNeighborChanged();
+    public void neighborChanged() {
         checkAdjacentFluids();
     }
 
@@ -72,7 +72,7 @@ public class MetaTileEntityRockBreaker extends SimpleMachineMetaTileEntity {
     @Override
     public <T> void addNotifiedInput(T input) {
         super.addNotifiedInput(input);
-        onNeighborChanged();
+        neighborChanged();
     }
 
     @Override

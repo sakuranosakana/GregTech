@@ -54,11 +54,6 @@ public class MetaTileEntityCrate extends MetaTileEntity {
     }
 
     @Override
-    public int getLightOpacity() {
-        return 1;
-    }
-
-    @Override
     public String getHarvestTool() {
         return material.toString().contains("wood") ? "axe" : "pickaxe";
     }

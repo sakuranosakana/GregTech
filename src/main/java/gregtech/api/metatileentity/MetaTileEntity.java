@@ -43,7 +43,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.PooledMutableBlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
@@ -92,7 +91,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     private final int[] sidedRedstoneOutput = new int[6];
     private final int[] sidedRedstoneInput = new int[6];
     private int cachedComparatorValue;
-    private int cachedLightValue;
 
     private final CoverBehavior[] coverBehaviors = new CoverBehavior[6];
     protected List<IItemHandlerModifiable> notifiedItemOutputList = new ArrayList<>();
@@ -143,9 +141,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     }
 
     public void markDirty() {
-        if (holder != null) {
-            holder.markDirty();
-        }
+        if (holder != null) holder.markDirty();
     }
 
     public boolean isFirstTick() {
@@ -162,9 +158,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     }
 
     public void writeCustomData(int discriminator, Consumer<PacketBuffer> dataWriter) {
-        if (holder != null) {
-            holder.writeCustomData(discriminator, dataWriter);
-        }
+        if (holder != null) holder.writeCustomData(discriminator, dataWriter);
     }
 
     public void addDebugInfo(List<String> list) {
@@ -177,19 +171,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     @SideOnly(Side.CLIENT)
     public Pair<TextureAtlasSprite, Integer> getParticleTexture() {
         return Pair.of(TextureUtils.getMissingSprite(), 0xFFFFFF);
-    }
-
-    /**
-     * ItemStack currently being rendered by this meta tile entity
-     * Use this to obtain itemstack-specific data like contained fluid, painting color
-     * Generally useful in combination with {@link #writeItemStackData(net.minecraft.nbt.NBTTagCompound)}
-     */
-    @SideOnly(Side.CLIENT)
-    protected ItemStack renderContextStack;
-
-    @SideOnly(Side.CLIENT)
-    public void setRenderContextStack(ItemStack itemStack) {
-        this.renderContextStack = itemStack;
     }
 
     /**
@@ -218,12 +199,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     @SideOnly(Side.CLIENT)
     public int getPaintingColorForRendering() {
-        if (getWorld() == null && renderContextStack != null) {
-            NBTTagCompound tagCompound = renderContextStack.getTagCompound();
-            if (tagCompound != null && tagCompound.hasKey(TAG_KEY_PAINTING_COLOR, NBT.TAG_INT)) {
-                return tagCompound.getInteger(TAG_KEY_PAINTING_COLOR);
-            }
-        }
         return isPainted() ? paintingColor : getDefaultPaintingColor();
     }
 
@@ -433,7 +408,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             getHolder().notifyBlockUpdate();
             getHolder().markDirty();
         }
-        onCoverPlacementUpdate();
         GTTriggers.FIRST_COVER_PLACE.trigger((EntityPlayerMP) player);
         return true;
     }
@@ -455,11 +429,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             getHolder().notifyBlockUpdate();
             getHolder().markDirty();
         }
-        onCoverPlacementUpdate();
         return true;
-    }
-
-    protected void onCoverPlacementUpdate() {
     }
 
     public final void dropAllCovers() {
@@ -545,9 +515,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return false;
     }
 
-    public void onNeighborChanged() {
-    }
-
     public void updateInputRedstoneSignals() {
         for (EnumFacing side : EnumFacing.VALUES) {
             int redstoneValue = GTUtility.getRedstonePower(getWorld(), getPos(), side);
@@ -566,16 +533,8 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return 0;
     }
 
-    public int getActualLightValue() {
-        return 0;
-    }
-
     public final int getComparatorValue() {
         return cachedComparatorValue;
-    }
-
-    public final int getLightValue() {
-        return cachedLightValue;
     }
 
     private void updateComparatorValue() {
@@ -584,16 +543,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             this.cachedComparatorValue = newComparatorValue;
             if (getWorld() != null && !getWorld().isRemote) {
                 notifyBlockUpdate();
-            }
-        }
-    }
-
-    private void updateLightValue() {
-        int newLightValue = getActualLightValue();
-        if (cachedLightValue != newLightValue) {
-            this.cachedLightValue = newLightValue;
-            if (getWorld() != null) {
-                getWorld().checkLight(getPos());
             }
         }
     }
@@ -615,9 +564,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             }
         } else {
             updateSound();
-        }
-        if (getOffsetTimer() % 5 == 0L) {
-            updateLightValue();
         }
     }
 
@@ -646,18 +592,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         }
     }
 
-    /**
-     * Add special drops which this meta tile entity contains here
-     * Meta tile entity item is ALREADY added into this list
-     * Do NOT add inventory contents in this list - it will be dropped automatically when breakBlock is called
-     * This will only be called if meta tile entity is broken with proper tool (i.e wrench)
-     *
-     * @param dropsList list of meta tile entity drops
-     * @param harvester harvester of this meta tile entity, or null
-     */
-    public void getDrops(NonNullList<ItemStack> dropsList, @Nullable EntityPlayer harvester) {
-    }
-
     public ItemStack getPickItem(CuboidRayTraceResult result, EntityPlayer player) {
         IndexedCuboid6 hitCuboid = result.cuboid6;
         if (hitCuboid.data instanceof CoverSideData) {
@@ -683,10 +617,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
      */
     public boolean isOpaqueCube() {
         return true;
-    }
-
-    public int getLightOpacity() {
-        return 255;
     }
 
     /**
@@ -800,13 +730,11 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             CoverBehavior coverBehavior = coverDefinition.createCoverBehavior(this, placementSide);
             this.coverBehaviors[placementSide.getIndex()] = coverBehavior;
             coverBehavior.readInitialSyncData(buf);
-            onCoverPlacementUpdate();
             getHolder().scheduleChunkForRenderUpdate();
         } else if (dataId == COVER_REMOVED_MTE) {
             //cover removed event
             EnumFacing placementSide = EnumFacing.VALUES[buf.readByte()];
             this.coverBehaviors[placementSide.getIndex()] = null;
-            onCoverPlacementUpdate();
             getHolder().scheduleChunkForRenderUpdate();
         } else if (dataId == UPDATE_COVER_DATA_MTE) {
             //cover custom data received
@@ -1145,7 +1073,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         if (isPainted()) {
             data.setInteger(TAG_KEY_PAINTING_COLOR, paintingColor);
         }
-        data.setInteger("CachedLightValue", cachedLightValue);
 
         if (shouldSerializeInventories()) {
             GTUtility.writeItems(importItems, "ImportInventory", data);
@@ -1181,7 +1108,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         if (data.hasKey(TAG_KEY_PAINTING_COLOR)) {
             this.paintingColor = data.getInteger(TAG_KEY_PAINTING_COLOR);
         }
-        this.cachedLightValue = data.getInteger("CachedLightValue");
 
         if (shouldSerializeInventories()) {
             GTUtility.readItems(importItems, "ImportInventory", data);
@@ -1327,10 +1253,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return false;
     }
 
-    public boolean getWitherProof() {
-        return false;
-    }
-
     public final void toggleMuffled() {
         muffled = !muffled;
         if (!getWorld().isRemote) {
@@ -1365,10 +1287,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         getWorld().setBlockToAir(getPos());
         getWorld().createExplosion(null, getPos().getX() + 0.5, getPos().getY() + 0.5, getPos().getZ() + 0.5,
                 explosionPower, ConfigHolder.machines.doExplosions);
-    }
-
-    public boolean doTickProfileMessage() {
-        return true;
     }
 
     @Override

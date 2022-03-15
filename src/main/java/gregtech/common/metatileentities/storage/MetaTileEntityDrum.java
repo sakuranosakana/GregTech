@@ -66,11 +66,6 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     }
 
     @Override
-    public int getLightOpacity() {
-        return 1;
-    }
-
-    @Override
     public int getActualComparatorValue() {
         FluidTank fluidTank = this.fluidTank;
         int fluidAmount = fluidTank.getFluidAmount();

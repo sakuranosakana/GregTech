@@ -1,6 +1,5 @@
 package gregtech.common.metatileentities.multi;
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.texture.TextureUtils;
@@ -13,6 +12,7 @@ import gregtech.api.gui.widgets.LabelWidget;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.RecipeProgressWidget;
 import gregtech.api.gui.widgets.SlotWidget;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetLightValue;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -30,14 +30,13 @@ import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.annotation.Nonnull;
 
-public class MetaTileEntityPrimitiveBlastFurnace extends RecipeMapPrimitiveMultiblockController {
+public class MetaTileEntityPrimitiveBlastFurnace extends RecipeMapPrimitiveMultiblockController implements IMTEGetLightValue {
 
     public MetaTileEntityPrimitiveBlastFurnace(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.PRIMITIVE_BLAST_FURNACE_RECIPES);
@@ -66,8 +65,8 @@ public class MetaTileEntityPrimitiveBlastFurnace extends RecipeMapPrimitiveMulti
     }
 
     @Override
-    public int getLightValueForPart(IMultiblockPart sourcePart) {
-        return sourcePart == null && recipeMapWorkable.isActive() ? 15 : 0;
+    public int getLightValue() {
+        return recipeMapWorkable.isActive() ? 15 : 0;
     }
 
     @Override

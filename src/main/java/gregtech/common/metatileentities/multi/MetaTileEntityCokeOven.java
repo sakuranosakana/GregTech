@@ -1,12 +1,12 @@
 package gregtech.common.metatileentities.multi;
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.*;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetLightValue;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -21,13 +21,11 @@ import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
-public class MetaTileEntityCokeOven extends RecipeMapPrimitiveMultiblockController {
+public class MetaTileEntityCokeOven extends RecipeMapPrimitiveMultiblockController implements IMTEGetLightValue {
 
     public MetaTileEntityCokeOven(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.COKE_OVEN_RECIPES);
@@ -55,8 +53,8 @@ public class MetaTileEntityCokeOven extends RecipeMapPrimitiveMultiblockControll
     }
 
     @Override
-    public int getLightValueForPart(IMultiblockPart sourcePart) {
-        return sourcePart == null && recipeMapWorkable.isActive() ? 15 : 0;
+    public int getLightValue() {
+        return recipeMapWorkable.isActive() ? 15 : 0;
     }
 
     @Override

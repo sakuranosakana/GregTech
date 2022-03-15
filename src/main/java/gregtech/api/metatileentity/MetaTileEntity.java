@@ -1207,10 +1207,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return notifiedFluidOutputList;
     }
 
-    public boolean shouldDropWhenDestroyed() {
-        return true;
-    }
-
     public float getBlockHardness() {
         return 6.0f;
     }

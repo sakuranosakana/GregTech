@@ -4,13 +4,11 @@ import com.google.common.base.Preconditions;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.machines.BlockMachine;
 import gregtech.api.cover.CoverBehavior;
-import gregtech.api.gui.IUIHolder;
 import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.net.NetworkHandler;
 import gregtech.api.net.packets.CPacketRecoverMTE;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTUtility;
-import gregtech.api.util.TaskScheduler;
 import gregtech.client.particle.GTNameTagParticle;
 import gregtech.client.particle.GTParticleManager;
 import net.minecraft.block.state.IBlockState;
@@ -41,7 +39,7 @@ import java.util.ArrayList;
 
 import static gregtech.api.capability.GregtechDataCodes.INITIALIZE_MTE;
 
-public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIHolder, IWorldNameable {
+public class MetaTileEntityHolder extends TickableTileEntityBase implements IGregTechTileEntity, IWorldNameable {
 
     IMetaTileEntity metaTileEntity;
     private boolean needToUpdateLightning = false;
@@ -49,7 +47,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
     @SideOnly(Side.CLIENT)
     private GTNameTagParticle nameTagParticle;
 
-    private int[] timeStatistics = new int[20];
+    private final int[] timeStatistics = new int[20];
     private int timeStatisticsIndex = 0;
     private int lagWarningCount = 0;
 
@@ -63,10 +61,11 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
      * so it is safe to call it on sample meta tile entities
      * Also can use certain data to preinit the block before data is synced
      */
-    public IMetaTileEntity setMetaTileEntity(IMetaTileEntity sampleMetaTileEntity, Object... data) {
+    public IMetaTileEntity setMetaTileEntity(IMetaTileEntity sampleMetaTileEntity) {
         Preconditions.checkNotNull(sampleMetaTileEntity, "metaTileEntity");
-        setRawMetaTileEntity(sampleMetaTileEntity.createMetaTileEntity(this));
-        if (metaTileEntity instanceof IMTEOnAttached) ((IMTEOnAttached) metaTileEntity).onAttached(data);
+        metaTileEntity = sampleMetaTileEntity.createMetaTileEntity(this);
+        metaTileEntity.setHolder(this);
+        if (metaTileEntity instanceof IMTEOnAttached) ((IMTEOnAttached) metaTileEntity).onAttached();
         if (hasWorld() && !getWorld().isRemote) {
             updateBlockOpacity();
             sendInitialSyncData();
@@ -76,11 +75,6 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
             markDirty();
         }
         return metaTileEntity;
-    }
-
-    protected void setRawMetaTileEntity(IMetaTileEntity metaTileEntity) {
-        this.metaTileEntity = metaTileEntity;
-        this.metaTileEntity.setHolder(this);
     }
 
     private void updateBlockOpacity() {
@@ -112,7 +106,8 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
             IMetaTileEntity sampleMetaTileEntity = GregTechAPI.MTE_REGISTRY.getObject(metaTileEntityId);
             NBTTagCompound metaTileEntityData = compound.getCompoundTag("MetaTileEntity");
             if (sampleMetaTileEntity != null) {
-                setRawMetaTileEntity(sampleMetaTileEntity.createMetaTileEntity(this));
+                metaTileEntity = sampleMetaTileEntity.createMetaTileEntity(this);
+                metaTileEntity.setHolder(this);
                 if (metaTileEntity instanceof IMTEOnAttached) ((IMTEOnAttached) metaTileEntity).onAttached();
                 this.metaTileEntity.readFromNBT(metaTileEntityData);
             } else {
@@ -284,11 +279,6 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
         return getWorld().isRemote;
     }
 
-    @Override
-    public void markAsDirty() {
-        markDirty();
-    }
-
     // Passthrough methods for interfaces
     @Override public final void onLoad() {if (metaTileEntity instanceof IMTEOnLoad) ((IMTEOnLoad) metaTileEntity).onLoad();}
     @Override public final void onChunkUnload() {if (metaTileEntity instanceof IMTEOnChunkUnload) ((IMTEOnChunkUnload) metaTileEntity).onChunkUnload();}
@@ -382,7 +372,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IUIH
                     }
                 }
             } else {
-                markAsDirty();
+                markDirty();
             }
         }
     }

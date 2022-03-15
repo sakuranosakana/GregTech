@@ -154,7 +154,7 @@ public abstract class MonitorPluginBaseBehavior implements IItemBehaviour, ItemU
     /***
      * Server / Client (deprecated). Should be called when need to write persistence data to NBT
      */
-    public void markAsDirty() {
+    public void markDirty() {
         if (screen != null) {
             screen.pluginDirty();
         } else if (nbtTagCompound != null) {
@@ -228,7 +228,7 @@ public abstract class MonitorPluginBaseBehavior implements IItemBehaviour, ItemU
             behavior.readFromNBT(itemStack.getOrCreateSubCompound("monitor_plugin"));
             return ModularUI.builder(GuiTextures.BOXED_BACKGROUND, 260, 210)
                     .widget(behavior.customUI(new WidgetPluginConfig().setBackGround(GuiTextures.BACKGROUND), playerInventoryHolder, entityPlayer))
-                    .bindCloseListener(this::markAsDirty)
+                    .bindCloseListener(this::markDirty)
                     .build(playerInventoryHolder, entityPlayer);
         }
         return null;

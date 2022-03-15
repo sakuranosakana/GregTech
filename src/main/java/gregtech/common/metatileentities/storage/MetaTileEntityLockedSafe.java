@@ -43,7 +43,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.items.ItemStackHandler;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -55,7 +54,7 @@ import java.util.function.DoubleSupplier;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_CONTENTS_SEED;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_LOCKED_STATE;
 
-public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEItemStackData, IMTEGetLightOpacity {
+public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEGetLightOpacity, IMTEGetDrops {
 
     private static final int MAX_UNLOCK_PROGRESS = 100;
     private static Component[] ALLOWED_COMPONENTS;
@@ -127,8 +126,8 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
     }
 
     @Override
-    public boolean shouldDropWhenDestroyed() {
-        return false;
+    public void getDrops(NonNullList<ItemStack> drops, EntityPlayer harvester) {
+        drops.clear(); // don't drop this when broken
     }
 
     @Override
@@ -313,17 +312,6 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
             this.isSafeUnlocked = buf.readBoolean();
         } else if (dataId == UPDATE_CONTENTS_SEED) {
             this.unlockComponentsSeed = buf.readVarLong();
-        }
-    }
-
-    @Override
-    public void writeItemStackData(NBTTagCompound data) {
-    }
-
-    @Override
-    public void initFromItemStackData(NBTTagCompound itemStack) {
-        if (itemStack.hasKey("ComponentTier", NBT.TAG_ANY_NUMERIC)) {
-            this.unlockComponentTier = itemStack.getInteger("ComponentTier");
         }
     }
 

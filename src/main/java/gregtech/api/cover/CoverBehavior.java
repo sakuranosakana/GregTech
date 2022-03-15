@@ -218,7 +218,7 @@ public abstract class CoverBehavior implements IUIHolder {
     }
 
     @Override
-    public final void markAsDirty() {
+    public final void markDirty() {
         coverHolder.markDirty();
     }
 }

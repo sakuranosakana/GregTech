@@ -268,16 +268,15 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
             metaTileEntity.dropAllCovers();
             metaTileEntity.onRemoval();
 
-            tileEntities.set(metaTileEntity);
+            LAST_BROKEN_MTE.set(metaTileEntity);
         }
         super.breakBlock(worldIn, pos, state);
     }
 
     @Override
     public void getDrops(@Nonnull NonNullList<ItemStack> drops, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull IBlockState state, int fortune) {
-        MetaTileEntity metaTileEntity = tileEntities.get() == null ? getMetaTileEntity(world, pos) : tileEntities.get();
+        MetaTileEntity metaTileEntity = LAST_BROKEN_MTE.get() == null ? getMetaTileEntity(world, pos) : LAST_BROKEN_MTE.get();
         if (metaTileEntity == null) return;
-        if (!metaTileEntity.shouldDropWhenDestroyed()) return;
         ItemStack itemStack = metaTileEntity.getStackForm();
         if (metaTileEntity instanceof IMTEItemStackData) {
             NBTTagCompound tag = new NBTTagCompound();
@@ -370,13 +369,13 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
     @Override public final boolean hasComparatorInputOverride(@Nonnull IBlockState state) {return true;}
     @Override public final int getComparatorInputOverride(@Nonnull IBlockState blockState, @Nonnull World worldIn, @Nonnull BlockPos pos) {MetaTileEntity mte = getMetaTileEntity(worldIn, pos); return mte instanceof IMTEGetComparatorInputOverride ? ((IMTEGetComparatorInputOverride) mte).getComparatorInputOverride() : 0;}
 
-    protected final ThreadLocal<MetaTileEntity> tileEntities = new ThreadLocal<>();
+    protected final ThreadLocal<MetaTileEntity> LAST_BROKEN_MTE = new ThreadLocal<>();
 
     @Override
     public void harvestBlock(@Nonnull World worldIn, @Nonnull EntityPlayer player, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable TileEntity te, @Nonnull ItemStack stack) {
-        tileEntities.set(te == null ? tileEntities.get() : ((MetaTileEntityHolder) te).getMetaTileEntity());
+        LAST_BROKEN_MTE.set(te == null ? LAST_BROKEN_MTE.get() : ((MetaTileEntityHolder) te).getMetaTileEntity());
         super.harvestBlock(worldIn, player, pos, state, te, stack);
-        tileEntities.set(null);
+        LAST_BROKEN_MTE.set(null);
     }
 
     @Nullable

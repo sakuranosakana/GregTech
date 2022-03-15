@@ -560,7 +560,7 @@ public class MetaTileEntityMonitorScreen extends MetaTileEntityMultiblockPart {
                             pluginWidget.removePluginWidget();
                             mainGroup.setVisible(true);
                             if (plugin != null) {
-                                plugin.markAsDirty();
+                                plugin.markDirty();
                             }
                         }
                     }) {
@@ -571,14 +571,14 @@ public class MetaTileEntityMonitorScreen extends MetaTileEntityMultiblockPart {
                                 pluginWidget.removePluginWidget();
                                 mainGroup.setVisible(true);
                                 if (plugin != null) {
-                                    plugin.markAsDirty();
+                                    plugin.markDirty();
                                 }
                             }
                         }
                     })
                     .bindCloseListener(() -> {
                         if (plugin != null) {
-                            plugin.markAsDirty();
+                            plugin.markDirty();
                         }
                     })
                     .build(this.getHolder(), entityPlayer);

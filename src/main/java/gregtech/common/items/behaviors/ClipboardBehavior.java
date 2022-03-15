@@ -10,6 +10,7 @@ import gregtech.api.gui.widgets.TextFieldWidget2;
 import gregtech.api.items.gui.ItemUIFactory;
 import gregtech.api.items.gui.PlayerInventoryHolder;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtech.api.metatileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntityClipboard;
@@ -256,12 +257,12 @@ public class ClipboardBehavior implements IItemBehaviour, ItemUIFactory {
                     // Get new TE
                     shiftedBlock.createTileEntity(world, state);
                     // And manipulate it to our liking
-                    MetaTileEntityHolder holder = (MetaTileEntityHolder) world.getTileEntity(shiftedPos);
-                    if (holder != null) {
-                        MetaTileEntityClipboard clipboard = (MetaTileEntityClipboard) holder.setMetaTileEntity(CLIPBOARD_TILE, heldItem);
+                    IGregTechTileEntity tileEntity = (IGregTechTileEntity) world.getTileEntity(shiftedPos);
+                    if (tileEntity != null) {
+                        MetaTileEntityClipboard clipboard = (MetaTileEntityClipboard) tileEntity.setMetaTileEntity(CLIPBOARD_TILE);
                         if (clipboard != null) {
-                            clipboard.setFrontFacing(facing.getOpposite());
                             clipboard.setClipboard(heldItem);
+                            clipboard.setFrontFacing(facing.getOpposite());
                             ItemStack returnedStack = player.getHeldItem(hand);
                             if (!player.isCreative()) {
                                 returnedStack.setCount(player.getHeldItem(hand).getCount() - 1);

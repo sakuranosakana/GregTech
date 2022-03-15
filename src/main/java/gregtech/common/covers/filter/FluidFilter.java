@@ -27,7 +27,7 @@ public abstract class FluidFilter {
 
     public final void markDirty() {
         if (dirtyNotifiable != null) {
-            dirtyNotifiable.markAsDirty();
+            dirtyNotifiable.markDirty();
         }
     }
 }

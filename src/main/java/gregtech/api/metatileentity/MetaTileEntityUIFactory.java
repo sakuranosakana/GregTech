@@ -4,6 +4,7 @@ import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.UIFactory;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;

@@ -1,4 +1,4 @@
-package gregtech.api.metatileentity;
+package gregtech.api.metatileentity.interfaces;
 
 import gregtech.api.GTValues;
 

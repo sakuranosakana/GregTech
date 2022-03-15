@@ -6,8 +6,7 @@ import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.gui.resources.IGuiTexture;
 import gregtech.api.gui.resources.ItemStackTexture;
-import gregtech.api.metatileentity.IMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.util.ResourceLocation;
 

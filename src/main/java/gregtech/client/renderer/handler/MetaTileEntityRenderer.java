@@ -16,7 +16,7 @@ import codechicken.lib.vec.uv.IconTransformation;
 import gregtech.api.GTValues;
 import gregtech.api.block.machines.BlockMachine;
 import gregtech.api.block.machines.MachineItemBlock;
-import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IFastRenderMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.CubeRendererState;

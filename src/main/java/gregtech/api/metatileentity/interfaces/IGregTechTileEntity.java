@@ -1,4 +1,4 @@
-package gregtech.api.metatileentity;
+package gregtech.api.metatileentity.interfaces;
 
 import gregtech.api.gui.IUIHolder;
 import net.minecraft.network.PacketBuffer;

@@ -13,7 +13,7 @@ import gregtech.api.gui.widgets.FluidContainerSlotWidget;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.gui.widgets.TankWidget;
-import gregtech.api.metatileentity.IDataInfoProvider;
+import gregtech.api.metatileentity.interfaces.IDataInfoProvider;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.sound.GTSounds;

@@ -1,9 +1,9 @@
 package gregtech.common.metatileentities.multi.steam;
 
 import gregtech.api.capability.impl.SteamMultiWorkable;
-import gregtech.api.metatileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetLightValue;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetLightValue;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController;

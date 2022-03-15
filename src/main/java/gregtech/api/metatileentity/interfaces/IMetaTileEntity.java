@@ -1,4 +1,4 @@
-package gregtech.api.metatileentity;
+package gregtech.api.metatileentity.interfaces;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
 import gregtech.api.GregTechAPI;

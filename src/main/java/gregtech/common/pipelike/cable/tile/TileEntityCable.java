@@ -2,7 +2,7 @@ package gregtech.common.pipelike.cable.tile;
 
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.metatileentity.IDataInfoProvider;
+import gregtech.api.metatileentity.interfaces.IDataInfoProvider;
 import gregtech.api.pipenet.block.material.TileEntityMaterialPipeBase;
 import gregtech.api.unification.material.properties.WireProperties;
 import gregtech.api.util.GTUtility;

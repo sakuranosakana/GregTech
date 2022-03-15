@@ -9,6 +9,8 @@ import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IControllable;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.metatileentity.*;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.pipenet.tile.TileEntityPipeBase;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.Block;

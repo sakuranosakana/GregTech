@@ -16,6 +16,8 @@ import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.Widget;
 import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.gui.widgets.*;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.util.GTUtility;

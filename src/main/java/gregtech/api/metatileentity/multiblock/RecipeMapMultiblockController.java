@@ -13,7 +13,7 @@ import gregtech.api.capability.impl.ItemHandlerList;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.gui.Widget;
 import gregtech.api.gui.widgets.AdvancedTextWidget;
-import gregtech.api.metatileentity.IDataInfoProvider;
+import gregtech.api.metatileentity.interfaces.IDataInfoProvider;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.recipes.Recipe;

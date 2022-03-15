@@ -11,6 +11,8 @@ import gregtech.api.gui.widgets.*;
 import gregtech.api.items.behavior.MonitorPluginBaseBehavior;
 import gregtech.api.items.behavior.ProxyHolderPluginBehavior;
 import gregtech.api.metatileentity.*;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.api.pipenet.tile.TileEntityPipeBase;
 import gregtech.api.util.BlockPosFace;

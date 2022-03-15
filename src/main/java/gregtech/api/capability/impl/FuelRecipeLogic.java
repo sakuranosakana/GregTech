@@ -1,9 +1,7 @@
 package gregtech.api.capability.impl;
 
 import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.metatileentity.IVoidable;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.WorkableTieredMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.ParallelLogicType;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;

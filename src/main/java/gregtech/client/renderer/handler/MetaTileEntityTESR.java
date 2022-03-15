@@ -3,7 +3,7 @@ package gregtech.client.renderer.handler;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.vec.Matrix4;
 import gregtech.api.cover.CoverBehavior;
-import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IFastRenderMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import net.minecraft.client.Minecraft;

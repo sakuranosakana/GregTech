@@ -1,8 +1,8 @@
 package gregtech.api.pattern;
 
 import gregtech.api.GregTechAPI;
-import gregtech.api.metatileentity.IMetaTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity.IMTEItemStackData;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEItemStackData;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;

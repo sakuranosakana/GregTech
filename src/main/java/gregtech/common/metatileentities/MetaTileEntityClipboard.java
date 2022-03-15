@@ -55,7 +55,7 @@ import static gregtech.api.capability.GregtechDataCodes.*;
 import static gregtech.client.renderer.texture.Textures.CLIPBOARD_RENDERER;
 import static gregtech.common.items.MetaItems.CLIPBOARD;
 
-public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEOnAttached, IMTEGetDrops, IMTENeighborChanged, IMTEGetLightOpacity {
+public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEOnAttached, IMTEGetDrops, IMTENeighborChanged, IMTEGetLightOpacity, IMTEGetSubBlocks {
     private static final AxisAlignedBB CLIPBOARD_AABB = new AxisAlignedBB(2.75 / 16.0, 0.0, 0.0, 13.25 / 16.0, 1.0, 0.4 / 16.0);
     public static final float scale = 1;
     public FakeModularGui guiCache;
@@ -393,7 +393,8 @@ public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRend
     }
 
     @Override
-    public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> subItems) { // JEI shouldn't show this
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> blocks) {
+        // JEI shouldn't show this
     }
 
     @Override

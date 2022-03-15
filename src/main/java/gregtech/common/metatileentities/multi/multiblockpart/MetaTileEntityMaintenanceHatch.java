@@ -15,6 +15,7 @@ import gregtech.api.gui.widgets.ClickButtonWidget;
 import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.items.toolitem.IToolStats;
 import gregtech.api.items.toolitem.ToolMetaItem;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetSubBlocks;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.IMaintenance;
@@ -53,7 +54,7 @@ import java.util.function.Supplier;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
 
-public class MetaTileEntityMaintenanceHatch extends MetaTileEntityMultiblockPart implements IMultiblockAbilityPart<IMaintenanceHatch>, IMaintenanceHatch {
+public class MetaTileEntityMaintenanceHatch extends MetaTileEntityMultiblockPart implements IMultiblockAbilityPart<IMaintenanceHatch>, IMaintenanceHatch, IMTEGetSubBlocks {
 
     private final boolean isConfigurable;
     private boolean isTaped;
@@ -440,9 +441,9 @@ public class MetaTileEntityMaintenanceHatch extends MetaTileEntityMultiblockPart
     }
 
     @Override
-    public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> subItems) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> blocks) {
         if (ConfigHolder.machines.enableMaintenance) {
-            super.getSubItems(creativeTab, subItems);
+            blocks.add(getStackForm());
         }
     }
 

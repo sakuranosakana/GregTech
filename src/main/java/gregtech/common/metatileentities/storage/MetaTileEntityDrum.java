@@ -46,7 +46,7 @@ import static gregtech.api.capability.GregtechDataCodes.*;
 import static gregtech.api.recipes.ModHandler.isMaterialWood;
 import static gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE;
 
-public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackData, IMTEItemStackCapability {
+public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackData, IMTEItemStackCapability, IMTEGetComparatorInputOverride {
 
     private final int tankSize;
     private final Material material;
@@ -66,7 +66,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     }
 
     @Override
-    public int getActualComparatorValue() {
+    public int getComparatorInputOverride() {
         FluidTank fluidTank = this.fluidTank;
         int fluidAmount = fluidTank.getFluidAmount();
         int maxCapacity = fluidTank.getCapacity();

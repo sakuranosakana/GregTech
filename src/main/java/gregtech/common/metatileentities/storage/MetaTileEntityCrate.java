@@ -7,6 +7,7 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.ModularUI.Builder;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetComparatorInputOverride;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.recipes.ModHandler;
@@ -30,7 +31,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class MetaTileEntityCrate extends MetaTileEntity {
+public class MetaTileEntityCrate extends MetaTileEntity implements IMTEGetComparatorInputOverride {
 
     private final Material material;
     private final int inventorySize;
@@ -71,7 +72,7 @@ public class MetaTileEntityCrate extends MetaTileEntity {
     }
 
     @Override
-    public int getActualComparatorValue() {
+    public int getComparatorInputOverride() {
         return ItemHandlerHelper.calcRedstoneFromInventory(inventory);
     }
 

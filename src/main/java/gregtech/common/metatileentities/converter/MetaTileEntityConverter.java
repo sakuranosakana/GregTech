@@ -10,6 +10,7 @@ import gregtech.api.capability.FeCompat;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.tool.ISoftHammerItem;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetSubBlocks;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
@@ -40,7 +41,7 @@ import java.util.List;
 
 import static gregtech.api.capability.GregtechDataCodes.SYNC_TILE_MODE;
 
-public class MetaTileEntityConverter extends TieredMetaTileEntity {
+public class MetaTileEntityConverter extends TieredMetaTileEntity implements IMTEGetSubBlocks {
 
     protected final ConverterTrait converterTrait;
 
@@ -122,9 +123,9 @@ public class MetaTileEntityConverter extends TieredMetaTileEntity {
     }
 
     @Override
-    public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> subItems) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> blocks) {
         if (ConfigHolder.compat.energy.enableFEConverters) {
-            super.getSubItems(creativeTab, subItems);
+            blocks.add(getStackForm());
         }
     }
 

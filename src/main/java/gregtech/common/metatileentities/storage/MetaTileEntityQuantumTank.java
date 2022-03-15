@@ -52,7 +52,7 @@ import java.util.List;
 import static gregtech.api.capability.GregtechDataCodes.*;
 import static net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack.FLUID_NBT_KEY;
 
-public class MetaTileEntityQuantumTank extends MetaTileEntity implements ITieredMetaTileEntity, IActiveOutputSide, IMTEItemStackData, IMTEItemStackCapability {
+public class MetaTileEntityQuantumTank extends MetaTileEntity implements ITieredMetaTileEntity, IActiveOutputSide, IMTEItemStackData, IMTEItemStackCapability, IMTEGetComparatorInputOverride {
 
     // This field (ranging from 1 to 99) is the percentage filled
     // at which the Partial Void feature will start voiding Fluids.
@@ -99,7 +99,7 @@ public class MetaTileEntityQuantumTank extends MetaTileEntity implements ITiered
     }
 
     @Override
-    public int getActualComparatorValue() {
+    public int getComparatorInputOverride() {
         FluidTank fluidTank = this.fluidTank;
         int fluidAmount = fluidTank.getFluidAmount();
         int maxCapacity = fluidTank.getCapacity();

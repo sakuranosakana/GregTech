@@ -15,7 +15,7 @@ import gregtech.api.gui.ModularUI.Builder;
 import gregtech.api.gui.widgets.AdvancedTextWidget;
 import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.gui.widgets.ToggleButtonWidget;
-import gregtech.api.metatileentity.IMetaTileEntity.IMTEItemStackData;
+import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.metatileentity.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
@@ -52,7 +52,7 @@ import java.util.List;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_AUTO_OUTPUT_ITEMS;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_OUTPUT_FACING;
 
-public class MetaTileEntityQuantumChest extends MetaTileEntity implements ITieredMetaTileEntity, IActiveOutputSide, IMTEItemStackData {
+public class MetaTileEntityQuantumChest extends MetaTileEntity implements ITieredMetaTileEntity, IActiveOutputSide, IMTEItemStackData, IMTEGetComparatorInputOverride {
 
 
     private final int tier;
@@ -103,7 +103,7 @@ public class MetaTileEntityQuantumChest extends MetaTileEntity implements ITiere
     }
 
     @Override
-    public int getActualComparatorValue() {
+    public int getComparatorInputOverride() {
         float f = itemsStoredInside / (maxStoredItems * 1.0f);
         return MathHelper.floor(f * 14.0f) + (itemsStoredInside > 0 ? 1 : 0);
     }

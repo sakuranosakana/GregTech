@@ -90,7 +90,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     private final int[] sidedRedstoneOutput = new int[6];
     private final int[] sidedRedstoneInput = new int[6];
-    private int cachedComparatorValue;
 
     private final CoverBehavior[] coverBehaviors = new CoverBehavior[6];
     protected List<IItemHandlerModifiable> notifiedItemOutputList = new ArrayList<>();
@@ -474,7 +473,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     // TODO This can probably go somewhere else
     public void onLoad() {
-        this.cachedComparatorValue = getActualComparatorValue();
         for (EnumFacing side : EnumFacing.VALUES) {
             this.sidedRedstoneInput[side.getIndex()] = GTUtility.getRedstonePower(getWorld(), getPos(), side);
         }
@@ -529,24 +527,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         }
     }
 
-    public int getActualComparatorValue() {
-        return 0;
-    }
-
-    public final int getComparatorValue() {
-        return cachedComparatorValue;
-    }
-
-    private void updateComparatorValue() {
-        int newComparatorValue = getActualComparatorValue();
-        if (cachedComparatorValue != newComparatorValue) {
-            this.cachedComparatorValue = newComparatorValue;
-            if (getWorld() != null && !getWorld().isRemote) {
-                notifyBlockUpdate();
-            }
-        }
-    }
-
     public void update() {
         for (MTETrait mteTrait : this.mteTraits) {
             if (shouldUpdate(mteTrait)) {
@@ -558,9 +538,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
                 if (coverBehavior instanceof ITickable) {
                     ((ITickable) coverBehavior).update();
                 }
-            }
-            if (getOffsetTimer() % 5 == 0L) {
-                updateComparatorValue();
             }
         } else {
             updateSound();

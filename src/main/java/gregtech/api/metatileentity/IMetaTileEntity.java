@@ -52,10 +52,6 @@ public interface IMetaTileEntity {
     // TODO Try to refactor off to block?
     boolean isOpaqueCube();
 
-    default void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        items.add(getStackForm());
-    }
-
     // TODO Pull out into iface like, "IMTECovers" (or just stick in ICoverable)
     CoverBehavior getCoverAtSide(EnumFacing facing);
     <T> T getCoverCapability(Capability<T> capability, EnumFacing facing);
@@ -74,11 +70,13 @@ public interface IMetaTileEntity {
 
     // Hooks into the Block Class. Implement them in order to overwrite the Default Behaviours.
     // TODO more here
-    interface IMTEGetDrops         extends IMetaTileEntity {void getDrops(NonNullList<ItemStack> drops, EntityPlayer harvester);}
-    interface IMTECanEntityDestroy extends IMetaTileEntity {boolean canEntityDestroy(Entity entity);}
-    interface IMTENeighborChanged  extends IMetaTileEntity {void neighborChanged();}
-    interface IMTEGetLightValue    extends IMetaTileEntity {int getLightValue();}
-    interface IMTEGetLightOpacity  extends IMetaTileEntity {int getLightOpacity();}
+    interface IMTEGetDrops                   extends IMetaTileEntity {void getDrops(NonNullList<ItemStack> drops, EntityPlayer harvester);}
+    interface IMTECanEntityDestroy           extends IMetaTileEntity {boolean canEntityDestroy(Entity entity);}
+    interface IMTENeighborChanged            extends IMetaTileEntity {void neighborChanged();}
+    interface IMTEGetLightValue              extends IMetaTileEntity {int getLightValue();}
+    interface IMTEGetLightOpacity            extends IMetaTileEntity {int getLightOpacity();}
+    interface IMTEGetSubBlocks               extends IMetaTileEntity {void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> blocks);}
+    interface IMTEGetComparatorInputOverride extends IMetaTileEntity {int getComparatorInputOverride();}
 
     // Custom interfaces that add new behavior
     // TODO Javadoc these!!

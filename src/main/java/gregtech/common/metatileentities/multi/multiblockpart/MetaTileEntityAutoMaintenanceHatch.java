@@ -5,6 +5,7 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.api.capability.IMaintenanceHatch;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.metatileentity.IMetaTileEntity.IMTEGetSubBlocks;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
@@ -20,7 +21,7 @@ import net.minecraft.util.Tuple;
 
 import java.util.List;
 
-public class MetaTileEntityAutoMaintenanceHatch extends MetaTileEntityMultiblockPart implements IMultiblockAbilityPart<IMaintenanceHatch>, IMaintenanceHatch {
+public class MetaTileEntityAutoMaintenanceHatch extends MetaTileEntityMultiblockPart implements IMultiblockAbilityPart<IMaintenanceHatch>, IMaintenanceHatch, IMTEGetSubBlocks {
 
     public MetaTileEntityAutoMaintenanceHatch(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, 3);
@@ -103,9 +104,9 @@ public class MetaTileEntityAutoMaintenanceHatch extends MetaTileEntityMultiblock
     }
 
     @Override
-    public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> subItems) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> blocks) {
         if (ConfigHolder.machines.enableMaintenance) {
-            super.getSubItems(creativeTab, subItems);
+            blocks.add(getStackForm());
         }
     }
 }

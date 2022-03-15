@@ -8,6 +8,7 @@ import gregtech.api.GTValues;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.EnergyContainerHandler;
 import gregtech.api.capability.impl.EnergyContainerHandler.IEnergyChangeListener;
+import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.api.util.GTUtility;
@@ -19,7 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
-public abstract class TieredMetaTileEntity extends MetaTileEntity implements IEnergyChangeListener, ITieredMetaTileEntity {
+public abstract class TieredMetaTileEntity extends MetaTileEntity implements IEnergyChangeListener, ITieredMetaTileEntity, IMTEGetComparatorInputOverride {
 
     private final int tier;
     protected IEnergyContainer energyContainer;
@@ -40,7 +41,7 @@ public abstract class TieredMetaTileEntity extends MetaTileEntity implements IEn
     }
 
     @Override
-    public int getActualComparatorValue() {
+    public int getComparatorInputOverride() {
         long energyStored = energyContainer.getEnergyStored();
         long energyCapacity = energyContainer.getEnergyCapacity();
         float f = energyCapacity == 0L ? 0.0f : energyStored / (energyCapacity * 1.0f);

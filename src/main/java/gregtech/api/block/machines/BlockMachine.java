@@ -35,16 +35,11 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityWitherSkull;
-import net.minecraft.init.Enchantments;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -55,7 +50,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.IWorldNameable;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
@@ -373,11 +367,8 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
         }
     }
 
-    @Override
-    public int getComparatorInputOverride(@Nonnull IBlockState blockState, @Nonnull World worldIn, @Nonnull BlockPos pos) {
-        MetaTileEntity metaTileEntity = getMetaTileEntity(worldIn, pos);
-        return metaTileEntity == null ? 0 : metaTileEntity.getComparatorValue();
-    }
+    @Override public final boolean hasComparatorInputOverride(@Nonnull IBlockState state) {return true;}
+    @Override public final int getComparatorInputOverride(@Nonnull IBlockState blockState, @Nonnull World worldIn, @Nonnull BlockPos pos) {MetaTileEntity mte = getMetaTileEntity(worldIn, pos); return mte instanceof IMTEGetComparatorInputOverride ? ((IMTEGetComparatorInputOverride) mte).getComparatorInputOverride() : 0;}
 
     protected final ThreadLocal<MetaTileEntity> tileEntities = new ThreadLocal<>();
 
@@ -386,11 +377,6 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
         tileEntities.set(te == null ? tileEntities.get() : ((MetaTileEntityHolder) te).getMetaTileEntity());
         super.harvestBlock(worldIn, player, pos, state, te, stack);
         tileEntities.set(null);
-    }
-
-    @Override
-    public boolean hasComparatorInputOverride(@Nonnull IBlockState state) {
-        return true;
     }
 
     @Nullable
@@ -442,8 +428,10 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
 
     @Override
     public void getSubBlocks(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> items) {
-        for (IMetaTileEntity metaTileEntity : GregTechAPI.MTE_REGISTRY) {
-            metaTileEntity.getSubItems(tab, items);
+        for (IMetaTileEntity mte : GregTechAPI.MTE_REGISTRY) {
+            if (mte instanceof IMTEGetSubBlocks) {
+                ((IMTEGetSubBlocks) mte).getSubBlocks(tab, items);
+            } else items.add(mte.getStackForm());
         }
     }
 

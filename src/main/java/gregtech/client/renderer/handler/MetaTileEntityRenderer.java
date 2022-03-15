@@ -45,7 +45,6 @@ import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -95,7 +94,7 @@ public class MetaTileEntityRenderer implements ICCBlockRenderer, IItemRenderer {
 
     @Override
     public boolean renderBlock(IBlockAccess world, BlockPos pos, IBlockState state, BufferBuilder buffer) {
-        MetaTileEntity metaTileEntity = BlockMachine.getMetaTileEntity(world, pos);
+        MetaTileEntity metaTileEntity = (MetaTileEntity) BlockMachine.getMetaTileEntity(world, pos);
         if (metaTileEntity == null) {
             return false;
         }
@@ -136,7 +135,7 @@ public class MetaTileEntityRenderer implements ICCBlockRenderer, IItemRenderer {
 
     @Override
     public void handleRenderBlockDamage(IBlockAccess world, BlockPos pos, IBlockState state, TextureAtlasSprite sprite, BufferBuilder buffer) {
-        MetaTileEntity metaTileEntity = BlockMachine.getMetaTileEntity(world, pos);
+        MetaTileEntity metaTileEntity = (MetaTileEntity) BlockMachine.getMetaTileEntity(world, pos);
         ArrayList<IndexedCuboid6> boundingBox = new ArrayList<>();
         if (metaTileEntity != null) {
             metaTileEntity.addCollisionBoundingBox(boundingBox);
@@ -148,15 +147,6 @@ public class MetaTileEntityRenderer implements ICCBlockRenderer, IItemRenderer {
         renderState.setPipeline(new Vector3(new Vec3d(pos)).translation(), new IconTransformation(sprite));
         for (Cuboid6 cuboid : boundingBox) {
             BlockRenderer.renderCuboid(renderState, cuboid, 0);
-        }
-    }
-
-    public Pair<TextureAtlasSprite, Integer> getParticleTexture(IBlockAccess world, BlockPos pos) {
-        MetaTileEntity metaTileEntity = BlockMachine.getMetaTileEntity(world, pos);
-        if (metaTileEntity == null) {
-            return Pair.of(TextureUtils.getMissingSprite(), 0xFFFFFF);
-        } else {
-            return metaTileEntity.getParticleTexture();
         }
     }
 

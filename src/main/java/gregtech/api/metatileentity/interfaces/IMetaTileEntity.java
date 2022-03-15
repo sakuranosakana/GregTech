@@ -4,9 +4,13 @@ import codechicken.lib.raytracer.CuboidRayTraceResult;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverBehavior;
 import gregtech.api.gui.ModularUI;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
@@ -16,6 +20,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
 
 public interface IMetaTileEntity {
 
@@ -24,6 +31,8 @@ public interface IMetaTileEntity {
 
     // TODO Try to remove this?
     IGregTechTileEntity getTileEntity();
+
+    void scheduleRenderUpdate();
 
     // TODO Can potentially refactor holder out of this, and should return IMetaTileEntity
     IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity);
@@ -52,6 +61,8 @@ public interface IMetaTileEntity {
         return new ItemStack(GregTechAPI.MACHINE, amount, metaTileEntityId);
     }
 
+    void onLeftClick(EntityPlayer player, CuboidRayTraceResult result);
+
     /**
      * Creates a UI instance for player opening inventory of this meta tile entity
      *
@@ -63,17 +74,15 @@ public interface IMetaTileEntity {
     // TODO Try to refactor off to block?
     boolean isOpaqueCube();
 
+    @SideOnly(Side.CLIENT)
+    Pair<TextureAtlasSprite, Integer> getParticleTexture();
+
     // TODO
     boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing facing, CuboidRayTraceResult hitResult);
 
     // TODO Pull out into iface like, "IMTECovers" (or just stick in ICoverable)
     CoverBehavior getCoverAtSide(EnumFacing facing);
     <T> T getCoverCapability(Capability<T> capability, EnumFacing facing);
-
-    // TODO Pull out into iface like, "IMTEFacing"
-    void setFrontFacing(EnumFacing facing);
-    EnumFacing getFrontFacing();
-    boolean isValidFrontFacing(EnumFacing facing);
 
     // Hooks into the TileEntity Class. Implement them in order to overwrite the Default Behaviours.
     // TODO more here
@@ -90,10 +99,14 @@ public interface IMetaTileEntity {
     interface IMTEGetLightOpacity            extends IMetaTileEntity {int getLightOpacity();}
     interface IMTEGetSubBlocks               extends IMetaTileEntity {void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> blocks);}
     interface IMTEGetComparatorInputOverride extends IMetaTileEntity {int getComparatorInputOverride();}
+    interface IMTEHardnessResistance         extends IMetaTileEntity {float getBlockHardness(); float getExplosionResistance();}
+    interface IMTEGetBlockFaceShape          extends IMetaTileEntity {BlockFaceShape getBlockFaceShape(EnumFacing facing);}
+    interface IMTECanCreatureSpawn           extends IMetaTileEntity {boolean canCreatureSpawn(SpawnPlacementType type);}
+    interface IMTERecolorBlock               extends IMetaTileEntity {boolean recolorBlock(EnumDyeColor color);}
 
     // Custom interfaces that add new behavior
     // TODO Javadoc these!!
-    interface IMTEOnAttached    extends IMetaTileEntity {void onAttached(Object... data);}
+    interface IMTEOnAttached    extends IMetaTileEntity {void onAttached();}
 
     /**
      * Called from ItemBlock to initialize this MTE with data contained in ItemStack
@@ -109,17 +122,5 @@ public interface IMetaTileEntity {
      */
     interface IMTEItemStackCapability extends IMetaTileEntity {
         ICapabilityProvider initItemStackCapabilities(ItemStack stack);
-    }
-
-    interface IMTETickable extends IMetaTileEntity {
-
-        /**
-         * The First processed Tick which was passed to this MetaTileEntity. This will get called when block was placed as well as on world load
-         */
-        void onFirstTick();
-
-        void update();
-
-        void onTickFailed(boolean isServerSide);
     }
 }

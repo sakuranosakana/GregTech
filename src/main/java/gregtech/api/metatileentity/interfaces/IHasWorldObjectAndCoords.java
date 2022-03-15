@@ -21,7 +21,12 @@ public interface IHasWorldObjectAndCoords {
 
     void markDirty();
 
-    void scheduleRenderUpdate();
-
     void notifyBlockUpdate();
+
+    default void scheduleRenderUpdate() {
+        BlockPos pos = getPos();
+        getWorld().markBlockRangeForRenderUpdate(
+                pos.getX() - 1, pos.getY() - 1, pos.getZ() - 1,
+                pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
+    }
 }

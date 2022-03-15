@@ -36,7 +36,6 @@ public class DebugPipeNetInfoProvider implements IProbeInfoProvider {
                 if (metaTileEntity != null) {
                     ArrayList<String> arrayList = new ArrayList<>();
                     arrayList.add("MetaTileEntity Id: " + metaTileEntity.metaTileEntityId);
-                    metaTileEntity.addDebugInfo(arrayList);
                     arrayList.forEach(probeInfo::text);
                 }
             }

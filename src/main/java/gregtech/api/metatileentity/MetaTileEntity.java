@@ -19,10 +19,8 @@ import gregtech.api.cover.CoverBehavior;
 import gregtech.api.cover.CoverDefinition;
 import gregtech.api.cover.ICoverable;
 import gregtech.api.gui.ModularUI;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.*;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
-import gregtech.api.metatileentity.interfaces.IVoidable;
 import gregtech.api.sound.GTSoundManager;
 import gregtech.api.recipes.FluidKey;
 import gregtech.api.recipes.RecipeMap;
@@ -36,6 +34,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -67,7 +66,7 @@ import java.util.function.Consumer;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
 
-public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable, IMTEOnLoad, IMTETickable, IMTEInvalidate {
+public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable, IMTEOnLoad, IMTETickable, IMTEInvalidate, ITurnable, IMTEGetBlockFaceShape, IMTERecolorBlock {
 
     public static final IndexedCuboid6 FULL_CUBE_COLLISION = new IndexedCuboid6(null, Cuboid6.full);
     public static final String TAG_KEY_PAINTING_COLOR = "PaintingColor";
@@ -132,6 +131,12 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return holder;
     }
 
+    // TODO Clean up iface hierarchy, ICoverable is nonsense
+    @Override
+    public void scheduleRenderUpdate() {
+        ICoverable.super.scheduleRenderUpdate();
+    }
+
     public World getWorld() {
         return holder == null ? null : holder.getWorld();
     }
@@ -157,16 +162,8 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         if (holder != null) holder.writeCustomData(discriminator, dataWriter);
     }
 
-    public void addDebugInfo(List<String> list) {
-    }
-
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
-    }
-
-    @SideOnly(Side.CLIENT)
-    public Pair<TextureAtlasSprite, Integer> getParticleTexture() {
-        return Pair.of(TextureUtils.getMissingSprite(), 0xFFFFFF);
     }
 
     /**
@@ -195,7 +192,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     @SideOnly(Side.CLIENT)
     public int getPaintingColorForRendering() {
-        return isPainted() ? paintingColor : getDefaultPaintingColor();
+        return paintingColor == -1 ? paintingColor : getDefaultPaintingColor();
     }
 
     public final String getMetaName() {
@@ -283,13 +280,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return createUI(entityPlayer);
     }
 
-    public final void onCoverLeftClick(EntityPlayer playerIn, CuboidRayTraceResult result) {
-        CoverBehavior coverBehavior = getCoverAtSide(result.sideHit);
-        if (coverBehavior == null || !coverBehavior.onLeftClick(playerIn, result)) {
-            onLeftClick(playerIn, result.sideHit, result);
-        }
-    }
-
     public final boolean onCoverRightClick(EntityPlayer playerIn, EnumHand hand, CuboidRayTraceResult result) {
         CoverBehavior coverBehavior = getCoverAtSide(result.sideHit);
         EnumActionResult coverResult = coverBehavior == null ? EnumActionResult.PASS :
@@ -367,7 +357,17 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return false;
     }
 
-    public void onLeftClick(EntityPlayer player, EnumFacing facing, CuboidRayTraceResult hitResult) {
+    // TODO Coverable impl
+    @Override
+    public final void onLeftClick(EntityPlayer player, CuboidRayTraceResult result) {
+        if (result == null) return;
+        CoverBehavior coverBehavior = getCoverAtSide(result.sideHit);
+        if (coverBehavior == null || !coverBehavior.onLeftClick(player, result)) {
+            onLeftClick(player, result.sideHit, result);
+        }
+    }
+
+    public void onLeftClick(EntityPlayer player, EnumFacing facing, CuboidRayTraceResult result) {
     }
 
     @Nullable
@@ -602,13 +602,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     }
 
     /**
-     * Retrieves face shape on the current side of this meta tile entity
-     */
-    public BlockFaceShape getFaceShape(EnumFacing side) {
-        return isOpaqueCube() ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
-    }
-
-    /**
      * @return tool required to dismantle this meta tile entity properly
      */
     public String getHarvestTool() {
@@ -641,10 +634,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             }
         }
         buf.writeBoolean(muffled);
-    }
-
-    public boolean isPainted() {
-        return this.paintingColor != -1;
     }
 
     public void receiveInitialSyncData(PacketBuffer buf) {
@@ -726,11 +715,11 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         }
     }
 
-    public BlockFaceShape getCoverFaceShape(EnumFacing side) {
+    public BlockFaceShape getBlockFaceShape(EnumFacing side) {
         if (getCoverAtSide(side) != null) {
             return BlockFaceShape.SOLID; //covers are always solid
         }
-        return getFaceShape(side);
+        return isOpaqueCube() ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
 
     public final <T> T getCoverCapability(Capability<T> capability, EnumFacing side) {
@@ -998,10 +987,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     }
 
     @Override
-    public void scheduleRenderUpdate() {
-        getTileEntity().scheduleRenderUpdate();
-    }
-
     public void setFrontFacing(EnumFacing frontFacing) {
         Preconditions.checkNotNull(frontFacing, "frontFacing");
         this.frontFacing = frontFacing;
@@ -1013,23 +998,31 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         }
     }
 
-    public void setPaintingColor(int paintingColor) {
-        this.paintingColor = paintingColor;
-        if (getWorld() != null && !getWorld().isRemote) {
-            getTileEntity().notifyBlockUpdate();
-            markDirty();
-            writeCustomData(UPDATE_PAINTING_COLOR, buf -> buf.writeInt(paintingColor));
+    @Override
+    public boolean recolorBlock(EnumDyeColor color) {
+        int colorValue = color == null ? -1 : color.colorValue;
+        if (paintingColor != colorValue) {
+            paintingColor = colorValue;
+            if (isServerSide()) {
+                notifyBlockUpdate();
+                markDirty();
+                writeCustomData(UPDATE_PAINTING_COLOR, buf -> buf.writeInt(paintingColor));
+            }
+            return true;
         }
+        return false;
     }
 
     public int getDefaultPaintingColor() {
         return ConfigHolder.client.defaultPaintingColor;
     }
 
+    @Override
     public boolean isValidFrontFacing(EnumFacing facing) {
         return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
     }
 
+    // TODO Remove, use instanceof ITurnable instead
     public boolean hasFrontFacing() {
         return true;
     }
@@ -1044,7 +1037,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         data.setInteger("FrontFacing", frontFacing.getIndex());
-        if (isPainted()) {
+        if (paintingColor != -1) {
             data.setInteger(TAG_KEY_PAINTING_COLOR, paintingColor);
         }
 
@@ -1156,12 +1149,9 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return false;
     }
 
+    @Override
     public EnumFacing getFrontFacing() {
         return frontFacing;
-    }
-
-    public int getPaintingColor() {
-        return paintingColor;
     }
 
     public IItemHandler getItemInventory() {
@@ -1202,14 +1192,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     public List<IFluidHandler> getNotifiedFluidOutputList() {
         return notifiedFluidOutputList;
-    }
-
-    public float getBlockHardness() {
-        return 6.0f;
-    }
-
-    public float getBlockResistance() {
-        return 6.0f;
     }
 
     /**

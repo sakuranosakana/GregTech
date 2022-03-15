@@ -61,7 +61,7 @@ public abstract class MultiblockControllerBase extends MetaTileEntity implements
     }
 
     @Override
-    public void onAttached(Object... data) {
+    public void onAttached() {
         reinitializeStructurePattern();
     }
 
@@ -100,10 +100,6 @@ public abstract class MultiblockControllerBase extends MetaTileEntity implements
     protected abstract BlockPattern createStructurePattern();
 
     public abstract ICubeRenderer getBaseTexture(IMultiblockPart sourcePart);
-
-    public boolean shouldRenderOverlay(IMultiblockPart sourcePart) {
-        return true;
-    }
 
     public int getLightValueForPart(IMultiblockPart part) {
         return 0;

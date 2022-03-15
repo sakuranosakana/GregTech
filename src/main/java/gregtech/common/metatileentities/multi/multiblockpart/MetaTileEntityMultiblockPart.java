@@ -94,8 +94,7 @@ public abstract class MetaTileEntityMultiblockPart extends MetaTileEntity implem
     }
 
     public boolean shouldRenderOverlay() {
-        MultiblockControllerBase controller = getController();
-        return controller == null || controller.shouldRenderOverlay(this);
+        return getController() == null;
     }
 
     @Override

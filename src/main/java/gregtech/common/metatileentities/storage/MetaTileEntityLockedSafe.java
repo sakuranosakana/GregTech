@@ -55,7 +55,7 @@ import java.util.function.DoubleSupplier;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_CONTENTS_SEED;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_LOCKED_STATE;
 
-public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEGetLightOpacity, IMTEGetDrops {
+public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEGetLightOpacity, IMTEGetDrops, IMTEHardnessResistance {
 
     private static final int MAX_UNLOCK_PROGRESS = 100;
     private static Component[] ALLOWED_COMPONENTS;
@@ -133,11 +133,11 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
 
     @Override
     public float getBlockHardness() {
-        return isSafeUnlocked() ? 6.0f : -1.0f;
+        return isSafeUnlocked() ? 6.0F : -1.0F;
     }
 
     @Override
-    public float getBlockResistance() {
+    public float getExplosionResistance() {
         return 6000000.0F;
     }
 

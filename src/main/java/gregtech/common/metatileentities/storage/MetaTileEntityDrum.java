@@ -76,11 +76,6 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     }
 
     @Override
-    public boolean isOpaqueCube() {
-        return false;
-    }
-
-    @Override
     public String getHarvestTool() {
         return isMaterialWood(material) ? "axe" : "pickaxe";
     }

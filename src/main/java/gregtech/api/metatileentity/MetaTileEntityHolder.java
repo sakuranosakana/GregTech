@@ -1,12 +1,11 @@
 package gregtech.api.metatileentity;
 
+import codechicken.lib.raytracer.CuboidRayTraceResult;
 import com.google.common.base.Preconditions;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.machines.BlockMachine;
 import gregtech.api.cover.CoverBehavior;
-import gregtech.api.metatileentity.interfaces.IFastRenderMetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.*;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
 import gregtech.api.net.NetworkHandler;
 import gregtech.api.net.packets.CPacketRecoverMTE;
@@ -86,13 +85,6 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
         if (currentState.getValue(BlockMachine.OPAQUE) != isMetaTileEntityOpaque) {
             world.setBlockState(getPos(), currentState.withProperty(BlockMachine.OPAQUE, isMetaTileEntityOpaque));
         }
-    }
-
-    public void scheduleRenderUpdate() {
-        BlockPos pos = getPos();
-        getWorld().markBlockRangeForRenderUpdate(
-                pos.getX() - 1, pos.getY() - 1, pos.getZ() - 1,
-                pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
     }
 
     public void notifyBlockUpdate() {
@@ -299,24 +291,13 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
     @Override public final void onLoad() {if (metaTileEntity instanceof IMTEOnLoad) ((IMTEOnLoad) metaTileEntity).onLoad();}
     @Override public final void onChunkUnload() {if (metaTileEntity instanceof IMTEOnChunkUnload) ((IMTEOnChunkUnload) metaTileEntity).onChunkUnload();}
     @Override public final void invalidate() {if (metaTileEntity instanceof IMTEInvalidate) ((IMTEInvalidate) metaTileEntity).invalidate(); super.invalidate();}
+    @Override public final void rotate(@Nonnull Rotation rotationIn) {if (metaTileEntity instanceof ITurnable) ((ITurnable) metaTileEntity).setFrontFacing(rotationIn.rotate(((ITurnable) metaTileEntity).getFrontFacing()));}
+    @Override public final void mirror(@Nonnull Mirror mirrorIn) {if (metaTileEntity instanceof ITurnable) rotate(mirrorIn.toRotation(((ITurnable) metaTileEntity).getFrontFacing()));}
+    @Override public final AxisAlignedBB getRenderBoundingBox() {return metaTileEntity instanceof IFastRenderMetaTileEntity ? ((IFastRenderMetaTileEntity) metaTileEntity).getRenderBoundingBox() : new AxisAlignedBB(getPos());}
 
     @Override
     public boolean shouldRefresh(@Nonnull World world, @Nonnull BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock(); //MetaTileEntityHolder should never refresh (until block changes)
-    }
-
-    @Override
-    public void rotate(@Nonnull Rotation rotationIn) {
-        if (metaTileEntity != null) {
-            metaTileEntity.setFrontFacing(rotationIn.rotate(metaTileEntity.getFrontFacing()));
-        }
-    }
-
-    @Override
-    public void mirror(@Nonnull Mirror mirrorIn) {
-        if (metaTileEntity != null) {
-            rotate(mirrorIn.toRotation(metaTileEntity.getFrontFacing()));
-        }
     }
 
     @Override
@@ -334,24 +315,8 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
         return false;
     }
 
-    @Nonnull
-    @Override
-    public AxisAlignedBB getRenderBoundingBox() {
-        if (metaTileEntity instanceof IFastRenderMetaTileEntity) {
-            return ((IFastRenderMetaTileEntity) metaTileEntity).getRenderBoundingBox();
-        }
-        return new AxisAlignedBB(getPos());
-    }
-
-    @Override
-    public boolean canRenderBreaking() {
-        return false;
-    }
-
-    @Override
-    public boolean hasFastRenderer() {
-        return true;
-    }
+    @Override public final boolean canRenderBreaking() {return false;}
+    @Override public final boolean hasFastRenderer() {return true;}
 
     public boolean hasTESR() {
         if (metaTileEntity == null) return false;

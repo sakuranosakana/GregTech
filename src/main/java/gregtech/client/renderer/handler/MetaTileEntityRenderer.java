@@ -16,12 +16,12 @@ import codechicken.lib.vec.uv.IconTransformation;
 import gregtech.api.GTValues;
 import gregtech.api.block.machines.BlockMachine;
 import gregtech.api.block.machines.MachineItemBlock;
-import gregtech.api.metatileentity.interfaces.IFastRenderMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.client.renderer.texture.Textures;
-import gregtech.client.renderer.CubeRendererState;
+import gregtech.api.metatileentity.interfaces.IFastRenderMetaTileEntity;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.ModCompatibility;
+import gregtech.client.renderer.CubeRendererState;
+import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -75,17 +75,17 @@ public class MetaTileEntityRenderer implements ICCBlockRenderer, IItemRenderer {
         if (!(stack.getItem() instanceof MachineItemBlock)) {
             return;
         }
-        MetaTileEntity metaTileEntity = MachineItemBlock.getMetaTileEntity(stack);
-        if (metaTileEntity == null) {
+        MetaTileEntity tileEntity = MachineItemBlock.getMetaTileEntity(stack);
+        if (tileEntity == null) {
             return;
         }
         GlStateManager.enableBlend();
         CCRenderState renderState = CCRenderState.instance();
         renderState.reset();
         renderState.startDrawing(GL11.GL_QUADS, DefaultVertexFormats.ITEM);
-        metaTileEntity.renderMetaTileEntity(renderState, new Matrix4(), new IVertexOperation[0]);
-        if (metaTileEntity instanceof IFastRenderMetaTileEntity) {
-            ((IFastRenderMetaTileEntity) metaTileEntity).renderMetaTileEntityFast(renderState, new Matrix4(), 0.0f);
+        tileEntity.renderTileEntity(renderState, new Matrix4(), new IVertexOperation[0]);
+        if (tileEntity instanceof IFastRenderMetaTileEntity) {
+            ((IFastRenderMetaTileEntity) tileEntity).renderMetaTileEntityFast(renderState, new Matrix4(), 0.0f);
         }
         renderState.draw();
         GlStateManager.disableBlend();
@@ -111,7 +111,7 @@ public class MetaTileEntityRenderer implements ICCBlockRenderer, IItemRenderer {
         if (metaTileEntity.canRenderInLayer(renderLayer)) {
             renderState.lightMatrix.locate(world, pos);
             IVertexOperation[] pipeline = new IVertexOperation[]{renderState.lightMatrix};
-            metaTileEntity.renderMetaTileEntity(renderState, translation.copy(), pipeline);
+            metaTileEntity.renderTileEntity(renderState, translation.copy(), pipeline);
         }
 
         metaTileEntity.renderCovers(renderState, translation.copy(), renderLayer);

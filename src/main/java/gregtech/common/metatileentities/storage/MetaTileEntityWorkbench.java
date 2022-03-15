@@ -13,9 +13,9 @@ import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.gui.widgets.TabGroup.TabLocation;
 import gregtech.api.gui.widgets.tab.ItemTabInfo;
+import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.storage.ICraftingStorage;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.InventoryUtils;
@@ -109,7 +109,7 @@ public class MetaTileEntityWorkbench extends MetaTileEntity implements ICrafting
     }
 
     @Override
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         int paintingColor = getPaintingColorForRendering();
         pipeline = ArrayUtils.add(pipeline, new ColourMultiplier(GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColor)));
         Textures.CRAFTING_TABLE.renderOriented(renderState, translation, pipeline, getFrontFacing());

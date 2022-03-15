@@ -15,17 +15,19 @@ import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.gui.widgets.ServerWidgetGroup;
 import gregtech.api.gui.widgets.SlotWidget;
+import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IFastRenderMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
-import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetDrops;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetLightOpacity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEHardnessResistance;
 import gregtech.api.recipes.CountableIngredient;
 import gregtech.api.recipes.ModHandler;
-import gregtech.api.util.InventoryUtils;
-import gregtech.client.renderer.texture.Textures;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.InventoryUtils;
+import gregtech.client.renderer.texture.Textures;
 import gregtech.common.worldgen.LootTableHelper;
 import gregtech.loaders.recipe.CraftingComponent;
 import gregtech.loaders.recipe.CraftingComponent.Component;
@@ -344,7 +346,7 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
     }
 
     @Override
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
     }
 
     @Override

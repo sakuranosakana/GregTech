@@ -2,15 +2,9 @@ package gregtech.api.metatileentity;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.raytracer.IndexedCuboid6;
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.ColourMultiplier;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.texture.TextureUtils;
 import codechicken.lib.vec.Cuboid6;
-import codechicken.lib.vec.Matrix4;
 import com.google.common.base.Preconditions;
 import gregtech.api.GregTechAPI;
-import gregtech.api.block.machines.BlockMachine;
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.*;
@@ -27,13 +21,10 @@ import gregtech.api.sound.GTSoundManager;
 import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.InventoryUtils;
-import gregtech.client.renderer.texture.Textures;
-import gregtech.client.utils.BloomEffectUtil;
 import gregtech.common.ConfigHolder;
 import gregtech.common.advancement.GTTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -54,7 +45,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
-import org.apache.commons.lang3.ArrayUtils;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -63,7 +53,7 @@ import java.util.function.Consumer;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
 
-public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable, IMTEOnLoad, IMTETickable, IMTEInvalidate, IRotatable, IMTEGetBlockFaceShape, IPaintable {
+public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable, IMTEOnLoad, IMTETickable, IMTEInvalidate, IRotatable, IMTEGetBlockFaceShape, IMTERenderable, IPaintable {
 
     public static final IndexedCuboid6 FULL_CUBE_COLLISION = new IndexedCuboid6(null, Cuboid6.full);
     public static final String TAG_KEY_MUFFLED = "Muffled";
@@ -156,30 +146,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
-    }
-
-    /**
-     * Renders this meta tile entity
-     * Note that you shouldn't refer to world-related information in this method, because it
-     * will be called on ItemStacks too
-     *
-     * @param renderState render state (either chunk batched or item)
-     * @param pipeline    default set of pipeline transformations
-     */
-    @SideOnly(Side.CLIENT)
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
-        TextureAtlasSprite atlasSprite = TextureUtils.getMissingSprite();
-        IVertexOperation[] renderPipeline = ArrayUtils.add(pipeline, new ColourMultiplier(GTUtility.convertRGBtoOpaqueRGBA_CL(getPaintingColorForRendering())));
-        for (EnumFacing face : EnumFacing.VALUES) {
-            Textures.renderFace(renderState, translation, renderPipeline, face, Cuboid6.full, atlasSprite, BlockRenderLayer.CUTOUT_MIPPED);
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean canRenderInLayer(BlockRenderLayer renderLayer) {
-        return renderLayer == BlockRenderLayer.CUTOUT_MIPPED ||
-                renderLayer == BloomEffectUtil.getRealBloomLayer() ||
-                (renderLayer == BlockRenderLayer.TRANSLUCENT && !getWorld().getBlockState(getPos()).getValue(BlockMachine.OPAQUE));
     }
 
     public final String getMetaName() {
@@ -443,6 +409,17 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         return !isOpaqueCube();
     }
 
+    @Override
+    public boolean isSideUsed(EnumFacing side) {
+        if (getCoverAtSide(side) != null) return true;
+        return getFrontFacing() == side && this.canRenderFrontFaceX();
+    }
+
+    @Override
+    public boolean canRenderMachineGrid() {
+        return ICoverable.super.canRenderMachineGrid();
+    }
+
     // TODO This can probably go somewhere else
     public void onLoad() {
         for (EnumFacing side : EnumFacing.VALUES) {
@@ -574,14 +551,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
      */
     public boolean isOpaqueCube() {
         return true;
-    }
-
-    /**
-     * Called to obtain list of AxisAlignedBB used for collision testing, highlight rendering
-     * and ray tracing this meta tile entity's block in world
-     */
-    public void addCollisionBoundingBox(List<IndexedCuboid6> collisionList) {
-        collisionList.add(FULL_CUBE_COLLISION);
     }
 
     /**
@@ -747,18 +716,23 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
     public boolean fillInternalTankFromFluidContainer(IItemHandlerModifiable importItems, IItemHandlerModifiable exportItems, int inputSlot, int outputSlot) {
         return GTFluidUtils.fillTankFromContainer(importItems, exportItems, inputSlot, outputSlot, importFluids);
     }
+
     public boolean fillContainerFromInternalTank(IItemHandlerModifiable importItems, IItemHandlerModifiable exportItems, int inputSlot, int outputSlot) {
         return GTFluidUtils.fillContainerFromTank(importItems, exportItems, inputSlot, outputSlot, exportFluids);
     }
+
     public void pushFluidsIntoNearbyHandlers(EnumFacing... allowedFaces) {
         GTFluidUtils.pushFluidsIntoNearbyHandlers(this, allowedFaces);
     }
+
     public void pullFluidsFromNearbyHandlers(EnumFacing... allowedFaces) {
         GTFluidUtils.pullFluidsFromNearbyHandlers(this, allowedFaces);
     }
+
     public void pushItemsIntoNearbyHandlers(EnumFacing... allowedFaces) {
         InventoryUtils.pushItemsIntoNearbyHandlers(this, allowedFaces);
     }
+
     public void pullItemsFromNearbyHandlers(EnumFacing... allowedFaces) {
         InventoryUtils.pullItemsFromNearbyHandlers(this, allowedFaces);
     }
@@ -1011,15 +985,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     public boolean isMuffled() {
         return muffled;
-    }
-
-    public boolean canRenderFrontFaceX() {
-        return false;
-    }
-
-    public boolean isSideUsed(EnumFacing face) {
-        if (getCoverAtSide(face) != null) return true;
-        return face == this.getFrontFacing() && this.canRenderFrontFaceX();
     }
 
     public RecipeMap<?> getRecipeMap() {

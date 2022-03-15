@@ -9,13 +9,15 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.api.capability.impl.FilteredFluidHandler;
 import gregtech.api.capability.impl.ThermalFluidHandlerItemStack;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.client.renderer.texture.Textures;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetComparatorInputOverride;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEItemStackCapability;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEItemStackData;
 import gregtech.api.unification.material.Material;
 import gregtech.api.util.GTUtility;
+import gregtech.client.renderer.texture.Textures;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +45,7 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
 
-import static gregtech.api.capability.GregtechDataCodes.*;
+import static gregtech.api.capability.GregtechDataCodes.UPDATE_AUTO_OUTPUT;
 import static gregtech.api.recipes.ModHandler.isMaterialWood;
 import static gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE;
 
@@ -206,7 +208,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     }
 
     @Override
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         if(isMaterialWood(material)) {
             ColourMultiplier multiplier = new ColourMultiplier(GTUtility.convertRGBtoOpaqueRGBA_CL(getPaintingColorForRendering()));
             Textures.WOODEN_DRUM.render(renderState, translation, ArrayUtils.add(pipeline, multiplier), getFrontFacing());

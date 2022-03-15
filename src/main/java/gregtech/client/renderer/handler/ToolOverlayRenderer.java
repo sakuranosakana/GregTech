@@ -7,8 +7,9 @@ import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.cover.ICoverable;
 import gregtech.api.cover.ICoverable.PrimaryBoxData;
 import gregtech.api.items.toolitem.IAOEItem;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMTERenderable;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.pipenet.block.BlockPipe;
 import gregtech.api.pipenet.tile.TileEntityPipeBase;
 import gregtech.api.util.GTUtility;
@@ -78,8 +79,8 @@ public class ToolOverlayRenderer {
         TileEntity tileEntity = world.getTileEntity(pos);
         ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 
-        if (tileEntity instanceof MetaTileEntityHolder) {
-            if (((MetaTileEntityHolder) tileEntity).getMetaTileEntity() instanceof MetaTileEntityMonitorScreen) {
+        if (tileEntity instanceof IGregTechTileEntity) {
+            if (((IGregTechTileEntity) tileEntity).getMetaTileEntity() instanceof MetaTileEntityMonitorScreen) {
                 event.setCanceled(true);
                 return;
             }
@@ -104,8 +105,8 @@ public class ToolOverlayRenderer {
                 if (tileEntity instanceof TileEntityPipeBase)
                     drawOverlayLines(facing, box, facing1 -> ((TileEntityPipeBase<?, ?>) tileEntity).isConnected(facing1) ||
                             ((TileEntityPipeBase<?, ?>) tileEntity).getCoverableImplementation().getCoverAtSide(facing1) != null);
-                else if (tileEntity instanceof MetaTileEntityHolder)
-                    drawOverlayLines(facing, box, face -> ((MetaTileEntityHolder) tileEntity).getMetaTileEntity().isSideUsed(face));
+                else if (tileEntity instanceof IGregTechTileEntity && tileEntity instanceof IMTERenderable)
+                    drawOverlayLines(facing, box, face -> ((IMTERenderable) ((IGregTechTileEntity) tileEntity).getMetaTileEntity()).isSideUsed(face));
                 else
                     drawOverlayLines(facing, box, ignored -> false);
             }
@@ -135,12 +136,14 @@ public class ToolOverlayRenderer {
 
     public static boolean shouldDrawOverlayForItem(IBlockState state, TileEntity tileEntity, ItemStack itemStack) {
         // MetaTileEntity
-        if (tileEntity instanceof MetaTileEntityHolder) {
-            MetaTileEntity mte = ((MetaTileEntityHolder) tileEntity).getMetaTileEntity();
-            if (mte == null || !mte.canRenderMachineGrid())
-                return false;
-            if (itemStack.hasCapability(GregtechCapabilities.CAPABILITY_WRENCH, null))
-                return true;
+        if (tileEntity instanceof IGregTechTileEntity) {
+            IMetaTileEntity mte = ((IGregTechTileEntity) tileEntity).getMetaTileEntity();
+            if (mte instanceof IMTERenderable) {
+                if (!((IMTERenderable) mte).canRenderMachineGrid())
+                    return false;
+                if (itemStack.hasCapability(GregtechCapabilities.CAPABILITY_WRENCH, null))
+                    return true;
+            }
         }
 
         // Pipes

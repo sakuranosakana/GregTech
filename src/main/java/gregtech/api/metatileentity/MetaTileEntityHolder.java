@@ -288,11 +288,19 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
     }
 
     // Passthrough methods for interfaces
+    /** Method passed through to {@link IMTEOnLoad} */
     @Override public final void onLoad() {if (metaTileEntity instanceof IMTEOnLoad) ((IMTEOnLoad) metaTileEntity).onLoad();}
+    /** Method passed through to {@link IMTEOnChunkUnload} */
     @Override public final void onChunkUnload() {if (metaTileEntity instanceof IMTEOnChunkUnload) ((IMTEOnChunkUnload) metaTileEntity).onChunkUnload();}
+    /** Method passed through to {@link IMTEInvalidate} */
     @Override public final void invalidate() {if (metaTileEntity instanceof IMTEInvalidate) ((IMTEInvalidate) metaTileEntity).invalidate(); super.invalidate();}
-    @Override public final void rotate(@Nonnull Rotation rotationIn) {if (metaTileEntity instanceof ITurnable) ((ITurnable) metaTileEntity).setFrontFacing(rotationIn.rotate(((ITurnable) metaTileEntity).getFrontFacing()));}
-    @Override public final void mirror(@Nonnull Mirror mirrorIn) {if (metaTileEntity instanceof ITurnable) rotate(mirrorIn.toRotation(((ITurnable) metaTileEntity).getFrontFacing()));}
+
+    /** Method passed through to {@link ITurnable} */
+    @Override public final void rotate(@Nonnull Rotation rotationIn) {if (metaTileEntity instanceof ITurnable) ((ITurnable) metaTileEntity).rotate(rotationIn);}
+    /** Method passed through to {@link ITurnable} */
+    @Override public final void mirror(@Nonnull Mirror mirrorIn) {if (metaTileEntity instanceof ITurnable) ((ITurnable) metaTileEntity).mirror(mirrorIn);}
+
+    /** Method passed through to {@link IFastRenderMetaTileEntity}. Default full bounding box */
     @Override public final AxisAlignedBB getRenderBoundingBox() {return metaTileEntity instanceof IFastRenderMetaTileEntity ? ((IFastRenderMetaTileEntity) metaTileEntity).getRenderBoundingBox() : new AxisAlignedBB(getPos());}
 
     @Override

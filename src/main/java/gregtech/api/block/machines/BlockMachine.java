@@ -65,9 +65,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.xml.soap.Text;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -155,8 +153,12 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
         return state.getValue(OPAQUE) ? 0 : 1;
     }
 
+    /** Method passed through to {@link IMTECanCreatureSpawn}. Default false */
     @Override public final boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IMTECanCreatureSpawn && ((IMTECanCreatureSpawn) mte).canCreatureSpawn(type);}
+
+    /** Method passed through to {@link IMTEHardnessResistance}. Default 6.0F */
     @Override public final float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {IMetaTileEntity mte = getMetaTileEntity(worldIn, pos); return mte instanceof IMTEHardnessResistance ? ((IMTEHardnessResistance) mte).getBlockHardness() : 6.0F;}
+    /** Method passed through to {@link IMTEHardnessResistance}. Default 6.0F */
     @Override public final float getExplosionResistance(World world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IMTEHardnessResistance ? ((IMTEHardnessResistance) mte).getExplosionResistance() : 6.0F;}
 
     private List<IndexedCuboid6> getCollisionBox(IBlockAccess blockAccess, BlockPos pos) {
@@ -200,32 +202,12 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
         return RayTracer.rayTraceCuboidsClosest(start, end, pos, getCollisionBox(worldIn, pos));
     }
 
-    @Override
-    public boolean rotateBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing axis) {
-        IMetaTileEntity metaTileEntity = getMetaTileEntity(world, pos);
-        if (metaTileEntity instanceof ITurnable) {
-            ITurnable turnable = (ITurnable) metaTileEntity;
-            if (!turnable.isValidFrontFacing(axis) || turnable.getFrontFacing() == axis)
-                return false;
-            turnable.setFrontFacing(axis);
-            return true;
-        }
-        return false;
-    }
+    /** Method passed through to {@link ITurnable}. Default false */
+    @Override public final boolean rotateBlock(World world, BlockPos pos, EnumFacing axis) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof ITurnable && ((ITurnable) mte).rotateBlock(axis);}
+    /** Method passed through to {@link ITurnable}. Default null */
+    @Override public final EnumFacing[] getValidRotations(@Nonnull World world, @Nonnull BlockPos pos) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof ITurnable ? ((ITurnable) mte).getValidRotations() : null;}
 
-    @Nullable
-    @Override
-    public EnumFacing[] getValidRotations(@Nonnull World world, @Nonnull BlockPos pos) {
-        IMetaTileEntity metaTileEntity = getMetaTileEntity(world, pos);
-        if (metaTileEntity instanceof ITurnable) {
-            ITurnable turnable = (ITurnable) metaTileEntity;
-            return Arrays.stream(EnumFacing.VALUES)
-                    .filter(turnable::isValidFrontFacing)
-                    .toArray(EnumFacing[]::new);
-        }
-        return null;
-    }
-
+    /** Method passed through to {@link IMTERecolorBlock}. Default false */
     @Override public final boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IMTERecolorBlock && ((IMTERecolorBlock) mte).recolorBlock(color);}
 
     @Override
@@ -325,6 +307,7 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
         return metaTileEntity.onCoverRightClick(playerIn, hand, rayTraceResult);
     }
 
+    /** Method passed through to {@link IMetaTileEntity}. Default no action */
     @Override public final void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn) {IMetaTileEntity mte = getMetaTileEntity(worldIn, pos); if (mte != null) mte.onLeftClick(playerIn, (CuboidRayTraceResult) RayTracer.retraceBlock(worldIn, playerIn, pos));}
 
     @Override
@@ -355,8 +338,10 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
         }
     }
 
-    @Override public final boolean hasComparatorInputOverride(IBlockState state) {return true;}
+    /** Method passed through to {@link IMTEGetComparatorInputOverride}. Default 0 */
     @Override public final int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {IMetaTileEntity mte = getMetaTileEntity(worldIn, pos); return mte instanceof IMTEGetComparatorInputOverride ? ((IMTEGetComparatorInputOverride) mte).getComparatorInputOverride() : 0;}
+    // No way to check if it has an override without access to world and pos, so must return true always
+    @Override public final boolean hasComparatorInputOverride(IBlockState state) {return true;}
 
     @Override
     public void harvestBlock(@Nonnull World worldIn, @Nonnull EntityPlayer player, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable TileEntity te, @Nonnull ItemStack stack) {
@@ -378,13 +363,21 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
         return state.getValue(OPAQUE);
     }
 
+    /** Method passed through to {@link IMTEGetBlockFaceShape}. Default SOLID if opaque, otherwise UNDEFINED */
     @Override public final BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {IMetaTileEntity mte = getMetaTileEntity(worldIn, pos); return mte instanceof IMTEGetBlockFaceShape ? ((IMTEGetBlockFaceShape) mte).getBlockFaceShape(face) : mte != null && mte.isOpaqueCube() ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;}
+
+    /** Method passed through to {@link IMTEGetLightValue}. Default 0 */
     @Override public final int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IMTEGetLightValue ? ((IMTEGetLightValue) mte).getLightValue() : 0;}
+
+    /** Method passed through to {@link IMTEGetLightOpacity}. Default 255 */
     @Override public final int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IMTEGetLightOpacity ? ((IMTEGetLightOpacity) mte).getLightOpacity() : 255;}
+
+    /** Method passed through to {@link IMTECanEntityDestroy}. Default super value */
     @Override public final boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {IMetaTileEntity mte = getMetaTileEntity(world, pos); return mte instanceof IMTECanEntityDestroy ? ((IMTECanEntityDestroy) mte).canEntityDestroy(entity) : super.canEntityDestroy(state, world, pos, entity);}
 
+    /** Method passed through to {@link IMTEGetSubBlocks}. Default adds {@link IMetaTileEntity#getStackForm()} to the List */
     @Override
-    public void getSubBlocks(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> items) {
+    public final void getSubBlocks(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> items) {
         for (IMetaTileEntity mte : GregTechAPI.MTE_REGISTRY) {
             if (mte instanceof IMTEGetSubBlocks) {
                 ((IMTEGetSubBlocks) mte).getSubBlocks(tab, items);
@@ -425,6 +418,6 @@ public class BlockMachine extends BlockCustomParticle implements ITileEntityProv
     // BlockCustomParticle override //
     //////////////////////////////////
 
-    /** Redirects to {@link IMetaTileEntity#getParticleTexture()}, returns a missing sprite if it cannot */
+    /** Method passed through to {@link IMetaTileEntity}. Default missing sprite */
     @Override @SideOnly(Side.CLIENT) protected final Pair<TextureAtlasSprite, Integer> getParticleTexture(World world, BlockPos blockPos) {IMetaTileEntity mte = getMetaTileEntity(world, blockPos); return mte == null ? Pair.of(TextureUtils.getMissingSprite(), 0xFFFFFF) : mte.getParticleTexture();}
 }

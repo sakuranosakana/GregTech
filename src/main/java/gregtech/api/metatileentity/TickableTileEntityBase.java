@@ -10,7 +10,7 @@ public abstract class TickableTileEntityBase extends SyncedTileEntityBase implem
     // Create an offset [0,20) to distribute ticks more evenly
     private final int offset = GTValues.RNG.nextInt(20);
 
-    public boolean isFirstTick() {
+    protected boolean isFirstTick() {
         return timer == 0;
     }
 

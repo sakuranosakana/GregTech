@@ -76,6 +76,14 @@ public class MetaTileEntityMagicEnergyAbsorber extends TieredMetaTileEntity {
     }
 
     @Override
+    public void onFirstTick() {
+        if (!getWorld().isRemote && getWorld().provider instanceof WorldProviderEnd) {
+            updateDragonEggStatus();
+            updateConnectedCrystals();
+        }
+    }
+
+    @Override
     public void update() {
         super.update();
         if (getWorld().isRemote)
@@ -83,10 +91,10 @@ public class MetaTileEntityMagicEnergyAbsorber extends TieredMetaTileEntity {
         if (!(getWorld().provider instanceof WorldProviderEnd)) {
             return; //don't try to do anything outside end dimension
         }
-        if (getOffsetTimer() % 20 == 0 || isFirstTick()) {
+        if (getOffsetTimer() % 20 == 0) {
             updateDragonEggStatus();
         }
-        if (getOffsetTimer() % 200 == 0 || isFirstTick()) {
+        if (getOffsetTimer() % 200 == 0) {
             updateConnectedCrystals();
         }
         int totalEnergyGeneration = 0;

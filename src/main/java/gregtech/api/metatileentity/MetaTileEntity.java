@@ -64,7 +64,7 @@ import java.util.function.Consumer;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
 
-public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable, IMTEOnLoad, IMTEUpdate, IMTEInvalidate {
+public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVoidable, IMTEOnLoad, IMTETickable, IMTEInvalidate {
 
     public static final IndexedCuboid6 FULL_CUBE_COLLISION = new IndexedCuboid6(null, Cuboid6.full);
     public static final String TAG_KEY_PAINTING_COLOR = "PaintingColor";
@@ -139,11 +139,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
 
     public void markDirty() {
         if (holder != null) holder.markDirty();
-    }
-
-    // todo
-    public boolean isFirstTick() {
-        return holder != null && holder.isFirstTick();
     }
 
     /**
@@ -518,6 +513,10 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         }
     }
 
+    @Override
+    public void onFirstTick() {
+    }
+
     public void update() {
         for (MTETrait mteTrait : this.mteTraits) {
             if (shouldUpdate(mteTrait)) {
@@ -533,6 +532,10 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
         } else {
             updateSound();
         }
+    }
+
+    @Override
+    public void onTickFailed(boolean isServerSide) {
     }
 
     protected boolean shouldUpdate(MTETrait trait) {

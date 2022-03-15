@@ -80,7 +80,6 @@ public interface IMetaTileEntity {
     interface IMTEOnLoad        extends IMetaTileEntity {void onLoad();}
     interface IMTEOnChunkUnload extends IMetaTileEntity {void onChunkUnload();}
     interface IMTEInvalidate    extends IMetaTileEntity {void invalidate();}
-    interface IMTEUpdate        extends IMetaTileEntity {void update();}
 
     // Hooks into the Block Class. Implement them in order to overwrite the Default Behaviours.
     // TODO more here
@@ -110,5 +109,17 @@ public interface IMetaTileEntity {
      */
     interface IMTEItemStackCapability extends IMetaTileEntity {
         ICapabilityProvider initItemStackCapabilities(ItemStack stack);
+    }
+
+    interface IMTETickable extends IMetaTileEntity {
+
+        /**
+         * The First processed Tick which was passed to this MetaTileEntity. This will get called when block was placed as well as on world load
+         */
+        void onFirstTick();
+
+        void update();
+
+        void onTickFailed(boolean isServerSide);
     }
 }

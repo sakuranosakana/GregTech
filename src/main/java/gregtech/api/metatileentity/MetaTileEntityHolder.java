@@ -146,8 +146,21 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
     @Override
     public void update() {
         long tickTime = System.nanoTime();
-        if (metaTileEntity instanceof IMTEUpdate) {
-            ((IMTEUpdate) metaTileEntity).update();
+        if (metaTileEntity instanceof IMTETickable) {
+            IMTETickable tickable = (IMTETickable) metaTileEntity;
+            try {
+                if (isFirstTick()) tickable.onFirstTick();
+                tickable.update();
+            } catch (Throwable e1) {
+                GTLog.logger.error("A TileEntity encountered an exception!");
+                GTLog.logger.error(e1.toString());
+                try {
+                    tickable.onTickFailed(isServerSide());
+                } catch (Throwable e2) {
+                    GTLog.logger.error("A TileEntity encountered an exception while handling an error!");
+                    GTLog.logger.error(e2.toString());
+                }
+            }
         } else if (metaTileEntity == null) {
             if (world.isRemote) { // recover the mte
                 NetworkHandler.channel.sendToServer(new CPacketRecoverMTE(world.provider.getDimension(), getPos()).toFMLPacket());

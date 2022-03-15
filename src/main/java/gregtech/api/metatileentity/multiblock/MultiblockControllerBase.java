@@ -70,10 +70,15 @@ public abstract class MultiblockControllerBase extends MetaTileEntity implements
     }
 
     @Override
+    public void onFirstTick() {
+        if (!getWorld().isRemote) checkStructurePattern();
+    }
+
+    @Override
     public void update() {
         super.update();
         if (!getWorld().isRemote) {
-            if (getOffsetTimer() % 20 == 0 || isFirstTick()) {
+            if (getOffsetTimer() % 20 == 0) {
                 checkStructurePattern();
             }
             // DummyWorld is the world for the JEI preview. We do not want to update the Multi in this world,

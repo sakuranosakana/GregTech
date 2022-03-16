@@ -66,7 +66,6 @@ public interface ICoverable extends IHasWorldObjectAndCoords {
     default void renderCovers(CCRenderState renderState, Matrix4 translation, BlockRenderLayer layer) {
         renderState.lightMatrix.locate(getWorld(), getPos());
         double coverPlateThickness = getCoverPlateThickness();
-        //TODO color seems to be multiplied twice when covers are placed on pipes - compare a machine vs cover on pipe
         int paintingColor = GTUtility.convertRGBtoOpaqueRGBA_CL(this instanceof IPaintable ? ((IPaintable) this).getPaintingColorForRendering() : ConfigHolder.client.defaultPaintingColor);
         IVertexOperation[] platePipeline = new IVertexOperation[]{renderState.lightMatrix, new ColourMultiplier(paintingColor)};
         IVertexOperation[] coverPipeline = new IVertexOperation[]{renderState.lightMatrix};

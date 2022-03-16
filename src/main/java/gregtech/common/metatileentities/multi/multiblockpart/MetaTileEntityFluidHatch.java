@@ -16,6 +16,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
@@ -77,12 +78,12 @@ public class MetaTileEntityFluidHatch extends MetaTileEntityMultiblockNotifiable
     public void update() {
         super.update();
         if (!getWorld().isRemote) {
-            fillContainerFromInternalTank(containerInventory, containerInventory, 0, 1);
+            GTFluidUtils.fillTankFromContainer(containerInventory, containerInventory, 0, 1, importFluids);
             if (isExportHatch) {
-                pushFluidsIntoNearbyHandlers(getFrontFacing());
+                GTFluidUtils.pushFluidsIntoNearbyHandlers(this, getFrontFacing());
             } else {
-                fillInternalTankFromFluidContainer(containerInventory, containerInventory, 0, 1);
-                pullFluidsFromNearbyHandlers(getFrontFacing());
+                GTFluidUtils.fillTankFromContainer(containerInventory, containerInventory, 0, 1, importFluids);
+                GTFluidUtils.pullFluidsFromNearbyHandlers(this, getFrontFacing());
             }
         }
     }

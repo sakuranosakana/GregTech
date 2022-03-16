@@ -18,7 +18,6 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEInvalidate;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEOnLoad;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.sound.GTSoundManager;
-import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.InventoryUtils;
 import gregtech.common.ConfigHolder;
@@ -710,31 +709,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity, ICoverable, IVo
             }
         }
         return capabilityResult;
-    }
-
-    // TODO Get rid of these 6, just call them statically directly
-    public boolean fillInternalTankFromFluidContainer(IItemHandlerModifiable importItems, IItemHandlerModifiable exportItems, int inputSlot, int outputSlot) {
-        return GTFluidUtils.fillTankFromContainer(importItems, exportItems, inputSlot, outputSlot, importFluids);
-    }
-
-    public boolean fillContainerFromInternalTank(IItemHandlerModifiable importItems, IItemHandlerModifiable exportItems, int inputSlot, int outputSlot) {
-        return GTFluidUtils.fillContainerFromTank(importItems, exportItems, inputSlot, outputSlot, exportFluids);
-    }
-
-    public void pushFluidsIntoNearbyHandlers(EnumFacing... allowedFaces) {
-        GTFluidUtils.pushFluidsIntoNearbyHandlers(this, allowedFaces);
-    }
-
-    public void pullFluidsFromNearbyHandlers(EnumFacing... allowedFaces) {
-        GTFluidUtils.pullFluidsFromNearbyHandlers(this, allowedFaces);
-    }
-
-    public void pushItemsIntoNearbyHandlers(EnumFacing... allowedFaces) {
-        InventoryUtils.pushItemsIntoNearbyHandlers(this, allowedFaces);
-    }
-
-    public void pullItemsFromNearbyHandlers(EnumFacing... allowedFaces) {
-        InventoryUtils.pullItemsFromNearbyHandlers(this, allowedFaces);
     }
 
     public final int getOutputRedstoneSignal(@Nullable EnumFacing side) {

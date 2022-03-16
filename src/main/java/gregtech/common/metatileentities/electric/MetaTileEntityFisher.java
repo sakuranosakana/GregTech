@@ -106,7 +106,7 @@ public class MetaTileEntityFisher extends TieredMetaTileEntity {
             }
         }
         if (!getWorld().isRemote && getOffsetTimer() % 5 == 0) {
-            pushItemsIntoNearbyHandlers(getFrontFacing());
+            InventoryUtils.pushItemsIntoNearbyHandlers(this, getFrontFacing());
         }
     }
 

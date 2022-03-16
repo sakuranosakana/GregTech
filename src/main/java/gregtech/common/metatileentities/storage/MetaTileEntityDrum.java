@@ -16,6 +16,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetComparatorI
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEItemStackCapability;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEItemStackData;
 import gregtech.api.unification.material.Material;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -160,7 +161,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
         super.update();
         if (!getWorld().isRemote) {
             if (isAutoOutput && getOffsetTimer() % 5 == 0) {
-                pushFluidsIntoNearbyHandlers(EnumFacing.DOWN);
+                GTFluidUtils.pushFluidsIntoNearbyHandlers(this, EnumFacing.DOWN);
             }
         }
     }

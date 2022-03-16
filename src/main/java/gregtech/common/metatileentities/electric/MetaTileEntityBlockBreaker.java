@@ -14,6 +14,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.util.BlockUtility;
 import gregtech.api.util.GregFakePlayer;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -69,7 +70,7 @@ public class MetaTileEntityBlockBreaker extends TieredMetaTileEntity {
     public void update() {
         super.update();
         if (!getWorld().isRemote && getOffsetTimer() % 5 == 0) {
-            pushItemsIntoNearbyHandlers(getOutputFacing());
+            InventoryUtils.pushItemsIntoNearbyHandlers(this, getOutputFacing());
         }
         if (!getWorld().isRemote) {
             if (breakProgressTicksLeft > 0) {

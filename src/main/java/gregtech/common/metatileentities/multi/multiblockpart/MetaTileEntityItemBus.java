@@ -12,6 +12,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import net.minecraft.client.resources.I18n;
@@ -44,9 +45,9 @@ public class MetaTileEntityItemBus extends MetaTileEntityMultiblockNotifiablePar
         super.update();
         if (!getWorld().isRemote && getOffsetTimer() % 5 == 0) {
             if (isExportHatch) {
-                pushItemsIntoNearbyHandlers(getFrontFacing());
+                InventoryUtils.pushItemsIntoNearbyHandlers(this, getFrontFacing());
             } else {
-                pullItemsFromNearbyHandlers(getFrontFacing());
+                InventoryUtils.pullItemsFromNearbyHandlers(this, getFrontFacing());
             }
         }
     }

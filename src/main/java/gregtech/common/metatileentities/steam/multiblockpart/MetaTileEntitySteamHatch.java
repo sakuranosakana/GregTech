@@ -17,6 +17,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -81,9 +82,9 @@ public class MetaTileEntitySteamHatch extends MetaTileEntityMultiblockPart imple
     public void update() {
         super.update();
         if (!getWorld().isRemote) {
-            fillContainerFromInternalTank(containerInventory, containerInventory, 0, 1);
-            fillInternalTankFromFluidContainer(containerInventory, containerInventory, 0, 1);
-            pullFluidsFromNearbyHandlers(getFrontFacing());
+            GTFluidUtils.fillContainerFromTank(containerInventory, containerInventory, 0, 1, exportFluids);
+            GTFluidUtils.fillTankFromContainer(containerInventory, containerInventory, 0, 1, importFluids);
+            GTFluidUtils.pullFluidsFromNearbyHandlers(this, getFrontFacing());
         }
     }
 

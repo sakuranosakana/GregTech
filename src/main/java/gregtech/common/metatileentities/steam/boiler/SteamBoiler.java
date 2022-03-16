@@ -17,6 +17,7 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IDataInfoProvider;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.sound.GTSounds;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.ICubeRenderer;
@@ -173,10 +174,10 @@ public abstract class SteamBoiler extends MetaTileEntity implements IDataInfoPro
                 generateSteam();
             }
 
-            fillInternalTankFromFluidContainer(containerInventory, containerInventory, 0, 1);
+            GTFluidUtils.fillTankFromContainer(containerInventory, containerInventory, 0, 1, importFluids);
 
             if (getOffsetTimer() % 5 == 0) {
-                pushFluidsIntoNearbyHandlers(STEAM_PUSH_DIRECTIONS);
+                GTFluidUtils.pushFluidsIntoNearbyHandlers(this, STEAM_PUSH_DIRECTIONS);
             }
 
             if (fuelMaxBurnTime <= 0) {

@@ -151,7 +151,7 @@ public class MetaTileEntityQuantumChest extends MetaTileEntity implements ITiere
 
             }
             if (isAutoOutputItems()) {
-                pushItemsIntoNearbyHandlers(currentOutputFacing);
+                InventoryUtils.pushItemsIntoNearbyHandlers(this, currentOutputFacing);
             }
         }
     }

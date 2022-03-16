@@ -21,6 +21,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer;
 import gregtech.common.ConfigHolder;
@@ -185,7 +186,7 @@ public class SteamMiner extends MetaTileEntity implements IMiner, IControllable,
         this.minerLogic.performMining();
         if (!getWorld().isRemote) {
             if (getOffsetTimer() % 5 == 0)
-                pushItemsIntoNearbyHandlers(getFrontFacing());
+                InventoryUtils.pushItemsIntoNearbyHandlers(this, getFrontFacing());
 
             if (this.minerLogic.wasActiveAndNeedsUpdate()) {
                 this.minerLogic.setWasActiveAndNeedsUpdate(false);

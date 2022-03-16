@@ -14,6 +14,7 @@ import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtech.common.covers.filter.ItemFilterContainer;
@@ -163,7 +164,7 @@ public class MetaTileEntityItemCollector extends TieredMetaTileEntity {
             }
         }
         if (getOffsetTimer() % 5 == 0) {
-            pushItemsIntoNearbyHandlers(getFrontFacing());
+            InventoryUtils.pushItemsIntoNearbyHandlers(this, getFrontFacing());
         }
     }
 

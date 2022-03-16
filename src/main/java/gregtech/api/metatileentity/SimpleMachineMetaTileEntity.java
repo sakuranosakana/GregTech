@@ -20,6 +20,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.ICubeRenderer;
@@ -157,10 +158,10 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
 
             if (getOffsetTimer() % 5 == 0) {
                 if (isAutoOutputFluids()) {
-                    pushFluidsIntoNearbyHandlers(getOutputFacingFluids());
+                    GTFluidUtils.pushFluidsIntoNearbyHandlers(this, getOutputFacingFluids());
                 }
                 if (isAutoOutputItems()) {
-                    pushItemsIntoNearbyHandlers(getOutputFacingItems());
+                    InventoryUtils.pushItemsIntoNearbyHandlers(this, getOutputFacingItems());
                 }
             }
         }

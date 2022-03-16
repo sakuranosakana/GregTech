@@ -22,6 +22,7 @@ import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetComparatorI
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEItemStackCapability;
 import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEItemStackData;
 import gregtech.api.metatileentity.interfaces.ITieredMetaTileEntity;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.Textures;
@@ -129,10 +130,10 @@ public class MetaTileEntityQuantumTank extends MetaTileEntity implements ITiered
             if (lockedFluid.getFluid() != null && !isLocked) {
                 setLocked(true);
             }
-            fillContainerFromInternalTank(containerInventory, containerInventory, 0, 1);
-            fillInternalTankFromFluidContainer(containerInventory, containerInventory, 0, 1);
+            GTFluidUtils.fillContainerFromTank(containerInventory, containerInventory, 0, 1, exportFluids);
+            GTFluidUtils.fillTankFromContainer(containerInventory, containerInventory, 0, 1, importFluids);
             if (isAutoOutputFluids()) {
-                pushFluidsIntoNearbyHandlers(currentOutputFacing);
+                GTFluidUtils.pushFluidsIntoNearbyHandlers(this, currentOutputFacing);
             }
         }
     }

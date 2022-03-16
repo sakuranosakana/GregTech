@@ -183,7 +183,7 @@ public class MetaTileEntityMiner extends TieredMetaTileEntity implements IMiner,
             ((EnergyContainerHandler) this.energyContainer).dischargeOrRechargeEnergyContainers(chargerInventory, 0);
 
             if (getOffsetTimer() % 5 == 0)
-                pushItemsIntoNearbyHandlers(getFrontFacing());
+                InventoryUtils.pushItemsIntoNearbyHandlers(this, getFrontFacing());
 
             if (this.minerLogic.wasActiveAndNeedsUpdate()) {
                 this.minerLogic.setWasActiveAndNeedsUpdate(false);

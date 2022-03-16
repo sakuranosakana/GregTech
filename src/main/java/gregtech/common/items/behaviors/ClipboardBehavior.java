@@ -11,7 +11,6 @@ import gregtech.api.items.gui.ItemUIFactory;
 import gregtech.api.items.gui.PlayerInventoryHolder;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
 import gregtech.api.metatileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntityClipboard;
 import net.minecraft.block.Block;
@@ -261,7 +260,7 @@ public class ClipboardBehavior implements IItemBehaviour, ItemUIFactory {
                     if (tileEntity != null) {
                         MetaTileEntityClipboard clipboard = (MetaTileEntityClipboard) tileEntity.setMetaTileEntity(CLIPBOARD_TILE);
                         if (clipboard != null) {
-                            clipboard.setClipboard(heldItem);
+                            clipboard.initializeClipboard(heldItem);
                             clipboard.setFrontFacing(facing.getOpposite());
                             ItemStack returnedStack = player.getHeldItem(hand);
                             if (!player.isCreative()) {

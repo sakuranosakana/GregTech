@@ -184,6 +184,13 @@ public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRend
         ((InaccessibleItemStackHandler) this.itemInventory).setStackInSlot(0, stack.copy());
     }
 
+    public void initializeClipboard(ItemStack stack) {
+        ((InaccessibleItemStackHandler) this.itemInventory).setStackInSlot(0, stack.copy());
+        writeCustomData(INIT_CLIPBOARD_NBT, buf -> {
+            buf.writeCompoundTag(stack.getTagCompound());
+        });
+    }
+
     @Override
     public void getDrops(NonNullList<ItemStack> dropsList, @Nullable EntityPlayer harvester) {
         dropsList.clear();
@@ -383,6 +390,17 @@ public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRend
             }
             this.scheduleRenderUpdate();
             this.markDirty();
+        } else if (dataId == INIT_CLIPBOARD_NBT) {
+            try {
+                NBTTagCompound clipboardNBT = buf.readCompoundTag();
+                if (clipboardNBT != NO_CLIPBOARD_SIG) {
+                    ItemStack clipboard = this.getClipboard();
+                    clipboard.setTagCompound(clipboardNBT);
+                    this.setClipboard(clipboard);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

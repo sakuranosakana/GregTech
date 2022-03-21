@@ -2,7 +2,7 @@ package gregtech.api.capability.impl;
 
 import gregtech.Bootstrap;
 import gregtech.api.GTValues;
-import gregtech.api.metatileentity.IMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;

@@ -14,11 +14,12 @@ import gregtech.api.gui.widgets.FluidContainerSlotWidget;
 import gregtech.api.gui.widgets.ImageWidget;
 import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.gui.widgets.TankWidget;
-import gregtech.api.metatileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
-import gregtech.client.renderer.texture.Textures;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
+import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -73,8 +74,8 @@ public class MetaTileEntityPump extends TieredMetaTileEntity {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
-        super.renderMetaTileEntity(renderState, translation, pipeline);
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+        super.renderTileEntity(renderState, translation, pipeline);
         ColourMultiplier multiplier = new ColourMultiplier(GTUtility.convertRGBtoOpaqueRGBA_CL(getPaintingColorForRendering()));
         IVertexOperation[] coloredPipeline = ArrayUtils.add(pipeline, multiplier);
         for (EnumFacing renderSide : EnumFacing.HORIZONTALS) {
@@ -266,8 +267,8 @@ public class MetaTileEntityPump extends TieredMetaTileEntity {
         if (getWorld().isRemote) {
             return;
         }
-        pushFluidsIntoNearbyHandlers(getFrontFacing());
-        fillContainerFromInternalTank(importItems, exportItems, 0, 0);
+        GTFluidUtils.pushFluidsIntoNearbyHandlers(this, getFrontFacing());
+        GTFluidUtils.fillContainerFromTank(importItems, exportItems, 0, 0, exportFluids);
 
         //do not do anything without enough energy supplied
         if (energyContainer.getEnergyStored() < GTValues.V[getTier()] * 2) {

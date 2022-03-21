@@ -14,8 +14,13 @@ import gregtech.api.items.gui.PlayerInventoryHolder;
 import gregtech.api.items.itemhandlers.InaccessibleItemStackHandler;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.metatileentity.*;
-import gregtech.api.metatileentity.IMetaTileEntity.*;
+import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.MetaTileEntityUIFactory;
+import gregtech.api.metatileentity.interfaces.IFastRenderMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.GregFakePlayer;
@@ -55,7 +60,7 @@ import static gregtech.api.capability.GregtechDataCodes.*;
 import static gregtech.client.renderer.texture.Textures.CLIPBOARD_RENDERER;
 import static gregtech.common.items.MetaItems.CLIPBOARD;
 
-public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEGetDrops, IMTENeighborChanged, IMTEGetLightOpacity, IMTEGetSubBlocks {
+public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEGetDrops, IMTENeighborChanged, IMTEGetLightOpacity, IMTEGetSubBlocks, IMTEHardnessResistance {
     private static final AxisAlignedBB CLIPBOARD_AABB = new AxisAlignedBB(2.75 / 16.0, 0.0, 0.0, 13.25 / 16.0, 1.0, 0.4 / 16.0);
     public static final float scale = 1;
     public FakeModularGui guiCache;
@@ -199,7 +204,12 @@ public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRend
 
     @Override
     public float getBlockHardness() {
-        return 100;
+        return 100.0F;
+    }
+
+    @Override
+    public float getExplosionResistance() {
+        return 6.0F;
     }
 
     @Override
@@ -410,7 +420,7 @@ public class MetaTileEntityClipboard extends MetaTileEntity implements IFastRend
     }
 
     @Override
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
     }
 
     public void readUIAction(EntityPlayerMP player, int id, PacketBuffer buf) {

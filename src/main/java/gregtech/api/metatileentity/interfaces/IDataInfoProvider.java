@@ -1,4 +1,4 @@
-package gregtech.api.metatileentity;
+package gregtech.api.metatileentity.interfaces;
 
 
 import net.minecraft.util.text.ITextComponent;

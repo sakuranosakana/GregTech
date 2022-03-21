@@ -9,13 +9,16 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.api.capability.impl.FilteredFluidHandler;
 import gregtech.api.capability.impl.ThermalFluidHandlerItemStack;
 import gregtech.api.gui.ModularUI;
-import gregtech.api.metatileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.client.renderer.texture.Textures;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetComparatorInputOverride;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEItemStackCapability;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEItemStackData;
 import gregtech.api.unification.material.Material;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
+import gregtech.client.renderer.texture.Textures;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +46,7 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
 
-import static gregtech.api.capability.GregtechDataCodes.*;
+import static gregtech.api.capability.GregtechDataCodes.UPDATE_AUTO_OUTPUT;
 import static gregtech.api.recipes.ModHandler.isMaterialWood;
 import static gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE;
 
@@ -73,11 +76,6 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
         int maxCapacity = fluidTank.getCapacity();
         float f = fluidAmount / (maxCapacity * 1.0f);
         return MathHelper.floor(f * 14.0f) + (fluidAmount > 0 ? 1 : 0);
-    }
-
-    @Override
-    public boolean isOpaqueCube() {
-        return false;
     }
 
     @Override
@@ -163,7 +161,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
         super.update();
         if (!getWorld().isRemote) {
             if (isAutoOutput && getOffsetTimer() % 5 == 0) {
-                pushFluidsIntoNearbyHandlers(EnumFacing.DOWN);
+                GTFluidUtils.pushFluidsIntoNearbyHandlers(this, EnumFacing.DOWN);
             }
         }
     }
@@ -190,7 +188,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     private void toggleOutput() {
         isAutoOutput = !isAutoOutput;
         if (!getWorld().isRemote) {
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             writeCustomData(UPDATE_AUTO_OUTPUT, buf -> buf.writeBoolean(isAutoOutput));
             markDirty();
         }
@@ -211,7 +209,7 @@ public class MetaTileEntityDrum extends MetaTileEntity implements IMTEItemStackD
     }
 
     @Override
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         if(isMaterialWood(material)) {
             ColourMultiplier multiplier = new ColourMultiplier(GTUtility.convertRGBtoOpaqueRGBA_CL(getPaintingColorForRendering()));
             Textures.WOODEN_DRUM.render(renderState, translation, ArrayUtils.add(pipeline, multiplier), getFrontFacing());

@@ -9,11 +9,12 @@ import gregtech.api.capability.impl.NotifiableFluidTankFromList;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.TankWidget;
-import gregtech.api.metatileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
@@ -66,16 +67,16 @@ public class MetaTileEntityMultiFluidHatch extends MetaTileEntityMultiblockNotif
         super.update();
         if (!getWorld().isRemote) {
             if (isExportHatch) {
-                pushFluidsIntoNearbyHandlers(getFrontFacing());
+                GTFluidUtils.pushFluidsIntoNearbyHandlers(this, getFrontFacing());
             } else {
-                pullFluidsFromNearbyHandlers(getFrontFacing());
+                GTFluidUtils.pullFluidsFromNearbyHandlers(this, getFrontFacing());
             }
         }
     }
 
     @Override
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
-        super.renderMetaTileEntity(renderState, translation, pipeline);
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+        super.renderTileEntity(renderState, translation, pipeline);
         if (shouldRenderOverlay()) {
             SimpleOverlayRenderer renderer = getTier() == 2 ? Textures.PIPE_4X_OVERLAY : Textures.PIPE_9X_OVERLAY;
             renderer.renderSided(getFrontFacing(), renderState, translation, pipeline);

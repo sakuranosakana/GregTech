@@ -15,16 +15,19 @@ import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.gui.widgets.ServerWidgetGroup;
 import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
-import gregtech.api.metatileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity.*;
 import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IFastRenderMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetDrops;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEGetLightOpacity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.IMTEHardnessResistance;
 import gregtech.api.recipes.CountableIngredient;
 import gregtech.api.recipes.ModHandler;
-import gregtech.client.renderer.texture.Textures;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.InventoryUtils;
+import gregtech.client.renderer.texture.Textures;
 import gregtech.common.worldgen.LootTableHelper;
 import gregtech.loaders.recipe.CraftingComponent;
 import gregtech.loaders.recipe.CraftingComponent.Component;
@@ -55,7 +58,7 @@ import java.util.function.DoubleSupplier;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_CONTENTS_SEED;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_LOCKED_STATE;
 
-public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEGetLightOpacity, IMTEGetDrops {
+public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRenderMetaTileEntity, IMTEGetLightOpacity, IMTEGetDrops, IMTEHardnessResistance {
 
     private static final int MAX_UNLOCK_PROGRESS = 100;
     private static Component[] ALLOWED_COMPONENTS;
@@ -99,7 +102,7 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         if (isSafeUnlocked()) {
-            clearInventory(itemBuffer, safeLootInventory);
+            InventoryUtils.clearInventory(itemBuffer, safeLootInventory);
         }
     }
 
@@ -133,11 +136,11 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
 
     @Override
     public float getBlockHardness() {
-        return isSafeUnlocked() ? 6.0f : -1.0f;
+        return isSafeUnlocked() ? 6.0F : -1.0F;
     }
 
     @Override
-    public float getBlockResistance() {
+    public float getExplosionResistance() {
         return 6000000.0F;
     }
 
@@ -273,7 +276,7 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
         this.isSafeUnlocked = safeUnlocked;
         if (getWorld() != null && !getWorld().isRemote) {
             writeCustomData(UPDATE_LOCKED_STATE, buf -> buf.writeBoolean(safeUnlocked));
-            getTileEntity().notifyBlockUpdate();
+            notifyBlockUpdate();
             markDirty();
         }
     }
@@ -343,7 +346,7 @@ public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRen
     }
 
     @Override
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
     }
 
     @Override

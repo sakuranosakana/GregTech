@@ -2,7 +2,7 @@ package gregtech.common.pipelike.fluidpipe.tile;
 
 import gregtech.api.GTValues;
 import gregtech.api.cover.CoverBehavior;
-import gregtech.api.metatileentity.IDataInfoProvider;
+import gregtech.api.metatileentity.interfaces.IDataInfoProvider;
 import gregtech.api.util.GTUtility;
 import gregtech.common.pipelike.fluidpipe.net.PipeTankList;
 import net.minecraft.nbt.NBTTagCompound;

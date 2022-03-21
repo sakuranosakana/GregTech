@@ -1,4 +1,4 @@
-package gregtech.api.metatileentity;
+package gregtech.api.metatileentity.interfaces;
 
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.vec.Matrix4;

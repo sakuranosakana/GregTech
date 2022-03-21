@@ -1,23 +1,29 @@
-package gregtech.api.metatileentity;
+package gregtech.api.metatileentity.interfaces;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverBehavior;
 import gregtech.api.gui.ModularUI;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
 
-public interface IMetaTileEntity {
+public interface IMetaTileEntity extends IDataSyncable {
 
     // Needed
     void setTileEntity(IGregTechTileEntity tileEntity);
@@ -27,13 +33,6 @@ public interface IMetaTileEntity {
 
     // TODO Can potentially refactor holder out of this, and should return IMetaTileEntity
     IMetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity);
-
-    // TODO Separate these out into their own ifaces? Maybe, maybe not
-    void writeInitialSyncData(PacketBuffer buf);
-    void receiveInitialSyncData(PacketBuffer buf);
-    void receiveCustomData(int discriminator, PacketBuffer buf);
-    void readFromNBT(NBTTagCompound data);
-    NBTTagCompound writeToNBT(NBTTagCompound data);
 
     // Needed
     ResourceLocation getMetaTileEntityId();
@@ -52,6 +51,8 @@ public interface IMetaTileEntity {
         return new ItemStack(GregTechAPI.MACHINE, amount, metaTileEntityId);
     }
 
+    void onLeftClick(EntityPlayer player, CuboidRayTraceResult result);
+
     /**
      * Creates a UI instance for player opening inventory of this meta tile entity
      *
@@ -63,6 +64,9 @@ public interface IMetaTileEntity {
     // TODO Try to refactor off to block?
     boolean isOpaqueCube();
 
+    @SideOnly(Side.CLIENT)
+    Pair<TextureAtlasSprite, Integer> getParticleTexture();
+
     // TODO
     boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing facing, CuboidRayTraceResult hitResult);
 
@@ -70,19 +74,16 @@ public interface IMetaTileEntity {
     CoverBehavior getCoverAtSide(EnumFacing facing);
     <T> T getCoverCapability(Capability<T> capability, EnumFacing facing);
 
-    // TODO Pull out into iface like, "IMTEFacing"
-    void setFrontFacing(EnumFacing facing);
-    EnumFacing getFrontFacing();
-    boolean isValidFrontFacing(EnumFacing facing);
-
     // Hooks into the TileEntity Class. Implement them in order to overwrite the Default Behaviours.
-    // TODO more here
+    // Open an issue or PR to add more pass-throughs here if you need them for your addon.
+    // Nearly ANY method from TileEntity could be passed along here if needed.
     interface IMTEOnLoad        extends IMetaTileEntity {void onLoad();}
     interface IMTEOnChunkUnload extends IMetaTileEntity {void onChunkUnload();}
     interface IMTEInvalidate    extends IMetaTileEntity {void invalidate();}
 
     // Hooks into the Block Class. Implement them in order to overwrite the Default Behaviours.
-    // TODO more here
+    // Open an issue or PR to add more pass-throughs here if you need them for your addon.
+    // Nearly ANY method from Block could be passed along here if needed.
     interface IMTEGetDrops                   extends IMetaTileEntity {void getDrops(NonNullList<ItemStack> drops, EntityPlayer harvester);}
     interface IMTECanEntityDestroy           extends IMetaTileEntity {boolean canEntityDestroy(Entity entity);}
     interface IMTENeighborChanged            extends IMetaTileEntity {void neighborChanged();}
@@ -90,10 +91,14 @@ public interface IMetaTileEntity {
     interface IMTEGetLightOpacity            extends IMetaTileEntity {int getLightOpacity();}
     interface IMTEGetSubBlocks               extends IMetaTileEntity {void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> blocks);}
     interface IMTEGetComparatorInputOverride extends IMetaTileEntity {int getComparatorInputOverride();}
+    interface IMTEHardnessResistance         extends IMetaTileEntity {float getBlockHardness(); float getExplosionResistance();}
+    interface IMTEGetBlockFaceShape          extends IMetaTileEntity {BlockFaceShape getBlockFaceShape(EnumFacing facing);}
+    interface IMTECanCreatureSpawn           extends IMetaTileEntity {boolean canCreatureSpawn(SpawnPlacementType type);}
+    interface IMTERecolorBlock               extends IMetaTileEntity {boolean recolorBlock(EnumDyeColor color);}
 
     // Custom interfaces that add new behavior
     // TODO Javadoc these!!
-    interface IMTEOnAttached    extends IMetaTileEntity {void onAttached(Object... data);}
+    interface IMTEOnAttached    extends IMetaTileEntity {void onAttached();}
 
     /**
      * Called from ItemBlock to initialize this MTE with data contained in ItemStack
@@ -109,17 +114,5 @@ public interface IMetaTileEntity {
      */
     interface IMTEItemStackCapability extends IMetaTileEntity {
         ICapabilityProvider initItemStackCapabilities(ItemStack stack);
-    }
-
-    interface IMTETickable extends IMetaTileEntity {
-
-        /**
-         * The First processed Tick which was passed to this MetaTileEntity. This will get called when block was placed as well as on world load
-         */
-        void onFirstTick();
-
-        void update();
-
-        void onTickFailed(boolean isServerSide);
     }
 }

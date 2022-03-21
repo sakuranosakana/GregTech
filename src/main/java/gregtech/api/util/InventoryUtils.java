@@ -1,10 +1,18 @@
 package gregtech.api.util;
 
+import gregtech.api.metatileentity.MetaTileEntity;
 import it.unimi.dsi.fastutil.Hash;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenCustomHashMap;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.*;
 import java.util.function.Function;
@@ -219,5 +227,106 @@ public final class InventoryUtils {
             result.setInventorySlotContents(i, source.getStackInSlot(i).copy());
         }
         return result;
+    }
+
+    public static void moveInventoryItems(IItemHandler sourceInventory, IItemHandler targetInventory) {
+        for (int srcIndex = 0; srcIndex < sourceInventory.getSlots(); srcIndex++) {
+            ItemStack sourceStack = sourceInventory.extractItem(srcIndex, Integer.MAX_VALUE, true);
+            if (sourceStack.isEmpty()) {
+                continue;
+            }
+            ItemStack remainder = ItemHandlerHelper.insertItemStacked(targetInventory, sourceStack, true);
+            int amountToInsert = sourceStack.getCount() - remainder.getCount();
+            if (amountToInsert > 0) {
+                sourceStack = sourceInventory.extractItem(srcIndex, amountToInsert, false);
+                ItemHandlerHelper.insertItemStacked(targetInventory, sourceStack, false);
+            }
+        }
+    }
+
+    /**
+     * Simulates the insertion of items into a target inventory, then optionally performs the insertion.
+     * <br /><br />
+     * Simulating will not modify any of the input parameters. Insertion will either succeed completely, or fail
+     * without modifying anything.
+     * This method should be called with {@code simulate} {@code true} first, then {@code simulate} {@code false},
+     * only if it returned {@code true}.
+     *
+     * @param handler  the target inventory
+     * @param simulate whether to simulate ({@code true}) or actually perform the insertion ({@code false})
+     * @param items    the items to insert into {@code handler}.
+     * @return {@code true} if the insertion succeeded, {@code false} otherwise.
+     */
+    public static boolean addItemsToItemHandler(final IItemHandler handler,
+                                                final boolean simulate,
+                                                final List<ItemStack> items) {
+        // determine if there is sufficient room to insert all items into the target inventory
+        if (simulate) {
+            OverlayedItemHandler overlayedItemHandler = new OverlayedItemHandler(handler);
+            Map<ItemStackKey, Integer> stackKeyMap = GTHashMaps.fromItemStackCollection(items);
+
+            for (Map.Entry<ItemStackKey, Integer> entry : stackKeyMap.entrySet()) {
+                int amountToInsert = entry.getValue();
+                int amount = overlayedItemHandler.insertStackedItemStackKey(entry.getKey(), amountToInsert);
+                if (amount > 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // perform the merge.
+        items.forEach(stack -> ItemHandlerHelper.insertItemStacked(handler, stack, false));
+        return true;
+    }
+
+    // TODO Drop this down to an iface (ICoverable?)
+    public static void pushItemsIntoNearbyHandlers(MetaTileEntity mte, EnumFacing... allowedFaces) {
+        BlockPos.PooledMutableBlockPos blockPos = BlockPos.PooledMutableBlockPos.retain();
+        for (EnumFacing nearbyFacing : allowedFaces) {
+            blockPos.setPos(mte.getPos()).move(nearbyFacing);
+            TileEntity tileEntity = mte.getWorld().getTileEntity(blockPos);
+            if (tileEntity == null) {
+                continue;
+            }
+            IItemHandler itemHandler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, nearbyFacing.getOpposite());
+            //use getCoverCapability so item/ore dictionary filter covers will work properly
+            IItemHandler myItemHandler = mte.getCoverCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, nearbyFacing);
+            if (itemHandler == null || myItemHandler == null) {
+                continue;
+            }
+            InventoryUtils.moveInventoryItems(myItemHandler, itemHandler);
+        }
+        blockPos.release();
+    }
+
+    // TODO Drop this down to an iface (ICoverable?)
+    public static void pullItemsFromNearbyHandlers(MetaTileEntity mte, EnumFacing... allowedFaces) {
+        BlockPos.PooledMutableBlockPos blockPos = BlockPos.PooledMutableBlockPos.retain();
+        for (EnumFacing nearbyFacing : allowedFaces) {
+            blockPos.setPos(mte.getPos()).move(nearbyFacing);
+            TileEntity tileEntity = mte.getWorld().getTileEntity(blockPos);
+            if (tileEntity == null) {
+                continue;
+            }
+            IItemHandler itemHandler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, nearbyFacing.getOpposite());
+            //use getCoverCapability so item/ore dictionary filter covers will work properly
+            IItemHandler myItemHandler = mte.getCoverCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, nearbyFacing);
+            if (itemHandler == null || myItemHandler == null) {
+                continue;
+            }
+            InventoryUtils.moveInventoryItems(itemHandler, myItemHandler);
+        }
+        blockPos.release();
+    }
+
+    public static void clearInventory(NonNullList<ItemStack> itemBuffer, IItemHandlerModifiable inventory) {
+        for (int i = 0; i < inventory.getSlots(); i++) {
+            ItemStack stackInSlot = inventory.getStackInSlot(i);
+            if (!stackInSlot.isEmpty()) {
+                inventory.setStackInSlot(i, ItemStack.EMPTY);
+                itemBuffer.add(stackInSlot);
+            }
+        }
     }
 }

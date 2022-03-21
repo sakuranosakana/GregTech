@@ -3,10 +3,10 @@ package gregtech.api.pipenet.tile;
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.cover.CoverBehavior;
 import gregtech.api.metatileentity.SyncedTileEntityBase;
+import gregtech.api.metatileentity.interfaces.IPaintable;
 import gregtech.api.pipenet.WorldPipeNet;
 import gregtech.api.pipenet.block.BlockPipe;
 import gregtech.api.pipenet.block.IPipeType;
-import gregtech.api.util.TaskScheduler;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,7 +28,7 @@ import java.util.function.Consumer;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
 
-public abstract class TileEntityPipeBase<PipeType extends Enum<PipeType> & IPipeType<NodeDataType>, NodeDataType> extends SyncedTileEntityBase implements IPipeTile<PipeType, NodeDataType> {
+public abstract class TileEntityPipeBase<PipeType extends Enum<PipeType> & IPipeType<NodeDataType>, NodeDataType> extends SyncedTileEntityBase implements IPipeTile<PipeType, NodeDataType>, IPaintable {
 
     protected final PipeCoverableImplementation coverableImplementation = new PipeCoverableImplementation(this);
     protected int paintingColor = -1;
@@ -121,22 +121,17 @@ public abstract class TileEntityPipeBase<PipeType extends Enum<PipeType> & IPipe
 
     @Override
     public int getPaintingColor() {
-        return isPainted() ? paintingColor : getDefaultPaintingColor();
+        return paintingColor;
     }
 
     @Override
-    public void setPaintingColor(int paintingColor) {
-        this.paintingColor = paintingColor;
+    public void setPaintingColor(int color) {
+        this.paintingColor = color;
         if (!getWorld().isRemote) {
             getPipeBlock().getWorldPipeNet(getWorld()).updateMark(getPos(), getCableMark());
             writeCustomData(UPDATE_INSULATION_COLOR, buffer -> buffer.writeInt(paintingColor));
             markDirty();
         }
-    }
-
-    @Override
-    public boolean isPainted() {
-        return this.paintingColor != -1;
     }
 
     @Override
@@ -306,7 +301,7 @@ public abstract class TileEntityPipeBase<PipeType extends Enum<PipeType> & IPipe
         compound.setInteger("Connections", connections);
         compound.setInteger("BlockedConnections", blockedConnections);
         if (isPainted()) {
-            compound.setInteger("InsulationColor", paintingColor);
+            compound.setInteger(IPaintable.TAG_KEY_PAINTING_COLOR, paintingColor);
         }
         this.coverableImplementation.writeToNBT(compound);
         return compound;
@@ -334,8 +329,8 @@ public abstract class TileEntityPipeBase<PipeType extends Enum<PipeType> & IPipe
         }
         blockedConnections = compound.getInteger("BlockedConnections");
 
-        if (compound.hasKey("InsulationColor")) {
-            this.paintingColor = compound.getInteger("InsulationColor");
+        if (compound.hasKey(IPaintable.TAG_KEY_PAINTING_COLOR)) {
+            this.paintingColor = compound.getInteger(IPaintable.TAG_KEY_PAINTING_COLOR);
         }
         this.coverableImplementation.readFromNBT(compound);
     }

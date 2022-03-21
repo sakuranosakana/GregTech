@@ -13,11 +13,13 @@ import gregtech.api.gui.widgets.FluidContainerSlotWidget;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.gui.widgets.TankWidget;
-import gregtech.api.metatileentity.IDataInfoProvider;
 import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IDataInfoProvider;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.sound.GTSounds;
+import gregtech.api.util.GTFluidUtils;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer;
@@ -101,7 +103,7 @@ public abstract class SteamBoiler extends MetaTileEntity implements IDataInfoPro
     }
 
     @Override
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         IVertexOperation[] colouredPipeline = ArrayUtils.add(pipeline, new ColourMultiplier(GTUtility.convertRGBtoOpaqueRGBA_CL(getPaintingColorForRendering())));
         getBaseRenderer().render(renderState, translation, colouredPipeline);
         renderer.renderOrientedState(renderState, translation, pipeline, getFrontFacing(), isBurning(), true);
@@ -172,10 +174,10 @@ public abstract class SteamBoiler extends MetaTileEntity implements IDataInfoPro
                 generateSteam();
             }
 
-            fillInternalTankFromFluidContainer(containerInventory, containerInventory, 0, 1);
+            GTFluidUtils.fillTankFromContainer(containerInventory, containerInventory, 0, 1, importFluids);
 
             if (getOffsetTimer() % 5 == 0) {
-                pushFluidsIntoNearbyHandlers(STEAM_PUSH_DIRECTIONS);
+                GTFluidUtils.pushFluidsIntoNearbyHandlers(this, STEAM_PUSH_DIRECTIONS);
             }
 
             if (fuelMaxBurnTime <= 0) {
@@ -321,7 +323,7 @@ public abstract class SteamBoiler extends MetaTileEntity implements IDataInfoPro
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
-        clearInventory(itemBuffer, containerInventory);
+        InventoryUtils.clearInventory(itemBuffer, containerInventory);
     }
 
     @Nonnull

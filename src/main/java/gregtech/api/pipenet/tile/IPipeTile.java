@@ -1,5 +1,6 @@
 package gregtech.api.pipenet.tile;
 
+import gregtech.api.metatileentity.interfaces.IPaintable;
 import gregtech.api.pipenet.block.BlockPipe;
 import gregtech.api.pipenet.block.IPipeType;
 import net.minecraft.network.PacketBuffer;
@@ -10,7 +11,7 @@ import net.minecraftforge.common.capabilities.Capability;
 
 import java.util.function.Consumer;
 
-public interface IPipeTile<PipeType extends Enum<PipeType> & IPipeType<NodeDataType>, NodeDataType> {
+public interface IPipeTile<PipeType extends Enum<PipeType> & IPipeType<NodeDataType>, NodeDataType> extends IPaintable {
 
     World getPipeWorld();
 
@@ -23,14 +24,6 @@ public interface IPipeTile<PipeType extends Enum<PipeType> & IPipeType<NodeDataT
     BlockPipe<PipeType, NodeDataType, ?> getPipeBlock();
 
     void transferDataFrom(IPipeTile<PipeType, NodeDataType> sourceTile);
-
-    int getPaintingColor();
-
-    void setPaintingColor(int paintingColor);
-
-    boolean isPainted();
-
-    int getDefaultPaintingColor();
 
     int getConnections();
 

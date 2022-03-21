@@ -7,19 +7,20 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.*;
+import gregtech.api.metatileentity.interfaces.IHasWorldObjectAndCoords;
+import gregtech.api.metatileentity.interfaces.IPaintable;
 import gregtech.api.pipenet.block.BlockPipe;
 import gregtech.api.pipenet.block.BlockPipe.PipeConnectionData;
 import gregtech.api.util.GTUtility;
 import gregtech.client.utils.RenderUtil;
+import gregtech.common.ConfigHolder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,18 +28,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.function.Consumer;
 
-public interface ICoverable {
+public interface ICoverable extends IHasWorldObjectAndCoords {
 
     Transformation REVERSE_HORIZONTAL_ROTATION = new Rotation(Math.PI, new Vector3(0.0, 1.0, 0.0)).at(Vector3.center);
     Transformation REVERSE_VERTICAL_ROTATION = new Rotation(Math.PI, new Vector3(1.0, 0.0, 0.0)).at(Vector3.center);
-
-    World getWorld();
-
-    BlockPos getPos();
-
-    long getOffsetTimer();
-
-    void markDirty();
 
     boolean isValid();
 
@@ -60,13 +53,7 @@ public interface ICoverable {
 
     double getCoverPlateThickness();
 
-    int getPaintingColorForRendering();
-
     boolean shouldRenderBackSide();
-
-    void notifyBlockUpdate();
-
-    void scheduleRenderUpdate();
 
     default boolean hasAnyCover() {
         for(EnumFacing facing : EnumFacing.VALUES)
@@ -79,7 +66,8 @@ public interface ICoverable {
     default void renderCovers(CCRenderState renderState, Matrix4 translation, BlockRenderLayer layer) {
         renderState.lightMatrix.locate(getWorld(), getPos());
         double coverPlateThickness = getCoverPlateThickness();
-        IVertexOperation[] platePipeline = new IVertexOperation[]{renderState.lightMatrix, new ColourMultiplier(GTUtility.convertRGBtoOpaqueRGBA_CL(getPaintingColorForRendering()))};
+        int paintingColor = GTUtility.convertRGBtoOpaqueRGBA_CL(this instanceof IPaintable ? ((IPaintable) this).getPaintingColorForRendering() : ConfigHolder.client.defaultPaintingColor);
+        IVertexOperation[] platePipeline = new IVertexOperation[]{renderState.lightMatrix, new ColourMultiplier(paintingColor)};
         IVertexOperation[] coverPipeline = new IVertexOperation[]{renderState.lightMatrix};
 
         for (EnumFacing sideFacing : EnumFacing.values()) {
@@ -219,4 +207,6 @@ public interface ICoverable {
     default boolean canRenderMachineGrid() {
         return true;
     }
+
+    long getOffsetTimer();
 }

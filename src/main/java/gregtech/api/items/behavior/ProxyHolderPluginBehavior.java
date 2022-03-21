@@ -1,6 +1,6 @@
 package gregtech.api.items.behavior;
 
-import gregtech.api.metatileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;

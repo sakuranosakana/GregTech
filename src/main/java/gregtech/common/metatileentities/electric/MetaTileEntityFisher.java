@@ -7,11 +7,12 @@ import gregtech.api.GTValues;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.metatileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.IMetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
-import gregtech.client.renderer.texture.Textures;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.util.InventoryUtils;
+import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.resources.I18n;
@@ -97,15 +98,15 @@ public class MetaTileEntityFisher extends TieredMetaTileEntity {
                 LootTable table = world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING);
                 NonNullList<ItemStack> itemStacks = NonNullList.create();
                 itemStacks.addAll(table.generateLootForPools(world.rand, new LootContext.Builder(world).build()));
-                if (addItemsToItemHandler(exportItems, true, itemStacks)) {
-                    addItemsToItemHandler(exportItems, false, itemStacks);
+                if (InventoryUtils.addItemsToItemHandler(exportItems, true, itemStacks)) {
+                    InventoryUtils.addItemsToItemHandler(exportItems, false, itemStacks);
                     energyContainer.removeEnergy(energyAmountPerFish);
                     baitStack.shrink(1);
                 }
             }
         }
         if (!getWorld().isRemote && getOffsetTimer() % 5 == 0) {
-            pushItemsIntoNearbyHandlers(getFrontFacing());
+            InventoryUtils.pushItemsIntoNearbyHandlers(this, getFrontFacing());
         }
     }
 
@@ -129,8 +130,8 @@ public class MetaTileEntityFisher extends TieredMetaTileEntity {
     }
 
     @Override
-    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
-        super.renderMetaTileEntity(renderState, translation, pipeline);
+    public void renderTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+        super.renderTileEntity(renderState, translation, pipeline);
         Textures.SCREEN.renderSided(EnumFacing.UP, renderState, translation, pipeline);
         Textures.PIPE_OUT_OVERLAY.renderSided(getFrontFacing(), renderState, translation, pipeline);
         Textures.PIPE_IN_OVERLAY.renderSided(EnumFacing.DOWN, renderState, translation, pipeline);

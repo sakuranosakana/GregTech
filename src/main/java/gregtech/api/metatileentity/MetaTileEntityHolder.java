@@ -4,7 +4,8 @@ import com.google.common.base.Preconditions;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.machines.BlockMachine;
 import gregtech.api.cover.CoverBehavior;
-import gregtech.api.metatileentity.IMetaTileEntity.*;
+import gregtech.api.metatileentity.interfaces.*;
+import gregtech.api.metatileentity.interfaces.IMetaTileEntity.*;
 import gregtech.api.net.NetworkHandler;
 import gregtech.api.net.packets.CPacketRecoverMTE;
 import gregtech.api.util.GTLog;
@@ -83,13 +84,6 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
         if (currentState.getValue(BlockMachine.OPAQUE) != isMetaTileEntityOpaque) {
             world.setBlockState(getPos(), currentState.withProperty(BlockMachine.OPAQUE, isMetaTileEntityOpaque));
         }
-    }
-
-    public void scheduleRenderUpdate() {
-        BlockPos pos = getPos();
-        getWorld().markBlockRangeForRenderUpdate(
-                pos.getX() - 1, pos.getY() - 1, pos.getZ() - 1,
-                pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
     }
 
     public void notifyBlockUpdate() {
@@ -293,27 +287,24 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
     }
 
     // Passthrough methods for interfaces
+    /** Method passed through to {@link IMTEOnLoad} */
     @Override public final void onLoad() {if (metaTileEntity instanceof IMTEOnLoad) ((IMTEOnLoad) metaTileEntity).onLoad();}
+    /** Method passed through to {@link IMTEOnChunkUnload} */
     @Override public final void onChunkUnload() {if (metaTileEntity instanceof IMTEOnChunkUnload) ((IMTEOnChunkUnload) metaTileEntity).onChunkUnload();}
+    /** Method passed through to {@link IMTEInvalidate} */
     @Override public final void invalidate() {if (metaTileEntity instanceof IMTEInvalidate) ((IMTEInvalidate) metaTileEntity).invalidate(); super.invalidate();}
+
+    /** Method passed through to {@link IRotatable} */
+    @Override public final void rotate(@Nonnull Rotation rotationIn) {if (metaTileEntity instanceof IRotatable) ((IRotatable) metaTileEntity).rotate(rotationIn);}
+    /** Method passed through to {@link IRotatable} */
+    @Override public final void mirror(@Nonnull Mirror mirrorIn) {if (metaTileEntity instanceof IRotatable) ((IRotatable) metaTileEntity).mirror(mirrorIn);}
+
+    /** Method passed through to {@link IFastRenderMetaTileEntity}. Default full bounding box */
+    @Override public final AxisAlignedBB getRenderBoundingBox() {return metaTileEntity instanceof IFastRenderMetaTileEntity ? ((IFastRenderMetaTileEntity) metaTileEntity).getRenderBoundingBox() : new AxisAlignedBB(getPos());}
 
     @Override
     public boolean shouldRefresh(@Nonnull World world, @Nonnull BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock(); //MetaTileEntityHolder should never refresh (until block changes)
-    }
-
-    @Override
-    public void rotate(@Nonnull Rotation rotationIn) {
-        if (metaTileEntity != null) {
-            metaTileEntity.setFrontFacing(rotationIn.rotate(metaTileEntity.getFrontFacing()));
-        }
-    }
-
-    @Override
-    public void mirror(@Nonnull Mirror mirrorIn) {
-        if (metaTileEntity != null) {
-            rotate(mirrorIn.toRotation(metaTileEntity.getFrontFacing()));
-        }
     }
 
     @Override
@@ -331,24 +322,8 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
         return false;
     }
 
-    @Nonnull
-    @Override
-    public AxisAlignedBB getRenderBoundingBox() {
-        if (metaTileEntity instanceof IFastRenderMetaTileEntity) {
-            return ((IFastRenderMetaTileEntity) metaTileEntity).getRenderBoundingBox();
-        }
-        return new AxisAlignedBB(getPos());
-    }
-
-    @Override
-    public boolean canRenderBreaking() {
-        return false;
-    }
-
-    @Override
-    public boolean hasFastRenderer() {
-        return true;
-    }
+    @Override public final boolean canRenderBreaking() {return false;}
+    @Override public final boolean hasFastRenderer() {return true;}
 
     public boolean hasTESR() {
         if (metaTileEntity == null) return false;

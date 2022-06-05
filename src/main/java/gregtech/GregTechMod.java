@@ -25,7 +25,6 @@ import gregtech.api.util.VirtualTankRegistry;
 import gregtech.api.util.input.KeyBind;
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler;
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinSaveData;
-import gregtech.api.worldgen.config.WorldGenRegistry;
 import gregtech.client.utils.BloomEffectUtil;
 import gregtech.common.CommonProxy;
 import gregtech.common.ConfigHolder;
@@ -38,6 +37,7 @@ import gregtech.common.covers.filter.FilterTypeRegistry;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.worldgen.LootTableHelper;
+import gregtech.common.worldgen.WorldGenRubberTree;
 import gregtech.integration.theoneprobe.TheOneProbeCompatibility;
 import gregtech.loaders.dungeon.DungeonLootLoader;
 import net.minecraft.block.state.IBlockState;
@@ -48,6 +48,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Optional.Method;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.Map;
@@ -170,7 +171,7 @@ public class GregTechMod {
             TheOneProbeCompatibility.registerCompatibility();
         }
 
-        WorldGenRegistry.INSTANCE.initializeRegistry();
+        GameRegistry.registerWorldGenerator(WorldGenRubberTree.WORLD_GEN_INSTANCE, 255);
 
         LootTableHelper.initialize();
         FilterTypeRegistry.init();

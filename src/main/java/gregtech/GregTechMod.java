@@ -25,6 +25,7 @@ import gregtech.api.util.VirtualTankRegistry;
 import gregtech.api.util.input.KeyBind;
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler;
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinSaveData;
+import gregtech.api.worldgen2.GregTechWorldgen;
 import gregtech.client.utils.BloomEffectUtil;
 import gregtech.common.CommonProxy;
 import gregtech.common.ConfigHolder;
@@ -171,6 +172,10 @@ public class GregTechMod {
             TheOneProbeCompatibility.registerCompatibility();
         }
 
+        GregTechWorldgen.init();
+        MinecraftForge.ORE_GEN_BUS.register(GregTechWorldgen.INSTANCE);
+
+        GameRegistry.registerWorldGenerator(GregTechWorldgen.INSTANCE, 0);
         GameRegistry.registerWorldGenerator(WorldGenRubberTree.WORLD_GEN_INSTANCE, 255);
 
         LootTableHelper.initialize();

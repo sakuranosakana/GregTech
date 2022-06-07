@@ -91,7 +91,6 @@ public class GTWorldGenerator {
                     }
                 }
 
-                WorldgenOresLayered vein = null;
                 if (maxWeight > 0 && !layeredVeinsToGenerate.isEmpty()) {
                     for (int x = -32; x <= 32; x += 16) {
                         for (int z = -32; z <= 32; z += 16) {
@@ -103,8 +102,7 @@ public class GTWorldGenerator {
                                 for (WorldgenOresLayered worldgen : layeredVeinsToGenerate) {
                                     randomWeight -= worldgen.weight;
                                     if (randomWeight <= 0) {
-                                        vein = worldgen;
-                                        vein.generate(world, chunk, minX, maxX, minZ, maxZ, originX, originZ, random);
+                                        worldgen.generate(world, chunk, minX, maxX, minZ, maxZ, minX + 7, minZ + 7, random);
                                         break;
                                     }
                                 }

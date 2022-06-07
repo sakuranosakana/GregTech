@@ -5,7 +5,6 @@ import gregtech.api.util.GTLog;
 import gregtech.api.worldgen2.GTWorldGenerator;
 import gregtech.api.worldgen2.WorldgenUtil;
 import gregtech.common.blocks.MetaBlocks;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,8 +16,6 @@ import java.util.List;
 import java.util.Random;
 
 public class WorldgenOresLayered extends WorldgenObject {
-
-    public static final List<WorldgenOresLayered> VEINS = new ObjectArrayList<>();
 
     public final int weight;
     public final int distance;
@@ -35,21 +32,21 @@ public class WorldgenOresLayered extends WorldgenObject {
     public final Material indicator;
 
     /**
-     * @param name              the name of the vein
-     * @param modid             the modid of the mod adding the vein
-     * @param isDefault         whether this is a default vein
-     * @param minY              the minimum Y of this vein
-     * @param maxY              the maximum Y of this vein
-     * @param weight            the weight of this vein
-     * @param density           the density of this vein
-     * @param distance          the minimum distance from spawn of this vein
-     * @param size              the size of this vein
-     * @param top               the top layer material
-     * @param bottom            the bottom layer mater
-     * @param between           the between layer material
-     * @param spread            the spread material
-     * @param indicator         the indicator rock material, null for no rocks
-     * @param generators        the groups of world generators to use this vein in
+     * @param name       the name of the vein
+     * @param modid      the modid of the mod adding the vein
+     * @param isDefault  whether this is a default vein
+     * @param minY       the minimum Y of this vein
+     * @param maxY       the maximum Y of this vein
+     * @param weight     the weight of this vein
+     * @param density    the density of this vein
+     * @param distance   the minimum distance from spawn of this vein
+     * @param size       the size of this vein
+     * @param top        the top layer material
+     * @param bottom     the bottom layer mater
+     * @param between    the between layer material
+     * @param spread     the spread material
+     * @param indicator  the indicator rock material, null for no rocks
+     * @param generators the groups of world generators to use this vein in
      */
     @SafeVarargs
     public WorldgenOresLayered(@Nonnull String name, @Nonnull String modid, boolean isDefault, int minY, int maxY, int weight, int density, int distance, int size, Material top, Material bottom, Material between, Material spread, @Nullable Material indicator, List<WorldgenObject>... generators) {
@@ -67,12 +64,12 @@ public class WorldgenOresLayered extends WorldgenObject {
         this.indicator = indicator;
 
         //TODO automatic ore block generation by inclusion in veins
-        if (this.isEnabled) {
+//        if (this.isEnabled) {
 //            if (top != null) top.addOreBlock();
 //            if (bottom != null) bottom.addOreBlock();
 //            if (between != null) between.addOreBlock();
 //            if (spread != null) spread.addOreBlock();
-        }
+//        }
 
         if (top == null) {
             GTLog.logger.warn("Top material in Layered Vein {} from {} was null!", name, modid);
@@ -127,20 +124,30 @@ public class WorldgenOresLayered extends WorldgenObject {
             }
         }
 
-        // one chunk worth of the vein
-        int startX = originX - random.nextInt(size);
-        int endX = originX + 16 + random.nextInt(size);
-        int startZ = originZ - random.nextInt(size);
-        int endZ = originZ + 16 + random.nextInt(size);
-        for (int x = Math.max(minX, startX); x <= Math.min(maxX, endX); x++) {
-            for (int z = Math.max(minZ, startZ); z <= Math.min(maxZ, endZ); z++) {
+        // the ore vein itself
+
+        int startX = Math.max(originX - random.nextInt(size), minX);
+        int endX = Math.min(originX + 16 + random.nextInt(size), maxX);
+        int startZ = Math.max(originZ - random.nextInt(size), minZ);
+        int endZ = Math.min(originZ + 16 + random.nextInt(size), maxZ);
+
+        // this can sometimes happen, causing veins not to generate caused by startX = minX, and being larger than endX
+        // TODO better solution
+        if (startX > endX) endX = maxX;
+        if (startZ > endZ) endZ = maxZ;
+
+        for (int x = startX; x <= endX; x++) {
+            for (int z = startZ; z <= endZ; z++) {
                 int weightX = Math.max(1, Math.max(Math.abs(startX - x), Math.abs(endX - x)) / density);
                 int weightZ = Math.max(1, Math.max(Math.abs(startZ - z), Math.abs(endZ - z)) / density);
+                pos.setPos(x, 0, z);
+
                 // place the bottom ores
                 if (bottom != null) {
                     for (int y = veinMinY - 1; y < veinMinY + 2; y++) {
                         if (random.nextInt(weightZ) == 0 || random.nextInt(weightX) == 0) {
-                            WorldgenUtil.placeOre(world, pos.setPos(x, y, z), bottom);
+                            pos.setY(y);
+                            WorldgenUtil.placeOre(world, pos, bottom);
                         }
                     }
                 }
@@ -148,20 +155,23 @@ public class WorldgenOresLayered extends WorldgenObject {
                 if (top != null) {
                     for (int y = veinMinY + 3; y < veinMinY + 6; y++) {
                         if (random.nextInt(weightZ) == 0 || random.nextInt(weightX) == 0) {
-                            WorldgenUtil.placeOre(world, pos.setPos(x, y, z), top);
+                            pos.setY(y);
+                            WorldgenUtil.placeOre(world, pos, top);
                         }
                     }
                 }
                 // place the between ores
                 if (between != null) {
                     if (random.nextInt(weightZ) == 0 || random.nextInt(weightX) == 0) {
-                        WorldgenUtil.placeOre(world, pos.setPos(x, veinMinY + 2 + random.nextInt(2), z), between);
+                        pos.setY(veinMinY + 2 + random.nextInt(2));
+                        WorldgenUtil.placeOre(world, pos, between);
                     }
                 }
                 // place the spread ores
                 if (spread != null) {
                     if (random.nextInt(weightZ) == 0 || random.nextInt(weightX) == 0) {
-                        WorldgenUtil.placeOre(world, pos.setPos(x, veinMinY - 1 + random.nextInt(7), z), spread);
+                        pos.setY(veinMinY - 1 + random.nextInt(7));
+                        WorldgenUtil.placeOre(world, pos, spread);
                     }
                 }
             }

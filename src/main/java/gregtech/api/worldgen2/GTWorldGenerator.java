@@ -2,6 +2,7 @@ package gregtech.api.worldgen2;
 
 import gregtech.api.worldgen2.generator.WorldgenObject;
 import gregtech.api.worldgen2.generator.WorldgenOresLayered;
+import gregtech.common.ConfigHolder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.entity.item.EntityItem;
@@ -22,6 +23,11 @@ public class GTWorldGenerator {
 
     public static boolean GENERATING_SPECIAL = false;
 
+    // amount of chunks to move from one ore center to the next is this number
+    // we add +1 because it is distance moved instead of distance between
+    public static int CHUNK_ALIGNED_SPACING = ConfigHolder.worldgen.veinSpacing + 1;
+    public static int CHUNK_ALIGNED_RADIUS = ConfigHolder.worldgen.veinRadius;
+
     public static class WorldGenContainer implements Runnable {
 
         public final int minX;
@@ -36,9 +42,9 @@ public class GTWorldGenerator {
         public final List<WorldgenObject> layeredVeinWorldGeneration;
 
         public WorldGenContainer(List<WorldgenObject> normalGeneration, List<WorldgenObject> layeredVeinGeneration, int dimension, World world, int x, int z) {
-            this.minX = x;
+            this.minX = x + 1;
             this.maxX = x + 15;
-            this.minZ = z;
+            this.minZ = z + 1;
             this.maxZ = z + 15;
             this.world = world;
             this.dimension = dimension;
@@ -80,36 +86,7 @@ public class GTWorldGenerator {
                     }
                 }
 
-                // layered ore worldgen
-                List<WorldgenOresLayered> layeredVeinsToGenerate = new ObjectArrayList<>();
-                int maxWeight = 0;
-
-                for (WorldgenObject worldGen : layeredVeinWorldGeneration) {
-                    if (worldGen.isEnabled(world, dimension)) {
-                        maxWeight += ((WorldgenOresLayered) worldGen).weight;
-                        layeredVeinsToGenerate.add((WorldgenOresLayered) worldGen);
-                    }
-                }
-
-                if (maxWeight > 0 && !layeredVeinsToGenerate.isEmpty()) {
-                    for (int x = -32; x <= 32; x += 16) {
-                        for (int z = -32; z <= 32; z += 16) {
-                            int originX = minX + x;
-                            int originZ = minZ + z;
-                            if (Math.abs(originX >> 4) % 3 == 1 && Math.abs(originZ >> 4) % 3 == 1) {
-                                Random random = WorldgenUtil.worldRandom(world, originX, originZ);
-                                int randomWeight = random.nextInt(maxWeight);
-                                for (WorldgenOresLayered worldgen : layeredVeinsToGenerate) {
-                                    randomWeight -= worldgen.weight;
-                                    if (randomWeight <= 0) {
-                                        worldgen.generate(world, chunk, minX, maxX, minZ, maxZ, minX + 7, minZ + 7, random);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                generateChunkGridAligned(chunk);
 
                 // Kill off every single Item Entity that may have dropped during Worldgen.
                 for (EntityItem entityItem : world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(minX - 32, 0, minZ - 32, maxX + 48, 256, minZ + 48))) {
@@ -121,6 +98,52 @@ public class GTWorldGenerator {
 
                 // Chunk got modified, duh.
                 chunk.setModified(true);
+            }
+        }
+
+        private void generateChunkGridAligned(Chunk chunk) {
+            // layered ore worldgen
+            List<WorldgenObject> veinsToGenerate = new ObjectArrayList<>();
+            int maxWeight = 0;
+
+            for (WorldgenObject worldGen : layeredVeinWorldGeneration) {
+                if (worldGen.isEnabled(world, dimension)) {
+                    if (worldGen instanceof WorldgenOresLayered) {
+                        maxWeight += ((WorldgenOresLayered) worldGen).weight;
+                    }
+                    veinsToGenerate.add(worldGen);
+                }
+            }
+
+            if (maxWeight > 0 && !veinsToGenerate.isEmpty()) {
+                for (int x = -CHUNK_ALIGNED_RADIUS; x <= CHUNK_ALIGNED_RADIUS; x++) {
+                    for (int z = -CHUNK_ALIGNED_RADIUS; z <= CHUNK_ALIGNED_RADIUS; z++) {
+                        int originX = minX + (x * 16);
+                        int originZ = minZ + (z * 16);
+
+                        // check if the chunk we're testing is chunk-grid aligned in both the X and Z axes
+                        if (((originX >> 4) % CHUNK_ALIGNED_SPACING + CHUNK_ALIGNED_SPACING) % CHUNK_ALIGNED_SPACING == 1 &&
+                                ((originZ >> 4) % CHUNK_ALIGNED_SPACING + CHUNK_ALIGNED_SPACING) % CHUNK_ALIGNED_SPACING == 1) {
+
+                            // create a random with a consistent seed based on the world seed and the coordinates of the vein
+                            Random random = WorldgenUtil.worldRandom(world, originX, originZ);
+
+                            // weight the veins to choose different ones for each vein
+                            // because we have a consistent random, this is always the same for each chunk in a single vein
+                            int randomWeight = random.nextInt(maxWeight);
+                            for (WorldgenObject worldgen : veinsToGenerate) {
+                                if (worldgen instanceof WorldgenOresLayered) {
+                                    randomWeight -= ((WorldgenOresLayered) worldgen).weight;
+                                }
+                                if (randomWeight <= 0) {
+                                    // only generate
+                                    worldgen.generateChunkAligned(world, chunk, minX, maxX, minZ, maxZ, originX, originZ, random);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

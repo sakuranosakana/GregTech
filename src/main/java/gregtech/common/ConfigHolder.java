@@ -111,6 +111,14 @@ public class ConfigHolder {
 
     public static class WorldGenOptions {
 
+        @Config.Comment({"The amount of chunks between each chunk-grid aligned vein center chunk."})
+        @Config.RangeInt(min = 0)
+        public int veinSpacing = 2;
+
+        @Config.Comment({"The maximum amount of chunks a chunk-grid aligned vein can spread from its center chunk."})
+        @Config.RangeInt(min = 0)
+        public int veinRadius = 1;
+
         @Config.Comment({"Specifies the minimum number of veins in a section.", "Default: 1"})
         public int minVeinsInSection = 1;
 

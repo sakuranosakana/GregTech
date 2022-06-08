@@ -20,16 +20,16 @@ public class WorldgenUtil {
 
     @Nonnull
     public static Random worldRandom(@Nonnull World world, long blockX, long blockZ) {
-        return worldRandom(world.getSeed() ^ world.provider.getDimension(), blockX >> 4, blockZ >> 4);
+        return worldRandom(world.getSeed() ^ world.provider.getDimension(), Math.abs(blockX >> 4), Math.abs(blockZ >> 4));
     }
 
     @Nonnull
     public static Random worldRandom(long seed, long chunkX, long chunkZ) {
-        Random random = new XSTR(seed);
-        for (int i = 0; i < 50; i++) random.nextInt(0x00FFFFFF);
-        random = new XSTR(seed ^ ((random.nextLong() >> 2 + 1L) * chunkX + (random.nextLong() >> 2 + 1L) * chunkZ));
-        for (int i = 0; i < 50; i++) random.nextInt(0x00FFFFFF);
-        return random;
+        return new XSTR(pair(Math.abs(seed), pair(chunkX, chunkZ)));
+    }
+
+    public static long pair(long chunkX, long chunkZ) {
+        return ((chunkX * chunkX) + (3 * chunkX) + (2 * chunkX * chunkZ) + (chunkZ) + (chunkZ * chunkZ)) / 2;
     }
 
     public static boolean easyIsReplaceable(World world, BlockPos pos) {

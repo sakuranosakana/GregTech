@@ -48,7 +48,7 @@ public abstract class WorldgenObject {
      * @param minX       the minimum X coordinate of where this should generate
      * @param maxX       the maximum X coordinate of where this should generate
      * @param minZ       the minimum Z coordinate of where this should generate
-     * @param maxZ       the maximum Z coordinate of where the should generate
+     * @param maxZ       the maximum Z coordinate of where this should generate
      * @param random     the random number generator to use
      * @param biomes     the biomes
      * @param biomeNames the names of the biomes
@@ -60,18 +60,37 @@ public abstract class WorldgenObject {
     }
 
     /**
+     * Alternative way to generate this WorldgenObject in world using chunk-grid alignment
+     *
+     * @param world      the world to generate this in
+     * @param chunk      the chunk to generate this in
+     * @param minX       the minimum X coordinate of where this should generate
+     * @param maxX       the maximum X coordinate of where this should generate
+     * @param minZ       the minimum Z coordinate of where this should generate
+     * @param maxZ       the maximum Z coordinate of where this should generate
+     * @param originX the X block coordinate of the center, often in another chunk
+     * @param originZ the Z block coordinate of the center, often in another chunk
+     * @param random     the random number generator to use
+     * @return true if this successfully generated, otherwise false
+     */
+    public boolean generateChunkAligned(World world, Chunk chunk, int minX, int maxX, int minZ, int maxZ, int originX, int originZ, Random random) {
+        // insert your WorldGen Code here
+        return false;
+    }
+
+    /**
      * @param world     the world to check
-     * @param dimension the dimension to generate in
+     * @param dimension the dimension to check
      * @return true if generation is allowed, otherwise false
      */
     public boolean isEnabled(World world, int dimension) {
         if (this.isInvalid) return false;
-        Boolean isAllowed = allowedDimensions.get(world.provider.getDimension());
+        Boolean isAllowed = allowedDimensions.get(dimension);
         if (isAllowed != null) return isAllowed && isEnabled;
         //TODO dimensions from vein config
 //        isAllowed = getWorldgeneratorFromConfig().getAllowedDimensions().contains(world.provider.getDimension());
         isAllowed = true; // temporary until configs
-        allowedDimensions.put(world.provider.getDimension(), isAllowed);
+        allowedDimensions.put(dimension, isAllowed);
         return isAllowed && isEnabled;
     }
 
@@ -94,12 +113,11 @@ public abstract class WorldgenObject {
     }
 
     /**
-     *
      * @param world the world to check
-     * @param minX the minimum x to check
-     * @param maxX the maximum x to check
-     * @param minZ the minimum z to check
-     * @param maxZ the maximum z to check
+     * @param minX  the minimum x to check
+     * @param maxX  the maximum x to check
+     * @param minZ  the minimum z to check
+     * @param maxZ  the maximum z to check
      * @return true if major world generation is happening, otherwise false
      */
     public boolean checkForMajorWorldgen(@Nonnull World world, int minX, int maxX, int minZ, int maxZ) {

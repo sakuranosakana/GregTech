@@ -89,14 +89,17 @@ public class WorldgenOresLayered extends WorldgenObject {
         }
     }
 
-    public boolean generate(World world, Chunk chunk, int minX, int maxX, int minZ, int maxZ, int originX, int originZ, Random random) {
+    @Override
+    public boolean generateChunkAligned(World world, Chunk chunk, int minX, int maxX, int minZ, int maxZ, int originX, int originZ, Random random) {
         // do not generate if we are generating special worldgen
         if (GTWorldGenerator.GENERATING_SPECIAL) return false;
 
         // if we have a minimum spawn distance, do not generate if we are not far enough away
         if (distance > 0 && Math.abs(minX) <= distance && Math.abs(minZ) <= distance) return false;
 
-        int veinMinY = minY + WorldgenUtil.worldRandom(world, originX, originZ).nextInt(Math.max(1, maxY - minY - 5));
+        // only use the chunk aligned random for consistent y
+        int veinMinY = Math.min(maxY, minY + random.nextInt(maxY - minY - 7));
+        random = WorldgenUtil.worldRandom(world, minX, minZ);
 
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(0, 0, 0);
 
@@ -124,22 +127,19 @@ public class WorldgenOresLayered extends WorldgenObject {
             }
         }
 
-        // the ore vein itself
+        // the ore vein for the current chunk
 
-        int startX = Math.max(originX - random.nextInt(size), minX);
-        int endX = Math.min(originX + 16 + random.nextInt(size), maxX);
-        int startZ = Math.max(originZ - random.nextInt(size), minZ);
-        int endZ = Math.min(originZ + 16 + random.nextInt(size), maxZ);
+        int startX = minX;
+        int endX = maxX;
+        int startZ = minZ;
+        int endZ = maxZ;
 
-        // this can sometimes happen, causing veins not to generate caused by startX = minX, and being larger than endX
-        // TODO better solution
-        if (startX > endX) endX = maxX;
-        if (startZ > endZ) endZ = maxZ;
-
-        for (int x = startX; x <= endX; x++) {
-            for (int z = startZ; z <= endZ; z++) {
-                int weightX = Math.max(1, Math.max(Math.abs(startX - x), Math.abs(endX - x)) / density);
-                int weightZ = Math.max(1, Math.max(Math.abs(startZ - z), Math.abs(endZ - z)) / density);
+        for (int x = startX; x < endX + 2; x++) {
+            for (int z = startZ; z < endZ + 2; z++) {
+//                int weightX = Math.max(1, Math.max(Math.abs(startX - x), Math.abs(endX - x)) / density);
+//                int weightZ = Math.max(1, Math.max(Math.abs(startZ - z), Math.abs(endZ - z)) / density);
+                int weightX = 1;
+                int weightZ = 1;
                 pos.setPos(x, 0, z);
 
                 // place the bottom ores

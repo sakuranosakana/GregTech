@@ -1,10 +1,8 @@
 package gregtech.api.worldgen2;
 
 import com.google.common.collect.ImmutableSet;
-import gregtech.api.GTValues;
-import gregtech.api.unification.material.Materials;
+import gregtech.api.worldgen2.builders.LayeredOreVeinBuilder;
 import gregtech.api.worldgen2.generator.WorldgenObject;
-import gregtech.api.worldgen2.generator.WorldgenOresLayered;
 import gregtech.common.ConfigHolder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.World;
@@ -22,6 +20,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import static gregtech.api.unification.material.Materials.*;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.*;
 
 @Mod.EventBusSubscriber
@@ -45,9 +44,9 @@ public class GregTechWorldgen implements IWorldGenerator {
     }
 
     public static void init() {
-        new WorldgenOresLayered("tetra", GTValues.MODID, true, 70, 120, 150, 4, 0, 24, Materials.Tetrahedrite, Materials.Tetrahedrite, Materials.Copper, Materials.Stibnite, Materials.Copper, ORES_OVERWORLD);
-        new WorldgenOresLayered("magnetite", GTValues.MODID, true, 30, 120, 100, 2, 0, 32, Materials.Magnetite, Materials.VanadiumMagnetite, Materials.Iron, Materials.Gold, Materials.Magnetite, ORES_OVERWORLD);
-        new WorldgenOresLayered("apatite", GTValues.MODID, true, 40, 120, 50, 1, 0, 16, Materials.Apatite, Materials.TricalciumPhosphate, Materials.Realgar, Materials.Tin, Materials.Apatite, ORES_OVERWORLD);
+        LayeredOreVeinBuilder.builder("tetrahedrite").yRange(70, 120).weight(150).density(4).size(24).top(Tetrahedrite).bottom(Bornite).between(Copper).spread(Stibnite).indicator(Copper).build(ORES_OVERWORLD);
+        LayeredOreVeinBuilder.builder("magnetite").yRange(30, 70).weight(100).density(2).size(32).top(Magnetite, 10).bottom(VanadiumMagnetite, 2).between(Iron).spread(Gold).indicator(Iron).build(ORES_OVERWORLD);
+        LayeredOreVeinBuilder.builder("apatite").yRange(40, 60).weight(50).size(16).top(Apatite, 2).bottom(TricalciumPhosphate, 10).between(Realgar, 7).spread(Tin).indicator(Apatite).build(ORES_OVERWORLD);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)

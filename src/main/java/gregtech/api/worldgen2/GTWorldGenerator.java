@@ -136,9 +136,8 @@ public class GTWorldGenerator {
                                     randomWeight -= ((WorldgenOresLayered) worldgen).weight;
                                 }
                                 if (randomWeight <= 0) {
-                                    // only generate
-                                    worldgen.generateChunkAligned(world, chunk, minX, maxX, minZ, maxZ, originX, originZ, random);
-                                    return;
+                                    // generate the vein for just this chunk, try the next vein if it didn't actually place ore
+                                    if (worldgen.generateChunkAligned(world, chunk, minX, maxX + 2, minZ, maxZ + 2, originX, originZ, random)) return;
                                 }
                             }
                         }

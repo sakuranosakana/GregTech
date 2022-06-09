@@ -18,7 +18,8 @@ public abstract class WorldgenObject {
     public boolean isInvalid = false;
 
     public final String name;
-    public final String category;
+    public final String modid;
+    public final boolean isDefault;
 
     public final Map<Integer, Boolean> allowedDimensions = new Int2BooleanOpenHashMap();
 
@@ -33,7 +34,8 @@ public abstract class WorldgenObject {
         if (name.isEmpty()) throw new IllegalArgumentException("Worldgen Object name must not be empty");
         if (modid.isEmpty()) throw new IllegalArgumentException("Worldgen Object modid must not be empty");
         this.name = name;
-        this.category = String.format("%s.world_generator.%s", modid, name);
+        this.modid = modid;
+        this.isDefault = isDefault;
         for (List<WorldgenObject> worldgenObjects : generators) {
             worldgenObjects.add(this);
         }
@@ -64,10 +66,10 @@ public abstract class WorldgenObject {
      *
      * @param world      the world to generate this in
      * @param chunk      the chunk to generate this in
-     * @param minX       the minimum X coordinate of where this should generate
-     * @param maxX       the maximum X coordinate of where this should generate
-     * @param minZ       the minimum Z coordinate of where this should generate
-     * @param maxZ       the maximum Z coordinate of where this should generate
+     * @param minX       the minimum X coordinate of where this should generate (inclusive)
+     * @param maxX       the maximum X coordinate of where this should generate (exclusive)
+     * @param minZ       the minimum Z coordinate of where this should generate (inclusive)
+     * @param maxZ       the maximum Z coordinate of where this should generate (exclusive)
      * @param originX the X block coordinate of the center, often in another chunk
      * @param originZ the Z block coordinate of the center, often in another chunk
      * @param random     the random number generator to use

@@ -5,9 +5,6 @@ import gregtech.api.unification.ore.StoneType;
 import gregtech.api.util.XSTR;
 import gregtech.api.worldgen.config.OreConfigUtils;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockFire;
-import net.minecraft.block.BlockSnow;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -32,15 +29,13 @@ public class WorldgenUtil {
         return ((chunkX * chunkX) + (3 * chunkX) + (2 * chunkX * chunkZ) + (chunkZ) + (chunkZ * chunkZ)) / 2;
     }
 
-    public static boolean easyIsReplaceable(World world, BlockPos pos) {
-        return easyIsReplaceable(world, pos, world.getBlockState(pos));
+    public static boolean isReplaceable(World world, BlockPos pos) {
+        return isReplaceable(world, pos, world.getBlockState(pos));
     }
 
-    public static boolean easyIsReplaceable(World world, BlockPos pos, @Nonnull IBlockState state) {
+    public static boolean isReplaceable(World world, BlockPos pos, @Nonnull IBlockState state) {
         Block block = state.getBlock();
-        return isAir(state) || block instanceof BlockBush || block instanceof BlockSnow ||
-                block instanceof BlockFire || block.isLeaves(state, world, pos) ||
-                block.canBeReplacedByLeaves(state, world, pos);
+        return isAir(state) || block.isReplaceable(world, pos) || block.canBeReplacedByLeaves(state, world, pos);
     }
 
     public static boolean isAir(World world, BlockPos pos) {

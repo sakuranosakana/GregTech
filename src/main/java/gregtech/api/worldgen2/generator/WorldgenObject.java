@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-public abstract class WorldgenObject {
+public abstract class WorldgenObject implements IWorldgenObject{
 
     public boolean isEnabled = true;
     public boolean isInvalid = false;
@@ -30,13 +30,13 @@ public abstract class WorldgenObject {
      * @param generators the groups of world generators to use this WorldgenObject in
      */
     @SafeVarargs
-    public WorldgenObject(@Nonnull String name, @Nonnull String modid, boolean isDefault, List<WorldgenObject>... generators) {
+    public WorldgenObject(@Nonnull String name, @Nonnull String modid, boolean isDefault, List<IWorldgenObject>... generators) {
         if (name.isEmpty()) throw new IllegalArgumentException("Worldgen Object name must not be empty");
         if (modid.isEmpty()) throw new IllegalArgumentException("Worldgen Object modid must not be empty");
         this.name = name;
         this.modid = modid;
         this.isDefault = isDefault;
-        for (List<WorldgenObject> worldgenObjects : generators) {
+        for (List<IWorldgenObject> worldgenObjects : generators) {
             worldgenObjects.add(this);
         }
     }
@@ -62,29 +62,11 @@ public abstract class WorldgenObject {
     }
 
     /**
-     * Alternative way to generate this WorldgenObject in world using chunk-grid alignment
-     *
-     * @param world      the world to generate this in
-     * @param chunk      the chunk to generate this in
-     * @param minX       the minimum X coordinate of where this should generate (inclusive)
-     * @param maxX       the maximum X coordinate of where this should generate (exclusive)
-     * @param minZ       the minimum Z coordinate of where this should generate (inclusive)
-     * @param maxZ       the maximum Z coordinate of where this should generate (exclusive)
-     * @param originX the X block coordinate of the center, often in another chunk
-     * @param originZ the Z block coordinate of the center, often in another chunk
-     * @param random     the random number generator to use
-     * @return true if this successfully generated, otherwise false
-     */
-    public boolean generateChunkAligned(World world, Chunk chunk, int minX, int maxX, int minZ, int maxZ, int originX, int originZ, Random random) {
-        // insert your WorldGen Code here
-        return false;
-    }
-
-    /**
      * @param world     the world to check
      * @param dimension the dimension to check
      * @return true if generation is allowed, otherwise false
      */
+    @Override
     public boolean isEnabled(World world, int dimension) {
         if (this.isInvalid) return false;
         Boolean isAllowed = allowedDimensions.get(dimension);

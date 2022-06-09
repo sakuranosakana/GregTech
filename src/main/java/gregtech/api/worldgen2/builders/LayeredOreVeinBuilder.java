@@ -2,7 +2,7 @@ package gregtech.api.worldgen2.builders;
 
 import gregtech.api.GTValues;
 import gregtech.api.unification.material.Material;
-import gregtech.api.worldgen2.generator.WorldgenObject;
+import gregtech.api.worldgen2.generator.IWorldgenObject;
 import gregtech.api.worldgen2.generator.WorldgenOresLayered;
 import net.minecraft.block.state.IBlockState;
 
@@ -213,10 +213,10 @@ public class LayeredOreVeinBuilder {
 
     /**
      * Build a new {@link WorldgenOresLayered} and add it to the generation lists
-     * @param generationLists the list of {@link WorldgenObject}s to add this vein to
+     * @param generationLists the list of {@link IWorldgenObject}s to add this vein to
      */
     @SafeVarargs
-    public final void build(List<WorldgenObject>... generationLists) {
+    public final void build(List<IWorldgenObject>... generationLists) {
             new WorldgenOresLayered(name, modid, isDefault, minY, maxY, weight, density, distance, size, top,
                     topHeight, bottom, bottomHeight, between, betweenHeight, spread,
                     indicator, indicatorState, generationLists);

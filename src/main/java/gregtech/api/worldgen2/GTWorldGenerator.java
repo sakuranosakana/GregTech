@@ -1,7 +1,7 @@
 package gregtech.api.worldgen2;
 
-import gregtech.api.worldgen2.generator.WorldgenObject;
-import gregtech.api.worldgen2.generator.WorldgenOresLayered;
+import gregtech.api.worldgen2.generator.IChunkGridAligned;
+import gregtech.api.worldgen2.generator.IWorldgenObject;
 import gregtech.common.ConfigHolder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
@@ -38,10 +38,10 @@ public class GTWorldGenerator {
         public final World world;
         public final int dimension;
         public final Random random;
-        public final List<WorldgenObject> normalWorldGeneration;
-        public final List<WorldgenObject> layeredVeinWorldGeneration;
+        public final List<IWorldgenObject> normalWorldGeneration;
+        public final List<IWorldgenObject> chunkGridGeneration;
 
-        public WorldGenContainer(List<WorldgenObject> normalGeneration, List<WorldgenObject> layeredVeinGeneration, int dimension, World world, int x, int z) {
+        public WorldGenContainer(List<IWorldgenObject> normalGeneration, List<IWorldgenObject> chunkGridGeneration, int dimension, World world, int x, int z) {
             this.minX = x + 1;
             this.maxX = x + 15;
             this.minZ = z + 1;
@@ -49,14 +49,14 @@ public class GTWorldGenerator {
             this.world = world;
             this.dimension = dimension;
             this.normalWorldGeneration = normalGeneration;
-            this.layeredVeinWorldGeneration = layeredVeinGeneration;
+            this.chunkGridGeneration = chunkGridGeneration;
             this.random = WorldgenUtil.worldRandom(world, x, z);
         }
 
         @Override
         public void run() {
             // regular worldgen
-            if (!normalWorldGeneration.isEmpty() || !layeredVeinWorldGeneration.isEmpty()) {
+            if (!normalWorldGeneration.isEmpty() || !chunkGridGeneration.isEmpty()) {
                 BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(minX + 7, 0, minZ + 7);
                 Chunk chunk = world.getChunk(pos);
                 Biome[][] biomes = new Biome[16][16];
@@ -75,12 +75,12 @@ public class GTWorldGenerator {
                 GENERATING_SPECIAL = false;
 
                 // Yes, it has to be looped twice in a row, this cannot be optimized into one Loop!
-                for (WorldgenObject worldGen : normalWorldGeneration) {
+                for (IWorldgenObject worldGen : normalWorldGeneration) {
                     worldGen.reset(world, chunk, dimension, minX, maxX, minZ, maxZ, random, biomes, biomeNames);
                 }
 
                 // regular worldgen
-                for (WorldgenObject worldGen : normalWorldGeneration) {
+                for (IWorldgenObject worldGen : normalWorldGeneration) {
                     if (worldGen.isEnabled(world, dimension)) {
                         worldGen.generate(world, chunk, dimension, minX, maxX, minZ, maxZ, random, biomes, biomeNames);
                     }
@@ -103,15 +103,14 @@ public class GTWorldGenerator {
 
         private void generateChunkGridAligned(Chunk chunk) {
             // layered ore worldgen
-            List<WorldgenObject> veinsToGenerate = new ObjectArrayList<>();
+            List<IChunkGridAligned> veinsToGenerate = new ObjectArrayList<>();
             int maxWeight = 0;
 
-            for (WorldgenObject worldGen : layeredVeinWorldGeneration) {
-                if (worldGen.isEnabled(world, dimension)) {
-                    if (worldGen instanceof WorldgenOresLayered) {
-                        maxWeight += ((WorldgenOresLayered) worldGen).weight;
-                    }
-                    veinsToGenerate.add(worldGen);
+            for (IWorldgenObject worldGen : chunkGridGeneration) {
+                if (worldGen instanceof IChunkGridAligned && worldGen.isEnabled(world, dimension)) {
+                    IChunkGridAligned chunkGridAligned = (IChunkGridAligned) worldGen;
+                    maxWeight += chunkGridAligned.getWeight();
+                    veinsToGenerate.add(chunkGridAligned);
                 }
             }
 
@@ -131,13 +130,13 @@ public class GTWorldGenerator {
                             // weight the veins to choose different ones for each vein
                             // because we have a consistent random, this is always the same for each chunk in a single vein
                             int randomWeight = random.nextInt(maxWeight);
-                            for (WorldgenObject worldgen : veinsToGenerate) {
-                                if (worldgen instanceof WorldgenOresLayered) {
-                                    randomWeight -= ((WorldgenOresLayered) worldgen).weight;
-                                }
+                            for (IChunkGridAligned worldgen : veinsToGenerate) {
+                                randomWeight -= worldgen.getWeight();
                                 if (randomWeight <= 0) {
                                     // generate the vein for just this chunk, try the next vein if it didn't actually place ore
-                                    if (worldgen.generateChunkAligned(world, chunk, minX, maxX + 2, minZ, maxZ + 2, originX, originZ, random)) return;
+                                    if (worldgen.generateChunkAligned(world, chunk, minX, maxX + 2, minZ, maxZ + 2, originX, originZ, random)) {
+                                        return;
+                                    }
                                 }
                             }
                         }

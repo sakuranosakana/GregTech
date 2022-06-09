@@ -2,7 +2,7 @@ package gregtech.api.worldgen2;
 
 import com.google.common.collect.ImmutableSet;
 import gregtech.api.worldgen2.builders.LayeredOreVeinBuilder;
-import gregtech.api.worldgen2.generator.WorldgenObject;
+import gregtech.api.worldgen2.generator.IWorldgenObject;
 import gregtech.common.ConfigHolder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.World;
@@ -28,13 +28,13 @@ public class GregTechWorldgen implements IWorldGenerator {
 
     public static final GregTechWorldgen INSTANCE = new GregTechWorldgen();
 
-    public static final List<WorldgenObject> WORLDGEN_OVERWORLD = new ObjectArrayList<>();
-    public static final List<WorldgenObject> WORLDGEN_NETHER = new ObjectArrayList<>();
-    public static final List<WorldgenObject> WORLDGEN_END = new ObjectArrayList<>();
+    public static final List<IWorldgenObject> WORLDGEN_OVERWORLD = new ObjectArrayList<>();
+    public static final List<IWorldgenObject> WORLDGEN_NETHER = new ObjectArrayList<>();
+    public static final List<IWorldgenObject> WORLDGEN_END = new ObjectArrayList<>();
 
-    public static final List<WorldgenObject> ORES_OVERWORLD = new ObjectArrayList<>();
-    public static final List<WorldgenObject> ORES_NETHER = new ObjectArrayList<>();
-    public static final List<WorldgenObject> ORES_END = new ObjectArrayList<>();
+    public static final List<IWorldgenObject> ORES_OVERWORLD = new ObjectArrayList<>();
+    public static final List<IWorldgenObject> ORES_NETHER = new ObjectArrayList<>();
+    public static final List<IWorldgenObject> ORES_END = new ObjectArrayList<>();
 
     private static final Set<OreGenEvent.GenerateMinable.EventType> ORE_EVENT_TYPES = ImmutableSet.of(COAL, DIAMOND, GOLD, IRON, LAPIS, REDSTONE, QUARTZ, EMERALD);
 

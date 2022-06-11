@@ -62,7 +62,11 @@ public class UnknownCompositionMaterials {
         ConstructionFoam = new Material.Builder(1516, "construction_foam")
                 .fluid().color(0x808080).build();
 
-        // Free IDs 1517-1521
+        Slate = new Material.Builder(1517, "slate").color(0x393B3D).iconSet(METALLIC).dust().build();
+
+        Kimberlite = new Material.Builder(1518, "kimberlite").color(0x64460A).iconSet(ROUGH).dust().build();
+
+        // Free IDs 1519-1521
 
         SulfuricHeavyFuel = new Material.Builder(1522, "sulfuric_heavy_fuel")
                 .fluid().build();

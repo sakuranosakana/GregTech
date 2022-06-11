@@ -25,14 +25,34 @@
           "all": "gregtech:blocks/stones/basalt/basalt_chiseled"
         }
       },
-      "concrete_light": {
+      "limestone": {
         "textures": {
-          "all": "gregtech:blocks/stones/concrete_light/concrete_light_chiseled"
+          "all": "gregtech:blocks/stones/limestone/limestone_chiseled"
         }
       },
       "concrete_dark": {
         "textures": {
           "all": "gregtech:blocks/stones/concrete_dark/concrete_dark_chiseled"
+        }
+      },
+      "slate": {
+        "textures": {
+          "all": "gregtech:blocks/stones/slate/slate_chiseled"
+        }
+      },
+      "komatiite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/komatiite/komatiite_chiseled"
+        }
+      },
+      "kimberlite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/kimberlite/kimberlite_chiseled"
+        }
+      },
+      "quartzite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/quartzite/quartzite_chiseled"
         }
       }
     }

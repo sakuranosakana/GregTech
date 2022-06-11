@@ -677,6 +677,8 @@ public class Materials {
     public static Material NaquadriaWaste;
     public static Material Lapotron;
     public static Material UUMatter;
+    public static Material Slate;
+    public static Material Kimberlite;
 
     /**
      * Second Degree Compounds
@@ -734,6 +736,7 @@ public class Materials {
     public static Material SaltWater;
     public static Material Clay;
     public static Material Redstone;
+    public static Material Limestone;
 
     /**
      * Third Degree Materials
@@ -753,12 +756,13 @@ public class Materials {
     public static Material Brick;
     public static Material Fireclay;
     public static Material Diorite;
+    public static Material BlueAlloy;
+    public static Material Komatiite;
 
     /**
      * Fourth Degree Materials
      */
     public static Material RedAlloy;
-    public static Material BlueAlloy;
     public static Material BasalticMineralSand;
     public static Material HSSE;
     public static Material HSSS;

@@ -26,7 +26,6 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +37,8 @@ public class GregTechAPI {
     public static final MaterialRegistry MATERIAL_REGISTRY = new MaterialRegistry();
 
     public static BlockMachine MACHINE;
-    public static final Map<Material, Map<StoneType, IBlockOre>> oreBlockTable = new HashMap<>();
+    public static final Map<Material, Map<StoneType, IBlockOre>> oreBlockTable = new Object2ObjectOpenHashMap<>();
+    public static final Map<Material, Map<StoneType, IBlockOre>> oreBlockSmallTable = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IHeatingCoilBlockStats> HEATING_COILS = new Object2ObjectOpenHashMap<>();
 
     public static final BaseCreativeTab TAB_GREGTECH =

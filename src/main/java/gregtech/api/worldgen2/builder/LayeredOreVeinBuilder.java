@@ -1,4 +1,4 @@
-package gregtech.api.worldgen2.builders;
+package gregtech.api.worldgen2.builder;
 
 import gregtech.api.GTValues;
 import gregtech.api.unification.material.Material;

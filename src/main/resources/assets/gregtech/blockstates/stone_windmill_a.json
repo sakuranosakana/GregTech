@@ -25,14 +25,34 @@
           "all": "gregtech:blocks/stones/basalt/basalt_windmill_a"
         }
       },
-      "concrete_light": {
+      "limestone": {
         "textures": {
-          "all": "gregtech:blocks/stones/concrete_light/concrete_light_windmill_a"
+          "all": "gregtech:blocks/stones/limestone/limestone_windmill_a"
         }
       },
       "concrete_dark": {
         "textures": {
           "all": "gregtech:blocks/stones/concrete_dark/concrete_dark_windmill_a"
+        }
+      },
+      "slate": {
+        "textures": {
+          "all": "gregtech:blocks/stones/slate/slate_windmill_a"
+        }
+      },
+      "komatiite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/komatiite/komatiite_windmill_a"
+        }
+      },
+      "kimberlite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/kimberlite/kimberlite_windmill_a"
+        }
+      },
+      "quartzite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/quartzite/quartzite_windmill_a"
         }
       }
     }

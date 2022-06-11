@@ -1,10 +1,6 @@
 package gregtech.api.worldgen2;
 
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.ore.StoneType;
 import gregtech.api.util.XSTR;
-import gregtech.api.worldgen.config.OreConfigUtils;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -34,8 +30,7 @@ public class WorldgenUtil {
     }
 
     public static boolean isReplaceable(World world, BlockPos pos, @Nonnull IBlockState state) {
-        Block block = state.getBlock();
-        return isAir(state) || block.isReplaceable(world, pos) || block.canBeReplacedByLeaves(state, world, pos);
+        return isAir(world, pos, state) || state.getBlock().isReplaceable(world, pos) || state.getBlock().canBeReplacedByLeaves(state, world, pos);
     }
 
     public static boolean isAir(World world, BlockPos pos) {
@@ -48,18 +43,5 @@ public class WorldgenUtil {
 
     public static boolean isAir(@Nonnull IBlockState state) {
         return state.getBlock() == Blocks.AIR;
-    }
-
-    public static boolean placeOre(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull Material material) {
-        IBlockState state = world.getBlockState(pos);
-        Block block = state.getBlock();
-        if (block == Blocks.AIR) return false;
-
-        StoneType stoneType = StoneType.computeStoneType(state, world, pos);
-        if (stoneType == null) return false;
-
-        IBlockState ore = OreConfigUtils.getOreForMaterial(material).get(stoneType);
-        if (ore == null) return false;
-        return world.setBlockState(pos, ore);
     }
 }

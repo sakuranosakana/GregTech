@@ -264,9 +264,6 @@ public class MaterialFlagAddition {
         oreProp = NetherQuartz.getProperty(PropertyKey.ORE);
         oreProp.setOreByProducts(Quartzite);
 
-        oreProp = Quartzite.getProperty(PropertyKey.ORE);
-        oreProp.setOreByProducts(CertusQuartz, Barite);
-
         oreProp = Graphite.getProperty(PropertyKey.ORE);
         oreProp.setOreByProducts(Carbon);
 

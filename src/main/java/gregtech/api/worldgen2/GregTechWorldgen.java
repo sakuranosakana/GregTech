@@ -1,7 +1,7 @@
 package gregtech.api.worldgen2;
 
 import com.google.common.collect.ImmutableSet;
-import gregtech.api.worldgen2.builders.LayeredOreVeinBuilder;
+import gregtech.api.worldgen2.builder.LayeredOreVeinBuilder;
 import gregtech.api.worldgen2.generator.IWorldgenObject;
 import gregtech.common.ConfigHolder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
@@ -29,6 +29,7 @@ public class GregTechWorldgen implements IWorldGenerator {
     public static final GregTechWorldgen INSTANCE = new GregTechWorldgen();
 
     public static final List<IWorldgenObject> WORLDGEN_OVERWORLD = new ObjectArrayList<>();
+    public static final List<IWorldgenObject> WORLDGEN_GREGTECH = new ObjectArrayList<>();
     public static final List<IWorldgenObject> WORLDGEN_NETHER = new ObjectArrayList<>();
     public static final List<IWorldgenObject> WORLDGEN_END = new ObjectArrayList<>();
 
@@ -47,6 +48,9 @@ public class GregTechWorldgen implements IWorldGenerator {
         LayeredOreVeinBuilder.builder("tetrahedrite").yRange(70, 120).weight(150).density(4).size(24).top(Tetrahedrite).bottom(Bornite).between(Copper).spread(Stibnite).indicator(Copper).build(ORES_OVERWORLD);
         LayeredOreVeinBuilder.builder("magnetite").yRange(30, 70).weight(100).density(2).size(32).top(Magnetite, 10).bottom(VanadiumMagnetite, 2).between(Iron).spread(Gold).indicator(Iron).build(ORES_OVERWORLD);
         LayeredOreVeinBuilder.builder("apatite").yRange(40, 60).weight(50).size(16).top(Apatite, 2).bottom(TricalciumPhosphate, 10).between(Realgar, 7).spread(Tin).indicator(Apatite).build(ORES_OVERWORLD);
+
+
+        GregTechStoneLayers.init();
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)

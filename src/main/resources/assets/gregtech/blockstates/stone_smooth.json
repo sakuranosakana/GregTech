@@ -25,14 +25,34 @@
           "all": "gregtech:blocks/stones/basalt/basalt_smooth"
         }
       },
-      "concrete_light": {
+      "limestone": {
         "textures": {
-          "all": "gregtech:blocks/stones/concrete_light/concrete_light_smooth"
+          "all": "gregtech:blocks/stones/limestone/limestone_smooth"
         }
       },
       "concrete_dark": {
         "textures": {
           "all": "gregtech:blocks/stones/concrete_dark/concrete_dark_smooth"
+        }
+      },
+      "slate": {
+        "textures": {
+          "all": "gregtech:blocks/stones/slate/slate_smooth"
+        }
+      },
+      "komatiite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/komatiite/komatiite_smooth"
+        }
+      },
+      "kimberlite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/kimberlite/kimberlite_smooth"
+        }
+      },
+      "quartzite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/quartzite/quartzite_smooth"
         }
       }
     }

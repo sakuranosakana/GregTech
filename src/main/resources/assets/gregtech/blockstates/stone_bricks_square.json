@@ -25,14 +25,34 @@
           "all": "gregtech:blocks/stones/basalt/basalt_bricks_square"
         }
       },
-      "concrete_light": {
+      "limestone": {
         "textures": {
-          "all": "gregtech:blocks/stones/concrete_light/concrete_light_bricks_square"
+          "all": "gregtech:blocks/stones/limestone/limestone_bricks_square"
         }
       },
       "concrete_dark": {
         "textures": {
           "all": "gregtech:blocks/stones/concrete_dark/concrete_dark_bricks_square"
+        }
+      },
+      "slate": {
+        "textures": {
+          "all": "gregtech:blocks/stones/slate/slate_bricks_square"
+        }
+      },
+      "komatiite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/komatiite/komatiite_bricks_square"
+        }
+      },
+      "kimberlite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/kimberlite/kimberlite_bricks_square"
+        }
+      },
+      "quartzite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/quartzite/quartzite_bricks_square"
         }
       }
     }

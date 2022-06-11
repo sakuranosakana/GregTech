@@ -1,13 +1,14 @@
 package gregtech.api.unification.ore;
 
-import gregtech.api.GTValues;
 import gregtech.api.unification.material.Materials;
 import gregtech.common.blocks.BlockStoneSmooth;
 import gregtech.common.blocks.MetaBlocks;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockRedSandstone;
+import net.minecraft.block.BlockSandStone;
+import net.minecraft.block.BlockStone;
 import net.minecraft.block.BlockStone.EnumType;
+import net.minecraft.block.SoundType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
 
 public class StoneTypes {
 
@@ -63,4 +64,24 @@ public class StoneTypes {
     public static StoneType BASALT = new StoneType(11, "basalt", SoundType.STONE, OrePrefix.oreBasalt, Materials.Basalt,
             () -> MetaBlocks.STONE_SMOOTH.getState(BlockStoneSmooth.BlockType.BASALT),
             state -> state.getBlock() instanceof BlockStoneSmooth && ((BlockStoneSmooth) state.getBlock()).getVariant(state) == BlockStoneSmooth.BlockType.BASALT, false);
+
+    public static StoneType SLATE = new StoneType(12, "slate", SoundType.STONE, OrePrefix.oreSlate, Materials.Slate,
+            () -> MetaBlocks.STONE_SMOOTH.getState(BlockStoneSmooth.BlockType.SLATE),
+            state -> state.getBlock() instanceof BlockStoneSmooth && ((BlockStoneSmooth) state.getBlock()).getVariant(state) == BlockStoneSmooth.BlockType.SLATE, false);
+
+    public static StoneType KOMATIITE = new StoneType(13, "komatiite", SoundType.STONE, OrePrefix.oreKomatiite, Materials.Komatiite,
+            () -> MetaBlocks.STONE_SMOOTH.getState(BlockStoneSmooth.BlockType.KOMATIITE),
+            state -> state.getBlock() instanceof BlockStoneSmooth && ((BlockStoneSmooth) state.getBlock()).getVariant(state) == BlockStoneSmooth.BlockType.KOMATIITE, false);
+
+    public static StoneType KIMBERLITE = new StoneType(14, "kimberlite", SoundType.STONE, OrePrefix.oreKimberlite, Materials.Kimberlite,
+            () -> MetaBlocks.STONE_SMOOTH.getState(BlockStoneSmooth.BlockType.KIMBLERLITE),
+            state -> state.getBlock() instanceof BlockStoneSmooth && ((BlockStoneSmooth) state.getBlock()).getVariant(state) == BlockStoneSmooth.BlockType.KIMBLERLITE, false);
+
+    public static StoneType LIMESTONE = new StoneType(15, "limestone", SoundType.STONE, OrePrefix.oreLimestone, Materials.Limestone,
+            () -> MetaBlocks.STONE_SMOOTH.getState(BlockStoneSmooth.BlockType.LIMESTONE),
+            state -> state.getBlock() instanceof BlockStoneSmooth && ((BlockStoneSmooth) state.getBlock()).getVariant(state) == BlockStoneSmooth.BlockType.LIMESTONE, false);
+
+    public static StoneType QUARTZITE = new StoneType(16, "quartzite", SoundType.STONE, OrePrefix.oreQuartzite, Materials.Quartzite,
+            () -> MetaBlocks.STONE_SMOOTH.getState(BlockStoneSmooth.BlockType.QUARTZITE),
+            state -> state.getBlock() instanceof BlockStoneSmooth && ((BlockStoneSmooth) state.getBlock()).getVariant(state) == BlockStoneSmooth.BlockType.QUARTZITE, false);
 }

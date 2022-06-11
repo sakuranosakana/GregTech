@@ -82,7 +82,11 @@ public class SecondDegreeMaterials {
                 .fluidTemp(4000)
                 .build();
 
-        // Free ID 2009
+        Limestone = new Material.Builder(2009, "limestone")
+                .dust(1)
+                .color(0xE6C882).iconSet(ROUGH)
+                .components(Calcite, 1)
+                .build();
 
         Apatite = new Material.Builder(2010, "apatite")
                 .gem(1).ore(4, 2)

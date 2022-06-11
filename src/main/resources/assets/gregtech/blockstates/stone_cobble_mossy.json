@@ -25,14 +25,34 @@
           "all": "gregtech:blocks/stones/basalt/basalt_cobble_mossy"
         }
       },
-      "concrete_light": {
+      "limestone": {
         "textures": {
-          "all": "gregtech:blocks/stones/concrete_light/concrete_light_cobble_mossy"
+          "all": "gregtech:blocks/stones/limestone/limestone_cobble_mossy"
         }
       },
       "concrete_dark": {
         "textures": {
           "all": "gregtech:blocks/stones/concrete_dark/concrete_dark_cobble_mossy"
+        }
+      },
+      "slate": {
+        "textures": {
+          "all": "gregtech:blocks/stones/slate/slate_cobble_mossy"
+        }
+      },
+      "komatiite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/komatiite/komatiite_cobble_mossy"
+        }
+      },
+      "kimberlite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/kimberlite/kimberlite_cobble_mossy"
+        }
+      },
+      "quartzite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/quartzite/quartzite_cobble_mossy"
         }
       }
     }

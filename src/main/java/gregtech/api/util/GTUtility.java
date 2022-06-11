@@ -1052,4 +1052,9 @@ public class GTUtility {
         }
         return world.isDaytime();
     }
+
+    public static int roundDown(double number) {
+        int rounded = (int) number;
+        return rounded > number ? rounded - 1 : rounded;
+    }
 }

@@ -33,8 +33,12 @@ public class BlockStoneWindmillA extends VariantBlock<BlockStoneWindmillA.BlockT
         RED_GRANITE("red_granite"),
         MARBLE("marble"),
         BASALT("basalt"),
-        CONCRETE_LIGHT("concrete_light"),
-        CONCRETE_DARK("concrete_dark");
+        LIMESTONE("limestone"),
+        CONCRETE_DARK("concrete_dark"),
+        SLATE("slate"),
+        KOMATIITE("komatiite"),
+        KIMBLERLITE("kimberlite"),
+        QUARTZITE("quartzite");
 
         private final String name;
 

@@ -814,6 +814,36 @@ public class MachineRecipeLoader {
                 .buildAndRegister();
 
         MACERATOR_RECIPES.recipeBuilder()
+                .input(stone, Slate)
+                .output(dust, Slate)
+                .chancedOutput(dust, Slate, 1000, 380)
+                .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder()
+                .input(stone, Komatiite)
+                .output(dust, Komatiite)
+                .chancedOutput(dust, Komatiite, 1000, 380)
+                .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder()
+                .input(stone, Kimberlite)
+                .output(dust, Kimberlite)
+                .chancedOutput(dust, Kimberlite, 1000, 380)
+                .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder()
+                .input(stone, Limestone)
+                .output(dust, Limestone)
+                .chancedOutput(dust, Limestone, 1000, 380)
+                .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder()
+                .input(stone, Quartzite)
+                .output(dust, Quartzite)
+                .chancedOutput(dust, Quartzite, 1000, 380)
+                .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder()
                 .inputs(new ItemStack(Items.PORKCHOP))
                 .output(dustSmall, Meat, 6)
                 .output(dustTiny, Bone)

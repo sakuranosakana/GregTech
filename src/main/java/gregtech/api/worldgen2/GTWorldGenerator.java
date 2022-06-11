@@ -14,14 +14,12 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 
 import javax.annotation.Nonnull;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class GTWorldGenerator {
 
     public static boolean GENERATING_SPECIAL = false;
+    public static boolean GENERATE_STONE = false;
 
     // amount of chunks to move from one ore center to the next is this number
     // we add +1 because it is distance moved instead of distance between
@@ -41,7 +39,7 @@ public class GTWorldGenerator {
         public final List<IWorldgenObject> normalWorldGeneration;
         public final List<IWorldgenObject> chunkGridGeneration;
 
-        public WorldGenContainer(List<IWorldgenObject> normalGeneration, List<IWorldgenObject> chunkGridGeneration, int dimension, World world, int x, int z) {
+        public WorldGenContainer(@Nonnull List<IWorldgenObject> normalGeneration, @Nonnull List<IWorldgenObject> chunkGridGeneration, int dimension, World world, int x, int z) {
             this.minX = x + 1;
             this.maxX = x + 15;
             this.minZ = z + 1;
@@ -76,13 +74,13 @@ public class GTWorldGenerator {
 
                 // Yes, it has to be looped twice in a row, this cannot be optimized into one Loop!
                 for (IWorldgenObject worldGen : normalWorldGeneration) {
-                    worldGen.reset(world, chunk, dimension, minX, maxX, minZ, maxZ, random, biomes, biomeNames);
+                    worldGen.reset(world, chunk, dimension, minX, maxX + 2, minZ, maxZ + 2, random, biomes, biomeNames);
                 }
 
                 // regular worldgen
                 for (IWorldgenObject worldGen : normalWorldGeneration) {
                     if (worldGen.isEnabled(world, dimension)) {
-                        worldGen.generate(world, chunk, dimension, minX, maxX, minZ, maxZ, random, biomes, biomeNames);
+                        worldGen.generate(world, chunk, dimension, minX, maxX + 2, minZ, maxZ + 2, random, biomes, biomeNames);
                     }
                 }
 
@@ -154,7 +152,7 @@ public class GTWorldGenerator {
             case Integer.MIN_VALUE:
                 return;
             case Dimensions.OVERWORLD_ID: {
-                generate(new WorldGenContainer(GregTechWorldgen.WORLDGEN_OVERWORLD, GregTechWorldgen.ORES_OVERWORLD, Dimensions.OVERWORLD_ID, world, x, z));
+                generate(new WorldGenContainer(GENERATE_STONE ? GregTechWorldgen.WORLDGEN_GREGTECH : GregTechWorldgen.WORLDGEN_OVERWORLD, GENERATE_STONE ? Collections.emptyList() : GregTechWorldgen.ORES_OVERWORLD, Dimensions.OVERWORLD_ID, world, x, z));
                 return;
             }
             case Dimensions.NETHER_ID: {

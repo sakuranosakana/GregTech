@@ -45,6 +45,11 @@ public class OrePrefix {
     public static final OrePrefix oreRedgranite = new OrePrefix("oreRedgranite", -1, null, MaterialIconType.ore, ENABLE_UNIFICATION, hasOreProperty);
     public static final OrePrefix oreMarble = new OrePrefix("oreMarble", -1, null, MaterialIconType.ore, ENABLE_UNIFICATION, hasOreProperty);
     public static final OrePrefix oreBasalt = new OrePrefix("oreBasalt", -1, null, MaterialIconType.ore, ENABLE_UNIFICATION, hasOreProperty);
+    public static final OrePrefix oreSlate = new OrePrefix("oreSlate", -1, null, MaterialIconType.ore, ENABLE_UNIFICATION, hasOreProperty);
+    public static final OrePrefix oreKomatiite = new OrePrefix("oreKomatiite", -1, null, MaterialIconType.ore, ENABLE_UNIFICATION, hasOreProperty);
+    public static final OrePrefix oreKimberlite = new OrePrefix("oreKimberlite", -1, null, MaterialIconType.ore, ENABLE_UNIFICATION, hasOreProperty);
+    public static final OrePrefix oreLimestone = new OrePrefix("oreLimestone", -1, null, MaterialIconType.ore, ENABLE_UNIFICATION, hasOreProperty);
+    public static final OrePrefix oreQuartzite = new OrePrefix("oreQuartzite", -1, null, MaterialIconType.ore, ENABLE_UNIFICATION, hasOreProperty);
 
     // In case of an Sand-Ores Mod. Ore -> Material is a Oneway Operation!
     public static final OrePrefix oreSand = new OrePrefix("oreSand", -1, null, MaterialIconType.ore, ENABLE_UNIFICATION, null);

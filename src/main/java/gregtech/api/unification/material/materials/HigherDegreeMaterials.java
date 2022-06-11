@@ -122,7 +122,11 @@ public class HigherDegreeMaterials {
                 .blastTemp(5000, GasTier.HIGH, VA[EV], 1500)
                 .build();
 
-        // FREE ID: 2521
+        Komatiite = new Material.Builder(2521, "komatiite")
+                .dust()
+                .color(0xBEBE69).iconSet(ROUGH)
+                .components(Olivine, 1, Magnesite, 2, Flint, 6, DarkAsh, 3)
+                .build();
 
         IridiumMetalResidue = new Material.Builder(2522, "iridium_metal_residue")
                 .dust()

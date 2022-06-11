@@ -1,6 +1,7 @@
 package gregtech.api.worldgen2.generator;
 
 import gregtech.api.unification.material.Material;
+import gregtech.api.util.IBlockOre;
 import gregtech.api.worldgen2.GTWorldGenerator;
 import gregtech.api.worldgen2.WorldgenUtil;
 import gregtech.common.blocks.MetaBlocks;
@@ -40,24 +41,30 @@ public class WorldgenOresLayered extends WorldgenObject implements IChunkGridAli
     public final IBlockState indicator;
 
     /**
-     * {@link gregtech.api.worldgen2.builders.LayeredOreVeinBuilder}
+     * {@link gregtech.api.worldgen2.builder.LayeredOreVeinBuilder}
      */
     @SafeVarargs
     public WorldgenOresLayered(@Nonnull String name, @Nonnull String modid, boolean isDefault, int minY, int maxY, int weight, int density, int distance, int size,
                                @Nullable Material top, int topHeight, @Nullable Material bottom, int bottomHeight, @Nullable Material between, int betweenHeight,
                                @Nullable Material spread, @Nullable Material indicator, @Nullable IBlockState indicatorState, List<IWorldgenObject>... generators) {
         super(name, modid, isDefault, generators);
-        if (minY < 0) throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " minimum y cannot be less than 0");
+        if (minY < 0)
+            throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " minimum y cannot be less than 0");
         this.minY = minY;
-        if (maxY <= minY) throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " maximum y cannot be less than the minimum y");
+        if (maxY <= minY)
+            throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " maximum y cannot be less than the minimum y");
         this.maxY = maxY;
-        if (weight < 1) throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " weight cannot be less than 1");
+        if (weight < 1)
+            throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " weight cannot be less than 1");
         this.weight = weight;
-        if (density < 1) throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " density cannot be less than 1");
+        if (density < 1)
+            throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " density cannot be less than 1");
         this.density = density;
-        if (distance < 0) throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " distance cannot be less than 0");
+        if (distance < 0)
+            throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " distance cannot be less than 0");
         this.distance = distance;
-        if (size < 1) throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " size cannot be less than 1");
+        if (size < 1)
+            throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " size cannot be less than 1");
         this.size = size;
         this.top = top;
         this.topHeight = topHeight;
@@ -65,7 +72,8 @@ public class WorldgenOresLayered extends WorldgenObject implements IChunkGridAli
         this.bottomHeight = bottomHeight;
         this.between = between;
         this.betweenStartHeight = topHeight / 2;
-        if (this.betweenStartHeight + betweenHeight > this.topHeight + this.bottomHeight) throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + "between height cannot be bigger than the vein total height");
+        if (this.betweenStartHeight + betweenHeight > this.topHeight + this.bottomHeight)
+            throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + "between height cannot be bigger than the vein total height");
         this.betweenHeight = betweenHeight;
         this.spread = spread;
         if (indicator != null) {
@@ -123,8 +131,8 @@ public class WorldgenOresLayered extends WorldgenObject implements IChunkGridAli
                 int z = Math.min(endZ, startZ + veinRandom.nextInt(16));
                 for (int y = surface; y > veinMinY + veinHeight; y--) {
                     pos.setPos(x, y, z);
-                    if (world.getBlockState(pos).getBlock().isReplaceable(world, pos) && !WorldgenUtil.isReplaceable(world, pos.down())) {
-                        world.setBlockState(pos, indicator);
+                    if (WorldgenUtil.isReplaceable(world, pos) && !WorldgenUtil.isReplaceable(world, pos.down())) {
+                        world.setBlockState(pos, indicator, 2);
                     } else {
                         pos.move(EnumFacing.DOWN);
                     }
@@ -146,7 +154,7 @@ public class WorldgenOresLayered extends WorldgenObject implements IChunkGridAli
                     for (int y = veinMinY; y < veinMinY + bottomHeight; y++) {
                         if (veinRandom.nextInt(weightZ) == 0 || veinRandom.nextInt(weightX) == 0) {
                             pos.setY(y);
-                            WorldgenUtil.placeOre(world, pos, bottom);
+                            IBlockOre.placeOreBlock(world, pos, bottom);
                         }
                     }
                 }
@@ -155,7 +163,7 @@ public class WorldgenOresLayered extends WorldgenObject implements IChunkGridAli
                     for (int y = veinMinY + bottomHeight; y < veinMinY + veinHeight; y++) {
                         if (veinRandom.nextInt(weightZ) == 0 || veinRandom.nextInt(weightX) == 0) {
                             pos.setY(y);
-                            WorldgenUtil.placeOre(world, pos, top);
+                            IBlockOre.placeOreBlock(world, pos, top);
                         }
                     }
                 }
@@ -164,7 +172,7 @@ public class WorldgenOresLayered extends WorldgenObject implements IChunkGridAli
                     for (int y = veinMinY + betweenRealHeight - betweenHeight + 1; y < veinMinY + betweenRealHeight; y++) {
                         if (veinRandom.nextInt(weightZ) == 0 || veinRandom.nextInt(weightX) == 0) {
                             pos.setY(y);
-                            WorldgenUtil.placeOre(world, pos, between);
+                            IBlockOre.placeOreBlock(world, pos, between);
                         }
                     }
                 }
@@ -172,7 +180,7 @@ public class WorldgenOresLayered extends WorldgenObject implements IChunkGridAli
                 if (spread != null) {
                     if (veinRandom.nextInt(weightZ) == 0 || veinRandom.nextInt(weightX) == 0) {
                         pos.setY(veinMinY + veinRandom.nextInt(veinHeight));
-                        WorldgenUtil.placeOre(world, pos, spread);
+                        IBlockOre.placeOreBlock(world, pos, spread);
                     }
                 }
             }

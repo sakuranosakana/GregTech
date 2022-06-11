@@ -1,5 +1,6 @@
 package gregtech.api.worldgen2.generator;
 
+import gregtech.api.worldgen2.Dimensions;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -25,7 +26,10 @@ public interface IWorldgenObject {
      * @param biomeNames the names of the biomes
      * @return true if this successfully generated, otherwise false
      */
-    boolean generate(World world, Chunk chunk, int dimension, int minX, int maxX, int minZ, int maxZ, Random random, Biome[][] biomes, Set<String> biomeNames);
+    default boolean generate(World world, Chunk chunk, int dimension, int minX, int maxX, int minZ, int maxZ, Random random, Biome[][] biomes, Set<String> biomeNames) {
+        // insert your WorldGen Code here
+        return false;
+    }
 
     /**
      * Used to reset the WorldgenObject. Most objects will not need to implement anything with this
@@ -41,7 +45,9 @@ public interface IWorldgenObject {
      * @param biomes     the biomes
      * @param biomeNames the names of the biomes
      */
-    void reset(World world, Chunk chunk, int dimension, int minX, int maxX, int minZ, int maxZ, Random random, Biome[][] biomes, Set<String> biomeNames);
+    default void reset(World world, Chunk chunk, int dimension, int minX, int maxX, int minZ, int maxZ, Random random, Biome[][] biomes, Set<String> biomeNames) {
+        // nothing
+    }
 
     /**
      * @param world     the world to check
@@ -58,5 +64,18 @@ public interface IWorldgenObject {
      * @param maxZ  the maximum z to check
      * @return true if major world generation is happening, otherwise false
      */
-    boolean checkForMajorWorldgen(@Nonnull World world, int minX, int maxX, int minZ, int maxZ);
+    default boolean checkForMajorWorldgen(@Nonnull World world, int minX, int maxX, int minZ, int maxZ) {
+        if (world.provider.getDimension() == Dimensions.OVERWORLD_ID) {
+            //TODO future GT6 world generation options
+//            if (ConfigHolder.worldgen.generateStreets) {
+//                if (Math.abs(minX) < 64 || Math.abs(maxX) < 64 || Math.abs(minZ) < 64 || Math.abs(maxZ) < 64) {
+//                    return true;
+//                }
+//            }
+//            if (ConfigHolder.worldgen.generateBiomes) {
+//                return minX >= -96 && minX <= 80 && minZ >= -96 && minZ <= 80;
+//            }
+        }
+        return false;
+    }
 }

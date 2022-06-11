@@ -715,8 +715,8 @@ public class FirstDegreeMaterials {
                 .build();
 
         Quartzite = new Material.Builder(340, "quartzite")
-                .gem(1).ore(2, 1)
-                .color(0xD2E6D2).iconSet(QUARTZ)
+                .gem(1)
+                .color(0xE6CdCD).iconSet(QUARTZ)
                 .flags(NO_SMELTING, CRYSTALLIZABLE, DISABLE_DECOMPOSITION, GENERATE_PLATE)
                 .components(Silicon, 1, Oxygen, 2)
                 .build();

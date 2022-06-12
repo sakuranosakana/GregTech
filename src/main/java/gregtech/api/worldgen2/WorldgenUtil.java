@@ -25,10 +25,23 @@ public class WorldgenUtil {
         return ((chunkX * chunkX) + (3 * chunkX) + (2 * chunkX * chunkZ) + (chunkZ) + (chunkZ * chunkZ)) / 2;
     }
 
+    /**
+     *
+     * @param world the world to check
+     * @param pos   the position to check
+     * @return true if the block at the position is replaceable, otherwise false
+     */
     public static boolean isReplaceable(World world, BlockPos pos) {
         return isReplaceable(world, pos, world.getBlockState(pos));
     }
 
+    /**
+     *
+     * @param world the world to check
+     * @param pos   the position to check
+     * @param state the blockstate to check, <b>must</b> be the same as the one found in the world at the position
+     * @return true if the block at the position is replaceable, otherwise false
+     */
     public static boolean isReplaceable(World world, BlockPos pos, @Nonnull IBlockState state) {
         return isAir(world, pos, state) || state.getBlock().isReplaceable(world, pos) || state.getBlock().canBeReplacedByLeaves(state, world, pos);
     }

@@ -49,7 +49,6 @@ public class GregTechWorldgen implements IWorldGenerator {
         LayeredOreVeinBuilder.builder("magnetite").yRange(30, 70).weight(100).density(2).size(32).top(Magnetite, 10).bottom(VanadiumMagnetite, 2).between(Iron).spread(Gold).indicator(Iron).build(ORES_OVERWORLD);
         LayeredOreVeinBuilder.builder("apatite").yRange(40, 60).weight(50).size(16).top(Apatite, 2).bottom(TricalciumPhosphate, 10).between(Realgar, 7).spread(Tin).indicator(Apatite).build(ORES_OVERWORLD);
 
-
         GregTechStoneLayers.init();
     }
 

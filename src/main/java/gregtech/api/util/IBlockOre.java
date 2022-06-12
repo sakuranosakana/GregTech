@@ -39,6 +39,6 @@ public interface IBlockOre {
         if (ore == null) return false;
         IBlockOre block = ore.get(stoneType);
         if (block == null) return false;
-        return world.setBlockState(pos, block.getOreBlock(stoneType), 2);
+        return world.setBlockState(pos, block.getOreBlock(stoneType));
     }
 }

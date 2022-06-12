@@ -58,7 +58,7 @@ public class WorldgenStoneLayers extends WorldgenObject {
                 if (z > maxZ) break;
 
                 final Biome biome = biomes[i][j];
-                pos.setPos(x, 0, z);
+                pos.setPos(x, 1, z);
 
                 for (int k = 0; k < scan.length; k++) {
                     scan[k] = (StoneLayer.LAYERS.get(noise.get(x, k - 2, z, listSize)));
@@ -83,8 +83,8 @@ public class WorldgenStoneLayers extends WorldgenObject {
                         if (canPlaceRocks && random.nextInt(128) == 0) {
                             if (lastOre != null) {
                                 if (MetaBlocks.SURFACE_ROCK.containsKey(lastOre)) {
-                                    if (WorldgenUtil.isReplaceable(world, pos, state) && !WorldgenUtil.isReplaceable(world, pos.down())) {
-                                        world.setBlockState(pos, MetaBlocks.SURFACE_ROCK.get(lastOre).getBlock(lastOre), 2);
+                                    if (WorldgenUtil.isReplaceable(world, pos) && !WorldgenUtil.isReplaceable(world, pos.down())) {
+                                        world.setBlockState(pos, MetaBlocks.SURFACE_ROCK.get(lastOre).getBlock(lastOre));
                                         lastOre = null;
                                     }
                                 }
@@ -169,13 +169,13 @@ public class WorldgenStoneLayers extends WorldgenObject {
                         // Check for the GT Stone being natural
                         // Unlikely case due to GT Stone being the thing that is supposed to generate this very moment and not before.
                         canPlaceRocks = storage.get(i, y & 15, j).getBlock() instanceof BlockStoneSmooth;
-                    } else if (WorldgenUtil.isReplaceable(world, pos, state)) {
+                    } else if (WorldgenUtil.isReplaceable(world, pos)) {
                         // Place Rock if on Opaque Surface
                         if (canPlaceRocks && !state.getMaterial().isLiquid() && random.nextInt(128) == 0) {
                             if (lastOre != null) {
                                 if (MetaBlocks.SURFACE_ROCK.containsKey(lastOre)) {
-                                    if (WorldgenUtil.isReplaceable(world, pos, state) && !WorldgenUtil.isReplaceable(world, pos.down())) {
-                                        world.setBlockState(pos, MetaBlocks.SURFACE_ROCK.get(lastOre).getBlock(lastOre), 2);
+                                    if (WorldgenUtil.isReplaceable(world, pos) && !WorldgenUtil.isReplaceable(world, pos.down())) {
+                                        world.setBlockState(pos, MetaBlocks.SURFACE_ROCK.get(lastOre).getBlock(lastOre));
                                         lastOre = null;
                                     }
                                 }

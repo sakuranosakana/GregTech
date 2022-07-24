@@ -447,7 +447,7 @@ public class SimpleMachineMetaTileEntity extends WorkableTieredMetaTileEntity im
                 .setTooltipHoverString("gregtech.gui.overclock.description")
                 .setButtonTexture(GuiTextures.BUTTON_OVERCLOCK));
 
-        if (exportItems.getSlots() + exportFluids.getTanks() <= 9) {
+        if (exportItems.getSlots() + exportFluids.getTanks() < 9) {
             SlotWidget circuitSlot = new SlotWidget(circuitInventory, 0, 124, 62 + yOffset, true, true, false)
                     .setBackgroundTexture(GuiTextures.SLOT, getCircuitSlotOverlay());
             builder.widget(getCircuitSlotTooltip(circuitSlot))

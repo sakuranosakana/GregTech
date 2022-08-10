@@ -87,6 +87,8 @@ public class LighterBehaviour implements IItemBehaviour {
             }
         }
 
+        if (!player.canPlayerEdit(pos, side, player.getHeldItem(hand))) return EnumActionResult.FAIL;
+
         prepareLighter(stack);
         if (consumeFuel(player, stack)) {
             player.getEntityWorld().playSound(null, player.getPosition(), SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.PLAYERS, 1.0F, GTValues.RNG.nextFloat() * 0.4F + 0.8F);
@@ -117,7 +119,7 @@ public class LighterBehaviour implements IItemBehaviour {
         }
     }
 
-    private void prepareLighter(ItemStack stack) {
+    public void prepareLighter(ItemStack stack) {
         if (canOpen) {
             NBTTagCompound tagCompound = GTUtility.getOrCreateNbtCompound(stack);
             // open the lighter

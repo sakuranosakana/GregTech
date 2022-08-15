@@ -3,10 +3,12 @@ package gregtech.api.worldgen2;
 import com.google.common.collect.ImmutableSet;
 import gregtech.api.GTValues;
 import gregtech.api.worldgen2.builder.LayeredOreVeinBuilder;
+import gregtech.api.worldgen2.builder.MixedOreVeinBuilder;
 import gregtech.api.worldgen2.generator.IWorldgenObject;
 import gregtech.api.worldgen2.generator.WorldgenFluidSpring;
 import gregtech.common.ConfigHolder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -50,6 +52,8 @@ public class GregTechWorldgen implements IWorldGenerator {
         LayeredOreVeinBuilder.builder("tetrahedrite").yRange(70, 120).weight(150).density(4).size(24).top(Tetrahedrite).bottom(Bornite).between(Copper).spread(Stibnite).indicator(Copper).build(ORES_OVERWORLD);
         LayeredOreVeinBuilder.builder("magnetite").yRange(30, 70).weight(100).density(2).size(32).top(Magnetite, 10).bottom(VanadiumMagnetite, 2).between(Iron).spread(Gold).indicator(Iron).build(ORES_OVERWORLD);
         LayeredOreVeinBuilder.builder("apatite").yRange(40, 60).weight(50).size(16).top(Apatite, 2).bottom(TricalciumPhosphate, 10).between(Realgar, 7).spread(Tin).indicator(Apatite).build(ORES_OVERWORLD);
+
+        MixedOreVeinBuilder.builder("naq").yRange(20, 90).weight(100).size(32).density(1).ore(Blocks.PRISMARINE.getDefaultState(), 10).ore(Blocks.IRON_BLOCK.getDefaultState(), 5).build(ORES_OVERWORLD);
 
         new WorldgenFluidSpring("raw_oil_spout", GTValues.MODID, true, RawOil.getFluid().getBlock().getDefaultState(), 400, true, WORLDGEN_GREGTECH, WORLDGEN_OVERWORLD);
 

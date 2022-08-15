@@ -34,6 +34,8 @@ public class WorldgenFluidSpring extends WorldgenObject {
         super(name, modid, isDefault, generators);
         this.fluidBlockState = fluidBlockState;
         this.generationChance = generationChance;
+        if (generationChance <= 0)
+            throw new IllegalArgumentException("Fluid Spring " + modid + ":" + name + " generation chance cannot be less than or equal to 0");
         this.generateSpout = generateSpout;
     }
 

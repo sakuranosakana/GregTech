@@ -43,10 +43,11 @@ public class WorldgenOresLayered extends WorldgenObject implements IChunkGridAli
     /**
      * {@link gregtech.api.worldgen2.builder.LayeredOreVeinBuilder}
      */
-    @SafeVarargs
-    public WorldgenOresLayered(@Nonnull String name, @Nonnull String modid, boolean isDefault, int minY, int maxY, int weight, int density, int distance, int size,
-                               @Nullable Material top, int topHeight, @Nullable Material bottom, int bottomHeight, @Nullable Material between, int betweenHeight,
-                               @Nullable Material spread, @Nullable Material indicator, @Nullable IBlockState indicatorState, List<IWorldgenObject>... generators) {
+    public WorldgenOresLayered(@Nonnull String name, @Nonnull String modid, boolean isDefault, int minY, int maxY, int weight,
+                               int density, int distance, int size, @Nullable Material top, int topHeight,
+                               @Nullable Material bottom, int bottomHeight, @Nullable Material between, int betweenHeight,
+                               @Nullable Material spread, @Nullable Material indicator, @Nullable IBlockState indicatorState,
+                               List<List<IWorldgenObject>> generators) {
         super(name, modid, isDefault, generators);
         if (minY < 0)
             throw new IllegalArgumentException("Layered Ore Vein " + modid + ":" + name + " minimum y cannot be less than 0");

@@ -32,8 +32,7 @@ public class WorldgenStoneLayers extends WorldgenObject {
      * @param isDefault  true if this WorldgenObject generates by default, otherwise false
      * @param generators the groups of world generators to use this WorldgenObject in
      */
-    @SafeVarargs
-    public WorldgenStoneLayers(@Nonnull String name, @Nonnull String modid, boolean isDefault, List<IWorldgenObject>... generators) {
+    public WorldgenStoneLayers(@Nonnull String name, @Nonnull String modid, boolean isDefault, List<List<IWorldgenObject>> generators) {
         super(name, modid, isDefault, generators);
         GTWorldGenerator.GENERATE_STONE = isEnabled;
     }

@@ -9,13 +9,17 @@ import gregtech.api.worldgen2.generator.IWorldgenObject;
 import gregtech.api.worldgen2.generator.WorldgenMixed;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.block.state.IBlockState;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class MixedOreVeinBuilder {
+public class MixedOreVeinBuilder implements IHeightOreGenBuilder<MixedOreVeinBuilder>,
+        IIndicatorOreGenBuilder<MixedOreVeinBuilder>,
+        IScaleOreGenBuilder<MixedOreVeinBuilder> {
 
     private final String name;
     private final String modid;
@@ -28,7 +32,7 @@ public class MixedOreVeinBuilder {
     private int distance = 0;
     private int size = 1;
 
-    private Map<IBlockState, Integer> ores = new Object2IntOpenHashMap<>();
+    private final Map<IBlockState, Integer> ores = new Object2IntOpenHashMap<>();
     private Material indicator = null;
     private IBlockState indicatorState = null;
 
@@ -52,7 +56,8 @@ public class MixedOreVeinBuilder {
      */
     @Nonnull
     public static MixedOreVeinBuilder builder(@Nonnull String name, boolean isDefault) {
-        return new MixedOreVeinBuilder(name, GTValues.MODID, isDefault); //TODO automatically grab other modids
+        ModContainer container = Loader.instance().activeModContainer();
+        return new MixedOreVeinBuilder(name, container == null ? GTValues.MODID : container.getModId().toLowerCase(), isDefault); //TODO automatically grab other modids
     }
 
     private MixedOreVeinBuilder(@Nonnull String name, @Nonnull String modid, boolean isDefault) {
@@ -67,6 +72,7 @@ public class MixedOreVeinBuilder {
      * @param max the maximum y value
      * @return this
      */
+    @Override
     public MixedOreVeinBuilder yRange(int min, int max) {
         this.minY = min;
         this.maxY = max;
@@ -78,6 +84,7 @@ public class MixedOreVeinBuilder {
      * @param weight the weighting of this vein.
      * @return this
      */
+    @Override
     public MixedOreVeinBuilder weight(int weight) {
         this.weight = weight;
         return this;
@@ -88,6 +95,7 @@ public class MixedOreVeinBuilder {
      * @param density the density of this vein.
      * @return this
      */
+    @Override
     public MixedOreVeinBuilder density(int density) {
         this.density = density;
         return this;
@@ -100,6 +108,7 @@ public class MixedOreVeinBuilder {
      * @param distance the distance
      * @return this
      */
+    @Override
     public MixedOreVeinBuilder distance(int distance) {
         this.distance = distance;
         return this;
@@ -110,6 +119,7 @@ public class MixedOreVeinBuilder {
      * @param size the size
      * @return this
      */
+    @Override
     public MixedOreVeinBuilder size(int size) {
         this.size = size;
         return this;
@@ -142,6 +152,7 @@ public class MixedOreVeinBuilder {
      * @param indicator the indicator material
      * @return this
      */
+    @Override
     public MixedOreVeinBuilder indicator(@Nullable Material indicator) {
         this.indicator = indicator;
         return this;
@@ -154,6 +165,7 @@ public class MixedOreVeinBuilder {
      * @param indicator the indicator block state
      * @return this
      */
+    @Override
     public MixedOreVeinBuilder indicator(@Nullable IBlockState indicator) {
         this.indicatorState = indicator;
         return this;
@@ -163,9 +175,9 @@ public class MixedOreVeinBuilder {
      * Build a new {@link WorldgenMixed} and add it to the generation lists
      * @param generationLists the list of {@link IWorldgenObject}s to add this vein to
      */
+    @Override
     @Nonnull
-    @SafeVarargs
-    public final WorldgenMixed build(List<IWorldgenObject>... generationLists) {
+    public final WorldgenMixed build(@Nonnull List<List<IWorldgenObject>> generationLists) {
             return new WorldgenMixed(name, modid, isDefault, ores.keySet().toArray(new IBlockState[0]),
                     Ints.toArray(ores.values()),
                     minY, maxY, weight, density, distance, size,

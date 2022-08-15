@@ -34,10 +34,9 @@ public class WorldgenMixed extends WorldgenObject implements IChunkGridAligned {
     /**
      * @see gregtech.api.worldgen2.builder.MixedOreVeinBuilder
      */
-    @SafeVarargs
     public WorldgenMixed(@Nonnull String name, @Nonnull String modid, boolean isDefault, @Nonnull IBlockState[] ores, @Nonnull int[] oreWeights,
                          int minY, int maxY, int veinWeight, int density, int distance, int size,
-                         Material indicator, IBlockState indicatorState, List<IWorldgenObject>... generators) {
+                         Material indicator, IBlockState indicatorState, List<List<IWorldgenObject>> generators) {
         super(name, modid, isDefault, generators);
         this.ores = ores;
         if (ores.length != oreWeights.length)

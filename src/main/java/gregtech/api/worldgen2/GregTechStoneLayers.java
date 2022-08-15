@@ -12,6 +12,8 @@ import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.BlockStone;
 import net.minecraft.init.Blocks;
 
+import java.util.Collections;
+
 import static gregtech.api.GTValues.M;
 import static gregtech.api.GTValues.MODID;
 import static gregtech.api.worldgen2.BiomeSets.*;
@@ -20,7 +22,7 @@ public class GregTechStoneLayers {
 
     public static void init() {
         // this needs to go first
-        new WorldgenStoneLayers("stonelayers", MODID, true, GregTechWorldgen.WORLDGEN_GREGTECH);
+        new WorldgenStoneLayers("stonelayers", MODID, true, Collections.singletonList(GregTechWorldgen.WORLDGEN_GREGTECH));
 
         StoneLayer.SLATE = new StoneLayer(StoneTypes.SLATE, MetaBlocks.STONE_SMOOTH.getState(BlockStoneSmooth.BlockType.SLATE), MetaBlocks.STONE_COBBLE.getState(BlockStoneCobble.BlockType.SLATE), MetaBlocks.STONE_COBBLE_MOSSY.getState(BlockStoneCobbleMossy.BlockType.SLATE), Materials.Slate,
                 new StoneLayerOres(Materials.Emerald, M / 64, 0, 32, MOUNTAINS),

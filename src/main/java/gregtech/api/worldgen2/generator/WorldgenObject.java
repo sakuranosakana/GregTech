@@ -24,8 +24,7 @@ public abstract class WorldgenObject implements IWorldgenObject{
      * @param isDefault  true if this WorldgenObject generates by default, otherwise false
      * @param generators the groups of world generators to use this WorldgenObject in
      */
-    @SafeVarargs
-    public WorldgenObject(@Nonnull String name, @Nonnull String modid, boolean isDefault, List<IWorldgenObject>... generators) {
+    public WorldgenObject(@Nonnull String name, @Nonnull String modid, boolean isDefault, List<List<IWorldgenObject>> generators) {
         if (name.isEmpty()) throw new IllegalArgumentException("Worldgen Object name must not be empty");
         if (modid.isEmpty()) throw new IllegalArgumentException("Worldgen Object modid must not be empty");
         this.name = name;

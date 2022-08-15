@@ -29,8 +29,9 @@ public class WorldgenFluidSpring extends WorldgenObject {
      * @param generationChance the chance that this chunk will generate a fluid spring
      * @param generateSpout whether to generate a spout upwards from the vein to the surface
      */
-    @SafeVarargs
-    public WorldgenFluidSpring(@Nonnull String name, @Nonnull String modid, boolean isDefault, @Nonnull IBlockState fluidBlockState, int generationChance, boolean generateSpout, List<IWorldgenObject>... generators) {
+    public WorldgenFluidSpring(@Nonnull String name, @Nonnull String modid, boolean isDefault,
+                               @Nonnull IBlockState fluidBlockState, int generationChance, boolean generateSpout,
+                               List<List<IWorldgenObject>> generators) {
         super(name, modid, isDefault, generators);
         this.fluidBlockState = fluidBlockState;
         this.generationChance = generationChance;

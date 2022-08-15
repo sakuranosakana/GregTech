@@ -84,7 +84,7 @@ public class NoiseGenerator {
             }
         }
 
-        int n = ((0 ^ (X_PRIME * xc)) ^ (Y_PRIME * yc)) ^ (Z_PRIME * zc);
+        int n = ((X_PRIME * xc) ^ (Y_PRIME * yc)) ^ (Z_PRIME * zc);
         return (n * n * n * HASH_CONSTANT) / (float) Integer.MAX_VALUE;
     }
 

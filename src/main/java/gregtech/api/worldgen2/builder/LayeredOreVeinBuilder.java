@@ -215,9 +215,10 @@ public class LayeredOreVeinBuilder {
      * Build a new {@link WorldgenOresLayered} and add it to the generation lists
      * @param generationLists the list of {@link IWorldgenObject}s to add this vein to
      */
+    @Nonnull
     @SafeVarargs
-    public final void build(List<IWorldgenObject>... generationLists) {
-            new WorldgenOresLayered(name, modid, isDefault, minY, maxY, weight, density, distance, size, top,
+    public final WorldgenOresLayered build(List<IWorldgenObject>... generationLists) {
+            return new WorldgenOresLayered(name, modid, isDefault, minY, maxY, weight, density, distance, size, top,
                     topHeight, bottom, bottomHeight, between, betweenHeight, spread,
                     indicator, indicatorState, generationLists);
     }

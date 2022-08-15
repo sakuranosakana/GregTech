@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * Used for generating worldgen in world using chunk-grid alignment
  */
-public interface IChunkGridAligned extends IWorldgenObject{
+public interface IChunkGridAligned extends IWorldgenObject {
 
     /**
      * @param world   the world to generate this in

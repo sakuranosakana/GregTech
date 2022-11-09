@@ -16,49 +16,53 @@ public class MaterialProperties {
         baseTypes.add(baseTypeKey);
     }
 
-    private final Map<PropertyKey<? extends IMaterialProperty<?>>, IMaterialProperty<?>> propertyMap;
+    private final Map<PropertyKey<? extends IMaterialProperty>, IMaterialProperty> propertyMap;
     private Material material;
 
     public MaterialProperties() {
         propertyMap = new HashMap<>();
     }
 
-    public <T extends IMaterialProperty<T>> T getProperty(PropertyKey<T> key) {
+    public <T extends IMaterialProperty> T getProperty(PropertyKey<T> key) {
         return key.cast(propertyMap.get(key));
     }
 
-    public <T extends IMaterialProperty<T>> boolean hasProperty(PropertyKey<T> key) {
+    public <T extends IMaterialProperty> boolean hasProperty(PropertyKey<T> key) {
         return propertyMap.get(key) != null;
     }
 
-    public <T extends IMaterialProperty<T>> void setProperty(PropertyKey<T> key, IMaterialProperty<T> value) {
+    public <T extends IMaterialProperty> void setProperty(PropertyKey<T> key, IMaterialProperty value) {
         if (value == null) throw new IllegalArgumentException("Material Property must not be null!");
         if (hasProperty(key))
             throw new IllegalArgumentException("Material Property " + key.toString() + " already registered!");
         propertyMap.put(key, value);
     }
 
-    public <T extends IMaterialProperty<T>> void ensureSet(PropertyKey<T> key, boolean verify) {
+    public <T extends IMaterialProperty> void ensureSet(PropertyKey<T> key, boolean verify) {
         if (!hasProperty(key)) {
             propertyMap.put(key, key.constructDefault());
             if (verify) verify();
         }
     }
 
-    public <T extends IMaterialProperty<T>> void ensureSet(PropertyKey<T> key) {
+    public <T extends IMaterialProperty> void ensureSet(PropertyKey<T> key) {
         ensureSet(key, false);
     }
 
     public void verify() {
-        List<IMaterialProperty<?>> oldList;
+        List<IMaterialProperty> oldList;
         do {
             oldList = new ArrayList<>(propertyMap.values());
             oldList.forEach(p -> p.verifyProperty(this));
         } while (oldList.size() != propertyMap.size());
+    }
 
-        //if (propertyMap.keySet().stream().noneMatch(baseTypes::contains)) {
-        //    throw new IllegalArgumentException("Material must have at least one of: " + baseTypes + " specified!");
-        //}
+    public void verifyLate() {
+        List<IMaterialProperty> oldList;
+        do {
+            oldList = new ArrayList<>(propertyMap.values());
+            oldList.forEach(p -> p.verifyPropertyLate(this));
+        } while (oldList.size() != propertyMap.size());
     }
 
     public void setMaterial(Material material) {

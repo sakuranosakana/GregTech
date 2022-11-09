@@ -6,7 +6,7 @@ import net.minecraft.enchantment.Enchantment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToolProperty implements IMaterialProperty<ToolProperty> {
+public class ToolProperty implements IMaterialProperty {
 
     /**
      * Speed of tools made from this Material.

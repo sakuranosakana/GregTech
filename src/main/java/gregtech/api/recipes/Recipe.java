@@ -14,7 +14,6 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -399,9 +398,19 @@ public class Recipe {
             int outputChance = recipeMap.getChanceFunction().chanceFor(
                     chancedOutput.getChance(), chancedOutput.getBoostPerTier(),
                     recipeTier, machineTier);
-            if (GTValues.RNG.nextInt(Recipe.getMaxChancedValue()) <= outputChance) {
-                ItemStack stackToAdd = chancedOutput.getItemStack();
-                GTUtility.addStackToItemStackList(stackToAdd, resultChanced);
+
+            ItemStack chanceStack = chancedOutput.getItemStack(); //automatically copies the ItemStack
+            int outputAmount = 0;
+
+            // roll for each item in the stack instead of all or nothing
+            for (int i = 0; i < chanceStack.getCount(); i++) {
+                if (GTValues.RNG.nextInt(Recipe.getMaxChancedValue()) <= outputChance) {
+                    outputAmount++;
+                }
+            }
+            if (outputAmount > 0) {
+                chanceStack.setCount(outputAmount);
+                GTUtility.addStackToItemStackList(chanceStack, resultChanced);
             }
         }
 

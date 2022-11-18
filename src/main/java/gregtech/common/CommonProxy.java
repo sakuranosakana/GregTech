@@ -51,6 +51,7 @@ import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -383,8 +384,8 @@ public class CommonProxy {
         }
     }
 
-    public void onLoadComplete(FMLLoadCompleteEvent event) {
-        if(Loader.isModLoaded(GTValues.MODID_JEI) && event.getSide() == Side.CLIENT) {
+    public void onLoadComplete() {
+        if(Loader.isModLoaded(GTValues.MODID_JEI) && FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             GTJeiPlugin.setupInputHandler();
         }
         GTRecipeInput.INSTANCES = new ObjectOpenHashSet<>();

@@ -1,6 +1,5 @@
-package gregtech;
+package gregtech.core;
 
-import codechicken.lib.CodeChickenLib;
 import crafttweaker.CraftTweakerAPI;
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
@@ -12,6 +11,8 @@ import gregtech.api.fluids.MetaFluids;
 import gregtech.api.gui.UIFactory;
 import gregtech.api.items.gui.PlayerInventoryUIFactory;
 import gregtech.api.metatileentity.MetaTileEntityUIFactory;
+import gregtech.api.modules.GregTechModule;
+import gregtech.api.modules.IGregTechModule;
 import gregtech.api.net.NetworkHandler;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.recipeproperties.TemperatureProperty;
@@ -26,13 +27,11 @@ import gregtech.api.util.input.KeyBind;
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler;
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinSaveData;
 import gregtech.api.worldgen.config.WorldGenRegistry;
-import gregtech.client.utils.BloomEffectUtil;
 import gregtech.common.CommonProxy;
 import gregtech.common.ConfigHolder;
 import gregtech.common.MetaEntities;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.command.GregTechCommand;
 import gregtech.common.covers.CoverBehaviors;
 import gregtech.common.covers.filter.FilterTypeRegistry;
 import gregtech.common.items.MetaItems;
@@ -41,46 +40,54 @@ import gregtech.common.worldgen.LootTableHelper;
 import gregtech.integration.GroovyScriptCompat;
 import gregtech.integration.theoneprobe.TheOneProbeCompatibility;
 import gregtech.loaders.dungeon.DungeonLootLoader;
+import gregtech.modules.GregTechModules;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 import net.minecraftforge.classloading.FMLForgePlugin;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.*;
-import net.minecraftforge.fml.common.Optional.Method;
-import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.Side;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.util.List;
 import java.util.Map;
 
 import static gregtech.api.GregTechAPI.*;
+import static gregtech.api.GregTechAPI.HEATING_COILS;
 
-@Mod(modid = GTValues.MODID,
-        name = "GregTech",
-        acceptedMinecraftVersions = "[1.12,1.13)",
-        dependencies = "required:forge@[14.23.5.2847,);" + CodeChickenLib.MOD_VERSION_DEP + "after:forestry;after:jei@[4.15.0,);after:crafttweaker@[4.1.20,);")
-public class GregTechMod {
+@GregTechModule(
+        moduleID       = GregTechModules.MODULE_CORE,
+        containerID    = GTValues.MODID,
+        name           = "GregTech Core",
+        descriptionKey = "gregtech.module.core.description",
+        coreModule     = true
+)
+/**
+ * CURRENT STATE:
+ * - Currently this module is all of GregTech, loaded via a module instead of directly by the @Mod annotated class.
+ * - This will need to be blown apart, but this is a first basic test of functionality, as everything should still
+ *   work fully in this state.
+ */
+public class CoreModule implements IGregTechModule {
 
-    static {
-        FluidRegistry.enableUniversalBucket();
-        if (FMLCommonHandler.instance().getSide().isClient()) {
-            BloomEffectUtil.init();
-        }
-    }
-
-    @Mod.Instance(GTValues.MODID)
-    public static GregTechMod instance;
-
+    // todo remove this
     @SidedProxy(modId = GTValues.MODID, clientSide = "gregtech.client.ClientProxy", serverSide = "gregtech.common.CommonProxy")
     public static CommonProxy proxy;
 
-    @Mod.EventHandler
-    public void onPreInit(FMLPreInitializationEvent event) {
+    private final Logger logger = LogManager.getLogger("GregTech Core");
+
+    @Override
+    public Logger getLogger() {
+        return logger;
+    }
+
+    @Override
+    public void preInit() {
         NetworkHandler.init();
 
         /* init GroovyScript compat */
         GroovyScriptCompat.init();
-
 
         /* Start UI Factory Registration */
         UI_FACTORY_REGISTRY.unfreeze();
@@ -89,7 +96,8 @@ public class GregTechMod {
         PlayerInventoryUIFactory.INSTANCE.init();
         CoverBehaviorUIFactory.INSTANCE.init();
         GTLog.logger.info("Registering addon UI Factories");
-        MinecraftForge.EVENT_BUS.post(new RegisterEvent<>(UI_FACTORY_REGISTRY, UIFactory.class));
+        MinecraftForge.EVENT_BUS.post(new GregTechAPI.RegisterEvent<>(UI_FACTORY_REGISTRY, UIFactory.class));
+        logger.error("Test!!!");
         UI_FACTORY_REGISTRY.freeze();
         /* End UI Factory Registration */
 
@@ -104,7 +112,7 @@ public class GregTechMod {
 
         // Then, register addon Materials
         GTLog.logger.info("Registering addon Materials");
-        MinecraftForge.EVENT_BUS.post(new MaterialEvent());
+        MinecraftForge.EVENT_BUS.post(new GregTechAPI.MaterialEvent());
 
         // Then, run CraftTweaker Material registration scripts
         if (Loader.isModLoaded(GTValues.MODID_CT)) {
@@ -116,7 +124,7 @@ public class GregTechMod {
         // Fire Post-Material event, intended for when Materials need to be iterated over in-full before freezing
         // Block entirely new Materials from being added in the Post event
         MATERIAL_REGISTRY.closeRegistry();
-        MinecraftForge.EVENT_BUS.post(new PostMaterialEvent());
+        MinecraftForge.EVENT_BUS.post(new GregTechAPI.PostMaterialEvent());
 
         // Freeze Material Registry before processing Items, Blocks, and Fluids
         MATERIAL_REGISTRY.freeze();
@@ -150,8 +158,13 @@ public class GregTechMod {
         KeyBind.init();
     }
 
-    @Mod.EventHandler
-    public void onInit(FMLInitializationEvent event) {
+    @Optional.Method(modid = GTValues.MODID_CT)
+    private void runEarlyCraftTweakerScripts() {
+        CraftTweakerAPI.tweaker.loadScript(false, "gregtech");
+    }
+
+    @Override
+    public void init() {
         MTE_REGISTRY.freeze(); // freeze once addon preInit is finished
         proxy.onLoad();
         if (RecipeMap.isFoundInvalidRecipe()) {
@@ -189,13 +202,8 @@ public class GregTechMod {
         DungeonLootLoader.init();
     }
 
-    @Method(modid = GTValues.MODID_CT)
-    private void runEarlyCraftTweakerScripts() {
-        CraftTweakerAPI.tweaker.loadScript(false, "gregtech");
-    }
-
-    @Mod.EventHandler
-    public void onPostInit(FMLPostInitializationEvent event) {
+    @Override
+    public void postInit() {
         proxy.onPostLoad();
         BedrockFluidVeinHandler.recalculateChances(true);
         // registers coil types for the BlastTemperatureProperty used in Blast Furnace Recipes
@@ -210,19 +218,19 @@ public class GregTechMod {
         }
     }
 
-    @Mod.EventHandler
-    public void loadComplete(FMLLoadCompleteEvent event) {
-        proxy.onLoadComplete(event);
+    @Override
+    public void loadComplete() {
+        proxy.onLoadComplete();
     }
 
-    @Mod.EventHandler
-    public void onServerLoad(FMLServerStartingEvent event) {
-        event.registerServerCommand(new GregTechCommand());
+    @Override
+    public void serverStarting() {
+        //event.registerServerCommand(new GregTechCommand());
         CapesRegistry.load();
     }
 
-    @Mod.EventHandler
-    public void onServerStarted(FMLServerStartedEvent event) {
+    @Override
+    public void serverStarted() {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
             World world = FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
             if (!world.isRemote) {
@@ -236,10 +244,9 @@ public class GregTechMod {
         }
     }
 
-    @Mod.EventHandler
-    public static void onServerStopped(FMLServerStoppedEvent event) {
+    @Override
+    public void serverStopped() {
         VirtualTankRegistry.clearMaps();
         CapesRegistry.clearMaps();
     }
-
 }

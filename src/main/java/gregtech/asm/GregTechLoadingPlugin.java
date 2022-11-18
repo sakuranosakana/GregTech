@@ -12,12 +12,12 @@ import java.util.Map;
 
 @Name("GregTechLoadingPlugin")
 @MCVersion(ForgeVersion.mcVersion)
-@TransformerExclusions("gregtech.core.")
+@TransformerExclusions("gregtech.asm.")
 @SortingIndex(1001)
 public class GregTechLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public String[] getASMTransformerClass() {
-        return new String[]{"gregtech.core.GregTechTransformer"};
+        return new String[]{"gregtech.asm.GregTechTransformer"};
     }
 
     @Override

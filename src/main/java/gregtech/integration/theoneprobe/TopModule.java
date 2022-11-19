@@ -2,8 +2,8 @@ package gregtech.integration.theoneprobe;
 
 import gregtech.apiOld.GTValues;
 import gregtech.api.modules.GregTechModule;
-import gregtech.api.modules.IGregTechModule;
 import gregtech.integration.theoneprobe.provider.*;
+import gregtech.modules.BaseGregTechModule;
 import gregtech.modules.GregTechModules;
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.api.ITheOneProbe;
@@ -21,7 +21,7 @@ import java.util.Set;
         name = "GregTech Integration: TOP",
         descriptionKey = "gregtech.module.top.description"
 )
-public class TopModule implements IGregTechModule {
+public class TopModule extends BaseGregTechModule {
 
     private final Logger logger = LogManager.getLogger("GregTech Integration: TOP");
 

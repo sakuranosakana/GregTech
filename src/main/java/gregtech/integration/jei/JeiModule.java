@@ -2,8 +2,8 @@ package gregtech.integration.jei;
 
 import gregtech.apiOld.GTValues;
 import gregtech.api.modules.GregTechModule;
-import gregtech.api.modules.IGregTechModule;
 import gregtech.integration.jei.utils.MultiblockInfoRecipeFocusShower;
+import gregtech.modules.BaseGregTechModule;
 import gregtech.modules.GregTechModules;
 import mezz.jei.Internal;
 import mezz.jei.JustEnoughItems;
@@ -30,7 +30,7 @@ import java.util.Set;
         name = "GregTech Integration: JEI",
         descriptionKey = "gregtech.module.jei.description"
 )
-public class JeiModule implements IGregTechModule {
+public class JeiModule extends BaseGregTechModule {
 
     private final Logger logger = LogManager.getLogger("GregTech Integration: JEI");
 

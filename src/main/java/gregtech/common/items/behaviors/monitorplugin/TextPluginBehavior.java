@@ -1,9 +1,9 @@
 package gregtech.common.items.behaviors.monitorplugin;
 
-import gregtech.api.capability.GregtechDataCodes;
-import gregtech.api.gui.IUIHolder;
-import gregtech.api.gui.widgets.TextFieldWidget;
-import gregtech.api.items.behavior.MonitorPluginBaseBehavior;
+import gregtech.apiOld.capability.GregtechDataCodes;
+import gregtech.apiOld.gui.IUIHolder;
+import gregtech.apiOld.gui.widgets.TextFieldWidget;
+import gregtech.apiOld.items.behavior.MonitorPluginBaseBehavior;
 import gregtech.client.utils.RenderUtil;
 import gregtech.common.gui.widget.WidgetARGB;
 import gregtech.common.gui.widget.monitor.WidgetPluginConfig;

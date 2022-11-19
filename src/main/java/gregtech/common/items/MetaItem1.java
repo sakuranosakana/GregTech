@@ -1,23 +1,23 @@
 package gregtech.common.items;
 
-import gregtech.api.GTValues;
-import gregtech.api.items.metaitem.*;
-import gregtech.api.items.metaitem.stats.IItemComponent;
-import gregtech.api.items.metaitem.stats.IItemContainerItemProvider;
-import gregtech.api.items.metaitem.stats.ItemFluidContainer;
-import gregtech.api.sound.GTSounds;
-import gregtech.api.terminal.hardware.HardwareProvider;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterial;
-import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.material.MarkerMaterials.Component;
-import gregtech.api.unification.material.MarkerMaterials.Tier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.ItemMaterialInfo;
-import gregtech.api.unification.stack.MaterialStack;
-import gregtech.api.util.RandomPotionEffect;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.items.metaitem.*;
+import gregtech.apiOld.items.metaitem.stats.IItemComponent;
+import gregtech.apiOld.items.metaitem.stats.IItemContainerItemProvider;
+import gregtech.apiOld.items.metaitem.stats.ItemFluidContainer;
+import gregtech.apiOld.sound.GTSounds;
+import gregtech.apiOld.terminal.hardware.HardwareProvider;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.MarkerMaterial;
+import gregtech.apiOld.unification.material.MarkerMaterials;
+import gregtech.apiOld.unification.material.MarkerMaterials.Component;
+import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.ItemMaterialInfo;
+import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.apiOld.util.RandomPotionEffect;
 import gregtech.common.ConfigHolder;
 import gregtech.common.items.behaviors.*;
 import gregtech.common.items.behaviors.monitorplugin.AdvancedMonitorPluginBehavior;
@@ -31,8 +31,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import static gregtech.api.GTValues.M;
-import static gregtech.api.util.DyeUtil.getOredictColorName;
+import static gregtech.apiOld.GTValues.M;
+import static gregtech.apiOld.util.DyeUtil.getOredictColorName;
 import static gregtech.common.items.MetaItems.*;
 
 public class MetaItem1 extends StandardMetaItem {

@@ -1,10 +1,10 @@
 package gregtech.integration.theoneprobe.provider;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IFuelInfo;
-import gregtech.api.capability.IFuelable;
-import gregtech.api.capability.impl.ItemFuelInfo;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.capability.IFuelInfo;
+import gregtech.apiOld.capability.IFuelable;
+import gregtech.apiOld.capability.impl.ItemFuelInfo;
 import mcjty.theoneprobe.api.ElementAlignment;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;

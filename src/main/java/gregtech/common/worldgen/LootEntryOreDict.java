@@ -2,7 +2,7 @@ package gregtech.common.worldgen;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import gregtech.api.unification.OreDictUnifier;
+import gregtech.apiOld.unification.OreDictUnifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.world.storage.loot.conditions.LootCondition;

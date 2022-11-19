@@ -1,7 +1,7 @@
 package gregtech.common.blocks;
 
-import gregtech.api.block.IStateHarvestLevel;
-import gregtech.api.block.VariantActiveBlock;
+import gregtech.apiOld.block.IStateHarvestLevel;
+import gregtech.apiOld.block.VariantActiveBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;

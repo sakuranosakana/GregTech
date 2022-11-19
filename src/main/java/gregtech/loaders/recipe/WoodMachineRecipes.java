@@ -1,9 +1,9 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.world.DummyWorld;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.util.GTUtility;
+import gregtech.apiOld.util.world.DummyWorld;
 import gregtech.common.ConfigHolder;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -14,11 +14,11 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static gregtech.api.GTValues.ULV;
-import static gregtech.api.GTValues.VA;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.GTValues.ULV;
+import static gregtech.apiOld.GTValues.VA;
+import static gregtech.apiOld.recipes.RecipeMaps.*;
+import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.BIO_CHAFF;
 
 public class WoodMachineRecipes {

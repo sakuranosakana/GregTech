@@ -1,6 +1,6 @@
 package gregtech.client.renderer.handler;
 
-import gregtech.api.GTValues;
+import gregtech.apiOld.GTValues;
 import gregtech.common.entities.PortalEntity;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;

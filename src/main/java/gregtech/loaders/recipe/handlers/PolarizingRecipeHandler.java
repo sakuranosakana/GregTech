@@ -1,18 +1,18 @@
 package gregtech.loaders.recipe.handlers;
 
-import gregtech.api.GTValues;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.properties.IngotProperty;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.recipes.RecipeMaps;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.properties.IngotProperty;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.UnificationEntry;
 import net.minecraft.item.ItemStack;
 
-import static gregtech.api.GTValues.LV;
-import static gregtech.api.GTValues.VA;
+import static gregtech.apiOld.GTValues.LV;
+import static gregtech.apiOld.GTValues.VA;
 
 public class PolarizingRecipeHandler {
 

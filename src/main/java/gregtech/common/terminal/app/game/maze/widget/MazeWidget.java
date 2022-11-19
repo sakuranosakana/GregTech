@@ -1,9 +1,9 @@
 package gregtech.common.terminal.app.game.maze.widget;
 
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.util.Position;
-import gregtech.api.util.Size;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.Size;
 import net.minecraft.util.math.Vec2f;
 
 import java.util.ArrayList;

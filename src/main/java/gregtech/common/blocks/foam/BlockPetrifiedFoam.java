@@ -1,6 +1,6 @@
 package gregtech.common.blocks.foam;
 
-import gregtech.api.GregTechAPI;
+import gregtech.apiOld.GregTechAPI;
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

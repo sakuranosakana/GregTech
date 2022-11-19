@@ -1,19 +1,19 @@
 package gregtech.loaders.recipe.handlers;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.items.metaitem.MetaItem.MetaValueItem;
-import gregtech.api.items.toolitem.ToolMetaItem.MetaToolValueItem;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.material.properties.ToolProperty;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
+import gregtech.apiOld.items.toolitem.ToolMetaItem.MetaToolValueItem;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.recipes.RecipeMaps;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.MarkerMaterials;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.material.properties.ToolProperty;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import gregtech.common.items.MetaItems;
 import net.minecraft.init.Enchantments;
@@ -26,9 +26,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.ArrayList;
 import java.util.function.Function;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.unification.material.info.MaterialFlags.*;
-import static gregtech.api.unification.material.properties.PropertyKey.GEM;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.unification.material.info.MaterialFlags.*;
+import static gregtech.apiOld.unification.material.properties.PropertyKey.GEM;
 import static gregtech.common.items.MetaItems.*;
 
 public class ToolRecipeHandler {

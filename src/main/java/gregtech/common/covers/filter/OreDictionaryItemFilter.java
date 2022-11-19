@@ -1,13 +1,13 @@
 package gregtech.common.covers.filter;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.widgets.DrawableWidget;
-import gregtech.api.gui.widgets.ImageWidget;
-import gregtech.api.gui.widgets.OreDictFilterTestSlot;
-import gregtech.api.gui.widgets.TextFieldWidget2;
-import gregtech.api.util.ItemStackHashStrategy;
-import gregtech.api.util.OreDictExprFilter;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.widgets.DrawableWidget;
+import gregtech.apiOld.gui.widgets.ImageWidget;
+import gregtech.apiOld.gui.widgets.OreDictFilterTestSlot;
+import gregtech.apiOld.gui.widgets.TextFieldWidget2;
+import gregtech.apiOld.util.ItemStackHashStrategy;
+import gregtech.apiOld.util.OreDictExprFilter;
 import it.unimi.dsi.fastutil.Hash;
 import it.unimi.dsi.fastutil.objects.Object2BooleanOpenCustomHashMap;
 import net.minecraft.client.renderer.GlStateManager;

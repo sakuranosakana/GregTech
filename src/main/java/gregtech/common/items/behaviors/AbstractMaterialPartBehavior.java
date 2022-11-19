@@ -1,14 +1,14 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.items.metaitem.stats.IItemColorProvider;
-import gregtech.api.items.metaitem.stats.IItemDurabilityManager;
-import gregtech.api.items.metaitem.stats.IItemNameProvider;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.util.LocalizationUtils;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.items.metaitem.stats.IItemColorProvider;
+import gregtech.apiOld.items.metaitem.stats.IItemDurabilityManager;
+import gregtech.apiOld.items.metaitem.stats.IItemNameProvider;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.util.LocalizationUtils;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,10 +1,10 @@
 package gregtech.common.metatileentities.storage;
 
 import com.google.common.collect.Lists;
-import gregtech.api.recipes.KeySharedStack;
-import gregtech.api.storage.ICraftingStorage;
-import gregtech.api.util.DummyContainer;
-import gregtech.api.util.ItemStackKey;
+import gregtech.apiOld.recipes.KeySharedStack;
+import gregtech.apiOld.storage.ICraftingStorage;
+import gregtech.apiOld.util.DummyContainer;
+import gregtech.apiOld.util.ItemStackKey;
 import gregtech.common.inventory.IItemList;
 import gregtech.common.inventory.itemsource.ItemSources;
 import gregtech.common.inventory.itemsource.sources.TileItemSource;

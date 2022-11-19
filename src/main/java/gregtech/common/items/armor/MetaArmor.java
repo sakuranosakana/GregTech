@@ -1,6 +1,6 @@
 package gregtech.common.items.armor;
 
-import gregtech.api.items.armor.ArmorMetaItem;
+import gregtech.apiOld.items.armor.ArmorMetaItem;
 import gregtech.common.ConfigHolder;
 import gregtech.common.items.MetaItems;
 import net.minecraft.inventory.EntityEquipmentSlot;

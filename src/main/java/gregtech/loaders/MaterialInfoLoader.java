@@ -1,9 +1,9 @@
 package gregtech.loaders;
 
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.stack.ItemMaterialInfo;
-import gregtech.api.unification.stack.MaterialStack;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.stack.ItemMaterialInfo;
+import gregtech.apiOld.unification.stack.MaterialStack;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.BlockGlassCasing;
@@ -14,8 +14,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import static gregtech.api.GTValues.M;
-import static gregtech.api.GTValues.W;
+import static gregtech.apiOld.GTValues.M;
+import static gregtech.apiOld.GTValues.W;
 
 public class MaterialInfoLoader {
 

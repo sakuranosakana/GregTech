@@ -1,7 +1,7 @@
 package gregtech.common.terminal.app.game.maze.widget;
 
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.util.Position;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.util.Position;
 import gregtech.common.terminal.app.game.maze.MazeApp;
 
 public class EnemyWidget extends PlayerWidget {

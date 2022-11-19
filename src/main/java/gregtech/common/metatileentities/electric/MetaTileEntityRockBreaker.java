@@ -1,12 +1,12 @@
 package gregtech.common.metatileentities.electric;
 
-import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.capability.impl.RecipeLogicEnergy;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.RecipeMaps;
+import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.apiOld.capability.impl.RecipeLogicEnergy;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.SimpleMachineMetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.recipes.RecipeMap;
+import gregtech.apiOld.recipes.RecipeMaps;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.Block;

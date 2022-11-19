@@ -1,16 +1,16 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.GTValues;
-import gregtech.api.items.OreDictNames;
-import gregtech.api.metatileentity.ITieredMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.material.MarkerMaterials.Tier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.items.OreDictNames;
+import gregtech.apiOld.metatileentity.ITieredMetaTileEntity;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.MarkerMaterials;
+import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMetalCasing.MetalCasingType;

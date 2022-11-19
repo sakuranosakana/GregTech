@@ -1,8 +1,7 @@
 package gregtech.common.inventory.itemsource;
 
-import gregtech.api.util.ItemStackKey;
+import gregtech.apiOld.util.ItemStackKey;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraftforge.items.IItemHandler;
 
 import java.util.Map;
 

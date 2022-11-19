@@ -1,7 +1,7 @@
 package gregtech.loaders.dungeon;
 
 import com.google.common.collect.Lists;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.util.GTLog;
 import gregtech.common.ConfigHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

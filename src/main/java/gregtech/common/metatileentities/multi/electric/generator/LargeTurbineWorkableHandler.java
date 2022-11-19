@@ -1,13 +1,13 @@
 package gregtech.common.metatileentities.multi.electric.generator;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.IRotorHolder;
-import gregtech.api.capability.impl.MultiblockFuelRecipeLogic;
-import gregtech.api.metatileentity.multiblock.FuelMultiblockController;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeBuilder;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.IRotorHolder;
+import gregtech.apiOld.capability.impl.MultiblockFuelRecipeLogic;
+import gregtech.apiOld.metatileentity.multiblock.FuelMultiblockController;
+import gregtech.apiOld.metatileentity.multiblock.MultiblockAbility;
+import gregtech.apiOld.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.apiOld.recipes.Recipe;
+import gregtech.apiOld.recipes.RecipeBuilder;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;

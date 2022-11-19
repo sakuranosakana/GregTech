@@ -1,11 +1,11 @@
 package gregtech.common.tools;
 
-import gregtech.api.items.toolitem.IToolStats;
-import gregtech.api.items.toolitem.ToolMetaItem;
-import gregtech.api.items.toolitem.ToolMetaItem.MetaToolValueItem;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.util.function.Task;
+import gregtech.apiOld.items.toolitem.IToolStats;
+import gregtech.apiOld.items.toolitem.ToolMetaItem;
+import gregtech.apiOld.items.toolitem.ToolMetaItem.MetaToolValueItem;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.util.function.Task;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;

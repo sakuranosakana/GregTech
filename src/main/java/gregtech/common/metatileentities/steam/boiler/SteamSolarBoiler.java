@@ -1,11 +1,11 @@
 package gregtech.common.metatileentities.steam.boiler;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.ProgressWidget.MoveType;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.widgets.ProgressWidget.MoveType;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;

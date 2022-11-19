@@ -1,7 +1,7 @@
 package gregtech.integration.jei.recipe;
 
 import com.google.common.collect.ImmutableList;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;

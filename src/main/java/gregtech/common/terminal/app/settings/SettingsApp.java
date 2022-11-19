@@ -1,15 +1,15 @@
 package gregtech.common.terminal.app.settings;
 
-import gregtech.api.gui.resources.ColorRectTexture;
-import gregtech.api.gui.resources.TextTexture;
-import gregtech.api.gui.widgets.AbstractWidgetGroup;
-import gregtech.api.gui.widgets.ImageWidget;
-import gregtech.api.gui.widgets.TabGroup;
-import gregtech.api.gui.widgets.tab.IGuiTextureTabInfo;
-import gregtech.api.gui.widgets.tab.ITabInfo;
-import gregtech.api.terminal.app.AbstractApplication;
-import gregtech.api.terminal.gui.CustomTabListRenderer;
-import gregtech.api.terminal.os.TerminalTheme;
+import gregtech.apiOld.gui.resources.ColorRectTexture;
+import gregtech.apiOld.gui.resources.TextTexture;
+import gregtech.apiOld.gui.widgets.AbstractWidgetGroup;
+import gregtech.apiOld.gui.widgets.ImageWidget;
+import gregtech.apiOld.gui.widgets.TabGroup;
+import gregtech.apiOld.gui.widgets.tab.IGuiTextureTabInfo;
+import gregtech.apiOld.gui.widgets.tab.ITabInfo;
+import gregtech.apiOld.terminal.app.AbstractApplication;
+import gregtech.apiOld.terminal.gui.CustomTabListRenderer;
+import gregtech.apiOld.terminal.os.TerminalTheme;
 import gregtech.common.terminal.app.settings.widgets.HomeButtonSettings;
 import gregtech.common.terminal.app.settings.widgets.OsSettings;
 import gregtech.common.terminal.app.settings.widgets.ThemeSettings;

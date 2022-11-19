@@ -1,16 +1,16 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.GTValues;
-import gregtech.api.items.OreDictNames;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterial;
-import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.items.OreDictNames;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.recipes.RecipeMaps;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.MarkerMaterial;
+import gregtech.apiOld.unification.material.MarkerMaterials;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import gregtech.common.items.MetaItems;
 import net.minecraft.block.Block;
@@ -20,8 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 
 public class VanillaOverrideRecipes {
 

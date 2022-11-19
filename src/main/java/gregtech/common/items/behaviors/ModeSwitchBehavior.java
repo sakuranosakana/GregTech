@@ -1,6 +1,6 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import gregtech.common.items.behaviors.ModeSwitchBehavior.ILocalizationKey;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;

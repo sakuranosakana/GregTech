@@ -1,12 +1,12 @@
 package gregtech.integration.theoneprobe.provider;
 
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.pipenet.Node;
-import gregtech.api.pipenet.PipeNet;
-import gregtech.api.pipenet.block.BlockPipe;
-import gregtech.api.pipenet.tile.IPipeTile;
-import gregtech.api.pipenet.tile.TileEntityPipeBase;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.pipenet.Node;
+import gregtech.apiOld.pipenet.PipeNet;
+import gregtech.apiOld.pipenet.block.BlockPipe;
+import gregtech.apiOld.pipenet.tile.IPipeTile;
+import gregtech.apiOld.pipenet.tile.TileEntityPipeBase;
 import gregtech.common.ConfigHolder;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;

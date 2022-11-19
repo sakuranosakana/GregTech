@@ -1,10 +1,10 @@
 package gregtech.client.renderer.handler;
 
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
-import gregtech.api.pattern.MultiblockShapeInfo;
-import gregtech.api.util.BlockInfo;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.metatileentity.multiblock.MultiblockControllerBase;
+import gregtech.apiOld.pattern.MultiblockShapeInfo;
+import gregtech.apiOld.util.BlockInfo;
 import gregtech.client.utils.TrackedDummyWorld;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

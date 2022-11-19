@@ -1,16 +1,16 @@
 package gregtech.client;
 
 import codechicken.lib.texture.TextureUtils;
-import gregtech.api.GTValues;
-import gregtech.api.fluids.MetaFluids;
-import gregtech.api.items.metaitem.MetaOreDictItem;
-import gregtech.api.terminal.TerminalRegistry;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.info.MaterialIconSet;
-import gregtech.api.unification.material.info.MaterialIconType;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.api.util.FluidTooltipUtil;
-import gregtech.api.util.ModCompatibility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.fluids.MetaFluids;
+import gregtech.apiOld.items.metaitem.MetaOreDictItem;
+import gregtech.apiOld.terminal.TerminalRegistry;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.info.MaterialIconSet;
+import gregtech.apiOld.unification.material.info.MaterialIconType;
+import gregtech.apiOld.unification.stack.UnificationEntry;
+import gregtech.apiOld.util.FluidTooltipUtil;
+import gregtech.apiOld.util.ModCompatibility;
 import gregtech.client.model.customtexture.CustomTextureModelHandler;
 import gregtech.client.model.customtexture.MetadataSectionCTM;
 import gregtech.client.renderer.handler.FacadeRenderer;

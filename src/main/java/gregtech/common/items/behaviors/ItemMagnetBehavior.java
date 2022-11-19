@@ -1,10 +1,10 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IElectricItem;
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.util.GTTransferUtils;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.capability.IElectricItem;
+import gregtech.apiOld.items.metaitem.MetaItem;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.util.GTTransferUtils;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;

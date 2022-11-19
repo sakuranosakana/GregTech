@@ -1,6 +1,6 @@
 package gregtech.common.inventory;
 
-import gregtech.api.util.ItemStackKey;
+import gregtech.apiOld.util.ItemStackKey;
 
 import javax.annotation.Nullable;
 import java.util.Set;

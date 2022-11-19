@@ -1,7 +1,7 @@
 package gregtech.common.blocks;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.unification.ore.StoneType;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.unification.ore.StoneType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;

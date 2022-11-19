@@ -1,12 +1,12 @@
 package gregtech.common.terminal.app.batterymanager;
 
-import gregtech.api.gui.resources.IGuiTexture;
-import gregtech.api.gui.resources.ItemStackTexture;
-import gregtech.api.gui.widgets.ImageWidget;
-import gregtech.api.terminal.TerminalRegistry;
-import gregtech.api.terminal.app.AbstractApplication;
-import gregtech.api.terminal.gui.widgets.RectButtonWidget;
-import gregtech.api.terminal.os.TerminalTheme;
+import gregtech.apiOld.gui.resources.IGuiTexture;
+import gregtech.apiOld.gui.resources.ItemStackTexture;
+import gregtech.apiOld.gui.widgets.ImageWidget;
+import gregtech.apiOld.terminal.TerminalRegistry;
+import gregtech.apiOld.terminal.app.AbstractApplication;
+import gregtech.apiOld.terminal.gui.widgets.RectButtonWidget;
+import gregtech.apiOld.terminal.os.TerminalTheme;
 import gregtech.common.items.MetaItems;
 import gregtech.common.terminal.hardware.BatteryHardware;
 import net.minecraft.client.resources.I18n;

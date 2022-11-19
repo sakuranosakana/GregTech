@@ -1,23 +1,23 @@
 package gregtech.loaders;
 
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.material.MarkerMaterials.Color;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.ItemMaterialInfo;
-import gregtech.api.unification.stack.MaterialStack;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.MarkerMaterials;
+import gregtech.apiOld.unification.material.MarkerMaterials.Color;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.ItemMaterialInfo;
+import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.apiOld.unification.stack.UnificationEntry;
+import gregtech.apiOld.util.GTLog;
 import gregtech.common.blocks.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import static gregtech.api.GTValues.M;
-import static gregtech.api.GTValues.W;
+import static gregtech.apiOld.GTValues.M;
+import static gregtech.apiOld.GTValues.W;
 
 public class OreDictionaryLoader {
 

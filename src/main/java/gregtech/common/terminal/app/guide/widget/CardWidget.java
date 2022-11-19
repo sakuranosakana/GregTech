@@ -1,18 +1,13 @@
 package gregtech.common.terminal.app.guide.widget;
 
 import com.google.gson.JsonObject;
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
 import gregtech.common.terminal.app.guideeditor.widget.configurator.BooleanConfigurator;
 import gregtech.common.terminal.app.guideeditor.widget.configurator.NumberConfigurator;
-import gregtech.api.util.Position;
-import gregtech.api.util.Size;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import org.lwjgl.opengl.GL11;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.Size;
 
 import java.util.function.Consumer;
 

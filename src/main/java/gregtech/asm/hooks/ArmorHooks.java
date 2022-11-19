@@ -1,6 +1,6 @@
 package gregtech.asm.hooks;
 
-import gregtech.api.items.armor.IArmorItem;
+import gregtech.apiOld.items.armor.IArmorItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;

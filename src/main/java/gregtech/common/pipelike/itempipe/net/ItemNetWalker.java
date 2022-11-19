@@ -1,10 +1,10 @@
 package gregtech.common.pipelike.itempipe.net;
 
-import gregtech.api.cover.CoverBehavior;
-import gregtech.api.pipenet.PipeNetWalker;
-import gregtech.api.pipenet.tile.IPipeTile;
-import gregtech.api.unification.material.properties.ItemPipeProperties;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.cover.CoverBehavior;
+import gregtech.apiOld.pipenet.PipeNetWalker;
+import gregtech.apiOld.pipenet.tile.IPipeTile;
+import gregtech.apiOld.unification.material.properties.ItemPipeProperties;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.covers.CoverItemFilter;
 import gregtech.common.covers.CoverShutter;
 import gregtech.common.covers.ItemFilterMode;

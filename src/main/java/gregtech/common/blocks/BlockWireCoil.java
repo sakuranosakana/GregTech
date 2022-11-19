@@ -1,10 +1,10 @@
 package gregtech.common.blocks;
 
-import gregtech.api.block.IHeatingCoilBlockStats;
-import gregtech.api.block.VariantActiveBlock;
-import gregtech.api.block.VariantItemBlock;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
+import gregtech.apiOld.block.IHeatingCoilBlockStats;
+import gregtech.apiOld.block.VariantActiveBlock;
+import gregtech.apiOld.block.VariantItemBlock;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;

@@ -1,13 +1,13 @@
 package gregtech.common.items;
 
-import gregtech.api.GTValues;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.api.util.GTLog;
-import gregtech.api.util.SlotDelegate;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.UnificationEntry;
+import gregtech.apiOld.util.GTLog;
+import gregtech.apiOld.util.SlotDelegate;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerEnchantment;

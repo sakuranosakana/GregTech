@@ -1,8 +1,8 @@
 package gregtech.integration.theoneprobe.provider;
 
-import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.common.metatileentities.electric.MetaTileEntityDiode;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;

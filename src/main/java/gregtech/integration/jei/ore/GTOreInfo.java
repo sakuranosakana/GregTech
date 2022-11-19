@@ -1,18 +1,18 @@
 package gregtech.integration.jei.ore;
 
 import com.google.common.collect.ImmutableList;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.util.GTUtility;
-import gregtech.api.worldgen.config.FillerConfigUtils;
-import gregtech.api.worldgen.config.OreDepositDefinition;
-import gregtech.api.worldgen.filler.BlockFiller;
-import gregtech.api.worldgen.filler.FillerEntry;
-import gregtech.api.worldgen.filler.LayeredBlockFiller;
-import gregtech.api.worldgen.populator.FluidSpringPopulator;
-import gregtech.api.worldgen.populator.IVeinPopulator;
-import gregtech.api.worldgen.populator.SurfaceBlockPopulator;
-import gregtech.api.worldgen.populator.SurfaceRockPopulator;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.util.GTUtility;
+import gregtech.apiOld.worldgen.config.FillerConfigUtils;
+import gregtech.apiOld.worldgen.config.OreDepositDefinition;
+import gregtech.apiOld.worldgen.filler.BlockFiller;
+import gregtech.apiOld.worldgen.filler.FillerEntry;
+import gregtech.apiOld.worldgen.filler.LayeredBlockFiller;
+import gregtech.apiOld.worldgen.populator.FluidSpringPopulator;
+import gregtech.apiOld.worldgen.populator.IVeinPopulator;
+import gregtech.apiOld.worldgen.populator.SurfaceBlockPopulator;
+import gregtech.apiOld.worldgen.populator.SurfaceRockPopulator;
 import gregtech.common.blocks.BlockOre;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
@@ -36,7 +36,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 
-import static gregtech.api.GTValues.*;
+import static gregtech.apiOld.GTValues.*;
 
 public class GTOreInfo implements IRecipeWrapper {
 

@@ -4,11 +4,11 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.metatileentity.ITieredMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.metatileentity.ITieredMetaTileEntity;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.multiblock.IMultiblockPart;
+import gregtech.apiOld.metatileentity.multiblock.MultiblockControllerBase;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.custom.FireboxActiveRenderer;
@@ -20,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
-import static gregtech.api.capability.GregtechDataCodes.SYNC_CONTROLLER;
+import static gregtech.apiOld.capability.GregtechDataCodes.SYNC_CONTROLLER;
 
 public abstract class MetaTileEntityMultiblockPart extends MetaTileEntity implements IMultiblockPart, ITieredMetaTileEntity {
 

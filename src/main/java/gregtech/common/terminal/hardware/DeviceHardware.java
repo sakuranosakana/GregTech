@@ -1,9 +1,9 @@
 package gregtech.common.terminal.hardware;
 
-import gregtech.api.gui.resources.IGuiTexture;
-import gregtech.api.gui.resources.ItemStackTexture;
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.terminal.hardware.Hardware;
+import gregtech.apiOld.gui.resources.IGuiTexture;
+import gregtech.apiOld.gui.resources.ItemStackTexture;
+import gregtech.apiOld.items.metaitem.MetaItem;
+import gregtech.apiOld.terminal.hardware.Hardware;
 import gregtech.common.items.MetaItems;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;

@@ -1,13 +1,13 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.cover.ICoverable;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.items.toolitem.IToolStats;
-import gregtech.api.pipenet.tile.IPipeTile;
-import gregtech.api.pipenet.tile.TileEntityPipeBase;
-import gregtech.api.unification.material.Material;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.cover.ICoverable;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.items.toolitem.IToolStats;
+import gregtech.apiOld.pipenet.tile.IPipeTile;
+import gregtech.apiOld.pipenet.tile.TileEntityPipeBase;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.blocks.BlockFrame;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.Block;

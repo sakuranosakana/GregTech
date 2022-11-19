@@ -1,22 +1,22 @@
 package gregtech.loaders.recipe.handlers;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.MaterialStack;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.recipes.RecipeBuilder;
+import gregtech.apiOld.recipes.RecipeMaps;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.MaterialStack;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static gregtech.api.GTValues.LV;
-import static gregtech.api.GTValues.VA;
-import static gregtech.api.unification.material.info.MaterialFlags.*;
+import static gregtech.apiOld.GTValues.LV;
+import static gregtech.apiOld.GTValues.VA;
+import static gregtech.apiOld.unification.material.info.MaterialFlags.*;
 
 public class DecompositionRecipeHandler {
 

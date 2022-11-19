@@ -5,19 +5,19 @@ import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
-import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.ModularUI.Builder;
-import gregtech.api.gui.widgets.FluidContainerSlotWidget;
-import gregtech.api.gui.widgets.ImageWidget;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.gui.widgets.TankWidget;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.TieredMetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.impl.FluidTankList;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.ModularUI.Builder;
+import gregtech.apiOld.gui.widgets.FluidContainerSlotWidget;
+import gregtech.apiOld.gui.widgets.ImageWidget;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.gui.widgets.TankWidget;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.TieredMetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.ConfigHolder;
 import net.minecraft.block.BlockLiquid;
@@ -49,7 +49,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-import static gregtech.api.capability.GregtechDataCodes.PUMP_HEAD_LEVEL;
+import static gregtech.apiOld.capability.GregtechDataCodes.PUMP_HEAD_LEVEL;
 
 public class MetaTileEntityPump extends TieredMetaTileEntity {
 

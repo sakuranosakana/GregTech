@@ -1,12 +1,12 @@
 package gregtech.common.blocks;
 
-import gregtech.api.GTValues;
-import gregtech.api.block.DelayedStateBlock;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.block.DelayedStateBlock;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.blocks.properties.PropertyMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

@@ -1,14 +1,14 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.unification.stack.UnificationEntry;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
-import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
-import static gregtech.api.unification.material.MarkerMaterials.Tier;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLER_RECIPES;
+import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
+import static gregtech.apiOld.unification.material.MarkerMaterials.Tier;
+import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.metatileentities.MetaTileEntities.*;
 

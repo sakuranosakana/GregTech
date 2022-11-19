@@ -1,16 +1,16 @@
 package gregtech.common.items.behaviors;
 
 import codechicken.lib.raytracer.RayTracer;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.ClickButtonWidget;
-import gregtech.api.gui.widgets.ImageCycleButtonWidget;
-import gregtech.api.gui.widgets.SimpleTextWidget;
-import gregtech.api.gui.widgets.TextFieldWidget2;
-import gregtech.api.items.gui.ItemUIFactory;
-import gregtech.api.items.gui.PlayerInventoryHolder;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.widgets.ClickButtonWidget;
+import gregtech.apiOld.gui.widgets.ImageCycleButtonWidget;
+import gregtech.apiOld.gui.widgets.SimpleTextWidget;
+import gregtech.apiOld.gui.widgets.TextFieldWidget2;
+import gregtech.apiOld.items.gui.ItemUIFactory;
+import gregtech.apiOld.items.gui.PlayerInventoryHolder;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntityClipboard;
 import net.minecraft.block.Block;

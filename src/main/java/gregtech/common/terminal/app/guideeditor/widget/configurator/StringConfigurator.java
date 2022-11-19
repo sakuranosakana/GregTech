@@ -1,13 +1,11 @@
 package gregtech.common.terminal.app.guideeditor.widget.configurator;
 
 import com.google.gson.JsonObject;
-import gregtech.api.gui.resources.TextTexture;
-import gregtech.api.gui.widgets.TextFieldWidget;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
-import gregtech.api.terminal.gui.widgets.RectButtonWidget;
-import gregtech.api.terminal.os.TerminalTheme;
-
-import java.awt.*;
+import gregtech.apiOld.gui.resources.TextTexture;
+import gregtech.apiOld.gui.widgets.TextFieldWidget;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.terminal.gui.widgets.RectButtonWidget;
+import gregtech.apiOld.terminal.os.TerminalTheme;
 
 public class StringConfigurator extends ConfiguratorWidget<String>{
     private TextFieldWidget textFieldWidget;

@@ -1,6 +1,6 @@
 package gregtech.client.renderer.scene;
 
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.util.GTLog;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;

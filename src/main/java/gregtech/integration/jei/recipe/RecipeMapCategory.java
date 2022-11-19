@@ -1,16 +1,16 @@
 package gregtech.integration.jei.recipe;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.gui.BlankUIHolder;
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.widgets.ProgressWidget;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.gui.widgets.TankWidget;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.impl.FluidTankList;
+import gregtech.apiOld.gui.BlankUIHolder;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.widgets.ProgressWidget;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.gui.widgets.TankWidget;
+import gregtech.apiOld.recipes.Recipe;
+import gregtech.apiOld.recipes.RecipeMap;
 import gregtech.integration.jei.GTJeiPlugin;
 import gregtech.integration.jei.utils.render.FluidStackTextRenderer;
 import gregtech.integration.jei.utils.render.ItemStackTextRenderer;

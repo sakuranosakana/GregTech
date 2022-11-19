@@ -1,6 +1,6 @@
 package gregtech.common;
 
-import gregtech.api.GTValues;
+import gregtech.apiOld.GTValues;
 import net.minecraftforge.common.config.Config;
 
 @Config(modid = GTValues.MODID)

@@ -1,15 +1,15 @@
 package gregtech.common.terminal.app.settings.widgets;
 
-import gregtech.api.gui.resources.ColorRectTexture;
-import gregtech.api.gui.widgets.AbstractWidgetGroup;
-import gregtech.api.gui.widgets.LabelWidget;
-import gregtech.api.terminal.TerminalRegistry;
-import gregtech.api.terminal.gui.widgets.RectButtonWidget;
-import gregtech.api.terminal.os.TerminalOSWidget;
-import gregtech.api.terminal.os.TerminalTheme;
-import gregtech.api.util.GTLog;
-import gregtech.api.util.Position;
-import gregtech.api.util.Size;
+import gregtech.apiOld.gui.resources.ColorRectTexture;
+import gregtech.apiOld.gui.widgets.AbstractWidgetGroup;
+import gregtech.apiOld.gui.widgets.LabelWidget;
+import gregtech.apiOld.terminal.TerminalRegistry;
+import gregtech.apiOld.terminal.gui.widgets.RectButtonWidget;
+import gregtech.apiOld.terminal.os.TerminalOSWidget;
+import gregtech.apiOld.terminal.os.TerminalTheme;
+import gregtech.apiOld.util.GTLog;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.Size;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.FMLCommonHandler;

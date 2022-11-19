@@ -1,6 +1,6 @@
 package gregtech.common.blocks;
 
-import gregtech.api.block.VariantBlock;
+import gregtech.apiOld.block.VariantBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;

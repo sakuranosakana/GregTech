@@ -5,21 +5,21 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.capability.IActiveOutputSide;
-import gregtech.api.capability.impl.ItemHandlerList;
-import gregtech.api.capability.impl.ItemHandlerProxy;
-import gregtech.api.cover.ICoverable;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.ModularUI.Builder;
-import gregtech.api.gui.widgets.AdvancedTextWidget;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.gui.widgets.ToggleButtonWidget;
-import gregtech.api.metatileentity.ITieredMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.capability.IActiveOutputSide;
+import gregtech.apiOld.capability.impl.ItemHandlerList;
+import gregtech.apiOld.capability.impl.ItemHandlerProxy;
+import gregtech.apiOld.cover.ICoverable;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.ModularUI.Builder;
+import gregtech.apiOld.gui.widgets.AdvancedTextWidget;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.gui.widgets.ToggleButtonWidget;
+import gregtech.apiOld.metatileentity.ITieredMetaTileEntity;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
@@ -50,8 +50,8 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static gregtech.api.capability.GregtechDataCodes.UPDATE_AUTO_OUTPUT_ITEMS;
-import static gregtech.api.capability.GregtechDataCodes.UPDATE_OUTPUT_FACING;
+import static gregtech.apiOld.capability.GregtechDataCodes.UPDATE_AUTO_OUTPUT_ITEMS;
+import static gregtech.apiOld.capability.GregtechDataCodes.UPDATE_OUTPUT_FACING;
 
 public class MetaTileEntityQuantumChest extends MetaTileEntity implements ITieredMetaTileEntity, IActiveOutputSide {
 

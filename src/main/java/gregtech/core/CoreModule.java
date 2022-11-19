@@ -1,32 +1,32 @@
 package gregtech.core;
 
 import crafttweaker.CraftTweakerAPI;
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.block.IHeatingCoilBlockStats;
-import gregtech.api.capability.SimpleCapabilityManager;
-import gregtech.api.cover.CoverBehaviorUIFactory;
-import gregtech.api.cover.CoverDefinition;
-import gregtech.api.fluids.MetaFluids;
-import gregtech.api.gui.UIFactory;
-import gregtech.api.items.gui.PlayerInventoryUIFactory;
-import gregtech.api.metatileentity.MetaTileEntityUIFactory;
-import gregtech.api.modules.GregTechModule;
-import gregtech.api.modules.IGregTechModule;
-import gregtech.api.net.NetworkHandler;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.recipeproperties.TemperatureProperty;
-import gregtech.api.sound.GTSounds;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.util.CapesRegistry;
-import gregtech.api.util.GTLog;
-import gregtech.api.util.NBTUtil;
-import gregtech.api.util.VirtualTankRegistry;
-import gregtech.api.util.input.KeyBind;
-import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler;
-import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinSaveData;
-import gregtech.api.worldgen.config.WorldGenRegistry;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.block.IHeatingCoilBlockStats;
+import gregtech.apiOld.capability.SimpleCapabilityManager;
+import gregtech.apiOld.cover.CoverBehaviorUIFactory;
+import gregtech.apiOld.cover.CoverDefinition;
+import gregtech.apiOld.fluids.MetaFluids;
+import gregtech.apiOld.gui.UIFactory;
+import gregtech.apiOld.items.gui.PlayerInventoryUIFactory;
+import gregtech.apiOld.metatileentity.MetaTileEntityUIFactory;
+import gregtech.apiOld.modules.GregTechModule;
+import gregtech.apiOld.modules.IGregTechModule;
+import gregtech.apiOld.net.NetworkHandler;
+import gregtech.apiOld.recipes.RecipeMap;
+import gregtech.apiOld.recipes.recipeproperties.TemperatureProperty;
+import gregtech.apiOld.sound.GTSounds;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.util.CapesRegistry;
+import gregtech.apiOld.util.GTLog;
+import gregtech.apiOld.util.NBTUtil;
+import gregtech.apiOld.util.VirtualTankRegistry;
+import gregtech.apiOld.util.input.KeyBind;
+import gregtech.apiOld.worldgen.bedrockFluids.BedrockFluidVeinHandler;
+import gregtech.apiOld.worldgen.bedrockFluids.BedrockFluidVeinSaveData;
+import gregtech.apiOld.worldgen.config.WorldGenRegistry;
 import gregtech.common.CommonProxy;
 import gregtech.common.ConfigHolder;
 import gregtech.common.MetaEntities;
@@ -54,10 +54,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 
-import static gregtech.api.GregTechAPI.*;
-import static gregtech.api.GregTechAPI.HEATING_COILS;
+import static gregtech.apiOld.GregTechAPI.*;
+import static gregtech.apiOld.GregTechAPI.HEATING_COILS;
 
 @GregTechModule(
         moduleID       = GregTechModules.MODULE_CORE,
@@ -80,6 +81,7 @@ public class CoreModule implements IGregTechModule {
 
     private final Logger logger = LogManager.getLogger("GregTech Core");
 
+    @Nonnull
     @Override
     public Logger getLogger() {
         return logger;
@@ -120,7 +122,6 @@ public class CoreModule implements IGregTechModule {
         if (Loader.isModLoaded(GTValues.MODID_CT)) {
             GTLog.logger.info("Running early CraftTweaker initialization scripts...");
             runEarlyCraftTweakerScripts();
-            MinecraftForge.EVENT_BUS.register(this);
         }
 
         // Fire Post-Material event, intended for when Materials need to be iterated over in-full before freezing

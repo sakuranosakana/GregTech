@@ -1,8 +1,8 @@
 package gregtech.asm.hooks;
 
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.metaitem.MusicDiscStats;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.items.metaitem.MetaItem;
+import gregtech.apiOld.items.metaitem.MusicDiscStats;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.entity.player.EntityPlayer;

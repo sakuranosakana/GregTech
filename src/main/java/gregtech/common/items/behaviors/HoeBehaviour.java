@@ -1,7 +1,7 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;

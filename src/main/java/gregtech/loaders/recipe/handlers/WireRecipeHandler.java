@@ -1,25 +1,25 @@
 package gregtech.loaders.recipe.handlers;
 
 import com.google.common.collect.ImmutableMap;
-import gregtech.api.GTValues;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.builders.IntCircuitRecipeBuilder;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.material.properties.WireProperties;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.recipes.builders.IntCircuitRecipeBuilder;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.material.properties.WireProperties;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.UnificationEntry;
+import gregtech.apiOld.util.GTUtility;
 
 import java.util.Map;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE;
-import static gregtech.api.unification.material.info.MaterialFlags.NO_WORKING;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.*;
+import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.apiOld.unification.material.info.MaterialFlags.GENERATE_PLATE;
+import static gregtech.apiOld.unification.material.info.MaterialFlags.NO_WORKING;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.SHAPE_EXTRUDER_WIRE;
 
 /**

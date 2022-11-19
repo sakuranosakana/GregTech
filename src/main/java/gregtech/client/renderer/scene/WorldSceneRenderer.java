@@ -1,10 +1,10 @@
 package gregtech.client.renderer.scene;
 
 import codechicken.lib.vec.Vector3;
-import gregtech.api.util.Position;
-import gregtech.api.util.PositionedRect;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.PositionedRect;
 import gregtech.client.utils.RenderUtil;
-import gregtech.api.util.Size;
+import gregtech.apiOld.util.Size;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

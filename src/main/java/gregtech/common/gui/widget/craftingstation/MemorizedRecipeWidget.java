@@ -1,9 +1,9 @@
 package gregtech.common.gui.widget.craftingstation;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.util.Position;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.util.Position;
 import gregtech.common.metatileentities.storage.CraftingRecipeMemory;
 import gregtech.common.metatileentities.storage.CraftingRecipeMemory.MemorizedRecipe;
 import net.minecraft.client.renderer.GlStateManager;

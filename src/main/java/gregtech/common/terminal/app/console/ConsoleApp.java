@@ -1,12 +1,12 @@
 package gregtech.common.terminal.app.console;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.widgets.ImageWidget;
-import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.terminal.app.AbstractApplication;
-import gregtech.api.terminal.gui.widgets.MachineSceneWidget;
-import gregtech.api.terminal.os.TerminalDialogWidget;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.widgets.ImageWidget;
+import gregtech.apiOld.gui.widgets.WidgetGroup;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.terminal.app.AbstractApplication;
+import gregtech.apiOld.terminal.gui.widgets.MachineSceneWidget;
+import gregtech.apiOld.terminal.os.TerminalDialogWidget;
 import gregtech.common.metatileentities.storage.MetaTileEntityWorkbench;
 import net.minecraft.tileentity.TileEntity;
 

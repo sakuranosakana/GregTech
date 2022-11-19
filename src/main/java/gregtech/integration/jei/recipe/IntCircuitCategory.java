@@ -2,8 +2,8 @@ package gregtech.integration.jei.recipe;
 
 import com.google.common.base.Suppliers;
 import com.google.common.collect.Iterators;
-import gregtech.api.GTValues;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import gregtech.common.items.MetaItems;
 import gregtech.integration.jei.GTJeiPlugin;
 import gregtech.integration.jei.utils.render.CompositeDrawable;

@@ -1,6 +1,6 @@
 package gregtech.asm.hooks;
 
-import gregtech.api.util.FluidTooltipUtil;
+import gregtech.apiOld.util.FluidTooltipUtil;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;

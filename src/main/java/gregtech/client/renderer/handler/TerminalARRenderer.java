@@ -1,9 +1,9 @@
 package gregtech.client.renderer.handler;
 
-import gregtech.api.terminal.TerminalRegistry;
-import gregtech.api.terminal.app.ARApplication;
-import gregtech.api.terminal.app.AbstractApplication;
-import gregtech.api.terminal.os.TerminalOSWidget;
+import gregtech.apiOld.terminal.TerminalRegistry;
+import gregtech.apiOld.terminal.app.ARApplication;
+import gregtech.apiOld.terminal.app.AbstractApplication;
+import gregtech.apiOld.terminal.os.TerminalOSWidget;
 import gregtech.client.utils.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;

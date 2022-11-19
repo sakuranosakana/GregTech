@@ -1,9 +1,9 @@
 package gregtech.common.terminal.app.guideeditor.widget.configurator;
 
 import com.google.gson.*;
-import gregtech.api.gui.resources.ColorRectTexture;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
-import gregtech.api.terminal.gui.widgets.TextEditorWidget;
+import gregtech.apiOld.gui.resources.ColorRectTexture;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.terminal.gui.widgets.TextEditorWidget;
 
 import java.util.Collections;
 import java.util.List;

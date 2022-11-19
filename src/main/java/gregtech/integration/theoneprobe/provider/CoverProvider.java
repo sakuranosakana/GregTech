@@ -1,10 +1,10 @@
 package gregtech.integration.theoneprobe.provider;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.cover.CoverBehavior;
-import gregtech.api.cover.ICoverable;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.cover.CoverBehavior;
+import gregtech.apiOld.cover.ICoverable;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.covers.*;
 import gregtech.common.covers.filter.*;
 import mcjty.theoneprobe.api.IProbeHitData;

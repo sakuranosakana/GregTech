@@ -1,11 +1,10 @@
 package gregtech.common.terminal.app.guideeditor.widget.configurator;
 
 import com.google.gson.JsonObject;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
-import gregtech.api.terminal.gui.widgets.SelectorWidget;
-import gregtech.api.terminal.os.TerminalTheme;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.terminal.gui.widgets.SelectorWidget;
+import gregtech.apiOld.terminal.os.TerminalTheme;
 
-import java.awt.*;
 import java.util.List;
 
 public class SelectorConfigurator extends ConfiguratorWidget<String>{

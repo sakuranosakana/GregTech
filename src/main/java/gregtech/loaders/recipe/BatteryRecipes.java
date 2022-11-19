@@ -1,18 +1,18 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.metatileentity.multiblock.CleanroomType;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
-import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
-import gregtech.api.unification.material.MarkerMaterials.Color;
-import gregtech.api.unification.material.MarkerMaterials.Tier;
-import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.apiOld.metatileentity.multiblock.CleanroomType;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
+import gregtech.apiOld.recipes.ingredients.nbtmatch.NBTMatcher;
+import gregtech.apiOld.recipes.ingredients.nbtmatch.NBTCondition;
+import gregtech.apiOld.unification.material.MarkerMaterials.Color;
+import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
+import gregtech.apiOld.unification.stack.UnificationEntry;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.*;
+import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class BatteryRecipes {

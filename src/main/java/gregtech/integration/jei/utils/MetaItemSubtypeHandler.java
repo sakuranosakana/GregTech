@@ -1,7 +1,7 @@
 package gregtech.integration.jei.utils;
 
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.metaitem.MetaItem.MetaValueItem;
+import gregtech.apiOld.items.metaitem.MetaItem;
+import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
 import mezz.jei.api.ISubtypeRegistry.ISubtypeInterpreter;
 import net.minecraft.item.ItemStack;
 

@@ -1,11 +1,11 @@
 package gregtech.common.terminal.app.recipechart.widget;
 
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
-import gregtech.api.terminal.os.TerminalDialogWidget;
-import gregtech.api.terminal.os.TerminalOSWidget;
-import gregtech.api.terminal.os.TerminalTheme;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.terminal.os.TerminalDialogWidget;
+import gregtech.apiOld.terminal.os.TerminalOSWidget;
+import gregtech.apiOld.terminal.os.TerminalTheme;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

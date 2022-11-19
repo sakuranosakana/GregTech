@@ -1,21 +1,21 @@
 package gregtech.common.terminal.app.multiblockhelper;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.resources.TextTexture;
-import gregtech.api.gui.widgets.ImageWidget;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
-import gregtech.api.pattern.MultiblockShapeInfo;
-import gregtech.api.pattern.PatternError;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
-import gregtech.api.terminal.gui.widgets.MachineSceneWidget;
-import gregtech.api.terminal.gui.widgets.RectButtonWidget;
-import gregtech.api.terminal.os.TerminalDialogWidget;
-import gregtech.api.terminal.os.TerminalOSWidget;
-import gregtech.api.terminal.os.TerminalTheme;
-import gregtech.api.util.BlockInfo;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.resources.TextTexture;
+import gregtech.apiOld.gui.widgets.ImageWidget;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.gui.widgets.WidgetGroup;
+import gregtech.apiOld.metatileentity.multiblock.MultiblockControllerBase;
+import gregtech.apiOld.pattern.MultiblockShapeInfo;
+import gregtech.apiOld.pattern.PatternError;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.terminal.gui.widgets.MachineSceneWidget;
+import gregtech.apiOld.terminal.gui.widgets.RectButtonWidget;
+import gregtech.apiOld.terminal.os.TerminalDialogWidget;
+import gregtech.apiOld.terminal.os.TerminalOSWidget;
+import gregtech.apiOld.terminal.os.TerminalTheme;
+import gregtech.apiOld.util.BlockInfo;
 import gregtech.client.utils.RenderBufferHelper;
 import gregtech.common.inventory.handlers.CycleItemStackHandler;
 import net.minecraft.block.Block;
@@ -103,7 +103,7 @@ public class MachineBuilderWidget extends WidgetGroup {
     }
 
     /**
-     * I had to add slotWidget after parent widget be added, because of gtce's {@link gregtech.api.gui.INativeWidget} interface.
+     * I had to add slotWidget after parent widget be added, because of gtce's {@link gregtech.apiOld.gui.INativeWidget} interface.
      * Hopefully one day I can remove this worse interface.
      */
     public void addPlayerInventory() {

@@ -1,8 +1,8 @@
 package gregtech.common.pipelike.cable.net;
 
-import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.util.GTLog;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.apiOld.util.GTLog;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.pipelike.cable.tile.TileEntityCable;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;

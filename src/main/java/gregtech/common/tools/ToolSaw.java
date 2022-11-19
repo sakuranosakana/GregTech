@@ -1,7 +1,7 @@
 package gregtech.common.tools;
 
 import com.google.common.collect.ImmutableSet;
-import gregtech.api.items.toolitem.ToolMetaItem;
+import gregtech.apiOld.items.toolitem.ToolMetaItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;

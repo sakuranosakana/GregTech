@@ -1,11 +1,11 @@
 package gregtech.integration.jei.recipe;
 
 import com.google.common.collect.Lists;
-import gregtech.api.GTValues;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.common.covers.facade.FacadeHelper;
 import gregtech.common.items.MetaItems;
 import gregtech.common.items.behaviors.FacadeItem;

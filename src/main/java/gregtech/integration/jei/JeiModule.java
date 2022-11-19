@@ -1,8 +1,8 @@
 package gregtech.integration.jei;
 
-import gregtech.api.GTValues;
-import gregtech.api.modules.GregTechModule;
-import gregtech.api.modules.IGregTechModule;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.modules.GregTechModule;
+import gregtech.apiOld.modules.IGregTechModule;
 import gregtech.integration.jei.utils.MultiblockInfoRecipeFocusShower;
 import gregtech.modules.GregTechModules;
 import mezz.jei.Internal;
@@ -10,7 +10,6 @@ import mezz.jei.JustEnoughItems;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.input.IShowsRecipeFocuses;
 import mezz.jei.input.InputHandler;
-import mezz.jei.startup.ProxyCommon;
 import mezz.jei.startup.ProxyCommonClient;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
@@ -35,6 +34,7 @@ public class JeiModule implements IGregTechModule {
 
     private final Logger logger = LogManager.getLogger("GregTech Integration: JEI");
 
+    @Nonnull
     @Override
     public Logger getLogger() {
         return logger;

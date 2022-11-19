@@ -1,6 +1,6 @@
 package gregtech.common.advancement;
 
-import gregtech.api.util.advancement.GTTrigger;
+import gregtech.apiOld.util.advancement.GTTrigger;
 import gregtech.common.advancement.criterion.BasicTrigger;
 import gregtech.common.advancement.criterion.TriggerDeath;
 

@@ -2,11 +2,11 @@ package gregtech.modules;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import gregtech.api.GTValues;
-import gregtech.api.modules.GregTechModule;
-import gregtech.api.modules.IGregTechModule;
-import gregtech.api.modules.IModuleContainer;
-import gregtech.api.modules.IModuleManager;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.modules.GregTechModule;
+import gregtech.apiOld.modules.IGregTechModule;
+import gregtech.apiOld.modules.IModuleContainer;
+import gregtech.apiOld.modules.IModuleManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;

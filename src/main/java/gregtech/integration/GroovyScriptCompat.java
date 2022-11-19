@@ -5,17 +5,17 @@ import com.cleanroommc.groovyscript.brackets.BracketHandlerManager;
 import com.cleanroommc.groovyscript.compat.mods.ModPropertyContainer;
 import com.cleanroommc.groovyscript.compat.mods.ModSupport;
 import com.cleanroommc.groovyscript.registry.VirtualizedRegistry;
-import gregtech.api.GTValues;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.crafttweaker.MetaItemBracketHandler;
-import gregtech.api.recipes.ingredients.GTRecipeInput;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.util.CTRecipeHelper;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.recipes.Recipe;
+import gregtech.apiOld.recipes.RecipeMap;
+import gregtech.apiOld.recipes.crafttweaker.MetaItemBracketHandler;
+import gregtech.apiOld.recipes.ingredients.GTRecipeInput;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.util.CTRecipeHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 
-import static gregtech.api.GregTechAPI.MATERIAL_REGISTRY;
+import static gregtech.apiOld.GregTechAPI.MATERIAL_REGISTRY;
 
 /**
  * A utility class to manage GroovyScript compat. Is safe to be called when GroovyScript is not installed.

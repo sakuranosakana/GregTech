@@ -1,8 +1,8 @@
 package gregtech.common.crafting;
 
 import com.google.gson.JsonElement;
-import gregtech.api.util.GTLog;
-import gregtech.api.util.GTStringUtils;
+import gregtech.apiOld.util.GTLog;
+import gregtech.apiOld.util.GTStringUtils;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;

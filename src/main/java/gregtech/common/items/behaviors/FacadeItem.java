@@ -1,9 +1,9 @@
 package gregtech.common.items.behaviors;
 
 import com.google.common.collect.ImmutableList;
-import gregtech.api.items.metaitem.stats.IItemNameProvider;
-import gregtech.api.items.metaitem.stats.ISubItemHandler;
-import gregtech.api.util.LocalizationUtils;
+import gregtech.apiOld.items.metaitem.stats.IItemNameProvider;
+import gregtech.apiOld.items.metaitem.stats.ISubItemHandler;
+import gregtech.apiOld.util.LocalizationUtils;
 import gregtech.common.ConfigHolder;
 import gregtech.common.covers.facade.FacadeHelper;
 import net.minecraft.creativetab.CreativeTabs;

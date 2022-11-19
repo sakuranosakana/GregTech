@@ -1,11 +1,11 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.capability.impl.FluidHandlerProxy;
-import gregtech.api.capability.impl.VoidFluidHandlerItemStack;
-import gregtech.api.items.IToolItem;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.items.metaitem.stats.IItemCapabilityProvider;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.capability.impl.FluidHandlerProxy;
+import gregtech.apiOld.capability.impl.VoidFluidHandlerItemStack;
+import gregtech.apiOld.items.IToolItem;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.items.metaitem.stats.IItemCapabilityProvider;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;

@@ -1,7 +1,7 @@
 package gregtech.integration.jei.utils.render;
 
 import gregtech.client.utils.RenderUtil;
-import gregtech.api.util.TextFormattingUtil;
+import gregtech.apiOld.util.TextFormattingUtil;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.plugins.vanilla.ingredients.fluid.FluidStackRenderer;
 import net.minecraft.client.Minecraft;

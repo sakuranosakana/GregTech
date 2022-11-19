@@ -1,8 +1,8 @@
 package gregtech.common.pipelike.fluidpipe.net;
 
-import gregtech.api.pipenet.PipeNet;
-import gregtech.api.pipenet.WorldPipeNet;
-import gregtech.api.unification.material.properties.FluidPipeProperties;
+import gregtech.apiOld.pipenet.PipeNet;
+import gregtech.apiOld.pipenet.WorldPipeNet;
+import gregtech.apiOld.unification.material.properties.FluidPipeProperties;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class FluidPipeNet extends PipeNet<FluidPipeProperties> {

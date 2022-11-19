@@ -1,9 +1,9 @@
 package gregtech.loaders.recipe.chemistry;
 
-import gregtech.api.GTValues;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import net.minecraft.init.Blocks;
@@ -18,10 +18,10 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import java.util.Collection;
 import java.util.List;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.*;
+import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.PLANT_BALL;
 import static gregtech.common.items.MetaItems.STICKY_RESIN;
 

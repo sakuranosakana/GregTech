@@ -1,9 +1,9 @@
 package gregtech.common.items.behaviors;
 
 import com.google.common.collect.UnmodifiableIterator;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockPistonExtension;

@@ -1,13 +1,13 @@
 package gregtech.common.terminal.app.batterymanager;
 
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IElectricItem;
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.resources.ShaderTexture;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.capability.IElectricItem;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.resources.ShaderTexture;
 import gregtech.client.shader.Shaders;
-import gregtech.api.terminal.os.TerminalOSWidget;
-import gregtech.api.terminal.os.TerminalTheme;
+import gregtech.apiOld.terminal.os.TerminalOSWidget;
+import gregtech.apiOld.terminal.os.TerminalTheme;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

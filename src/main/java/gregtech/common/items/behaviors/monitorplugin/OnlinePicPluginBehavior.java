@@ -1,11 +1,11 @@
 package gregtech.common.items.behaviors.monitorplugin;
 
-import gregtech.api.capability.GregtechDataCodes;
-import gregtech.api.gui.IUIHolder;
-import gregtech.api.gui.resources.picturetexture.PictureTexture;
-import gregtech.api.gui.resources.utils.DownloadThread;
-import gregtech.api.gui.widgets.*;
-import gregtech.api.items.behavior.MonitorPluginBaseBehavior;
+import gregtech.apiOld.capability.GregtechDataCodes;
+import gregtech.apiOld.gui.IUIHolder;
+import gregtech.apiOld.gui.resources.picturetexture.PictureTexture;
+import gregtech.apiOld.gui.resources.utils.DownloadThread;
+import gregtech.apiOld.gui.widgets.*;
+import gregtech.apiOld.items.behavior.MonitorPluginBaseBehavior;
 import gregtech.common.gui.widget.WidgetScrollBar;
 import gregtech.common.gui.widget.monitor.WidgetPluginConfig;
 import net.minecraft.entity.player.EntityPlayer;

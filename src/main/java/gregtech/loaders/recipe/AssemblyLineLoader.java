@@ -1,11 +1,11 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.unification.material.MarkerMaterials.Tier;
+import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
+import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.FUSION_COIL;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL;
 import static gregtech.common.blocks.MetaBlocks.FUSION_CASING;

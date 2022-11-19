@@ -2,8 +2,8 @@ package gregtech.common.covers.filter;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import gregtech.api.unification.stack.ItemAndMetadata;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.unification.stack.ItemAndMetadata;
+import gregtech.apiOld.util.GTLog;
 import gregtech.common.items.MetaItems;
 import net.minecraft.item.ItemStack;
 

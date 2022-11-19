@@ -1,9 +1,9 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.material.Materials;
+import gregtech.apiOld.recipes.RecipeMaps;
+import gregtech.apiOld.unification.material.Materials;
 
-import static gregtech.api.GTValues.*;
+import static gregtech.apiOld.GTValues.*;
 
 public class FusionLoader {
 

@@ -1,7 +1,7 @@
 package gregtech.common.covers;
 
 import gregtech.Bootstrap;
-import gregtech.api.capability.impl.*;
+import gregtech.apiOld.capability.impl.*;
 import net.minecraft.util.*;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.*;

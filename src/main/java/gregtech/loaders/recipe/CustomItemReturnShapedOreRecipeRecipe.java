@@ -1,6 +1,6 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;

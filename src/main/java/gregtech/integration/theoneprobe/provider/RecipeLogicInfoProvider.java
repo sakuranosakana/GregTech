@@ -1,10 +1,10 @@
 package gregtech.integration.theoneprobe.provider;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.capability.impl.AbstractRecipeLogic;
-import gregtech.api.capability.impl.PrimitiveRecipeLogic;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.capability.impl.AbstractRecipeLogic;
+import gregtech.apiOld.capability.impl.PrimitiveRecipeLogic;
+import gregtech.apiOld.util.GTUtility;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.TextStyleClass;

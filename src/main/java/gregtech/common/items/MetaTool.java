@@ -1,10 +1,10 @@
 package gregtech.common.items;
 
-import gregtech.api.GTValues;
-import gregtech.api.items.ToolDictNames;
-import gregtech.api.items.metaitem.ElectricStats;
-import gregtech.api.items.toolitem.*;
-import gregtech.api.sound.GTSounds;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.items.ToolDictNames;
+import gregtech.apiOld.items.metaitem.ElectricStats;
+import gregtech.apiOld.items.toolitem.*;
+import gregtech.apiOld.sound.GTSounds;
 import gregtech.common.ConfigHolder;
 import gregtech.common.tools.*;
 import gregtech.common.tools.largedrills.ToolDrills;

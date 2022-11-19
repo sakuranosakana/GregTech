@@ -1,15 +1,15 @@
 package gregtech.common.metatileentities.steam.boiler;
 
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IFuelInfo;
-import gregtech.api.capability.IFuelable;
-import gregtech.api.capability.impl.ItemFuelInfo;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.ProgressWidget.MoveType;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.recipes.ModHandler;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.capability.IFuelInfo;
+import gregtech.apiOld.capability.IFuelable;
+import gregtech.apiOld.capability.impl.ItemFuelInfo;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.widgets.ProgressWidget.MoveType;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.recipes.ModHandler;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

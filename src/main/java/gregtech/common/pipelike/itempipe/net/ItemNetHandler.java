@@ -1,11 +1,11 @@
 package gregtech.common.pipelike.itempipe.net;
 
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.cover.CoverBehavior;
-import gregtech.api.cover.ICoverable;
-import gregtech.api.util.FacingPos;
-import gregtech.api.util.GTTransferUtils;
-import gregtech.api.util.ItemStackKey;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.cover.CoverBehavior;
+import gregtech.apiOld.cover.ICoverable;
+import gregtech.apiOld.util.FacingPos;
+import gregtech.apiOld.util.GTTransferUtils;
+import gregtech.apiOld.util.ItemStackKey;
 import gregtech.common.covers.*;
 import gregtech.common.pipelike.itempipe.tile.TileEntityItemPipe;
 import gregtech.common.pipelike.itempipe.tile.TileEntityItemPipeTickable;

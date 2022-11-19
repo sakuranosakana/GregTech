@@ -1,13 +1,13 @@
 package gregtech.common.blocks;
 
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.block.DelayedStateBlock;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.info.MaterialIconType;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.block.DelayedStateBlock;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.material.info.MaterialIconType;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.client.model.IModelSupplier;
 import gregtech.client.model.SimpleStateMapper;
 import gregtech.common.blocks.properties.PropertyMaterial;

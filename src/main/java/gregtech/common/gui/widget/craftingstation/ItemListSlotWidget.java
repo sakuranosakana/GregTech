@@ -1,12 +1,12 @@
 package gregtech.common.gui.widget.craftingstation;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.recipes.KeySharedStack;
-import gregtech.api.util.ItemStackKey;
-import gregtech.api.util.Position;
-import gregtech.api.util.Size;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.recipes.KeySharedStack;
+import gregtech.apiOld.util.ItemStackKey;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.Size;
 import gregtech.common.inventory.IItemInfo;
 import gregtech.common.inventory.IItemList;
 import gregtech.common.inventory.IItemList.InsertMode;

@@ -1,10 +1,10 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.capability.IControllable;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.items.toolitem.IToolStats;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.capability.IControllable;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.items.toolitem.IToolStats;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

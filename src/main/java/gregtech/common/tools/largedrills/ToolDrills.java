@@ -1,6 +1,6 @@
 package gregtech.common.tools.largedrills;
 
-import gregtech.api.items.metaitem.MetaItem.MetaValueItem;
+import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
 import gregtech.common.items.MetaItems;
 import gregtech.common.items.behaviors.ModeSwitchBehavior;
 

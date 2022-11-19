@@ -1,7 +1,7 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.cover.CoverDefinition;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.cover.CoverDefinition;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.client.renderer.handler.BlockPosHighlightRenderer;
 import gregtech.common.metatileentities.multi.electric.centralmonitor.MetaTileEntityCentralMonitor;
 import net.minecraft.client.resources.I18n;

@@ -1,7 +1,7 @@
 package gregtech.common.command.worldgen;
 
-import gregtech.api.util.GTLog;
-import gregtech.api.worldgen.config.WorldGenRegistry;
+import gregtech.apiOld.util.GTLog;
+import gregtech.apiOld.worldgen.config.WorldGenRegistry;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;

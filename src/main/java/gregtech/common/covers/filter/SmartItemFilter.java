@@ -1,12 +1,12 @@
 package gregtech.common.covers.filter;
 
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.widgets.CycleButtonWidget;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.recipes.ingredients.GTRecipeInput;
-import gregtech.api.unification.stack.ItemAndMetadata;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.widgets.CycleButtonWidget;
+import gregtech.apiOld.recipes.Recipe;
+import gregtech.apiOld.recipes.RecipeMap;
+import gregtech.apiOld.recipes.RecipeMaps;
+import gregtech.apiOld.recipes.ingredients.GTRecipeInput;
+import gregtech.apiOld.unification.stack.ItemAndMetadata;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IStringSerializable;

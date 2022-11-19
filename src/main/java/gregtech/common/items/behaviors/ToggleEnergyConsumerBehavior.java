@@ -1,8 +1,8 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IElectricItem;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.capability.IElectricItem;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

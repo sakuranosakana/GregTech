@@ -1,7 +1,7 @@
 package gregtech.common.covers.facade;
 
 import com.google.common.collect.ImmutableList;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;

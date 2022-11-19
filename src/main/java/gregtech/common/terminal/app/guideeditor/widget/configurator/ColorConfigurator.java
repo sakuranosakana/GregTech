@@ -1,8 +1,8 @@
 package gregtech.common.terminal.app.guideeditor.widget.configurator;
 
 import com.google.gson.JsonObject;
-import gregtech.api.terminal.gui.widgets.ColorWidget;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.terminal.gui.widgets.ColorWidget;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
 
 public class ColorConfigurator extends ConfiguratorWidget<Integer>{
 

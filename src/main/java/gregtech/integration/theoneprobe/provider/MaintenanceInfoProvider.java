@@ -1,9 +1,9 @@
 package gregtech.integration.theoneprobe.provider;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.metatileentity.multiblock.IMaintenance;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.metatileentity.multiblock.IMaintenance;
 import gregtech.common.ConfigHolder;
 import gregtech.common.items.MetaItems;
 import mcjty.theoneprobe.api.ElementAlignment;

@@ -1,6 +1,6 @@
 package gregtech.common.tools;
 
-import gregtech.api.items.toolitem.IToolStats;
+import gregtech.apiOld.items.toolitem.IToolStats;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Enchantments;

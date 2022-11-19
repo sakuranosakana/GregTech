@@ -1,10 +1,10 @@
 package gregtech.common.pipelike.itempipe.net;
 
-import gregtech.api.pipenet.Node;
-import gregtech.api.pipenet.PipeNet;
-import gregtech.api.pipenet.WorldPipeNet;
-import gregtech.api.unification.material.properties.ItemPipeProperties;
-import gregtech.api.util.FacingPos;
+import gregtech.apiOld.pipenet.Node;
+import gregtech.apiOld.pipenet.PipeNet;
+import gregtech.apiOld.pipenet.WorldPipeNet;
+import gregtech.apiOld.unification.material.properties.ItemPipeProperties;
+import gregtech.apiOld.util.FacingPos;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;

@@ -1,13 +1,13 @@
 package gregtech.common.tools;
 
 import codechicken.lib.raytracer.RayTracer;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.MaterialStack;
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.TaskScheduler;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.apiOld.util.GTUtility;
+import gregtech.apiOld.util.TaskScheduler;
 import gregtech.common.blocks.BlockOre;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;

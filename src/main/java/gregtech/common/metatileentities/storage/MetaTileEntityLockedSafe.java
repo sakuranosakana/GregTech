@@ -7,22 +7,22 @@ import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.LabelWidget;
-import gregtech.api.gui.widgets.ProgressWidget;
-import gregtech.api.gui.widgets.ProgressWidget.MoveType;
-import gregtech.api.gui.widgets.ServerWidgetGroup;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.recipes.ingredients.GTRecipeItemInput;
-import gregtech.api.recipes.ingredients.GTRecipeOreInput;
-import gregtech.api.recipes.ingredients.GTRecipeInput;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.widgets.LabelWidget;
+import gregtech.apiOld.gui.widgets.ProgressWidget;
+import gregtech.apiOld.gui.widgets.ProgressWidget.MoveType;
+import gregtech.apiOld.gui.widgets.ServerWidgetGroup;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.metatileentity.IFastRenderMetaTileEntity;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.recipes.ingredients.GTRecipeItemInput;
+import gregtech.apiOld.recipes.ingredients.GTRecipeOreInput;
+import gregtech.apiOld.recipes.ingredients.GTRecipeInput;
 import gregtech.client.renderer.texture.Textures;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.worldgen.LootTableHelper;
 import gregtech.loaders.recipe.CraftingComponent;
 import gregtech.loaders.recipe.CraftingComponent.Component;
@@ -49,8 +49,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.DoubleSupplier;
 
-import static gregtech.api.capability.GregtechDataCodes.UPDATE_CONTENTS_SEED;
-import static gregtech.api.capability.GregtechDataCodes.UPDATE_LOCKED_STATE;
+import static gregtech.apiOld.capability.GregtechDataCodes.UPDATE_CONTENTS_SEED;
+import static gregtech.apiOld.capability.GregtechDataCodes.UPDATE_LOCKED_STATE;
 
 public class MetaTileEntityLockedSafe extends MetaTileEntity implements IFastRenderMetaTileEntity {
 

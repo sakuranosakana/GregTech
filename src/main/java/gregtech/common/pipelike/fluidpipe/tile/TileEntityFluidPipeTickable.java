@@ -1,12 +1,12 @@
 package gregtech.common.pipelike.fluidpipe.tile;
 
-import gregtech.api.GTValues;
-import gregtech.api.cover.CoverBehavior;
-import gregtech.api.fluids.MaterialFluid;
-import gregtech.api.fluids.fluidType.FluidTypes;
-import gregtech.api.metatileentity.IDataInfoProvider;
-import gregtech.api.util.EntityDamageUtil;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.cover.CoverBehavior;
+import gregtech.apiOld.fluids.MaterialFluid;
+import gregtech.apiOld.fluids.fluidType.FluidTypes;
+import gregtech.apiOld.metatileentity.IDataInfoProvider;
+import gregtech.apiOld.util.EntityDamageUtil;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.pipelike.fluidpipe.net.PipeTankList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;

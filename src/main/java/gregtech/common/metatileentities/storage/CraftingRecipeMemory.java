@@ -1,6 +1,6 @@
 package gregtech.common.metatileentities.storage;
 
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 
-import static gregtech.api.util.GTUtility.copyInventoryItems;
+import static gregtech.apiOld.util.GTUtility.copyInventoryItems;
 
 public class CraftingRecipeMemory {
 

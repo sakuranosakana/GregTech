@@ -1,9 +1,9 @@
 package gregtech.integration.jei.ore;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.util.GTLog;
-import gregtech.api.worldgen.config.OreDepositDefinition;
-import gregtech.api.worldgen.config.WorldGenRegistry;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.util.GTLog;
+import gregtech.apiOld.worldgen.config.OreDepositDefinition;
+import gregtech.apiOld.worldgen.config.WorldGenRegistry;
 import gregtech.integration.jei.recipe.primitive.BasicRecipeCategory;
 import gregtech.integration.jei.utils.render.ItemStackTextRenderer;
 import it.unimi.dsi.fastutil.ints.IntSortedSet;
@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.function.Supplier;
 
-import static gregtech.api.GTValues.MODID_AR;
+import static gregtech.apiOld.GTValues.MODID_AR;
 
 public class GTOreCategory extends BasicRecipeCategory<GTOreInfo, GTOreInfo> {
 

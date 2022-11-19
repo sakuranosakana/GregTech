@@ -1,18 +1,18 @@
 package gregtech.common.blocks;
 
 import com.google.common.collect.ImmutableMap;
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.block.machines.BlockMachine;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.ore.StoneType;
-import gregtech.api.unification.stack.ItemMaterialInfo;
-import gregtech.api.unification.stack.MaterialStack;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.block.machines.BlockMachine;
+import gregtech.apiOld.metatileentity.MetaTileEntityHolder;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.ore.StoneType;
+import gregtech.apiOld.unification.stack.ItemMaterialInfo;
+import gregtech.apiOld.unification.stack.MaterialStack;
 import gregtech.client.model.IModelSupplier;
 import gregtech.client.model.SimpleStateMapper;
 import gregtech.client.model.modelfactories.BakedModelHandler;
@@ -55,8 +55,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -70,8 +68,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static gregtech.api.unification.material.info.MaterialFlags.FORCE_GENERATE_BLOCK;
-import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
+import static gregtech.apiOld.unification.material.info.MaterialFlags.FORCE_GENERATE_BLOCK;
+import static gregtech.apiOld.unification.material.info.MaterialFlags.GENERATE_FRAME;
 import static gregtech.client.ClientProxy.*;
 
 public class MetaBlocks {

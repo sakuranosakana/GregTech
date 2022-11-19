@@ -1,8 +1,7 @@
 package gregtech.client.model;
 
 import com.google.common.collect.ImmutableMap;
-import gregtech.api.GTValues;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.GTValues;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.client.renderer.block.model.FaceBakery;
 import net.minecraft.client.renderer.block.model.IBakedModel;

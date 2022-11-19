@@ -1,9 +1,9 @@
 package gregtech.client.model.modelfactories;
 
 import gregtech.client.model.ModelFactory;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.info.MaterialIconSet;
-import gregtech.api.unification.material.info.MaterialIconType;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.info.MaterialIconSet;
+import gregtech.apiOld.unification.material.info.MaterialIconType;
 import gregtech.common.blocks.BlockCompressed;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.block.state.IBlockState;

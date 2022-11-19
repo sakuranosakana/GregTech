@@ -1,7 +1,7 @@
 package gregtech.client;
 
 import gregtech.Bootstrap;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.util.GTLog;
 import net.minecraft.client.resources.I18n;
 import org.junit.BeforeClass;
 import org.junit.Test;

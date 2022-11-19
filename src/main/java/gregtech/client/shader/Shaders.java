@@ -2,8 +2,8 @@ package gregtech.client.shader;
 
 import codechicken.lib.render.shader.ShaderObject;
 import codechicken.lib.render.shader.ShaderProgram;
-import gregtech.api.GTValues;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.util.GTLog;
 import gregtech.common.ConfigHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;

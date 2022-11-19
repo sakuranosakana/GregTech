@@ -1,12 +1,12 @@
 package gregtech.common.covers;
 
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.cover.CoverBehavior;
-import gregtech.api.cover.CoverDefinition;
-import gregtech.api.cover.ICoverable;
-import gregtech.api.items.metaitem.MetaItem.MetaValueItem;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.cover.CoverBehavior;
+import gregtech.apiOld.cover.CoverDefinition;
+import gregtech.apiOld.cover.ICoverable;
+import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
+import gregtech.apiOld.util.GTLog;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.covers.detector.*;
 import gregtech.common.covers.filter.OreDictionaryItemFilter;

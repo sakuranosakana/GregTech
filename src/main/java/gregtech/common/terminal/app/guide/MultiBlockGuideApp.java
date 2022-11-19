@@ -2,11 +2,11 @@ package gregtech.common.terminal.app.guide;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.gui.resources.IGuiTexture;
-import gregtech.api.gui.resources.ItemStackTexture;
-import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.gui.resources.IGuiTexture;
+import gregtech.apiOld.gui.resources.ItemStackTexture;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.util.ResourceLocation;
 

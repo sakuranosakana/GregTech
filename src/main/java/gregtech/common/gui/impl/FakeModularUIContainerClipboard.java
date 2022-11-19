@@ -1,11 +1,11 @@
 package gregtech.common.gui.impl;
 
 import com.google.common.collect.Lists;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.impl.FakeModularGuiContainer;
-import gregtech.api.net.NetworkHandler;
-import gregtech.api.net.packets.CPacketClipboardUIWidgetUpdate;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.impl.FakeModularGuiContainer;
+import gregtech.apiOld.net.NetworkHandler;
+import gregtech.apiOld.net.packets.CPacketClipboardUIWidgetUpdate;
 import gregtech.common.metatileentities.MetaTileEntityClipboard;
 import io.netty.buffer.Unpooled;
 import net.minecraft.inventory.Slot;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static gregtech.api.capability.GregtechDataCodes.UPDATE_UI;
+import static gregtech.apiOld.capability.GregtechDataCodes.UPDATE_UI;
 
 
 public class FakeModularUIContainerClipboard extends FakeModularGuiContainer {

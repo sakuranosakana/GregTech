@@ -1,16 +1,16 @@
 package gregtech.common.items;
 
 import com.google.common.base.CaseFormat;
-import gregtech.api.items.armor.ArmorMetaItem;
-import gregtech.api.items.materialitem.MetaPrefixItem;
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.metaitem.MetaItem.MetaValueItem;
-import gregtech.api.items.metaitem.MetaOreDictItem;
-import gregtech.api.items.toolitem.ToolMetaItem;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterial;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.items.armor.ArmorMetaItem;
+import gregtech.apiOld.items.materialitem.MetaPrefixItem;
+import gregtech.apiOld.items.metaitem.MetaItem;
+import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
+import gregtech.apiOld.items.metaitem.MetaOreDictItem;
+import gregtech.apiOld.items.toolitem.ToolMetaItem;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.MarkerMaterial;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.util.GTLog;
 import gregtech.client.renderer.handler.FacadeRenderer;
 import gregtech.common.items.armor.MetaArmor;
 import net.minecraft.client.renderer.block.model.IBakedModel;

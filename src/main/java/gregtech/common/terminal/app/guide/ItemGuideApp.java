@@ -2,9 +2,9 @@ package gregtech.common.terminal.app.guide;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gregtech.api.gui.resources.IGuiTexture;
-import gregtech.api.gui.resources.ItemStackTexture;
-import gregtech.api.items.metaitem.MetaItem;
+import gregtech.apiOld.gui.resources.IGuiTexture;
+import gregtech.apiOld.gui.resources.ItemStackTexture;
+import gregtech.apiOld.items.metaitem.MetaItem;
 import gregtech.common.items.MetaItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

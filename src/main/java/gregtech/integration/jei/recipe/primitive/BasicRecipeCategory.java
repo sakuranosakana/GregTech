@@ -1,6 +1,6 @@
 package gregtech.integration.jei.recipe.primitive;
 
-import gregtech.api.GTValues;
+import gregtech.apiOld.GTValues;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.recipe.IRecipeCategory;

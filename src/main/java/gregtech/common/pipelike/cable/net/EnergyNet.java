@@ -1,9 +1,9 @@
 package gregtech.common.pipelike.cable.net;
 
-import gregtech.api.pipenet.Node;
-import gregtech.api.pipenet.PipeNet;
-import gregtech.api.pipenet.WorldPipeNet;
-import gregtech.api.unification.material.properties.WireProperties;
+import gregtech.apiOld.pipenet.Node;
+import gregtech.apiOld.pipenet.PipeNet;
+import gregtech.apiOld.pipenet.WorldPipeNet;
+import gregtech.apiOld.unification.material.properties.WireProperties;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -1,12 +1,12 @@
 package gregtech.common.gui.widget.craftingstation;
 
 import com.google.common.base.Preconditions;
-import gregtech.api.gui.impl.ModularUIContainer;
-import gregtech.api.gui.ingredient.IRecipeTransferHandlerWidget;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.recipes.KeySharedStack;
-import gregtech.api.util.ItemStackKey;
-import gregtech.api.util.OverlayedItemHandler;
+import gregtech.apiOld.gui.impl.ModularUIContainer;
+import gregtech.apiOld.gui.ingredient.IRecipeTransferHandlerWidget;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.recipes.KeySharedStack;
+import gregtech.apiOld.util.ItemStackKey;
+import gregtech.apiOld.util.OverlayedItemHandler;
 import gregtech.common.metatileentities.storage.CraftingRecipeLogic;
 import mezz.jei.api.gui.IGuiIngredient;
 import mezz.jei.api.gui.IRecipeLayout;

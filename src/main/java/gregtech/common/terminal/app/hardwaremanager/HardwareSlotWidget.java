@@ -1,10 +1,10 @@
 package gregtech.common.terminal.app.hardwaremanager;
 
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.terminal.hardware.Hardware;
-import gregtech.api.terminal.os.TerminalDialogWidget;
-import gregtech.api.terminal.os.TerminalOSWidget;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.widgets.WidgetGroup;
+import gregtech.apiOld.terminal.hardware.Hardware;
+import gregtech.apiOld.terminal.os.TerminalDialogWidget;
+import gregtech.apiOld.terminal.os.TerminalOSWidget;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

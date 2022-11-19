@@ -1,8 +1,8 @@
 package gregtech.common.pipelike.fluidpipe;
 
-import gregtech.api.pipenet.block.material.IMaterialPipeType;
-import gregtech.api.unification.material.properties.FluidPipeProperties;
-import gregtech.api.unification.ore.OrePrefix;
+import gregtech.apiOld.pipenet.block.material.IMaterialPipeType;
+import gregtech.apiOld.unification.material.properties.FluidPipeProperties;
+import gregtech.apiOld.unification.ore.OrePrefix;
 
 import javax.annotation.Nonnull;
 

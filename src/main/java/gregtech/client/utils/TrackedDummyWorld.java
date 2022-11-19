@@ -1,7 +1,7 @@
 package gregtech.client.utils;
 
-import gregtech.api.util.BlockInfo;
-import gregtech.api.util.world.DummyWorld;
+import gregtech.apiOld.util.BlockInfo;
+import gregtech.apiOld.util.world.DummyWorld;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;

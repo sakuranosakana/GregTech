@@ -1,18 +1,18 @@
 package gregtech.common.terminal.app.guide.widget;
 
 import com.google.gson.JsonObject;
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.resources.IGuiTexture;
-import gregtech.api.gui.resources.ItemStackTexture;
-import gregtech.api.gui.resources.TextureArea;
-import gregtech.api.gui.resources.URLTexture;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.resources.IGuiTexture;
+import gregtech.apiOld.gui.resources.ItemStackTexture;
+import gregtech.apiOld.gui.resources.TextureArea;
+import gregtech.apiOld.gui.resources.URLTexture;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
 import gregtech.common.terminal.app.guideeditor.widget.configurator.NumberConfigurator;
 import gregtech.common.terminal.app.guideeditor.widget.configurator.SelectorConfigurator;
 import gregtech.common.terminal.app.guideeditor.widget.configurator.StringConfigurator;
-import gregtech.api.util.Position;
-import gregtech.api.util.Size;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.Size;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;

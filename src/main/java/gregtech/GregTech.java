@@ -1,8 +1,8 @@
 package gregtech;
 
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.modules.ModuleContainerRegistryEvent;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.modules.ModuleContainerRegistryEvent;
 import gregtech.client.utils.BloomEffectUtil;
 import gregtech.core.command.CommandManager;
 import gregtech.modules.GregTechModules;

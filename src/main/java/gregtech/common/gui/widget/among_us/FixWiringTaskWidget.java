@@ -1,9 +1,9 @@
 package gregtech.common.gui.widget.among_us;
 
-import gregtech.api.GTValues;
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.resources.TextureArea;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.resources.TextureArea;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;

@@ -1,19 +1,19 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.GTValues;
-import gregtech.api.metatileentity.multiblock.CleanroomType;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.material.MarkerMaterials.Color;
-import gregtech.api.unification.material.MarkerMaterials.Component;
-import gregtech.api.unification.material.MarkerMaterials.Tier;
-import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.metatileentity.multiblock.CleanroomType;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.unification.material.MarkerMaterials.Color;
+import gregtech.apiOld.unification.material.MarkerMaterials.Component;
+import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
+import gregtech.apiOld.unification.stack.UnificationEntry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.*;
+import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class CircuitRecipes {

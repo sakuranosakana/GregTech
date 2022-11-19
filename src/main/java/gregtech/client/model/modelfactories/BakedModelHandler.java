@@ -3,7 +3,7 @@ package gregtech.client.model.modelfactories;
 import codechicken.lib.render.item.CCRenderItem;
 import codechicken.lib.texture.TextureUtils;
 import codechicken.lib.util.TransformUtils;
-import gregtech.api.block.VariantActiveBlock;
+import gregtech.apiOld.block.VariantActiveBlock;
 import gregtech.common.blocks.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

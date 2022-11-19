@@ -1,6 +1,6 @@
 package gregtech.client.model.modelfactories;
 
-import gregtech.api.block.VariantActiveBlock;
+import gregtech.apiOld.block.VariantActiveBlock;
 import gregtech.client.utils.BloomEffectUtil;
 import gregtech.common.ConfigHolder;
 import net.minecraft.block.properties.IProperty;

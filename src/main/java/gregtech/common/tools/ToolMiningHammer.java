@@ -1,8 +1,8 @@
 package gregtech.common.tools;
 
 import com.google.common.collect.ImmutableSet;
-import gregtech.api.items.toolitem.ToolMetaItem;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.items.toolitem.ToolMetaItem;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.items.behaviors.ModeSwitchBehavior;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

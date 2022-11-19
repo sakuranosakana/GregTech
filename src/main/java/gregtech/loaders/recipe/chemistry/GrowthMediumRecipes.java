@@ -1,16 +1,16 @@
 package gregtech.loaders.recipe.chemistry;
 
-import gregtech.api.metatileentity.multiblock.CleanroomType;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.apiOld.metatileentity.multiblock.CleanroomType;
+import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.dust;
-import static gregtech.api.unification.ore.OrePrefix.dustTiny;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.*;
+import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.apiOld.unification.ore.OrePrefix.dust;
+import static gregtech.apiOld.unification.ore.OrePrefix.dustTiny;
 import static gregtech.common.items.MetaItems.*;
 
 public class GrowthMediumRecipes {

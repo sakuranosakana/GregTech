@@ -1,6 +1,6 @@
 package gregtech.asm.hooks;
 
-import gregtech.api.items.armor.IArmorItem;
+import gregtech.apiOld.items.armor.IArmorItem;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;

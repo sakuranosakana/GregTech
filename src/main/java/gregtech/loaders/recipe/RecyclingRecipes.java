@@ -1,19 +1,19 @@
 package gregtech.loaders.recipe;
 
 import com.google.common.collect.ImmutableList;
-import gregtech.api.GTValues;
-import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.properties.BlastProperty;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.ItemMaterialInfo;
-import gregtech.api.unification.stack.MaterialStack;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.recipes.RecipeBuilder;
+import gregtech.apiOld.recipes.RecipeMaps;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.material.properties.BlastProperty;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.ItemMaterialInfo;
+import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.apiOld.unification.stack.UnificationEntry;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Tuple;
 
@@ -24,9 +24,9 @@ import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static gregtech.api.GTValues.L;
-import static gregtech.api.GTValues.M;
-import static gregtech.api.unification.material.info.MaterialFlags.*;
+import static gregtech.apiOld.GTValues.L;
+import static gregtech.apiOld.GTValues.M;
+import static gregtech.apiOld.unification.material.info.MaterialFlags.*;
 
 public class RecyclingRecipes {
 

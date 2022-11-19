@@ -1,8 +1,8 @@
 package gregtech.client.event;
 
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-import gregtech.api.GTValues;
-import gregtech.api.util.CapesRegistry;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.util.CapesRegistry;
 import gregtech.client.particle.GTParticleManager;
 import gregtech.client.renderer.handler.BlockPosHighlightRenderer;
 import gregtech.client.renderer.handler.MultiblockPreviewRenderer;

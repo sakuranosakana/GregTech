@@ -1,7 +1,7 @@
 package gregtech.common.covers.filter;
 
-import gregtech.api.gui.Widget;
-import gregtech.api.util.IDirtyNotifiable;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.util.IDirtyNotifiable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 

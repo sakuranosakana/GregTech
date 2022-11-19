@@ -1,13 +1,13 @@
 package gregtech.common.gui.widget.monitor;
 
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.resources.TextureArea;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.util.Position;
-import gregtech.api.util.Size;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.resources.TextureArea;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.gui.widgets.WidgetGroup;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.Size;
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class WidgetPluginConfig extends WidgetGroup {

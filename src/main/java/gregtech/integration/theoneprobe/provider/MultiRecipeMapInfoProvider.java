@@ -1,9 +1,9 @@
 package gregtech.integration.theoneprobe.provider;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.capability.IMultipleRecipeMaps;
-import gregtech.api.recipes.RecipeMap;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.capability.IMultipleRecipeMaps;
+import gregtech.apiOld.recipes.RecipeMap;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.TextStyleClass;

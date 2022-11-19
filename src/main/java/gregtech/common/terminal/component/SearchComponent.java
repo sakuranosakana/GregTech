@@ -1,14 +1,14 @@
 package gregtech.common.terminal.component;
 
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.resources.ColorRectTexture;
-import gregtech.api.gui.resources.IGuiTexture;
-import gregtech.api.gui.resources.TextureArea;
-import gregtech.api.gui.widgets.TextFieldWidget;
-import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.terminal.os.menu.IMenuComponent;
-import gregtech.api.terminal.util.ISearch;
-import gregtech.api.terminal.util.SearchEngine;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.resources.ColorRectTexture;
+import gregtech.apiOld.gui.resources.IGuiTexture;
+import gregtech.apiOld.gui.resources.TextureArea;
+import gregtech.apiOld.gui.widgets.TextFieldWidget;
+import gregtech.apiOld.gui.widgets.WidgetGroup;
+import gregtech.apiOld.terminal.os.menu.IMenuComponent;
+import gregtech.apiOld.terminal.util.ISearch;
+import gregtech.apiOld.terminal.util.SearchEngine;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.Tuple;

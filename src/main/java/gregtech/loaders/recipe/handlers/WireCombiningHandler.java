@@ -1,22 +1,22 @@
 package gregtech.loaders.recipe.handlers;
 
 import com.google.common.collect.ImmutableMap;
-import gregtech.api.GTValues;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.material.properties.WireProperties;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.material.properties.WireProperties;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.UnificationEntry;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Map;
 
-import static gregtech.api.recipes.RecipeMaps.PACKER_RECIPES;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.recipes.RecipeMaps.PACKER_RECIPES;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
 
 public class WireCombiningHandler {
 

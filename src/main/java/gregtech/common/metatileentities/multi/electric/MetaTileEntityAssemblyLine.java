@@ -1,13 +1,13 @@
 package gregtech.common.metatileentities.multi.electric;
 
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.recipes.RecipeMaps;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.metatileentity.multiblock.IMultiblockPart;
+import gregtech.apiOld.metatileentity.multiblock.MultiblockAbility;
+import gregtech.apiOld.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.apiOld.pattern.BlockPattern;
+import gregtech.apiOld.pattern.FactoryBlockPattern;
+import gregtech.apiOld.recipes.RecipeMaps;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockGlassCasing;
@@ -18,7 +18,7 @@ import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
-import static gregtech.api.util.RelativeDirection.*;
+import static gregtech.apiOld.util.RelativeDirection.*;
 
 public class MetaTileEntityAssemblyLine extends RecipeMapMultiblockController {
 

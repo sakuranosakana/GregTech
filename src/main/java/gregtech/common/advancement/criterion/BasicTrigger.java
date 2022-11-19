@@ -1,7 +1,7 @@
 package gregtech.common.advancement.criterion;
 
-import gregtech.api.util.advancement.GTInstance;
-import gregtech.api.util.advancement.GTTrigger;
+import gregtech.apiOld.util.advancement.GTInstance;
+import gregtech.apiOld.util.advancement.GTTrigger;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 

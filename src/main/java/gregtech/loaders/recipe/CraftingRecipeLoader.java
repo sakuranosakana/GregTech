@@ -1,14 +1,14 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterials.Tier;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.UnificationEntry;
+import gregtech.apiOld.util.GTLog;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.BlockGlassCasing;
@@ -24,7 +24,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreIngredient;
 
-import static gregtech.api.unification.material.Materials.*;
+import static gregtech.apiOld.unification.material.Materials.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class CraftingRecipeLoader {

@@ -1,6 +1,6 @@
 package gregtech.common.inventory.handlers;
 
-import gregtech.api.items.toolitem.ToolMetaItem;
+import gregtech.apiOld.items.toolitem.ToolMetaItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 

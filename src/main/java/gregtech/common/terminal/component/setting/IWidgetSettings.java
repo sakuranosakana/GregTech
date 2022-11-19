@@ -1,6 +1,6 @@
 package gregtech.common.terminal.component.setting;
 
-import gregtech.api.terminal.util.TreeNode;
+import gregtech.apiOld.terminal.util.TreeNode;
 
 public interface IWidgetSettings {
     TreeNode<String, ISetting> getSettings();

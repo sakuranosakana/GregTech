@@ -1,10 +1,10 @@
 package gregtech.common.metatileentities.multi.multiblockpart;
 
-import gregtech.api.capability.INotifiableHandler;
-import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.capability.impl.NotifiableFluidTank;
-import gregtech.api.capability.impl.NotifiableItemStackHandler;
-import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
+import gregtech.apiOld.capability.INotifiableHandler;
+import gregtech.apiOld.capability.impl.FluidTankList;
+import gregtech.apiOld.capability.impl.NotifiableFluidTank;
+import gregtech.apiOld.capability.impl.NotifiableItemStackHandler;
+import gregtech.apiOld.metatileentity.multiblock.MultiblockControllerBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.IFluidTank;
 

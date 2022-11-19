@@ -1,6 +1,6 @@
 package gregtech.common.tools;
 
-import gregtech.api.items.toolitem.ToolMetaItem;
+import gregtech.apiOld.items.toolitem.ToolMetaItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.material.Material;

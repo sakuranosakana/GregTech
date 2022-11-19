@@ -1,7 +1,7 @@
 package gregtech.client.particle;
 
 import codechicken.lib.vec.Cuboid6;
-import gregtech.api.GTValues;
+import gregtech.apiOld.GTValues;
 import gregtech.client.shader.postprocessing.BloomEffect;
 import gregtech.client.utils.BloomEffectUtil;
 import gregtech.client.utils.RenderBufferHelper;

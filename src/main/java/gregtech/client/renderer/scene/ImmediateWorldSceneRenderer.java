@@ -1,6 +1,6 @@
 package gregtech.client.renderer.scene;
 
-import gregtech.api.util.PositionedRect;
+import gregtech.apiOld.util.PositionedRect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.world.World;

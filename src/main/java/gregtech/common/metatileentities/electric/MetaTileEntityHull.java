@@ -7,15 +7,15 @@ import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
-import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.capability.impl.EnergyContainerHandler;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
-import gregtech.api.metatileentity.multiblock.IPassthroughHatch;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.apiOld.capability.impl.EnergyContainerHandler;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.metatileentity.MetaTileEntityHolder;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.metatileentity.multiblock.IMultiblockAbilityPart;
+import gregtech.apiOld.metatileentity.multiblock.IPassthroughHatch;
+import gregtech.apiOld.metatileentity.multiblock.MultiblockAbility;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.utils.PipelineUtil;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart;
@@ -45,7 +45,7 @@ public class MetaTileEntityHull extends MetaTileEntityMultiblockPart implements 
     }
 
     @Override
-    public gregtech.api.metatileentity.MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
+    public gregtech.apiOld.metatileentity.MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntityHull(metaTileEntityId, getTier());
     }
 

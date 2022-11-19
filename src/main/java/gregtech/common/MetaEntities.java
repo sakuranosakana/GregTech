@@ -1,7 +1,7 @@
 package gregtech.common;
 
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.GregTechAPI;
 import gregtech.client.renderer.handler.PortalRenderer;
 import gregtech.common.entities.DynamiteEntity;
 import gregtech.client.renderer.handler.DynamiteRenderer;

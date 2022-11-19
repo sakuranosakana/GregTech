@@ -1,6 +1,6 @@
 package gregtech.asm.hooks;
 
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.util.GTLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import team.chisel.ctm.api.model.IModelCTM;

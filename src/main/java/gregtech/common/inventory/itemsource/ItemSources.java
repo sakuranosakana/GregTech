@@ -1,6 +1,6 @@
 package gregtech.common.inventory.itemsource;
 
-import gregtech.api.util.ItemStackKey;
+import gregtech.apiOld.util.ItemStackKey;
 import gregtech.common.inventory.IItemInfo;
 import gregtech.common.inventory.IItemList;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;

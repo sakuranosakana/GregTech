@@ -1,6 +1,6 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

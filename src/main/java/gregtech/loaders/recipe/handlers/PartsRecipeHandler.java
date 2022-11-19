@@ -1,32 +1,32 @@
 package gregtech.loaders.recipe.handlers;
 
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterial;
-import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.properties.DustProperty;
-import gregtech.api.unification.material.properties.GemProperty;
-import gregtech.api.unification.material.properties.IngotProperty;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.recipes.RecipeBuilder;
+import gregtech.apiOld.recipes.RecipeMaps;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.MarkerMaterial;
+import gregtech.apiOld.unification.material.MarkerMaterials;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.material.properties.DustProperty;
+import gregtech.apiOld.unification.material.properties.GemProperty;
+import gregtech.apiOld.unification.material.properties.IngotProperty;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.stack.UnificationEntry;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.common.ConfigHolder;
 import gregtech.common.items.MetaItems;
 import gregtech.common.items.behaviors.TurbineRotorBehavior;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.BENDER_RECIPES;
-import static gregtech.api.recipes.RecipeMaps.LATHE_RECIPES;
-import static gregtech.api.unification.material.info.MaterialFlags.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.util.DyeUtil.determineDyeColor;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.BENDER_RECIPES;
+import static gregtech.apiOld.recipes.RecipeMaps.LATHE_RECIPES;
+import static gregtech.apiOld.unification.material.info.MaterialFlags.*;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.util.DyeUtil.determineDyeColor;
 
 public class PartsRecipeHandler {
 

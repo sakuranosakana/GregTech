@@ -1,6 +1,6 @@
 package gregtech.asm.hooks;
 
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.apiOld.metatileentity.MetaTileEntityHolder;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;

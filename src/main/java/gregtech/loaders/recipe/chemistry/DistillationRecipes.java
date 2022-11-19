@@ -1,13 +1,13 @@
 package gregtech.loaders.recipe.chemistry;
 
-import gregtech.api.unification.material.Materials;
+import gregtech.apiOld.unification.material.Materials;
 import gregtech.common.items.MetaItems;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES;
-import static gregtech.api.recipes.RecipeMaps.DISTILLERY_RECIPES;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.recipes.RecipeMaps.DISTILLATION_RECIPES;
+import static gregtech.apiOld.recipes.RecipeMaps.DISTILLERY_RECIPES;
+import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.apiOld.unification.ore.OrePrefix.*;
 
 public class DistillationRecipes {
 

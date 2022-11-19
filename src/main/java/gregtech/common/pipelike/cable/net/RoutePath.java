@@ -1,7 +1,7 @@
 package gregtech.common.pipelike.cable.net;
 
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IEnergyContainer;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.capability.IEnergyContainer;
 import gregtech.common.pipelike.cable.tile.TileEntityCable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;

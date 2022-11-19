@@ -1,23 +1,23 @@
 package gregtech.common.metatileentities.multi.electric;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.IMultipleTankHandler;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
-import gregtech.api.metatileentity.IMachineHatchMultiblock;
-import gregtech.api.metatileentity.ITieredMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.pattern.TraceabilityPredicate;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.sound.GTSounds;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.apiOld.capability.impl.MultiblockRecipeLogic;
+import gregtech.apiOld.metatileentity.IMachineHatchMultiblock;
+import gregtech.apiOld.metatileentity.ITieredMetaTileEntity;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.metatileentity.multiblock.IMultiblockPart;
+import gregtech.apiOld.metatileentity.multiblock.MultiblockAbility;
+import gregtech.apiOld.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.apiOld.pattern.BlockPattern;
+import gregtech.apiOld.pattern.FactoryBlockPattern;
+import gregtech.apiOld.pattern.PatternMatchContext;
+import gregtech.apiOld.pattern.TraceabilityPredicate;
+import gregtech.apiOld.recipes.Recipe;
+import gregtech.apiOld.recipes.RecipeMap;
+import gregtech.apiOld.sound.GTSounds;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
@@ -41,8 +41,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static gregtech.api.GTValues.ULV;
-import static gregtech.api.recipes.logic.OverclockingLogic.standardOverclockingLogic;
+import static gregtech.apiOld.GTValues.ULV;
+import static gregtech.apiOld.recipes.logic.OverclockingLogic.standardOverclockingLogic;
 
 public class MetaTileEntityProcessingArray extends RecipeMapMultiblockController implements IMachineHatchMultiblock {
 

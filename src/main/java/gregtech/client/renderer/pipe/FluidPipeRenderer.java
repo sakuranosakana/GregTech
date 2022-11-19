@@ -1,12 +1,12 @@
 package gregtech.client.renderer.pipe;
 
 import codechicken.lib.vec.uv.IconTransformation;
-import gregtech.api.GTValues;
-import gregtech.api.pipenet.block.BlockPipe;
-import gregtech.api.pipenet.block.IPipeType;
-import gregtech.api.pipenet.tile.IPipeTile;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.pipenet.block.BlockPipe;
+import gregtech.apiOld.pipenet.block.IPipeType;
+import gregtech.apiOld.pipenet.tile.IPipeTile;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.Materials;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.pipelike.fluidpipe.FluidPipeType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

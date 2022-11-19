@@ -1,13 +1,13 @@
 package gregtech.common.blocks;
 
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.info.MaterialFlags;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.ore.StoneType;
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.IBlockOre;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.info.MaterialFlags;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.ore.StoneType;
+import gregtech.apiOld.util.GTUtility;
+import gregtech.apiOld.util.IBlockOre;
 import gregtech.client.model.IModelSupplier;
 import gregtech.client.model.SimpleStateMapper;
 import gregtech.client.utils.BloomEffectUtil;

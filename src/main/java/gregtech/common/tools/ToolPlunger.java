@@ -1,6 +1,6 @@
 package gregtech.common.tools;
 
-import gregtech.api.items.metaitem.MetaItem.MetaValueItem;
+import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
 import gregtech.common.items.behaviors.PlungerBehaviour;
 import net.minecraft.item.ItemStack;
 

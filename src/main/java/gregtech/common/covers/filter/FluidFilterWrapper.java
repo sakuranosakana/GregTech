@@ -1,10 +1,10 @@
 package gregtech.common.covers.filter;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.widgets.ServerWidgetGroup;
-import gregtech.api.gui.widgets.ToggleButtonWidget;
-import gregtech.api.util.IDirtyNotifiable;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.widgets.ServerWidgetGroup;
+import gregtech.apiOld.gui.widgets.ToggleButtonWidget;
+import gregtech.apiOld.util.IDirtyNotifiable;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.BooleanSupplier;

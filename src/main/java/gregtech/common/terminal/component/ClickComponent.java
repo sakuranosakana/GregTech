@@ -1,8 +1,8 @@
 package gregtech.common.terminal.component;
 
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.resources.IGuiTexture;
-import gregtech.api.terminal.os.menu.IMenuComponent;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.resources.IGuiTexture;
+import gregtech.apiOld.terminal.os.menu.IMenuComponent;
 
 import java.util.function.Consumer;
 

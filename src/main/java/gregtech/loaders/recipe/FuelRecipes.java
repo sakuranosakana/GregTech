@@ -1,9 +1,9 @@
 package gregtech.loaders.recipe;
 
-import gregtech.api.recipes.RecipeMaps;
+import gregtech.apiOld.recipes.RecipeMaps;
 
-import static gregtech.api.GTValues.*;
-import static gregtech.api.unification.material.Materials.*;
+import static gregtech.apiOld.GTValues.*;
+import static gregtech.apiOld.unification.material.Materials.*;
 
 public class FuelRecipes {
 

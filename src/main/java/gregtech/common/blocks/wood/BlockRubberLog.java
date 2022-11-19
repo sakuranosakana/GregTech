@@ -1,6 +1,6 @@
 package gregtech.common.blocks.wood;
 
-import gregtech.api.GregTechAPI;
+import gregtech.apiOld.GregTechAPI;
 import gregtech.common.items.MetaItems;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.PropertyBool;

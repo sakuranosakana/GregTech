@@ -1,7 +1,7 @@
 package gregtech.common.blocks;
 
-import gregtech.api.GTValues;
-import gregtech.api.block.VariantBlock;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.block.VariantBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

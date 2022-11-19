@@ -1,7 +1,7 @@
 package gregtech.common.blocks.wood;
 
 import com.google.common.collect.Lists;
-import gregtech.api.GregTechAPI;
+import gregtech.apiOld.GregTechAPI;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.core.CoreModule;
 import net.minecraft.block.BlockLeaves;

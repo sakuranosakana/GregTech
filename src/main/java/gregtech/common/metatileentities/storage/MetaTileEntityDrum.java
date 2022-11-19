@@ -6,19 +6,19 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.capability.impl.FilteredFluidHandler;
-import gregtech.api.capability.impl.ThermalFluidHandlerItemStack;
-import gregtech.api.fluids.MaterialFluid;
-import gregtech.api.fluids.fluidType.FluidType;
-import gregtech.api.fluids.fluidType.FluidTypes;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.properties.FluidPipeProperties;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.capability.impl.FilteredFluidHandler;
+import gregtech.apiOld.capability.impl.ThermalFluidHandlerItemStack;
+import gregtech.apiOld.fluids.MaterialFluid;
+import gregtech.apiOld.fluids.fluidType.FluidType;
+import gregtech.apiOld.fluids.fluidType.FluidTypes;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.properties.FluidPipeProperties;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
@@ -49,9 +49,9 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
 
-import static gregtech.api.capability.GregtechDataCodes.UPDATE_AUTO_OUTPUT;
-import static gregtech.api.recipes.ModHandler.isMaterialWood;
-import static gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE;
+import static gregtech.apiOld.capability.GregtechDataCodes.UPDATE_AUTO_OUTPUT;
+import static gregtech.apiOld.recipes.ModHandler.isMaterialWood;
+import static gregtech.apiOld.unification.material.info.MaterialFlags.FLAMMABLE;
 
 public class MetaTileEntityDrum extends MetaTileEntity {
 

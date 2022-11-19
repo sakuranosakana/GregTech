@@ -1,13 +1,13 @@
 package gregtech.common.terminal.app.game.maze;
 
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.resources.ColorRectTexture;
-import gregtech.api.gui.widgets.ClickButtonWidget;
-import gregtech.api.gui.widgets.ImageWidget;
-import gregtech.api.gui.widgets.LabelWidget;
-import gregtech.api.gui.widgets.SimpleTextWidget;
-import gregtech.api.terminal.app.AbstractApplication;
-import gregtech.api.terminal.os.TerminalTheme;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.resources.ColorRectTexture;
+import gregtech.apiOld.gui.widgets.ClickButtonWidget;
+import gregtech.apiOld.gui.widgets.ImageWidget;
+import gregtech.apiOld.gui.widgets.LabelWidget;
+import gregtech.apiOld.gui.widgets.SimpleTextWidget;
+import gregtech.apiOld.terminal.app.AbstractApplication;
+import gregtech.apiOld.terminal.os.TerminalTheme;
 import gregtech.common.terminal.app.game.maze.widget.EnemyWidget;
 import gregtech.common.terminal.app.game.maze.widget.MazeWidget;
 import gregtech.common.terminal.app.game.maze.widget.PlayerWidget;

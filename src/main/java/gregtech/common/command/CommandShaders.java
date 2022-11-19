@@ -1,7 +1,7 @@
 package gregtech.common.command;
 
-import gregtech.api.net.NetworkHandler;
-import gregtech.api.net.packets.SPacketReloadShaders;
+import gregtech.apiOld.net.NetworkHandler;
+import gregtech.apiOld.net.packets.SPacketReloadShaders;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;

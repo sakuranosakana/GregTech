@@ -1,10 +1,10 @@
 package gregtech.common.terminal.app.guideeditor.widget.configurator;
 
 import com.google.gson.JsonObject;
-import gregtech.api.gui.resources.ColorRectTexture;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
-import gregtech.api.terminal.gui.widgets.RectButtonWidget;
-import gregtech.api.terminal.os.TerminalTheme;
+import gregtech.apiOld.gui.resources.ColorRectTexture;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.terminal.gui.widgets.RectButtonWidget;
+import gregtech.apiOld.terminal.os.TerminalTheme;
 
 import java.awt.*;
 

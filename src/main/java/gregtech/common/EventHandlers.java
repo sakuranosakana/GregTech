@@ -1,14 +1,14 @@
 package gregtech.common;
 
-import gregtech.api.GTValues;
-import gregtech.api.enchants.EnchantmentHardHammer;
-import gregtech.api.items.armor.ArmorMetaItem;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.util.CapesRegistry;
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.VirtualTankRegistry;
-import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinSaveData;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.enchants.EnchantmentHardHammer;
+import gregtech.apiOld.items.armor.ArmorMetaItem;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.util.CapesRegistry;
+import gregtech.apiOld.util.GTUtility;
+import gregtech.apiOld.util.VirtualTankRegistry;
+import gregtech.apiOld.worldgen.bedrockFluids.BedrockFluidVeinSaveData;
 import gregtech.common.items.MetaItems;
 import gregtech.common.items.armor.IStepAssist;
 import gregtech.common.items.behaviors.ToggleEnergyConsumerBehavior;

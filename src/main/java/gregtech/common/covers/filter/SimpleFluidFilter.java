@@ -1,8 +1,8 @@
 package gregtech.common.covers.filter;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.widgets.PhantomFluidWidget;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.widgets.PhantomFluidWidget;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

@@ -1,7 +1,7 @@
 package gregtech.common.inventory.itemsource.sources;
 
-import gregtech.api.recipes.KeySharedStack;
-import gregtech.api.util.ItemStackKey;
+import gregtech.apiOld.recipes.KeySharedStack;
+import gregtech.apiOld.util.ItemStackKey;
 import gregtech.common.inventory.itemsource.ItemSource;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.item.ItemStack;

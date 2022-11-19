@@ -1,7 +1,7 @@
 package gregtech.core.command;
 
 import com.google.common.collect.Lists;
-import gregtech.api.util.ClipboardUtil;
+import gregtech.apiOld.util.ClipboardUtil;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;

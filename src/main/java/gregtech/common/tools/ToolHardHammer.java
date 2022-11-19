@@ -1,10 +1,10 @@
 package gregtech.common.tools;
 
 import com.google.common.collect.ImmutableSet;
-import gregtech.api.enchants.EnchantmentHardHammer;
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.enchants.EnchantmentHardHammer;
+import gregtech.apiOld.items.metaitem.MetaItem;
+import gregtech.apiOld.recipes.RecipeMaps;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;

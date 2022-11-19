@@ -1,6 +1,6 @@
 package gregtech.common.blocks.wood;
 
-import gregtech.api.GregTechAPI;
+import gregtech.apiOld.GregTechAPI;
 import gregtech.common.worldgen.WorldGenRubberTree;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;

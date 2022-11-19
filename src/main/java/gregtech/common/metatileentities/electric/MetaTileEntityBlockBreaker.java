@@ -4,17 +4,17 @@ import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.ModularUI.Builder;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.TieredMetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.util.BlockUtility;
-import gregtech.api.util.GTTransferUtils;
-import gregtech.api.util.GregFakePlayer;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.ModularUI.Builder;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.TieredMetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.util.BlockUtility;
+import gregtech.apiOld.util.GTTransferUtils;
+import gregtech.apiOld.util.GregFakePlayer;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-import static gregtech.api.capability.GregtechDataCodes.UPDATE_OUTPUT_FACING;
+import static gregtech.apiOld.capability.GregtechDataCodes.UPDATE_OUTPUT_FACING;
 
 public class MetaTileEntityBlockBreaker extends TieredMetaTileEntity {
 

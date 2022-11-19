@@ -1,11 +1,11 @@
 package gregtech.common.terminal.app.recipechart.widget;
 
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.ingredient.IGhostIngredientTarget;
-import gregtech.api.gui.widgets.PhantomFluidWidget;
-import gregtech.api.gui.widgets.PhantomSlotWidget;
-import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.terminal.os.TerminalTheme;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.ingredient.IGhostIngredientTarget;
+import gregtech.apiOld.gui.widgets.PhantomFluidWidget;
+import gregtech.apiOld.gui.widgets.PhantomSlotWidget;
+import gregtech.apiOld.gui.widgets.WidgetGroup;
+import gregtech.apiOld.terminal.os.TerminalTheme;
 import gregtech.common.inventory.handlers.SingleItemStackHandler;
 import mezz.jei.api.gui.IGhostIngredientHandler;
 import net.minecraft.item.ItemStack;

@@ -1,11 +1,11 @@
 package gregtech.integration.jei.ore;
 
 import com.google.common.collect.ImmutableList;
-import gregtech.api.GTValues;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.integration.jei.recipe.primitive.BasicRecipeCategory;
 import gregtech.integration.jei.utils.render.FluidStackTextRenderer;
 import gregtech.integration.jei.utils.render.ItemStackTextRenderer;

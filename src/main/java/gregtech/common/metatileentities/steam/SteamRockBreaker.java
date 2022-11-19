@@ -1,15 +1,15 @@
 package gregtech.common.metatileentities.steam;
 
-import gregtech.api.capability.impl.NotifiableItemStackHandler;
-import gregtech.api.capability.impl.RecipeLogicSteam;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.ProgressWidget.MoveType;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.SteamMetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.RecipeMaps;
+import gregtech.apiOld.capability.impl.NotifiableItemStackHandler;
+import gregtech.apiOld.capability.impl.RecipeLogicSteam;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.widgets.ProgressWidget.MoveType;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.SteamMetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.recipes.RecipeMap;
+import gregtech.apiOld.recipes.RecipeMaps;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

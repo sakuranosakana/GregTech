@@ -1,13 +1,13 @@
 package gregtech.common.gui.widget;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.resources.SizedTextureArea;
-import gregtech.api.gui.resources.TextureArea;
-import gregtech.api.util.Position;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.resources.SizedTextureArea;
+import gregtech.apiOld.gui.resources.TextureArea;
+import gregtech.apiOld.util.Position;
 import gregtech.client.utils.RenderUtil;
-import gregtech.api.util.Size;
+import gregtech.apiOld.util.Size;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;

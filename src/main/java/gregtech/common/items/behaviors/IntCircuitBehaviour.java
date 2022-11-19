@@ -1,14 +1,14 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.ClickButtonWidget;
-import gregtech.api.gui.widgets.DynamicLabelWidget;
-import gregtech.api.items.gui.ItemUIFactory;
-import gregtech.api.items.gui.PlayerInventoryHolder;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.items.metaitem.stats.ISubItemHandler;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.widgets.ClickButtonWidget;
+import gregtech.apiOld.gui.widgets.DynamicLabelWidget;
+import gregtech.apiOld.items.gui.ItemUIFactory;
+import gregtech.apiOld.items.gui.PlayerInventoryHolder;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.items.metaitem.stats.ISubItemHandler;
+import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

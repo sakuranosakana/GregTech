@@ -2,10 +2,10 @@ package gregtech.client.renderer.handler;
 
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.cover.CoverBehavior;
-import gregtech.api.metatileentity.IFastRenderMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.apiOld.cover.CoverBehavior;
+import gregtech.apiOld.metatileentity.IFastRenderMetaTileEntity;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.MetaTileEntityHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;

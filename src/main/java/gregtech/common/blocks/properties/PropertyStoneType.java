@@ -2,7 +2,7 @@ package gregtech.common.blocks.properties;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
-import gregtech.api.unification.ore.StoneType;
+import gregtech.apiOld.unification.ore.StoneType;
 import net.minecraft.block.properties.PropertyHelper;
 
 import javax.annotation.Nonnull;

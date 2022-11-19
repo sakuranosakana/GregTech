@@ -1,13 +1,13 @@
 package gregtech.common.terminal.app.capeselector.widget;
 
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.resources.SizedTextureArea;
-import gregtech.api.gui.resources.TextureArea;
-import gregtech.api.gui.widgets.ClickButtonWidget;
-import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
-import gregtech.api.util.CapesRegistry;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.resources.SizedTextureArea;
+import gregtech.apiOld.gui.resources.TextureArea;
+import gregtech.apiOld.gui.widgets.ClickButtonWidget;
+import gregtech.apiOld.gui.widgets.WidgetGroup;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.util.CapesRegistry;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 

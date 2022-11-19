@@ -1,17 +1,14 @@
 package gregtech.common.terminal.app.game.pong;
 
-import gregtech.api.gui.resources.ColorRectTexture;
-import gregtech.api.gui.resources.TextureArea;
-import gregtech.api.gui.widgets.ImageWidget;
-import gregtech.api.gui.widgets.SimpleTextWidget;
-import gregtech.api.terminal.app.AbstractApplication;
-import gregtech.api.terminal.os.TerminalOSWidget;
-import gregtech.api.terminal.os.TerminalTheme;
-import gregtech.api.util.Position;
-import gregtech.api.util.TwoDimensionalRayTracer;
+import gregtech.apiOld.gui.resources.ColorRectTexture;
+import gregtech.apiOld.gui.widgets.ImageWidget;
+import gregtech.apiOld.gui.widgets.SimpleTextWidget;
+import gregtech.apiOld.terminal.app.AbstractApplication;
+import gregtech.apiOld.terminal.os.TerminalTheme;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.TwoDimensionalRayTracer;
 import gregtech.common.terminal.app.game.pong.widget.BallWidget;
 import gregtech.common.terminal.app.game.pong.widget.PaddleWidget;
-import net.minecraft.nbt.NBTTagCompound;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 

@@ -2,11 +2,11 @@ package gregtech.common.items.behaviors;
 
 import appeng.api.util.AEColor;
 import appeng.tile.networking.TileCableBus;
-import gregtech.api.GTValues;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.pipenet.tile.IPipeTile;
-import gregtech.api.sound.GTSounds;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.pipenet.tile.IPipeTile;
+import gregtech.apiOld.sound.GTSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.BlockStainedGlass;

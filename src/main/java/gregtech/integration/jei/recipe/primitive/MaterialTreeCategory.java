@@ -1,12 +1,12 @@
 package gregtech.integration.jei.recipe.primitive;
 
 import com.google.common.collect.ImmutableList;
-import gregtech.api.GTValues;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.recipes.recipeproperties.TemperatureProperty;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.recipes.recipeproperties.TemperatureProperty;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.material.Materials;
+import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.integration.jei.utils.render.DrawableRegistry;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;

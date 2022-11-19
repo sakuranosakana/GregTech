@@ -1,13 +1,13 @@
 package gregtech.common.pipelike.fluidpipe;
 
 import com.google.common.base.Preconditions;
-import gregtech.api.GregTechAPI;
-import gregtech.api.pipenet.block.material.BlockMaterialPipe;
-import gregtech.api.pipenet.tile.IPipeTile;
-import gregtech.api.pipenet.tile.TileEntityPipeBase;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.properties.FluidPipeProperties;
-import gregtech.api.util.EntityDamageUtil;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.pipenet.block.material.BlockMaterialPipe;
+import gregtech.apiOld.pipenet.tile.IPipeTile;
+import gregtech.apiOld.pipenet.tile.TileEntityPipeBase;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.properties.FluidPipeProperties;
+import gregtech.apiOld.util.EntityDamageUtil;
 import gregtech.client.renderer.pipe.FluidPipeRenderer;
 import gregtech.common.pipelike.fluidpipe.net.WorldFluidPipeNet;
 import gregtech.common.pipelike.fluidpipe.tile.TileEntityFluidPipe;

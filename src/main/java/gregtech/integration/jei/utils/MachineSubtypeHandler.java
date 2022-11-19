@@ -1,7 +1,7 @@
 package gregtech.integration.jei.utils;
 
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.util.GTUtility;
 import mezz.jei.api.ISubtypeRegistry.ISubtypeInterpreter;
 import net.minecraft.item.ItemStack;
 

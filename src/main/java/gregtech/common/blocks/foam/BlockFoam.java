@@ -1,7 +1,7 @@
 package gregtech.common.blocks.foam;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.unification.OreDictUnifier;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;

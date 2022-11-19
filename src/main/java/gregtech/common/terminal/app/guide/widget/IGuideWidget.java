@@ -3,10 +3,10 @@ package gregtech.common.terminal.app.guide.widget;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import gregtech.api.gui.Widget;
-import gregtech.api.terminal.gui.widgets.DraggableScrollableWidgetGroup;
-import gregtech.api.util.Position;
-import gregtech.api.util.Size;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.Size;
 
 import java.lang.reflect.Field;
 import java.util.function.Consumer;

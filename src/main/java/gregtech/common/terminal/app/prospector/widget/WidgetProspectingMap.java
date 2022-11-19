@@ -1,16 +1,16 @@
 package gregtech.common.terminal.app.prospector.widget;
 
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.net.packets.PacketProspecting;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.ore.StoneType;
-import gregtech.api.unification.stack.MaterialStack;
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.Position;
-import gregtech.api.util.Size;
-import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.net.packets.PacketProspecting;
+import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.apiOld.unification.ore.OrePrefix;
+import gregtech.apiOld.unification.ore.StoneType;
+import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.apiOld.util.GTUtility;
+import gregtech.apiOld.util.Position;
+import gregtech.apiOld.util.Size;
+import gregtech.apiOld.worldgen.bedrockFluids.BedrockFluidVeinHandler;
 import gregtech.common.terminal.app.prospector.ProspectingTexture;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.Gui;

@@ -1,11 +1,11 @@
 package gregtech.common.terminal.app.teleport;
 
-import gregtech.api.gui.resources.ColorRectTexture;
-import gregtech.api.gui.widgets.*;
-import gregtech.api.terminal.app.AbstractApplication;
-import gregtech.api.terminal.os.SystemCall;
-import gregtech.api.terminal.os.TerminalTheme;
-import gregtech.api.util.TeleportHandler;
+import gregtech.apiOld.gui.resources.ColorRectTexture;
+import gregtech.apiOld.gui.widgets.*;
+import gregtech.apiOld.terminal.app.AbstractApplication;
+import gregtech.apiOld.terminal.os.SystemCall;
+import gregtech.apiOld.terminal.os.TerminalTheme;
+import gregtech.apiOld.util.TeleportHandler;
 import gregtech.common.entities.PortalEntity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;

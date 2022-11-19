@@ -2,7 +2,7 @@ package gregtech.common.worldgen;
 
 import com.google.common.collect.Lists;
 import com.google.gson.*;
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.util.GTLog;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.MathHelper;

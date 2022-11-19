@@ -1,6 +1,6 @@
 package gregtech.client.particle;
 
-import gregtech.api.util.GTLog;
+import gregtech.apiOld.util.GTLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.ActiveRenderInfo;

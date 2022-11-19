@@ -1,11 +1,11 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.metaitem.stats.IItemDurabilityManager;
-import gregtech.api.items.metaitem.stats.IItemMaxStackSizeProvider;
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.material.properties.ToolProperty;
+import gregtech.apiOld.items.metaitem.MetaItem;
+import gregtech.apiOld.items.metaitem.stats.IItemDurabilityManager;
+import gregtech.apiOld.items.metaitem.stats.IItemMaxStackSizeProvider;
+import gregtech.apiOld.unification.material.Material;
+import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.apiOld.unification.material.properties.ToolProperty;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 

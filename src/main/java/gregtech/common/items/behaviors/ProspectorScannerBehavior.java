@@ -1,14 +1,14 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IElectricItem;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.impl.ModularUIContainer;
-import gregtech.api.items.gui.ItemUIFactory;
-import gregtech.api.items.gui.PlayerInventoryHolder;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.capability.IElectricItem;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.impl.ModularUIContainer;
+import gregtech.apiOld.items.gui.ItemUIFactory;
+import gregtech.apiOld.items.gui.PlayerInventoryHolder;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import gregtech.common.terminal.app.prospector.widget.WidgetOreList;
 import gregtech.common.terminal.app.prospector.widget.WidgetProspectingMap;
 import gregtech.common.terminal.component.SearchComponent;

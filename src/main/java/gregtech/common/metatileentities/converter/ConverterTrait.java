@@ -1,11 +1,11 @@
 package gregtech.common.metatileentities.converter;
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.FeCompat;
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.metatileentity.MTETrait;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.FeCompat;
+import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.apiOld.metatileentity.MTETrait;
+import gregtech.apiOld.util.GTUtility;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;

@@ -6,12 +6,12 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
 import com.google.common.base.Preconditions;
-import gregtech.api.cover.CoverBehavior;
-import gregtech.api.cover.CoverWithUI;
-import gregtech.api.cover.ICoverable;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.storage.ICraftingStorage;
+import gregtech.apiOld.cover.CoverBehavior;
+import gregtech.apiOld.cover.CoverWithUI;
+import gregtech.apiOld.cover.ICoverable;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.storage.ICraftingStorage;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.inventory.handlers.SingleItemStackHandler;
 import gregtech.common.inventory.handlers.ToolItemStackHandler;
@@ -31,7 +31,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-import static gregtech.api.metatileentity.MetaTileEntity.clearInventory;
+import static gregtech.apiOld.metatileentity.MetaTileEntity.clearInventory;
 
 /**
  * Code from this class is mostly copied from {@link MetaTileEntityWorkbench}

@@ -1,16 +1,16 @@
 package gregtech.common.gui.widget.monitor;
 
-import gregtech.api.gui.IRenderContext;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.widgets.LabelWidget;
-import gregtech.api.gui.widgets.ScrollableListWidget;
-import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.pipenet.tile.PipeCoverableImplementation;
-import gregtech.api.util.Position;
+import gregtech.apiOld.gui.IRenderContext;
+import gregtech.apiOld.gui.Widget;
+import gregtech.apiOld.gui.widgets.LabelWidget;
+import gregtech.apiOld.gui.widgets.ScrollableListWidget;
+import gregtech.apiOld.gui.widgets.SlotWidget;
+import gregtech.apiOld.gui.widgets.WidgetGroup;
+import gregtech.apiOld.pipenet.tile.PipeCoverableImplementation;
+import gregtech.apiOld.util.Position;
 import gregtech.client.renderer.handler.BlockPosHighlightRenderer;
 import gregtech.client.utils.RenderUtil;
-import gregtech.api.util.Size;
+import gregtech.apiOld.util.Size;
 import gregtech.common.covers.CoverDigitalInterface;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

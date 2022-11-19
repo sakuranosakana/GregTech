@@ -2,8 +2,8 @@ package gregtech.common.worldgen;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.metaitem.MetaItem.MetaValueItem;
+import gregtech.apiOld.items.metaitem.MetaItem;
+import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.world.storage.loot.conditions.LootCondition;

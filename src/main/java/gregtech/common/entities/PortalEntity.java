@@ -1,8 +1,8 @@
 package gregtech.common.entities;
 
-import gregtech.api.sound.GTSounds;
-import gregtech.api.util.GTTeleporter;
-import gregtech.api.util.TeleportHandler;
+import gregtech.apiOld.sound.GTSounds;
+import gregtech.apiOld.util.GTTeleporter;
+import gregtech.apiOld.util.TeleportHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-import static gregtech.api.metatileentity.IFastRenderMetaTileEntity.RENDER_PASS_TRANSLUCENT;
+import static gregtech.apiOld.metatileentity.IFastRenderMetaTileEntity.RENDER_PASS_TRANSLUCENT;
 
 public class PortalEntity extends Entity {
 

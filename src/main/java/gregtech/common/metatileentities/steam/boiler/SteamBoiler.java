@@ -4,22 +4,22 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
-import gregtech.api.capability.impl.FilteredFluidHandler;
-import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.resources.TextureArea;
-import gregtech.api.gui.widgets.FluidContainerSlotWidget;
-import gregtech.api.gui.widgets.ProgressWidget;
-import gregtech.api.gui.widgets.ProgressWidget.MoveType;
-import gregtech.api.gui.widgets.TankWidget;
-import gregtech.api.metatileentity.IDataInfoProvider;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.sound.GTSounds;
-import gregtech.api.util.GTTransferUtils;
-import gregtech.api.util.GTUtility;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.impl.FilteredFluidHandler;
+import gregtech.apiOld.capability.impl.FluidTankList;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.resources.TextureArea;
+import gregtech.apiOld.gui.widgets.FluidContainerSlotWidget;
+import gregtech.apiOld.gui.widgets.ProgressWidget;
+import gregtech.apiOld.gui.widgets.ProgressWidget.MoveType;
+import gregtech.apiOld.gui.widgets.TankWidget;
+import gregtech.apiOld.metatileentity.IDataInfoProvider;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.recipes.ModHandler;
+import gregtech.apiOld.sound.GTSounds;
+import gregtech.apiOld.util.GTTransferUtils;
+import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer;
@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-import static gregtech.api.capability.GregtechDataCodes.IS_WORKING;
+import static gregtech.apiOld.capability.GregtechDataCodes.IS_WORKING;
 
 public abstract class SteamBoiler extends MetaTileEntity implements IDataInfoProvider {
 

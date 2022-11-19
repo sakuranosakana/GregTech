@@ -1,13 +1,13 @@
 package gregtech.common.metatileentities.multi.steam;
 
-import gregtech.api.capability.impl.SteamMultiWorkable;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.recipes.RecipeMaps;
+import gregtech.apiOld.capability.impl.SteamMultiWorkable;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.metatileentity.multiblock.IMultiblockPart;
+import gregtech.apiOld.metatileentity.multiblock.RecipeMapSteamMultiblockController;
+import gregtech.apiOld.pattern.BlockPattern;
+import gregtech.apiOld.pattern.FactoryBlockPattern;
+import gregtech.apiOld.recipes.RecipeMaps;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.ConfigHolder;

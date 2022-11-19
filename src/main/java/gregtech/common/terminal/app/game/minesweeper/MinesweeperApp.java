@@ -1,8 +1,8 @@
 package gregtech.common.terminal.app.game.minesweeper;
 
-import gregtech.api.gui.widgets.SimpleTextWidget;
-import gregtech.api.gui.widgets.WidgetGroup;
-import gregtech.api.terminal.app.AbstractApplication;
+import gregtech.apiOld.gui.widgets.SimpleTextWidget;
+import gregtech.apiOld.gui.widgets.WidgetGroup;
+import gregtech.apiOld.terminal.app.AbstractApplication;
 import gregtech.common.terminal.app.game.minesweeper.widget.MineMapWidget;
 
 public class MinesweeperApp extends AbstractApplication {

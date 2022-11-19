@@ -4,14 +4,14 @@ import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.capability.IControllable;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.TieredMetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.pipenet.tile.TileEntityPipeBase;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.capability.IControllable;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.metatileentity.MetaTileEntity;
+import gregtech.apiOld.metatileentity.TieredMetaTileEntity;
+import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.apiOld.pipenet.tile.TileEntityPipeBase;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -35,8 +35,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static gregtech.api.capability.GregtechDataCodes.IS_WORKING;
-import static gregtech.api.capability.GregtechDataCodes.SYNC_TILE_MODE;
+import static gregtech.apiOld.capability.GregtechDataCodes.IS_WORKING;
+import static gregtech.apiOld.capability.GregtechDataCodes.SYNC_TILE_MODE;
 
 public class MetaTileEntityWorldAccelerator extends TieredMetaTileEntity implements IControllable {
 

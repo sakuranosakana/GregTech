@@ -1,9 +1,9 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.cover.CoverDefinition;
-import gregtech.api.cover.ICoverable;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.apiOld.cover.CoverDefinition;
+import gregtech.apiOld.cover.ICoverable;
+import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

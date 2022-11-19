@@ -1,12 +1,12 @@
 package gregtech.common.covers;
 
 import com.google.common.math.IntMath;
-import gregtech.api.cover.ICoverable;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.*;
-import gregtech.api.util.GTTransferUtils;
-import gregtech.api.util.TextFormattingUtil;
+import gregtech.apiOld.cover.ICoverable;
+import gregtech.apiOld.gui.GuiTextures;
+import gregtech.apiOld.gui.ModularUI;
+import gregtech.apiOld.gui.widgets.*;
+import gregtech.apiOld.util.GTTransferUtils;
+import gregtech.apiOld.util.TextFormattingUtil;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer;
 import gregtech.common.covers.filter.FluidFilter;

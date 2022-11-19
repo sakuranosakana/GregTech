@@ -2,9 +2,9 @@ package gregtech.common.items.behaviors;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import gregtech.api.GTValues;
-import gregtech.api.items.metaitem.MetaItem.MetaValueItem;
-import gregtech.api.items.metaitem.stats.IEnchantabilityHelper;
+import gregtech.apiOld.GTValues;
+import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
+import gregtech.apiOld.items.metaitem.stats.IEnchantabilityHelper;
 import gregtech.common.ConfigHolder;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.SharedMonsterAttributes;

@@ -2,11 +2,8 @@ package gregtech.modules;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
+import gregtech.api.modules.*;
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.modules.GregTechModule;
-import gregtech.apiOld.modules.IGregTechModule;
-import gregtech.apiOld.modules.IModuleContainer;
-import gregtech.apiOld.modules.IModuleManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
@@ -15,7 +12,6 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,17 +19,6 @@ import java.io.File;
 import java.util.*;
 
 public class ModuleManager implements IModuleManager {
-
-    public enum Stage {
-        C_SETUP,         // Initializing Module Containers
-        M_SETUP,         // Initializing Modules
-        PRE_INIT,        // MC PreInitialization stage
-        INIT,            // MC Initialization stage
-        POST_INIT,       // MC PostInitialization stage
-        FINISHED,        // MC LoadComplete stage
-        SERVER_STARTING, // MC ServerStarting stage
-        SERVER_STARTED   // MC ServerStarted stage
-    }
 
     private static final ModuleManager INSTANCE = new ModuleManager();
     private static final String MODULE_CFG_FILE_NAME = "modules.cfg";
@@ -46,7 +31,7 @@ public class ModuleManager implements IModuleManager {
 
     private IModuleContainer currentContainer;
 
-    private Stage currentStage = Stage.C_SETUP;
+    private ModuleStage currentStage = ModuleStage.C_SETUP;
     private final Logger logger = LogManager.getLogger("GregTech Module Loader");
     private Configuration config;
 
@@ -75,8 +60,13 @@ public class ModuleManager implements IModuleManager {
     }
 
     @Override
+    public ModuleStage getStage() {
+        return currentStage;
+    }
+
+    @Override
     public void registerContainer(IModuleContainer container) {
-        if (currentStage != Stage.C_SETUP) {
+        if (currentStage != ModuleStage.C_SETUP) {
             logger.error("Failed to register module container {}, as module loading has already begun", container);
             return;
         }
@@ -85,39 +75,36 @@ public class ModuleManager implements IModuleManager {
     }
 
     public void setup(FMLPreInitializationEvent event) {
-        currentStage = Stage.M_SETUP;
+        currentStage = ModuleStage.M_SETUP;
         configFolder = new File(event.getModConfigurationDirectory(), GTValues.MODID);
         Map<String, List<IGregTechModule>> modules = getModules(event.getAsmData());
         configureModules(modules);
 
+        // Separate loops for strict ordering
         for (IGregTechModule module : loadedModules) {
+            module.getLogger().debug("Registering event handlers");
             for (Class<?> clazz : module.getEventBusSubscribers()) {
                 MinecraftForge.EVENT_BUS.register(clazz);
             }
         }
+        for (IGregTechModule module : loadedModules) {
+            module.getLogger().debug("Registering packets");
+            module.registerPackets();
+        }
     }
 
     public void onPreInit(FMLPreInitializationEvent event) {
-        currentStage = Stage.PRE_INIT;
+        currentStage = ModuleStage.PRE_INIT;
         for (IGregTechModule module : loadedModules) {
-            module.getLogger().debug("Pre-init start");
             currentContainer = containers.get(getContainerID(module));
-            registerPackets(module, event.getSide());
+            module.getLogger().debug("Pre-init start");
             module.preInit(event);
             module.getLogger().debug("Pre-init complete");
         }
     }
 
-    private void registerPackets(IGregTechModule module, Side side) {
-        module.getLogger().debug("Registering packets");
-        module.registerServerPackets();
-        if (side == Side.CLIENT) {
-            module.registerClientPackets();
-        }
-    }
-
     public void onInit(FMLInitializationEvent event) {
-        currentStage = Stage.INIT;
+        currentStage = ModuleStage.INIT;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Init start");
             currentContainer = containers.get(getContainerID(module));
@@ -127,7 +114,7 @@ public class ModuleManager implements IModuleManager {
     }
 
     public void onPostInit(FMLPostInitializationEvent event) {
-        currentStage = Stage.POST_INIT;
+        currentStage = ModuleStage.POST_INIT;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Post-init start");
             currentContainer = containers.get(getContainerID(module));
@@ -137,7 +124,7 @@ public class ModuleManager implements IModuleManager {
     }
 
     public void onLoadComplete(FMLLoadCompleteEvent event) {
-        currentStage = Stage.FINISHED;
+        currentStage = ModuleStage.FINISHED;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Load-complete start");
             currentContainer = containers.get(getContainerID(module));
@@ -147,7 +134,7 @@ public class ModuleManager implements IModuleManager {
     }
 
     public void onServerStarting(FMLServerStartingEvent event) {
-        currentStage = Stage.SERVER_STARTING;
+        currentStage = ModuleStage.SERVER_STARTING;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Server-starting start");
             module.serverStarting(event);
@@ -156,7 +143,7 @@ public class ModuleManager implements IModuleManager {
     }
 
     public void onServerStarted(FMLServerStartedEvent event) {
-        currentStage = Stage.SERVER_STARTED;
+        currentStage = ModuleStage.SERVER_STARTED;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Server-started start");
             currentContainer = containers.get(getContainerID(module));

@@ -1,6 +1,7 @@
-package gregtech.apiOld.net.packets;
+package gregtech.core.network.packets;
 
-import gregtech.apiOld.net.IPacket;
+import gregtech.api.network.IClientExecutor;
+import gregtech.api.network.IPacket;
 import gregtech.apiOld.util.ClipboardUtil;
 import lombok.NoArgsConstructor;
 import net.minecraft.client.network.NetHandlerPlayClient;
@@ -9,11 +10,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @NoArgsConstructor
-public class SPacketClipboard implements IPacket {
+public class PacketClipboard implements IPacket, IClientExecutor {
 
     private String text;
 
-    public SPacketClipboard(final String text) {
+    public PacketClipboard(final String text) {
         this.text = text;
     }
 

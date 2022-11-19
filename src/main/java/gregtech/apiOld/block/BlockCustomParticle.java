@@ -1,9 +1,9 @@
 package gregtech.apiOld.block;
 
 import codechicken.lib.vec.Vector3;
-import gregtech.apiOld.net.NetworkHandler;
-import gregtech.apiOld.net.NetworkUtils;
-import gregtech.apiOld.net.packets.SPacketBlockParticle;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.core.network.NetworkUtils;
+import gregtech.core.network.packets.PacketBlockParticle;
 import gregtech.apiOld.util.ParticleHandlerUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -70,9 +70,9 @@ public abstract class BlockCustomParticle extends Block implements ICustomPartic
 
     @Override
     public boolean addLandingEffects(@Nonnull IBlockState state, @Nonnull WorldServer worldObj, @Nonnull BlockPos blockPosition, @Nonnull IBlockState iblockstate, EntityLivingBase entity, int numberOfParticles) {
-        SPacketBlockParticle
-                packet = new SPacketBlockParticle(blockPosition, new Vector3(entity.posX, entity.posY, entity.posZ), numberOfParticles);
-        NetworkHandler.channel.sendToAllTracking(packet.toFMLPacket(), NetworkUtils.blockPoint(worldObj, blockPosition));
+        PacketBlockParticle
+                packet = new PacketBlockParticle(blockPosition, new Vector3(entity.posX, entity.posY, entity.posZ), numberOfParticles);
+        GregTechAPI.networkHandler.sendToAllTracking(packet, NetworkUtils.blockPoint(worldObj, blockPosition));
         return true;
     }
 }

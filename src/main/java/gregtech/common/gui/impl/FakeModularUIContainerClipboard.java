@@ -1,11 +1,11 @@
 package gregtech.common.gui.impl;
 
 import com.google.common.collect.Lists;
+import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.gui.Widget;
 import gregtech.apiOld.gui.impl.FakeModularGuiContainer;
-import gregtech.apiOld.net.NetworkHandler;
-import gregtech.apiOld.net.packets.CPacketClipboardUIWidgetUpdate;
+import gregtech.core.network.packets.PacketClipboardUIWidgetUpdate;
 import gregtech.common.metatileentities.MetaTileEntityClipboard;
 import io.netty.buffer.Unpooled;
 import net.minecraft.inventory.Slot;
@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static gregtech.apiOld.capability.GregtechDataCodes.UPDATE_UI;
-
 
 public class FakeModularUIContainerClipboard extends FakeModularGuiContainer {
     private final NonNullList<ItemStack> inventoryItemStacks = NonNullList.create();
@@ -91,11 +90,10 @@ public class FakeModularUIContainerClipboard extends FakeModularGuiContainer {
         packetBuffer.writeVarInt(widgetId);
         packetBuffer.writeVarInt(updateId);
         payloadWriter.accept(packetBuffer);
-        NetworkHandler.channel.sendToServer(new CPacketClipboardUIWidgetUpdate(
+        GregTechAPI.networkHandler.sendToServer(new PacketClipboardUIWidgetUpdate(
                 this.clipboard.getWorld().provider.getDimension(),
                 this.clipboard.getPos(),
-                updateId, packetBuffer
-        ).toFMLPacket());
+                updateId, packetBuffer));
     }
 
     @Override

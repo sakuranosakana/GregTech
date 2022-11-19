@@ -1,4 +1,4 @@
-package gregtech.apiOld.modules;
+package gregtech.api.modules;
 
 public interface IModuleContainer {
 

@@ -1,6 +1,6 @@
 package gregtech.modules;
 
-import gregtech.apiOld.modules.IModuleContainer;
+import gregtech.api.modules.IModuleContainer;
 
 public class GregTechModules implements IModuleContainer {
 

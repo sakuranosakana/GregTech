@@ -1,12 +1,13 @@
-package gregtech.apiOld.net.packets;
+package gregtech.core.network.packets;
 
+import gregtech.api.network.IClientExecutor;
 import gregtech.apiOld.gui.resources.ShaderTexture;
-import gregtech.apiOld.net.IPacket;
+import gregtech.api.network.IPacket;
 import gregtech.client.shader.Shaders;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.PacketBuffer;
 
-public class SPacketReloadShaders implements IPacket {
+public class PacketReloadShaders implements IPacket, IClientExecutor {
 
     @Override
     public void encode(PacketBuffer buf) {

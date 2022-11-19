@@ -1,22 +1,23 @@
-package gregtech.apiOld.net.packets;
+package gregtech.core.network.packets;
 
+import gregtech.api.network.IServerExecutor;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.gui.impl.ModularUIContainer;
-import gregtech.apiOld.net.IPacket;
-import gregtech.apiOld.net.NetworkUtils;
+import gregtech.api.network.IPacket;
+import gregtech.core.network.NetworkUtils;
 import lombok.NoArgsConstructor;
 import net.minecraft.inventory.Container;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.network.PacketBuffer;
 
 @NoArgsConstructor
-public class CPacketUIClientAction implements IPacket {
+public class PacketUIClientAction implements IPacket, IServerExecutor {
 
     private int windowId;
     private int widgetId;
     private PacketBuffer updateData;
 
-    public CPacketUIClientAction(int windowId, int widgetId, PacketBuffer updateData) {
+    public PacketUIClientAction(int windowId, int widgetId, PacketBuffer updateData) {
         this.windowId = windowId;
         this.widgetId = widgetId;
         this.updateData = updateData;

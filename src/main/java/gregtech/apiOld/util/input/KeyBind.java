@@ -1,7 +1,7 @@
 package gregtech.apiOld.util.input;
 
-import gregtech.apiOld.net.NetworkHandler;
-import gregtech.apiOld.net.packets.CPacketKeysPressed;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.core.network.packets.PacketKeysPressed;
 import gregtech.apiOld.util.GTLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -62,7 +62,7 @@ public enum KeyBind {
             }
         }
         if (!updating.isEmpty()) {
-            NetworkHandler.channel.sendToServer(new CPacketKeysPressed(updating).toFMLPacket());
+            GregTechAPI.networkHandler.sendToServer(new PacketKeysPressed(updating));
         }
     }
 

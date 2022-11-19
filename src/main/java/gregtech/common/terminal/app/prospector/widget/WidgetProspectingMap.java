@@ -2,7 +2,7 @@ package gregtech.common.terminal.app.prospector.widget;
 
 import gregtech.apiOld.gui.IRenderContext;
 import gregtech.apiOld.gui.Widget;
-import gregtech.apiOld.net.packets.PacketProspecting;
+import gregtech.core.network.packets.PacketProspecting;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.ore.StoneType;

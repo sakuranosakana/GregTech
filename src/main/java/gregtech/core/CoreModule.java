@@ -4,16 +4,15 @@ import crafttweaker.CraftTweakerAPI;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.block.IHeatingCoilBlockStats;
-import gregtech.apiOld.capability.SimpleCapabilityManager;
+import gregtech.core.capability.SimpleCapabilityManager;
 import gregtech.apiOld.cover.CoverBehaviorUIFactory;
 import gregtech.apiOld.cover.CoverDefinition;
 import gregtech.apiOld.fluids.MetaFluids;
 import gregtech.apiOld.gui.UIFactory;
 import gregtech.apiOld.items.gui.PlayerInventoryUIFactory;
 import gregtech.apiOld.metatileentity.MetaTileEntityUIFactory;
-import gregtech.apiOld.modules.GregTechModule;
-import gregtech.apiOld.modules.IGregTechModule;
-import gregtech.apiOld.net.NetworkHandler;
+import gregtech.api.modules.GregTechModule;
+import gregtech.api.modules.IGregTechModule;
 import gregtech.apiOld.recipes.RecipeMap;
 import gregtech.apiOld.recipes.recipeproperties.TemperatureProperty;
 import gregtech.apiOld.sound.GTSounds;
@@ -41,6 +40,7 @@ import gregtech.common.covers.filter.FilterTypeRegistry;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.worldgen.LootTableHelper;
+import gregtech.core.network.packets.*;
 import gregtech.integration.GroovyScriptCompat;
 import gregtech.loaders.dungeon.DungeonLootLoader;
 import gregtech.modules.GregTechModules;
@@ -79,7 +79,7 @@ public class CoreModule implements IGregTechModule {
     @SidedProxy(modId = GTValues.MODID, clientSide = "gregtech.client.ClientProxy", serverSide = "gregtech.common.CommonProxy")
     public static CommonProxy proxy;
 
-    private final Logger logger = LogManager.getLogger("GregTech Core");
+    public static final Logger logger = LogManager.getLogger("GregTech Core");
 
     @Nonnull
     @Override
@@ -89,8 +89,6 @@ public class CoreModule implements IGregTechModule {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-        NetworkHandler.init();
-
         /* init GroovyScript compat */
         GroovyScriptCompat.init();
 
@@ -159,6 +157,23 @@ public class CoreModule implements IGregTechModule {
 
         proxy.onPreLoad();
         KeyBind.init();
+    }
+
+    @Override
+    public void registerPackets() {
+        GregTechAPI.networkHandler.registerPacket(PacketUIOpen.class);
+        GregTechAPI.networkHandler.registerPacket(PacketUIWidgetUpdate.class);
+        GregTechAPI.networkHandler.registerPacket(PacketUIClientAction.class);
+        GregTechAPI.networkHandler.registerPacket(PacketBlockParticle.class);
+        GregTechAPI.networkHandler.registerPacket(PacketClipboard.class);
+        GregTechAPI.networkHandler.registerPacket(PacketClipboardUIWidgetUpdate.class);
+        GregTechAPI.networkHandler.registerPacket(PacketPluginSynced.class);
+        GregTechAPI.networkHandler.registerPacket(PacketRecoverMTE.class);
+        GregTechAPI.networkHandler.registerPacket(PacketKeysPressed.class);
+        GregTechAPI.networkHandler.registerPacket(PacketFluidVeinList.class);
+        GregTechAPI.networkHandler.registerPacket(PacketNotifyCapeChange.class);
+        GregTechAPI.networkHandler.registerPacket(PacketReloadShaders.class);
+        GregTechAPI.networkHandler.registerPacket(PacketClipboardNBTUpdate.class);
     }
 
     @Optional.Method(modid = GTValues.MODID_CT)

@@ -1,4 +1,4 @@
-package gregtech.apiOld.modules;
+package gregtech.api.modules;
 
 import net.minecraftforge.fml.common.eventhandler.Event;
 

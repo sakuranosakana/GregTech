@@ -14,8 +14,7 @@ import gregtech.apiOld.block.machines.BlockMachine;
 import gregtech.apiOld.cover.CoverBehavior;
 import gregtech.apiOld.gui.IUIHolder;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.apiOld.net.NetworkHandler;
-import gregtech.apiOld.net.packets.CPacketRecoverMTE;
+import gregtech.core.network.packets.PacketRecoverMTE;
 import gregtech.apiOld.util.GTLog;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.client.particle.GTNameTagParticle;
@@ -184,7 +183,7 @@ public class MetaTileEntityHolder extends TickableTileEntityBase implements IGre
         if (metaTileEntity != null) {
             metaTileEntity.update();
         } else if (world.isRemote) { // recover the mte
-            NetworkHandler.channel.sendToServer(new CPacketRecoverMTE(world.provider.getDimension(), getPos()).toFMLPacket());
+            GregTechAPI.networkHandler.sendToServer(new PacketRecoverMTE(world.provider.getDimension(), getPos()));
         } else { // remove the block
             if (world.getBlockState(pos).getBlock() instanceof BlockMachine) {
                 world.setBlockToAir(pos);

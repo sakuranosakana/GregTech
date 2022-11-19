@@ -4,7 +4,7 @@ import gregtech.apiOld.gui.IRenderContext;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.gui.Widget;
 import gregtech.apiOld.gui.widgets.SlotWidget;
-import gregtech.apiOld.net.packets.SPacketUIWidgetUpdate;
+import gregtech.core.network.packets.PacketUIWidgetUpdate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -64,7 +64,7 @@ public class ModularUIGui extends GuiContainer implements IRenderContext {
         modularUI.guiWidgets.values().forEach(Widget::updateScreen);
     }
 
-    public void handleWidgetUpdate(SPacketUIWidgetUpdate packet) {
+    public void handleWidgetUpdate(PacketUIWidgetUpdate packet) {
         if (packet.windowId == inventorySlots.windowId) {
             Widget widget = modularUI.guiWidgets.get(packet.widgetId);
             int updateId = packet.updateData.readVarInt();

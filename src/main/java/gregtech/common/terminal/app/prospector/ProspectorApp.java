@@ -6,7 +6,7 @@ import com.google.common.collect.Tables;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.gui.resources.ColorRectTexture;
 import gregtech.apiOld.gui.widgets.ImageWidget;
-import gregtech.apiOld.net.packets.PacketProspecting;
+import gregtech.core.network.packets.PacketProspecting;
 import gregtech.apiOld.terminal.TerminalRegistry;
 import gregtech.apiOld.terminal.app.AbstractApplication;
 import gregtech.apiOld.terminal.os.TerminalOSWidget;

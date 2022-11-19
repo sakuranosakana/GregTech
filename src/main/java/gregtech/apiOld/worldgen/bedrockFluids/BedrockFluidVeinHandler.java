@@ -1,8 +1,8 @@
 package gregtech.apiOld.worldgen.bedrockFluids;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.net.NetworkHandler;
-import gregtech.apiOld.net.packets.CPacketFluidVeinList;
+import gregtech.apiOld.GregTechAPI;
+import gregtech.core.network.packets.PacketFluidVeinList;
 import gregtech.apiOld.util.GTLog;
 import gregtech.apiOld.util.XSTR;
 import gregtech.apiOld.worldgen.config.BedrockFluidDepositDefinition;
@@ -140,7 +140,7 @@ public class BedrockFluidVeinHandler {
                 if (entry.getKey() != null && entry.getValue() != null)
                     packetMap.put(entry.getValue(), entry.getValue().getDefinition().getWeight());
             }
-            NetworkHandler.channel.sendToAll(new CPacketFluidVeinList(packetMap).toFMLPacket());
+            GregTechAPI.networkHandler.sendToAll(new PacketFluidVeinList(packetMap));
         }
     }
 

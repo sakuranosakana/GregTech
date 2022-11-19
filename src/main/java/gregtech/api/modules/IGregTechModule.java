@@ -1,4 +1,4 @@
-package gregtech.apiOld.modules;
+package gregtech.api.modules;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.*;
@@ -42,10 +42,7 @@ public interface IGregTechModule {
     default void serverStopped(FMLServerStoppedEvent event) {
     }
 
-    default void registerServerPackets() {
-    }
-
-    default void registerClientPackets() {
+    default void registerPackets() {
     }
 
     @Nonnull

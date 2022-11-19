@@ -2,9 +2,10 @@ package gregtech;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.GregTechAPI;
-import gregtech.apiOld.modules.ModuleContainerRegistryEvent;
+import gregtech.api.modules.ModuleContainerRegistryEvent;
 import gregtech.client.utils.BloomEffectUtil;
 import gregtech.core.command.CommandManager;
+import gregtech.core.network.NetworkHandler;
 import gregtech.modules.GregTechModules;
 import gregtech.modules.ModuleManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -48,6 +49,7 @@ public class GregTech {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        GregTechAPI.networkHandler = NetworkHandler.getInstance();
         moduleManager.setup(event);
         moduleManager.onPreInit(event);
     }

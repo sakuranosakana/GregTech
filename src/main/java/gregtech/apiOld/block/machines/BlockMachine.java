@@ -9,7 +9,7 @@ import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.block.BlockCustomParticle;
 import gregtech.apiOld.block.UnlistedIntegerProperty;
 import gregtech.apiOld.block.UnlistedStringProperty;
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.capability.tool.IScrewdriverItem;
 import gregtech.apiOld.capability.tool.IWrenchItem;
 import gregtech.apiOld.cover.CoverBehavior;

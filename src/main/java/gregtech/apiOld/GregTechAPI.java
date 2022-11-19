@@ -8,7 +8,8 @@ import gregtech.apiOld.command.ICommandManager;
 import gregtech.apiOld.cover.CoverDefinition;
 import gregtech.apiOld.gui.UIFactory;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
-import gregtech.apiOld.modules.IModuleManager;
+import gregtech.api.modules.IModuleManager;
+import gregtech.api.network.INetworkHandler;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.material.Material;
 import gregtech.apiOld.unification.material.Materials;
@@ -37,6 +38,7 @@ public class GregTechAPI {
     public static Object instance;
     public static IModuleManager moduleManager;
     public static ICommandManager commandManager;
+    public static INetworkHandler networkHandler;
 
     public static final GTControlledRegistry<ResourceLocation, MetaTileEntity> MTE_REGISTRY = new GTControlledRegistry<>(Short.MAX_VALUE);
     public static final GTControlledRegistry<ResourceLocation, UIFactory> UI_FACTORY_REGISTRY = new GTControlledRegistry<>(Short.MAX_VALUE);

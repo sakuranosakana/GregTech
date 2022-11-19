@@ -1,8 +1,8 @@
 package gregtech.integration.jei;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.modules.GregTechModule;
-import gregtech.apiOld.modules.IGregTechModule;
+import gregtech.api.modules.GregTechModule;
+import gregtech.api.modules.IGregTechModule;
 import gregtech.integration.jei.utils.MultiblockInfoRecipeFocusShower;
 import gregtech.modules.GregTechModules;
 import mezz.jei.Internal;

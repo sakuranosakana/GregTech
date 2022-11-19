@@ -1,9 +1,10 @@
-package gregtech.apiOld.net.packets;
+package gregtech.core.network.packets;
 
+import gregtech.api.network.IClientExecutor;
 import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.gui.UIFactory;
-import gregtech.apiOld.net.IPacket;
-import gregtech.apiOld.net.NetworkUtils;
+import gregtech.api.network.IPacket;
+import gregtech.core.network.NetworkUtils;
 import gregtech.apiOld.util.GTLog;
 import lombok.NoArgsConstructor;
 import net.minecraft.client.network.NetHandlerPlayClient;
@@ -15,14 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-public class SPacketUIOpen implements IPacket {
+public class PacketUIOpen implements IPacket, IClientExecutor {
 
     private int uiFactoryId;
     private PacketBuffer serializedHolder;
     private int windowId;
-    private List<SPacketUIWidgetUpdate> initialWidgetUpdates;
+    private List<PacketUIWidgetUpdate> initialWidgetUpdates;
 
-    public SPacketUIOpen(int uiFactoryId, PacketBuffer serializedHolder, int windowId, List<SPacketUIWidgetUpdate> initialWidgetUpdates) {
+    public PacketUIOpen(int uiFactoryId, PacketBuffer serializedHolder, int windowId, List<PacketUIWidgetUpdate> initialWidgetUpdates) {
         this.uiFactoryId = uiFactoryId;
         this.serializedHolder = serializedHolder;
         this.windowId = windowId;
@@ -35,7 +36,7 @@ public class SPacketUIOpen implements IPacket {
         buf.writeVarInt(uiFactoryId);
         buf.writeVarInt(windowId);
         buf.writeVarInt(initialWidgetUpdates.size());
-        for (SPacketUIWidgetUpdate packet : initialWidgetUpdates) {
+        for (PacketUIWidgetUpdate packet : initialWidgetUpdates) {
             packet.encode(buf);
         }
     }
@@ -49,7 +50,7 @@ public class SPacketUIOpen implements IPacket {
 
         int packetsToRead = buf.readVarInt();
         for (int i = 0; i < packetsToRead; i++) {
-            SPacketUIWidgetUpdate packet = new SPacketUIWidgetUpdate();
+            PacketUIWidgetUpdate packet = new PacketUIWidgetUpdate();
             packet.decode(buf);
             this.initialWidgetUpdates.add(packet);
         }

@@ -1,5 +1,6 @@
 package gregtech.apiOld.items.behavior;
 
+import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.capability.GregtechDataCodes;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.gui.IUIHolder;
@@ -8,8 +9,7 @@ import gregtech.apiOld.items.gui.ItemUIFactory;
 import gregtech.apiOld.items.gui.PlayerInventoryHolder;
 import gregtech.apiOld.items.metaitem.MetaItem;
 import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
-import gregtech.apiOld.net.packets.CPacketPluginSynced;
-import gregtech.apiOld.net.NetworkHandler;
+import gregtech.core.network.packets.PacketPluginSynced;
 import gregtech.apiOld.util.IDirtyNotifiable;
 import gregtech.common.gui.widget.monitor.WidgetPluginConfig;
 import gregtech.common.metatileentities.multi.electric.centralmonitor.MetaTileEntityMonitorScreen;
@@ -114,15 +114,15 @@ public abstract class MonitorPluginBaseBehavior implements IItemBehaviour, ItemU
     /***
      * Client. Send data to Server.
      * @param id PacketID
-     * @param buf PacketBuffer
+     * @param dataWriter PacketBuffer
      */
     public final void writePluginAction(int id, @Nonnull Consumer<PacketBuffer> dataWriter) {
         PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
         dataWriter.accept(buffer);
-        NetworkHandler.channel.sendToServer(new CPacketPluginSynced(
+        GregTechAPI.networkHandler.sendToServer(new PacketPluginSynced(
                 this.getScreen().getWorld().provider.getDimension(),
                 this.getScreen().getPos(),
-                id, buffer).toFMLPacket());
+                id, buffer));
     }
 
     /***

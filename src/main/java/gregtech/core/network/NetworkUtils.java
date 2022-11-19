@@ -1,4 +1,4 @@
-package gregtech.apiOld.net;
+package gregtech.core.network;
 
 import gregtech.apiOld.GTValues;
 import io.netty.buffer.ByteBuf;
@@ -34,19 +34,7 @@ public class NetworkUtils {
         return FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(dimension).getBlockState(pos);
     }
 
-    public static FMLProxyPacket packet2proxy(IPacket packet) {
-        PacketBuffer buf = new PacketBuffer(Unpooled.buffer());
-        buf.writeVarInt(PacketHandler.getPacketId(packet.getClass()));
-        packet.encode(buf);
-        return new FMLProxyPacket(buf, GTValues.MODID);
-    }
 
-    public static IPacket proxy2packet(FMLProxyPacket proxyPacket) throws Exception {
-        PacketBuffer payload = (PacketBuffer) proxyPacket.payload();
-        IPacket packet = PacketHandler.getPacketClass(payload.readVarInt()).newInstance();
-        packet.decode(payload);
-        return packet;
-    }
 
     public static NetworkRegistry.TargetPoint blockPoint(World world, BlockPos blockPos) {
         return new NetworkRegistry.TargetPoint(world.provider.getDimension(), blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, 128.0);

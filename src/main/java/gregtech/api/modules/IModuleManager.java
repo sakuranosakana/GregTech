@@ -1,4 +1,4 @@
-package gregtech.apiOld.modules;
+package gregtech.api.modules;
 
 import net.minecraft.util.ResourceLocation;
 
@@ -17,4 +17,6 @@ public interface IModuleManager {
     void registerContainer(IModuleContainer container);
 
     IModuleContainer getLoadedContainer();
+
+    ModuleStage getStage();
 }

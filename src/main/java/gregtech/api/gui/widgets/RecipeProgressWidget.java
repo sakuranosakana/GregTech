@@ -1,11 +1,13 @@
 package gregtech.api.gui.widgets;
 
 import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
 import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.integration.jei.GTJeiPlugin;
 import gregtech.integration.jei.recipe.RecipeMapCategory;
+import gregtech.modules.GregTechModules;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.client.config.GuiUtils;
@@ -38,8 +40,9 @@ public class RecipeProgressWidget extends ProgressWidget {
 
     @Override
     public boolean mouseClicked(int mouseX, int mouseY, int button) {
-        if (!Loader.isModLoaded(GTValues.MODID_JEI))
+        if (!GregTechAPI.moduleManager.isModuleEnabled(GregTechModules.MODULE_JEI)) {
             return false;
+        }
         if (isMouseOverElement(mouseX, mouseY) && RecipeMapCategory.getCategoryMap().containsKey(recipeMap)) {
             // Since categories were even registered at all, we know JEI is active.
             List<String> categoryID = new ArrayList<>();

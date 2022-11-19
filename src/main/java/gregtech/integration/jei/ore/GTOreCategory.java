@@ -1,4 +1,4 @@
-package gregtech.integration.jei;
+package gregtech.integration.jei.ore;
 
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.util.GTLog;

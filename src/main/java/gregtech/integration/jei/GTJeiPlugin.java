@@ -23,35 +23,31 @@ import gregtech.common.gui.widget.craftingstation.CraftingSlotWidget;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.integration.jei.multiblock.MultiblockInfoCategory;
+import gregtech.integration.jei.ore.GTOreCategory;
+import gregtech.integration.jei.ore.GTOreInfo;
 import gregtech.integration.jei.recipe.*;
 import gregtech.integration.jei.recipe.primitive.MaterialTree;
 import gregtech.integration.jei.recipe.primitive.MaterialTreeCategory;
-import gregtech.integration.jei.recipe.primitive.OreByProduct;
-import gregtech.integration.jei.recipe.primitive.OreByProductCategory;
+import gregtech.integration.jei.ore.OreByProduct;
+import gregtech.integration.jei.ore.OreByProductCategory;
 import gregtech.integration.jei.utils.*;
 import gregtech.loaders.recipe.CustomItemReturnShapedOreRecipeRecipe;
-import mezz.jei.Internal;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.config.Constants;
-import mezz.jei.input.IShowsRecipeFocuses;
-import mezz.jei.input.InputHandler;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import javax.annotation.Nonnull;
-import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@JEIPlugin
 public class GTJeiPlugin implements IModPlugin {
 
     public static IIngredientRegistry ingredientRegistry;
@@ -216,20 +212,6 @@ public class GTJeiPlugin implements IModPlugin {
                 registry.addIngredientInfo(mte.getStackForm(), VanillaTypes.ITEM, mte.getDescription());
             }
         });
-    }
-
-    public static void setupInputHandler() {
-        try {
-            Field inputHandlerField = Internal.class.getDeclaredField("inputHandler");
-            inputHandlerField.setAccessible(true);
-            InputHandler inputHandler = (InputHandler) inputHandlerField.get(null);
-            List<IShowsRecipeFocuses> showsRecipeFocuses = ObfuscationReflectionHelper.getPrivateValue(InputHandler.class, inputHandler, "showsRecipeFocuses");
-
-            showsRecipeFocuses.add(new MultiblockInfoRecipeFocusShower());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private static void registerRecipeMapCatalyst(IModRegistry registry, RecipeMap<?> recipeMap, MetaTileEntity metaTileEntity) {

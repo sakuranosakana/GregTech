@@ -1,4 +1,4 @@
-package gregtech.integration.jei.recipe.primitive;
+package gregtech.integration.jei.ore;
 
 import com.google.common.collect.ImmutableList;
 import gregtech.api.GTValues;
@@ -6,6 +6,7 @@ import gregtech.api.gui.GuiTextures;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.integration.jei.recipe.primitive.BasicRecipeCategory;
 import gregtech.integration.jei.utils.render.FluidStackTextRenderer;
 import gregtech.integration.jei.utils.render.ItemStackTextRenderer;
 import mezz.jei.api.IGuiHelper;

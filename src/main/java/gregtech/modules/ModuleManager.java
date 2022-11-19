@@ -209,6 +209,8 @@ public class ModuleManager implements IModuleManager {
                 IGregTechModule module = iterator.next();
                 if (!isModuleEnabled(module)) {
                     iterator.remove();
+                    logger.debug("Module disabled: {}", module);
+                    continue;
                 }
                 GregTechModule annotation = module.getClass().getAnnotation(GregTechModule.class);
                 toLoad.add(new ResourceLocation(containerID, annotation.moduleID()));

@@ -1,4 +1,4 @@
-package gregtech.integration.jei.recipe.primitive;
+package gregtech.integration.jei.ore;
 
 import com.google.common.collect.ImmutableList;
 import gregtech.api.GTValues;
@@ -10,6 +10,7 @@ import gregtech.api.unification.material.info.MaterialFlags;
 import gregtech.api.unification.material.properties.OreProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.unification.ore.StoneType;
 import gregtech.api.util.GTUtility;
 import gregtech.common.metatileentities.MetaTileEntities;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -29,14 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OreByProduct implements IRecipeWrapper {
-
-    private static final List<OrePrefix> ORES = new ArrayList<>();
-
-    public static void addOreByProductPrefix(OrePrefix orePrefix) {
-        if (!ORES.contains(orePrefix)) {
-            ORES.add(orePrefix);
-        }
-    }
 
     private static final ImmutableList<OrePrefix> IN_PROCESSING_STEPS = ImmutableList.of(
             OrePrefix.crushed,
@@ -88,9 +81,11 @@ public class OreByProduct implements IRecipeWrapper {
         List<Material> separatedInto = property.getSeparatedInto();
 
         List<ItemStack> oreStacks = new ArrayList<>();
-        for (OrePrefix prefix : ORES) {
-            // get all ores with the relevant oredicts instead of just the first unified ore
-            oreStacks.addAll(OreDictionary.getOres(prefix.name() + material.toCamelCaseString()));
+        for (StoneType stoneType : StoneType.STONE_TYPE_REGISTRY) {
+            if (stoneType.processingPrefix != null && stoneType.shouldBeDroppedAsItem) {
+                // get all ores with the relevant oredicts instead of just the first unified ore
+                oreStacks.addAll(OreDictionary.getOres(stoneType.processingPrefix.name() + material.toCamelCaseString()));
+            }
         }
         inputs.add(oreStacks);
 

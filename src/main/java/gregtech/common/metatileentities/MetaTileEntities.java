@@ -37,8 +37,8 @@ import gregtech.common.metatileentities.steam.multiblockpart.MetaTileEntitySteam
 import gregtech.common.metatileentities.steam.multiblockpart.MetaTileEntitySteamItemBus;
 import gregtech.common.metatileentities.storage.*;
 import gregtech.integration.jei.multiblock.MultiblockInfoCategory;
+import gregtech.modules.GregTechModules;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Loader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -805,7 +805,7 @@ public class MetaTileEntities {
             IMultiblockAbilityPart<?> abilityPart = (IMultiblockAbilityPart<?>) sampleMetaTileEntity;
             MultiblockAbility.registerMultiblockAbility(abilityPart.getAbility(), sampleMetaTileEntity);
         }
-        if (sampleMetaTileEntity instanceof MultiblockControllerBase && Loader.isModLoaded(GTValues.MODID_JEI)) {
+        if (sampleMetaTileEntity instanceof MultiblockControllerBase && GregTechAPI.moduleManager.isModuleEnabled(GregTechModules.MODULE_JEI)) {
             if (((MultiblockControllerBase) sampleMetaTileEntity).shouldShowInJei()) {
                 MultiblockInfoCategory.registerMultiblock((MultiblockControllerBase) sampleMetaTileEntity);
             }

@@ -1,6 +1,7 @@
 package gregtech.api.terminal;
 
 import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
 import gregtech.api.terminal.app.AbstractApplication;
 import gregtech.api.terminal.hardware.Hardware;
 import gregtech.api.util.FileUtility;
@@ -29,6 +30,7 @@ import gregtech.common.terminal.app.teleport.TeleportApp;
 import gregtech.common.terminal.app.worldprospector.WorldProspectorARApp;
 import gregtech.common.terminal.hardware.BatteryHardware;
 import gregtech.common.terminal.hardware.DeviceHardware;
+import gregtech.modules.GregTechModules;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.SimpleReloadableResourceManager;
@@ -126,7 +128,7 @@ public class TerminalRegistry {
                 .upgrade(1, MetaItems.EMITTER_HV.getStackForm(4), MetaItems.WORKSTATION_EV.getStackForm(2))
                 .defaultApp()
                 .build();
-        if (Loader.isModLoaded(GTValues.MODID_JEI)) {
+        if (GregTechAPI.moduleManager.isModuleEnabled(GregTechModules.MODULE_JEI)) {
             AppRegistryBuilder.create(new RecipeChartApp())
                     .battery(GTValues.LV, 160)
                     .upgrade(0, new ItemStack(Items.PAPER, 32))

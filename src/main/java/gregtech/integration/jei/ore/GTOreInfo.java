@@ -1,4 +1,4 @@
-package gregtech.integration.jei;
+package gregtech.integration.jei.ore;
 
 import com.google.common.collect.ImmutableList;
 import gregtech.api.unification.OreDictUnifier;

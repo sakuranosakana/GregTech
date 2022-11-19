@@ -1,12 +1,43 @@
 package gregtech.integration.theoneprobe;
 
+import gregtech.api.GTValues;
+import gregtech.api.modules.GregTechModule;
+import gregtech.api.modules.IGregTechModule;
 import gregtech.integration.theoneprobe.provider.*;
+import gregtech.modules.GregTechModules;
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.api.ITheOneProbe;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class TheOneProbeCompatibility {
+import javax.annotation.Nonnull;
+import java.util.Collections;
+import java.util.Set;
 
-    public static void registerCompatibility() {
+@GregTechModule(
+        moduleID = GregTechModules.MODULE_TOP,
+        containerID = GTValues.MODID,
+        name = "GregTech Integration: TOP",
+        descriptionKey = "gregtech.module.top.description"
+)
+public class TopModule implements IGregTechModule {
+
+    private final Logger logger = LogManager.getLogger("GregTech Integration: TOP");
+
+    @Override
+    public Logger getLogger() {
+        return logger;
+    }
+
+    @Nonnull
+    @Override
+    public Set<String> getModDependencyIDs() {
+        return Collections.singleton(GTValues.MODID_TOP);
+    }
+
+    @Override
+    public void init(FMLInitializationEvent event) {
         ITheOneProbe oneProbe = TheOneProbe.theOneProbeImp;
         oneProbe.registerProvider(new ElectricContainerInfoProvider());
         oneProbe.registerProvider(new FuelableInfoProvider());

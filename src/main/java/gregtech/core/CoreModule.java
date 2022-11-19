@@ -42,7 +42,6 @@ import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.worldgen.LootTableHelper;
 import gregtech.integration.GroovyScriptCompat;
-import gregtech.integration.theoneprobe.TheOneProbeCompatibility;
 import gregtech.loaders.dungeon.DungeonLootLoader;
 import gregtech.modules.GregTechModules;
 import net.minecraft.block.state.IBlockState;
@@ -183,11 +182,6 @@ public class CoreModule implements IGregTechModule {
                 GTLog.logger.fatal("Report to GTCEu GitHub to get more help and fix the problem");
                 GTLog.logger.fatal("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
-        }
-
-        if (Loader.isModLoaded(GTValues.MODID_TOP)) {
-            GTLog.logger.info("TheOneProbe found. Enabling integration...");
-            TheOneProbeCompatibility.registerCompatibility();
         }
 
         WorldGenRegistry.INSTANCE.initializeRegistry();

@@ -49,23 +49,23 @@ public class GregTech {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         moduleManager.setup(event);
-        moduleManager.onPreInit(event.getSide());
+        moduleManager.onPreInit(event);
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        moduleManager.onInit();
+        moduleManager.onInit(event);
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        moduleManager.onPostInit();
+        moduleManager.onPostInit(event);
         moduleManager.processIMC(FMLInterModComms.fetchRuntimeMessages(GregTechAPI.instance));
     }
 
     @EventHandler
     public void loadComplete(FMLLoadCompleteEvent event) {
-        moduleManager.onLoadComplete();
+        moduleManager.onLoadComplete(event);
     }
 
     @EventHandler
@@ -73,17 +73,17 @@ public class GregTech {
         CommandManager commandManager = CommandManager.getInstance();
         GregTechAPI.commandManager = commandManager;
         commandManager.registerServerCommand(event);
-        moduleManager.onServerStarting();
+        moduleManager.onServerStarting(event);
     }
 
     @EventHandler
     public void serverStarted(FMLServerStartedEvent event) {
-        moduleManager.onServerStarted();
+        moduleManager.onServerStarted(event);
     }
 
     @EventHandler
     public void serverStopped(FMLServerStoppedEvent event) {
-        moduleManager.onServerStopped();
+        moduleManager.onServerStopped(event);
     }
 
     @EventHandler

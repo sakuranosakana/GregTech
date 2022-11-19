@@ -14,8 +14,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -98,13 +97,13 @@ public class ModuleManager implements IModuleManager {
         }
     }
 
-    public void onPreInit(Side side) {
+    public void onPreInit(FMLPreInitializationEvent event) {
         currentStage = Stage.PRE_INIT;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Pre-init start");
             currentContainer = containers.get(getContainerID(module));
-            registerPackets(module, side);
-            module.preInit();
+            registerPackets(module, event.getSide());
+            module.preInit(event);
             module.getLogger().debug("Pre-init complete");
         }
     }
@@ -117,59 +116,59 @@ public class ModuleManager implements IModuleManager {
         }
     }
 
-    public void onInit() {
+    public void onInit(FMLInitializationEvent event) {
         currentStage = Stage.INIT;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Init start");
             currentContainer = containers.get(getContainerID(module));
-            module.init();
+            module.init(event);
             module.getLogger().debug("Init complete");
         }
     }
 
-    public void onPostInit() {
+    public void onPostInit(FMLPostInitializationEvent event) {
         currentStage = Stage.POST_INIT;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Post-init start");
             currentContainer = containers.get(getContainerID(module));
-            module.postInit();
+            module.postInit(event);
             module.getLogger().debug("Post-init complete");
         }
     }
 
-    public void onLoadComplete() {
+    public void onLoadComplete(FMLLoadCompleteEvent event) {
         currentStage = Stage.FINISHED;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Load-complete start");
             currentContainer = containers.get(getContainerID(module));
-            module.loadComplete();
+            module.loadComplete(event);
             module.getLogger().debug("Load-complete complete");
         }
     }
 
-    public void onServerStarting() {
+    public void onServerStarting(FMLServerStartingEvent event) {
         currentStage = Stage.SERVER_STARTING;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Server-starting start");
-            module.serverStarting();
+            module.serverStarting(event);
             module.getLogger().debug("Server-starting complete");
         }
     }
 
-    public void onServerStarted() {
+    public void onServerStarted(FMLServerStartedEvent event) {
         currentStage = Stage.SERVER_STARTED;
         for (IGregTechModule module : loadedModules) {
             module.getLogger().debug("Server-started start");
             currentContainer = containers.get(getContainerID(module));
-            module.serverStarted();
+            module.serverStarted(event);
             module.getLogger().debug("Server-started complete");
         }
     }
 
-    public void onServerStopped() {
+    public void onServerStopped(FMLServerStoppedEvent event) {
         for (IGregTechModule module : loadedModules) {
             currentContainer = containers.get(getContainerID(module));
-            module.serverStopped();
+            module.serverStopped(event);
         }
     }
 

@@ -1,7 +1,7 @@
 package gregtech.api.modules;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.*;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
@@ -21,25 +21,25 @@ public interface IGregTechModule {
         return Collections.emptySet();
     }
 
-    default void preInit() {
+    default void preInit(FMLPreInitializationEvent event) {
     }
 
-    default void init() {
+    default void init(FMLInitializationEvent event) {
     }
 
-    default void postInit() {
+    default void postInit(FMLPostInitializationEvent event) {
     }
 
-    default void loadComplete() {
+    default void loadComplete(FMLLoadCompleteEvent event) {
     }
 
-    default void serverStarting() {
+    default void serverStarting(FMLServerStartingEvent event) {
     }
 
-    default void serverStarted() {
+    default void serverStarted(FMLServerStartedEvent event) {
     }
 
-    default void serverStopped() {
+    default void serverStopped(FMLServerStoppedEvent event) {
     }
 
     default void registerServerPackets() {

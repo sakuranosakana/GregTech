@@ -1,13 +1,9 @@
 package gregtech.common.items.behaviors;
 
 import com.google.common.collect.UnmodifiableIterator;
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.capability.IElectricItem;
-import gregtech.api.capability.IEnergyContainer;
+import gregtech.api.capability.*;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.GregTechAPI;
-import gregtech.apiOld.capability.*;
 import gregtech.apiOld.capability.impl.FluidTankList;
 import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import gregtech.apiOld.metatileentity.IDataInfoProvider;

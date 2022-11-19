@@ -2,7 +2,7 @@ package gregtech.integration.theoneprobe.provider;
 
 import gregtech.apiOld.GTValues;
 import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.apiOld.capability.IWorkable;
+import gregtech.api.capability.IWorkable;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import net.minecraft.entity.player.EntityPlayer;

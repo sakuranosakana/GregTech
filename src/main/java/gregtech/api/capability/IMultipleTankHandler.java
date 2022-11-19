@@ -1,5 +1,4 @@
-package gregtech.apiOld.capability;
-
+package gregtech.api.capability;
 
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;

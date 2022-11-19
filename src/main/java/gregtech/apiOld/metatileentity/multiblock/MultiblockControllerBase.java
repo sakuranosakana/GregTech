@@ -7,7 +7,7 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.block.VariantActiveBlock;
 import gregtech.api.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IMultiblockController;
+import gregtech.api.capability.IMultiblockController;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.metatileentity.MetaTileEntityHolder;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;

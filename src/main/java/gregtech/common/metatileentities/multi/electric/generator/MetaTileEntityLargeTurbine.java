@@ -1,7 +1,7 @@
 package gregtech.common.metatileentities.multi.electric.generator;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IRotorHolder;
+import gregtech.api.capability.IRotorHolder;
 import gregtech.apiOld.capability.impl.FluidTankList;
 import gregtech.apiOld.metatileentity.ITieredMetaTileEntity;
 import gregtech.apiOld.metatileentity.MetaTileEntity;

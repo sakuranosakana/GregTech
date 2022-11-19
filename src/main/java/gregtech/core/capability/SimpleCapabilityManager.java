@@ -1,13 +1,12 @@
 package gregtech.core.capability;
 
-import gregtech.api.capability.IElectricItem;
-import gregtech.api.capability.IEnergyContainer;
+import gregtech.api.capability.*;
 import gregtech.apiOld.capability.*;
 import gregtech.apiOld.capability.impl.AbstractRecipeLogic;
-import gregtech.apiOld.capability.tool.ICutterItem;
-import gregtech.apiOld.capability.tool.IScrewdriverItem;
-import gregtech.apiOld.capability.tool.ISoftHammerItem;
-import gregtech.apiOld.capability.tool.IWrenchItem;
+import gregtech.api.capability.tool.ICutterItem;
+import gregtech.api.capability.tool.IScrewdriverItem;
+import gregtech.api.capability.tool.ISoftHammerItem;
+import gregtech.api.capability.tool.IWrenchItem;
 import gregtech.apiOld.cover.ICoverable;
 import gregtech.apiOld.metatileentity.multiblock.IMaintenance;
 import gregtech.apiOld.terminal.hardware.HardwareProvider;

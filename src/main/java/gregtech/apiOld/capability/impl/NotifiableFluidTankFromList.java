@@ -1,6 +1,6 @@
 package gregtech.apiOld.capability.impl;
 
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import net.minecraftforge.fluids.FluidStack;
 

@@ -6,7 +6,7 @@ import codechicken.lib.vec.Matrix4;
 import com.google.common.collect.Lists;
 import gregtech.apiOld.GTValues;
 import gregtech.api.capability.IEnergyContainer;
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.capability.impl.EnergyContainerList;
 import gregtech.apiOld.capability.impl.FluidTankList;
 import gregtech.apiOld.capability.impl.ItemHandlerList;

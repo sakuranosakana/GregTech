@@ -1,6 +1,6 @@
 package gregtech.apiOld.recipes.logic;
 
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.recipes.*;
 import gregtech.apiOld.recipes.ingredients.GTRecipeInput;

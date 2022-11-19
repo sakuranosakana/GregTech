@@ -1,6 +1,6 @@
 package gregtech.apiOld.capability.impl;
 
-import gregtech.apiOld.capability.IHeatingCoil;
+import gregtech.api.capability.IHeatingCoil;
 import gregtech.apiOld.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.apiOld.recipes.recipeproperties.IRecipePropertyStorage;
 import gregtech.apiOld.recipes.recipeproperties.TemperatureProperty;

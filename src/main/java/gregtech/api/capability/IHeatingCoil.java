@@ -1,5 +1,6 @@
-package gregtech.apiOld.capability;
+package gregtech.api.capability;
 
+// TODO This comment?
 /**
  * intended for use in conjunction with {@link gregtech.apiOld.capability.impl.HeatingCoilRecipeLogic}
  * use with temperature-based multiblocks

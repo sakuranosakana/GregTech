@@ -1,4 +1,4 @@
-package gregtech.apiOld.capability.tool;
+package gregtech.api.capability.tool;
 
 public interface IScrewdriverItem {
 

@@ -3,7 +3,7 @@ package gregtech.common.pipelike.cable;
 import com.google.common.base.Preconditions;
 import gregtech.apiOld.GregTechAPI;
 import gregtech.api.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.tool.ICutterItem;
+import gregtech.api.capability.tool.ICutterItem;
 import gregtech.apiOld.damagesources.DamageSources;
 import gregtech.apiOld.items.toolitem.IToolStats;
 import gregtech.apiOld.pipenet.block.material.BlockMaterialPipe;

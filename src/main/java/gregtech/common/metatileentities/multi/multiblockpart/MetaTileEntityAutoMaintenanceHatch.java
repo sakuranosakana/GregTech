@@ -3,7 +3,7 @@ package gregtech.common.metatileentities.multi.multiblockpart;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.apiOld.capability.IMaintenanceHatch;
+import gregtech.api.capability.IMaintenanceHatch;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;

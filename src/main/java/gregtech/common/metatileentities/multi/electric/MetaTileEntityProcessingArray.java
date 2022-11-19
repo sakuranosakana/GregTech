@@ -1,7 +1,7 @@
 package gregtech.common.metatileentities.multi.electric;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.capability.impl.MultiblockRecipeLogic;
 import gregtech.apiOld.metatileentity.IMachineHatchMultiblock;
 import gregtech.apiOld.metatileentity.ITieredMetaTileEntity;

@@ -1,7 +1,7 @@
 package gregtech.apiOld.items.toolitem;
 
 import gregtech.api.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.tool.IHammerItem;
+import gregtech.api.capability.tool.IHammerItem;
 import gregtech.apiOld.items.metaitem.stats.IItemCapabilityProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;

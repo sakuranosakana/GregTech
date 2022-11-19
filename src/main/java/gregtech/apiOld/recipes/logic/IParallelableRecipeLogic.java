@@ -1,6 +1,6 @@
 package gregtech.apiOld.recipes.logic;
 
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.capability.impl.AbstractRecipeLogic;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.metatileentity.multiblock.ParallelLogicType;

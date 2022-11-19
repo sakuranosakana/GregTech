@@ -2,7 +2,7 @@ package gregtech.apiOld.recipes;
 
 import com.google.common.collect.ImmutableList;
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.recipes.ingredients.GTRecipeInput;
 import gregtech.apiOld.recipes.recipeproperties.EmptyRecipePropertyStorage;
 import gregtech.apiOld.recipes.recipeproperties.IRecipePropertyStorage;

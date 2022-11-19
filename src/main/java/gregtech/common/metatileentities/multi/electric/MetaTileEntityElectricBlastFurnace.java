@@ -3,7 +3,7 @@ package gregtech.common.metatileentities.multi.electric;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.block.IHeatingCoilBlockStats;
-import gregtech.apiOld.capability.IHeatingCoil;
+import gregtech.api.capability.IHeatingCoil;
 import gregtech.apiOld.capability.impl.HeatingCoilRecipeLogic;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;

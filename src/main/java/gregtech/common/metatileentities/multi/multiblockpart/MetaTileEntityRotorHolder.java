@@ -5,7 +5,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.capability.GregtechDataCodes;
-import gregtech.apiOld.capability.IRotorHolder;
+import gregtech.api.capability.IRotorHolder;
 import gregtech.apiOld.damagesources.DamageSources;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.gui.ModularUI;

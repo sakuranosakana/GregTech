@@ -3,7 +3,7 @@ package gregtech.common.metatileentities.multi.electric.generator;
 import gregtech.apiOld.GTValues;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IEnergyContainer;
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.capability.impl.MultiblockFuelRecipeLogic;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;

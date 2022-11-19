@@ -4,7 +4,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IMufflerHatch;
+import gregtech.api.capability.IMufflerHatch;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.gui.widgets.SlotWidget;

@@ -2,7 +2,7 @@ package gregtech.integration.theoneprobe.provider;
 
 import gregtech.apiOld.GTValues;
 import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.apiOld.capability.IControllable;
+import gregtech.api.capability.IControllable;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.TextStyleClass;

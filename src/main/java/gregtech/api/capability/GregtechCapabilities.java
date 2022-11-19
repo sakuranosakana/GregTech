@@ -1,10 +1,8 @@
 package gregtech.api.capability;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IFuelable;
-import gregtech.apiOld.capability.IMultiblockController;
 import gregtech.apiOld.capability.impl.EUToFEProvider;
-import gregtech.apiOld.capability.tool.*;
+import gregtech.api.capability.tool.*;
 import gregtech.apiOld.terminal.hardware.HardwareProvider;
 import gregtech.common.metatileentities.converter.ConverterTrait;
 import net.minecraft.tileentity.TileEntity;

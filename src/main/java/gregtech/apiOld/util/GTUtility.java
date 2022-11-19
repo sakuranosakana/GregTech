@@ -8,7 +8,7 @@ import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.block.machines.MachineItemBlock;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IElectricItem;
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.cover.CoverDefinition;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.gui.impl.ModularUIContainer;

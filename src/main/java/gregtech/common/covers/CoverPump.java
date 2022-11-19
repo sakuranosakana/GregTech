@@ -8,7 +8,7 @@ import codechicken.lib.vec.Matrix4;
 import com.google.common.math.IntMath;
 import gregtech.apiOld.GTValues;
 import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.apiOld.capability.IControllable;
+import gregtech.api.capability.IControllable;
 import gregtech.apiOld.capability.impl.FluidHandlerDelegate;
 import gregtech.apiOld.cover.CoverBehavior;
 import gregtech.apiOld.cover.CoverWithUI;

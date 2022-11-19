@@ -8,7 +8,7 @@ import gregtech.apiOld.GTValues;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.capability.impl.EnergyContainerHandler;
-import gregtech.apiOld.capability.tool.ISoftHammerItem;
+import gregtech.api.capability.tool.ISoftHammerItem;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;

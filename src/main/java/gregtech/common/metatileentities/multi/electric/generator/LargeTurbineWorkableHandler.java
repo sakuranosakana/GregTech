@@ -1,7 +1,7 @@
 package gregtech.common.metatileentities.multi.electric.generator;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IRotorHolder;
+import gregtech.api.capability.IRotorHolder;
 import gregtech.apiOld.capability.impl.MultiblockFuelRecipeLogic;
 import gregtech.apiOld.metatileentity.multiblock.FuelMultiblockController;
 import gregtech.apiOld.metatileentity.multiblock.MultiblockAbility;

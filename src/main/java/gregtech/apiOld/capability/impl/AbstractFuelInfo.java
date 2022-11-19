@@ -1,6 +1,6 @@
 package gregtech.apiOld.capability.impl;
 
-import gregtech.apiOld.capability.IFuelInfo;
+import gregtech.api.capability.IFuelInfo;
 
 /**
  * Fuel information

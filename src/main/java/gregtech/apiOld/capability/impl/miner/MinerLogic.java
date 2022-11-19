@@ -4,7 +4,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.capability.GregtechDataCodes;
-import gregtech.apiOld.capability.IMiner;
+import gregtech.api.capability.IMiner;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.recipes.Recipe;
 import gregtech.apiOld.recipes.RecipeMap;

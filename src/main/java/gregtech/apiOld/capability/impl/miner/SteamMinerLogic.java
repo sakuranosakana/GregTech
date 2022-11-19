@@ -1,6 +1,6 @@
 package gregtech.apiOld.capability.impl.miner;
 
-import gregtech.apiOld.capability.IVentable;
+import gregtech.api.capability.IVentable;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.client.renderer.ICubeRenderer;
 

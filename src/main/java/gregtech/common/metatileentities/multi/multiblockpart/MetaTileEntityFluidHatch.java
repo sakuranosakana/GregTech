@@ -5,7 +5,7 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.capability.GregtechDataCodes;
 import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.apiOld.capability.IControllable;
+import gregtech.api.capability.IControllable;
 import gregtech.apiOld.capability.impl.FilteredItemHandler;
 import gregtech.apiOld.capability.impl.FluidTankList;
 import gregtech.apiOld.capability.impl.NotifiableFluidTank;

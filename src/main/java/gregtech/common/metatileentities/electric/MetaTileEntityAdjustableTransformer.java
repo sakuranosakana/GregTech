@@ -7,7 +7,7 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.GTValues;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.capability.impl.EnergyContainerHandler;
-import gregtech.apiOld.capability.tool.ISoftHammerItem;
+import gregtech.api.capability.tool.ISoftHammerItem;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;

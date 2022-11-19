@@ -6,7 +6,7 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.GTValues;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.apiOld.capability.IControllable;
+import gregtech.api.capability.IControllable;
 import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.capability.impl.EnergyContainerBatteryBuffer;
 import gregtech.apiOld.gui.GuiTextures;

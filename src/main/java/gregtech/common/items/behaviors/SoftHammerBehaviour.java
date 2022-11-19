@@ -1,7 +1,7 @@
 package gregtech.common.items.behaviors;
 
 import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.apiOld.capability.IControllable;
+import gregtech.api.capability.IControllable;
 import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import gregtech.apiOld.items.toolitem.IToolStats;
 import gregtech.apiOld.util.GTUtility;

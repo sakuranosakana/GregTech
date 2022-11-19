@@ -1,6 +1,6 @@
 package gregtech.apiOld.util;
 
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.capability.impl.NotifiableFluidTankFromList;
 import gregtech.apiOld.recipes.FluidKey;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;

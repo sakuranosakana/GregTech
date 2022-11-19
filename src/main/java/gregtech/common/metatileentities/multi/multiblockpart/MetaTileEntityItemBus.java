@@ -6,7 +6,7 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.capability.impl.NotifiableItemStackHandler;
 import gregtech.apiOld.capability.GregtechDataCodes;
 import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.apiOld.capability.IControllable;
+import gregtech.api.capability.IControllable;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.gui.ModularUI.Builder;

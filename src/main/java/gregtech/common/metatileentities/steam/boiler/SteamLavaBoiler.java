@@ -2,8 +2,8 @@ package gregtech.common.metatileentities.steam.boiler;
 
 import gregtech.apiOld.GTValues;
 import gregtech.api.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IFuelInfo;
-import gregtech.apiOld.capability.IFuelable;
+import gregtech.api.capability.IFuelInfo;
+import gregtech.api.capability.IFuelable;
 import gregtech.apiOld.capability.impl.FilteredFluidHandler;
 import gregtech.apiOld.capability.impl.FluidFuelInfo;
 import gregtech.apiOld.capability.impl.FluidTankList;

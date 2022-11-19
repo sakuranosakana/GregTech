@@ -1,9 +1,6 @@
 package gregtech.api.capability;
 
-import gregtech.apiOld.capability.IActiveOutputSide;
-import gregtech.apiOld.capability.IControllable;
 import gregtech.apiOld.capability.IMultipleRecipeMaps;
-import gregtech.apiOld.capability.IWorkable;
 import gregtech.apiOld.capability.impl.AbstractRecipeLogic;
 import gregtech.apiOld.cover.ICoverable;
 import gregtech.apiOld.metatileentity.multiblock.IMaintenance;

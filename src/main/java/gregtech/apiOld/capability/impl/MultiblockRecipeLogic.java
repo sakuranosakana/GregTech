@@ -1,6 +1,9 @@
 package gregtech.apiOld.capability.impl;
 
 import gregtech.api.capability.IEnergyContainer;
+import gregtech.api.capability.IMaintenanceHatch;
+import gregtech.api.capability.IMultiblockController;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.capability.*;
 import gregtech.apiOld.metatileentity.multiblock.MultiblockAbility;
 import gregtech.apiOld.metatileentity.multiblock.MultiblockWithDisplayBase;

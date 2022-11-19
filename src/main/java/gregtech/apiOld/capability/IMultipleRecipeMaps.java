@@ -2,6 +2,7 @@ package gregtech.apiOld.capability;
 
 import gregtech.apiOld.recipes.RecipeMap;
 
+// TODO IRecipeMap
 public interface IMultipleRecipeMaps {
 
     /**

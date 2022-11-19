@@ -9,6 +9,7 @@ import codechicken.lib.vec.Rotation;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IEnergyContainer;
+import gregtech.api.capability.IWorkable;
 import gregtech.apiOld.capability.*;
 import gregtech.apiOld.capability.impl.*;
 import gregtech.apiOld.cover.CoverBehavior;

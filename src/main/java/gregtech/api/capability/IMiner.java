@@ -1,5 +1,4 @@
-package gregtech.apiOld.capability;
-
+package gregtech.api.capability;
 
 import codechicken.lib.vec.Cuboid6;
 

@@ -1,7 +1,7 @@
 package gregtech.apiOld.capability.impl;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.metatileentity.multiblock.RecipeMapSteamMultiblockController;
 import gregtech.apiOld.recipes.Recipe;
 import gregtech.apiOld.recipes.RecipeMap;

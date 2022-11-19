@@ -5,7 +5,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IMaintenanceHatch;
+import gregtech.api.capability.IMaintenanceHatch;
 import gregtech.apiOld.capability.impl.ItemHandlerProxy;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.gui.ModularUI;

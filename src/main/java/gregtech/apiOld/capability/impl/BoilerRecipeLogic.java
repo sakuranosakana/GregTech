@@ -1,8 +1,8 @@
 package gregtech.apiOld.capability.impl;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IMultiblockController;
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultiblockController;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.recipes.ModHandler;
 import gregtech.apiOld.recipes.Recipe;
 import gregtech.apiOld.recipes.RecipeMaps;

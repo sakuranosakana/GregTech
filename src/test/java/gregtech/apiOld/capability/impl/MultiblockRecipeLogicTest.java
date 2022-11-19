@@ -2,7 +2,7 @@ package gregtech.apiOld.capability.impl;
 
 import gregtech.Bootstrap;
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.metatileentity.MetaTileEntityHolder;
 import gregtech.apiOld.metatileentity.multiblock.MultiblockControllerBase;

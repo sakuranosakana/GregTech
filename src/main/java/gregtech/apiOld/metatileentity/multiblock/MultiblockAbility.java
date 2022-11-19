@@ -1,9 +1,9 @@
 package gregtech.apiOld.metatileentity.multiblock;
 
 import gregtech.api.capability.IEnergyContainer;
-import gregtech.apiOld.capability.IMaintenanceHatch;
-import gregtech.apiOld.capability.IMufflerHatch;
-import gregtech.apiOld.capability.IRotorHolder;
+import gregtech.api.capability.IMaintenanceHatch;
+import gregtech.api.capability.IMufflerHatch;
+import gregtech.api.capability.IRotorHolder;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraftforge.fluids.IFluidTank;

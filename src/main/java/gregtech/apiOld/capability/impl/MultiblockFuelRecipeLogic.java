@@ -1,6 +1,6 @@
 package gregtech.apiOld.capability.impl;
 
-import gregtech.apiOld.capability.IMaintenanceHatch;
+import gregtech.api.capability.IMaintenanceHatch;
 import gregtech.apiOld.metatileentity.multiblock.MultiblockAbility;
 import gregtech.apiOld.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.apiOld.metatileentity.multiblock.ParallelLogicType;

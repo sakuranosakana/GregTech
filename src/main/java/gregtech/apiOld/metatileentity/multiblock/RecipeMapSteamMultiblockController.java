@@ -3,7 +3,7 @@ package gregtech.apiOld.metatileentity.multiblock;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.capability.impl.FluidTankList;
 import gregtech.apiOld.capability.impl.ItemHandlerList;
 import gregtech.apiOld.capability.impl.SteamMultiblockRecipeLogic;

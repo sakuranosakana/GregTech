@@ -1,6 +1,9 @@
 package gregtech.apiOld.capability.impl;
 
 import gregtech.api.capability.GregtechTileCapabilities;
+import gregtech.api.capability.IMultiblockController;
+import gregtech.api.capability.IMultipleTankHandler;
+import gregtech.api.capability.IWorkable;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.*;
 import gregtech.apiOld.metatileentity.MTETrait;

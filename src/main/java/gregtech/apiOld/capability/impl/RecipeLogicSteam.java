@@ -2,7 +2,7 @@ package gregtech.apiOld.capability.impl;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.GregtechDataCodes;
-import gregtech.apiOld.capability.IVentable;
+import gregtech.api.capability.IVentable;
 import gregtech.apiOld.damagesources.DamageSources;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.recipes.Recipe;

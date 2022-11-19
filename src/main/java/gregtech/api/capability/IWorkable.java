@@ -1,4 +1,6 @@
-package gregtech.apiOld.capability;
+package gregtech.api.capability;
+
+import gregtech.api.capability.IControllable;
 
 /**
  * For machines which have progress and can work

@@ -6,7 +6,7 @@ import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.apiOld.capability.IActiveOutputSide;
+import gregtech.api.capability.IActiveOutputSide;
 import gregtech.apiOld.capability.impl.*;
 import gregtech.apiOld.cover.ICoverable;
 import gregtech.apiOld.gui.GuiTextures;

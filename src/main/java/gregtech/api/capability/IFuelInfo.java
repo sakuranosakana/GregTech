@@ -1,4 +1,4 @@
-package gregtech.apiOld.capability;
+package gregtech.api.capability;
 
 /**
  * Information about fuel

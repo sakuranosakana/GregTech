@@ -1,6 +1,6 @@
 package gregtech.apiOld.util;
 
-import gregtech.apiOld.capability.IMultipleTankHandler;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.apiOld.recipes.FluidKey;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidActionResult;

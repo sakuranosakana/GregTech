@@ -32,6 +32,10 @@ import gregtech.common.ConfigHolder;
 import gregtech.common.MetaEntities;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.command.CommandHand;
+import gregtech.common.command.CommandRecipeCheck;
+import gregtech.common.command.CommandShaders;
+import gregtech.common.command.worldgen.CommandWorldgen;
 import gregtech.common.covers.CoverBehaviors;
 import gregtech.common.covers.filter.FilterTypeRegistry;
 import gregtech.common.items.MetaItems;
@@ -50,7 +54,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
 import java.util.Map;
 
 import static gregtech.api.GregTechAPI.*;
@@ -97,7 +100,6 @@ public class CoreModule implements IGregTechModule {
         CoverBehaviorUIFactory.INSTANCE.init();
         GTLog.logger.info("Registering addon UI Factories");
         MinecraftForge.EVENT_BUS.post(new GregTechAPI.RegisterEvent<>(UI_FACTORY_REGISTRY, UIFactory.class));
-        logger.error("Test!!!");
         UI_FACTORY_REGISTRY.freeze();
         /* End UI Factory Registration */
 
@@ -225,7 +227,10 @@ public class CoreModule implements IGregTechModule {
 
     @Override
     public void serverStarting() {
-        //event.registerServerCommand(new GregTechCommand());
+        GregTechAPI.commandManager.addCommand(new CommandWorldgen());
+        GregTechAPI.commandManager.addCommand(new CommandHand());
+        GregTechAPI.commandManager.addCommand(new CommandRecipeCheck());
+        GregTechAPI.commandManager.addCommand(new CommandShaders());
         CapesRegistry.load();
     }
 

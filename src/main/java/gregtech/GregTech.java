@@ -4,6 +4,7 @@ import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.modules.ModuleContainerRegistryEvent;
 import gregtech.client.utils.BloomEffectUtil;
+import gregtech.core.command.CommandManager;
 import gregtech.modules.GregTechModules;
 import gregtech.modules.ModuleManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,7 +28,8 @@ public class GregTech {
     // letting the GregTechAPI object see them as immediately.
     private ModuleManager moduleManager;
 
-    static {
+    public GregTech() {
+        GregTechAPI.instance = this;
         FluidRegistry.enableUniversalBucket();
         if (FMLCommonHandler.instance().getSide().isClient()) {
             BloomEffectUtil.init();
@@ -36,7 +38,6 @@ public class GregTech {
 
     @EventHandler
     public void onConstruction(FMLConstructionEvent event) {
-        GregTechAPI.instance = this;
         moduleManager = ModuleManager.getInstance();
         GregTechAPI.moduleManager = moduleManager;
         moduleManager.registerContainer(new GregTechModules());
@@ -59,7 +60,7 @@ public class GregTech {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         moduleManager.onPostInit();
-        moduleManager.processIMC(FMLInterModComms.fetchRuntimeMessages(instance));
+        moduleManager.processIMC(FMLInterModComms.fetchRuntimeMessages(GregTechAPI.instance));
     }
 
     @EventHandler
@@ -69,9 +70,9 @@ public class GregTech {
 
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
-        //CommandManager commandManager = CommandManager.getInstance();
-        //GregTechAPI.commandManager = commandManager;
-        //commandManager.registerServerCommand(event);
+        CommandManager commandManager = CommandManager.getInstance();
+        GregTechAPI.commandManager = commandManager;
+        commandManager.registerServerCommand(event);
         moduleManager.onServerStarting();
     }
 

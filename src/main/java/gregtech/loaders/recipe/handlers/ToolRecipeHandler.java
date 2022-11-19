@@ -1,7 +1,7 @@
 package gregtech.loaders.recipe.handlers;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
 import gregtech.apiOld.items.toolitem.ToolMetaItem.MetaToolValueItem;
 import gregtech.apiOld.recipes.ModHandler;

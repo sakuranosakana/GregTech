@@ -2,8 +2,8 @@ package gregtech.apiOld.items.metaitem;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.FeCompat;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.capability.impl.ElectricItem;
 import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import gregtech.apiOld.items.metaitem.stats.IItemCapabilityProvider;

@@ -1,6 +1,6 @@
 package gregtech.apiOld.items.toolitem;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.capability.tool.ISoftHammerItem;
 import gregtech.apiOld.items.metaitem.stats.IItemCapabilityProvider;
 import net.minecraft.item.ItemStack;

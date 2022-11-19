@@ -1,6 +1,6 @@
 package gregtech.common.pipelike.itempipe.net;
 
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.cover.CoverBehavior;
 import gregtech.apiOld.cover.ICoverable;
 import gregtech.apiOld.util.FacingPos;

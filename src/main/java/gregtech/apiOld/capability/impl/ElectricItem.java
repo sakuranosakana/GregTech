@@ -1,8 +1,8 @@
 package gregtech.apiOld.capability.impl;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

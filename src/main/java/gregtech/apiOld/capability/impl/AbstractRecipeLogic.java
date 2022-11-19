@@ -1,5 +1,6 @@
 package gregtech.apiOld.capability.impl;
 
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.*;
 import gregtech.apiOld.metatileentity.MTETrait;

@@ -1,6 +1,6 @@
 package gregtech.common.items.behaviors.monitorplugin;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.capability.GregtechDataCodes;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.gui.IUIHolder;

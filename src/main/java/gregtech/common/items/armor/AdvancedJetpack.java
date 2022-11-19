@@ -1,8 +1,8 @@
 package gregtech.common.items.armor;
 
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.apiOld.util.input.KeyBind;
 import net.minecraft.client.resources.I18n;

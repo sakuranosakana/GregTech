@@ -1,7 +1,7 @@
 package gregtech.apiOld.items.metaitem;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.items.metaitem.stats.ISubItemHandler;
 import gregtech.common.ConfigHolder;
 import net.minecraft.creativetab.CreativeTabs;

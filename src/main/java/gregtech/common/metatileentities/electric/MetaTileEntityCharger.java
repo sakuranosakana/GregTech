@@ -1,8 +1,8 @@
 package gregtech.common.metatileentities.electric;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.capability.impl.EnergyContainerBatteryCharger;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.gui.ModularUI;

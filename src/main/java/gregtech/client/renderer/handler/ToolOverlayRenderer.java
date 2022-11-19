@@ -2,8 +2,8 @@ package gregtech.client.renderer.handler;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.vec.Vector3;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.cover.ICoverable;
 import gregtech.apiOld.cover.ICoverable.PrimaryBoxData;
 import gregtech.apiOld.items.toolitem.IAOEItem;

@@ -1,6 +1,6 @@
 package gregtech.apiOld.terminal.hardware;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.items.metaitem.stats.IItemCapabilityProvider;
 import gregtech.apiOld.terminal.TerminalRegistry;
 import gregtech.common.items.behaviors.TerminalBehaviour;

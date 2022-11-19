@@ -4,7 +4,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.capability.impl.EnergyContainerHandler;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.metatileentity.MetaTileEntity;

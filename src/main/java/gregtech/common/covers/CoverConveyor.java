@@ -8,7 +8,7 @@ import codechicken.lib.vec.Matrix4;
 import gnu.trove.list.TIntList;
 import gnu.trove.list.array.TIntArrayList;
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.capability.IControllable;
 import gregtech.apiOld.capability.impl.ItemHandlerDelegate;
 import gregtech.apiOld.cover.CoverBehavior;

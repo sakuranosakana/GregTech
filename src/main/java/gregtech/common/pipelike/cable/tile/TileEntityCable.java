@@ -2,9 +2,9 @@ package gregtech.common.pipelike.cable.tile;
 
 import codechicken.lib.vec.Cuboid6;
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.capability.GregtechDataCodes;
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.metatileentity.IDataInfoProvider;
 import gregtech.apiOld.pipenet.block.BlockPipe;
 import gregtech.apiOld.pipenet.block.material.TileEntityMaterialPipeBase;

@@ -1,7 +1,7 @@
 package gregtech.apiOld.terminal.os;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.gui.IRenderContext;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.gui.Widget;

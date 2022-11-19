@@ -1,6 +1,6 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.capability.IControllable;
 import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import gregtech.apiOld.items.toolitem.IToolStats;

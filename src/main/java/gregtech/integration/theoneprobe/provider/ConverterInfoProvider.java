@@ -2,7 +2,7 @@ package gregtech.integration.theoneprobe.provider;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.FeCompat;
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.common.metatileentities.converter.ConverterTrait;

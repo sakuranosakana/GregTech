@@ -1,6 +1,6 @@
 package gregtech.common.pipelike.cable.net;
 
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.util.GTLog;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.common.pipelike.cable.tile.TileEntityCable;

@@ -6,7 +6,7 @@ import codechicken.lib.raytracer.RayTracer;
 import codechicken.lib.vec.Cuboid6;
 import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.block.BuiltInRenderBlock;
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.capability.tool.IScrewdriverItem;
 import gregtech.apiOld.capability.tool.IWrenchItem;
 import gregtech.apiOld.cover.CoverBehavior;

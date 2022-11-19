@@ -1,6 +1,6 @@
 package gregtech.apiOld.capability.impl;
 
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.recipes.RecipeMap;
 

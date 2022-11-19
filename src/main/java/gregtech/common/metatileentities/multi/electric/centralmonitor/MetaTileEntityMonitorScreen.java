@@ -1,7 +1,7 @@
 package gregtech.common.metatileentities.multi.electric.centralmonitor;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.capability.GregtechDataCodes;
 import gregtech.apiOld.cover.CoverBehavior;
 import gregtech.apiOld.cover.ICoverable;

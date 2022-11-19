@@ -4,6 +4,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.capability.*;
 import gregtech.apiOld.capability.impl.FilteredFluidHandler;
 import gregtech.apiOld.capability.impl.FluidTankList;

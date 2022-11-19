@@ -1,6 +1,6 @@
 package gregtech.common.metatileentities.steam.boiler;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.capability.IFuelInfo;
 import gregtech.apiOld.capability.IFuelable;
 import gregtech.apiOld.capability.impl.ItemFuelInfo;

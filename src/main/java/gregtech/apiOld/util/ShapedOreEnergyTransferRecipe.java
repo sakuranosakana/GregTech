@@ -1,7 +1,7 @@
 package gregtech.apiOld.util;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.capability.impl.ElectricItem;
 import gregtech.apiOld.items.toolitem.ToolMetaItem;
 import net.minecraft.inventory.IInventory;

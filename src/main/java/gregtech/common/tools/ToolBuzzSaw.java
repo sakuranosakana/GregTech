@@ -1,7 +1,7 @@
 package gregtech.common.tools;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.common.items.MetaItems;
 import net.minecraft.item.ItemStack;
 

@@ -1,7 +1,7 @@
 package gregtech.common.pipelike.cable.net;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.pipenet.PipeNetWalker;
 import gregtech.apiOld.pipenet.tile.IPipeTile;
 import gregtech.common.pipelike.cable.tile.TileEntityCable;

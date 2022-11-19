@@ -5,7 +5,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.capability.IActiveOutputSide;
 import gregtech.apiOld.capability.impl.ItemHandlerList;
 import gregtech.apiOld.capability.impl.ItemHandlerProxy;

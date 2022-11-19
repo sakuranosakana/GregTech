@@ -1,7 +1,7 @@
 package gregtech.common.items.behaviors;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.items.metaitem.MetaItem;
 import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import gregtech.apiOld.util.GTTransferUtils;

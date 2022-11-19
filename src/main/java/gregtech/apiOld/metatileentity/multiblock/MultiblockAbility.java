@@ -1,6 +1,6 @@
 package gregtech.apiOld.metatileentity.multiblock;
 
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.capability.IMaintenanceHatch;
 import gregtech.apiOld.capability.IMufflerHatch;
 import gregtech.apiOld.capability.IRotorHolder;

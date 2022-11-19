@@ -2,7 +2,7 @@ package gregtech.common.metatileentities.multi.electric;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.GregtechDataCodes;
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.capability.impl.*;
 import gregtech.apiOld.metatileentity.IFastRenderMetaTileEntity;
 import gregtech.apiOld.metatileentity.MetaTileEntity;

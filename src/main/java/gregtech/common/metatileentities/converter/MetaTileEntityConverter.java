@@ -7,7 +7,7 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.FeCompat;
-import gregtech.apiOld.capability.GregtechCapabilities;
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.apiOld.capability.tool.ISoftHammerItem;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.metatileentity.MetaTileEntity;

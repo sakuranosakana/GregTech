@@ -1,6 +1,6 @@
 package gregtech.common.terminal.app.console;
 
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.capability.IControllable;
 import gregtech.apiOld.capability.impl.AbstractRecipeLogic;
 import gregtech.apiOld.capability.impl.RecipeLogicSteam;

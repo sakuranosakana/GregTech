@@ -2,7 +2,7 @@ package gregtech.integration.jei;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.GregTechAPI;
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.capability.IControllable;
 import gregtech.apiOld.capability.IMultipleRecipeMaps;
 import gregtech.apiOld.capability.impl.AbstractRecipeLogic;

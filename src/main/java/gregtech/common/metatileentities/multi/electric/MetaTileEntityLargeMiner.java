@@ -6,6 +6,8 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.google.common.collect.Lists;
+import gregtech.api.capability.GregtechTileCapabilities;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.*;
 import gregtech.apiOld.capability.impl.EnergyContainerList;

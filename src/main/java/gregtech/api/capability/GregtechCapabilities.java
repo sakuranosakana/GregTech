@@ -1,6 +1,8 @@
-package gregtech.apiOld.capability;
+package gregtech.api.capability;
 
 import gregtech.apiOld.GTValues;
+import gregtech.apiOld.capability.IFuelable;
+import gregtech.apiOld.capability.IMultiblockController;
 import gregtech.apiOld.capability.impl.EUToFEProvider;
 import gregtech.apiOld.capability.tool.*;
 import gregtech.apiOld.terminal.hardware.HardwareProvider;
@@ -43,6 +45,8 @@ public class GregtechCapabilities {
 
     @CapabilityInject(IMultiblockController.class)
     public static Capability<IMultiblockController> CAPABILITY_MULTIBLOCK_CONTROLLER = null;
+
+    // TODO Clean up below here!
 
     @CapabilityInject(HardwareProvider.class)
     public static Capability<HardwareProvider> CAPABILITY_HARDWARE_PROVIDER = null;

@@ -2,9 +2,9 @@ package gregtech.apiOld.capability.impl;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.FeCompat;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.metatileentity.MTETrait;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.util.GTUtility;

@@ -1,7 +1,7 @@
 package gregtech.integration.theoneprobe.provider;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.cover.CoverBehavior;
 import gregtech.apiOld.cover.ICoverable;
 import gregtech.apiOld.util.GTUtility;

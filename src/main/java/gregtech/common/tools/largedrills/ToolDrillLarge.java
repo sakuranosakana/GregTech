@@ -1,8 +1,8 @@
 package gregtech.common.tools.largedrills;
 
 import com.google.common.collect.Lists;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.items.metaitem.MetaItem;
 import gregtech.apiOld.items.toolitem.ToolMetaItem;
 import gregtech.apiOld.util.GTUtility;

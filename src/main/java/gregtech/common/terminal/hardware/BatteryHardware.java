@@ -1,8 +1,8 @@
 package gregtech.common.terminal.hardware;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.capability.impl.ElectricItem;
 import gregtech.apiOld.gui.resources.IGuiTexture;
 import gregtech.apiOld.gui.resources.ItemStackTexture;

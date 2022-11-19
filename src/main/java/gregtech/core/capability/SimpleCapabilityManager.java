@@ -1,5 +1,8 @@
-package gregtech.apiOld.capability;
+package gregtech.core.capability;
 
+import gregtech.api.capability.IElectricItem;
+import gregtech.api.capability.IEnergyContainer;
+import gregtech.apiOld.capability.*;
 import gregtech.apiOld.capability.impl.AbstractRecipeLogic;
 import gregtech.apiOld.capability.tool.ICutterItem;
 import gregtech.apiOld.capability.tool.IScrewdriverItem;
@@ -37,6 +40,7 @@ public class SimpleCapabilityManager {
         });
     }
 
+    // TODO Separate this out
     public static void init() {
         registerCapabilityWithNoDefault(IEnergyContainer.class);
         registerCapabilityWithNoDefault(IElectricItem.class);

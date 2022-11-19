@@ -1,8 +1,8 @@
 package gregtech.integration.theoneprobe.provider;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IEnergyContainer;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import net.minecraft.entity.player.EntityPlayer;

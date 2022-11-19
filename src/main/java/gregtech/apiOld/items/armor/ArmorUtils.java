@@ -1,8 +1,8 @@
 package gregtech.apiOld.items.armor;
 
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.util.ItemStackKey;
 import gregtech.common.ConfigHolder;
 import net.minecraft.client.Minecraft;

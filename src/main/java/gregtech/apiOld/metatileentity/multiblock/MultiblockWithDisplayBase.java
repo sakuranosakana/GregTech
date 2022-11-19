@@ -3,7 +3,7 @@ package gregtech.apiOld.metatileentity.multiblock;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.block.VariantActiveBlock;
 import gregtech.apiOld.capability.GregtechDataCodes;
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.capability.IMaintenanceHatch;
 import gregtech.apiOld.capability.IMufflerHatch;
 import gregtech.apiOld.gui.GuiTextures;

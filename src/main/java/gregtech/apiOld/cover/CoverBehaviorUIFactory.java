@@ -2,7 +2,7 @@ package gregtech.apiOld.cover;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.GregTechAPI;
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.gui.UIFactory;
 import net.minecraft.client.Minecraft;

@@ -3,8 +3,8 @@ package gregtech.apiOld.items.armor;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.items.armor.ArmorMetaItem.ArmorMetaValueItem;
 import gregtech.apiOld.items.metaitem.ElectricStats;
 import net.minecraft.client.resources.I18n;

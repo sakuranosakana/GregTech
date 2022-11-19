@@ -2,8 +2,8 @@ package gregtech.common.metatileentities.converter;
 
 import gregtech.Bootstrap;
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.common.ConfigHolder;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;

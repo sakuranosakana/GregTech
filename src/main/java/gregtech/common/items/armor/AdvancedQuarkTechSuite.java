@@ -1,7 +1,7 @@
 package gregtech.common.items.armor;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.items.armor.ArmorMetaItem;
 import gregtech.apiOld.items.armor.ArmorUtils;
 import gregtech.apiOld.util.GTUtility;

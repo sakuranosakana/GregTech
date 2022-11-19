@@ -1,7 +1,7 @@
 package gregtech.common.command;
 
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IElectricItem;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
 import gregtech.apiOld.items.metaitem.MetaItem;
 import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
 import gregtech.apiOld.items.toolitem.IToolStats;

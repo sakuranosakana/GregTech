@@ -2,8 +2,8 @@ package gregtech.apiOld.capability.impl;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.capability.FeCompat;
-import gregtech.apiOld.capability.GregtechCapabilities;
-import gregtech.apiOld.capability.IEnergyContainer;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.common.ConfigHolder;
 import net.minecraft.tileentity.TileEntity;

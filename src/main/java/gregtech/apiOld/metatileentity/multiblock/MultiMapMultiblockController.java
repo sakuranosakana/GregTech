@@ -2,7 +2,7 @@ package gregtech.apiOld.metatileentity.multiblock;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
 import gregtech.apiOld.capability.GregtechDataCodes;
-import gregtech.apiOld.capability.GregtechTileCapabilities;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.apiOld.capability.IMultipleRecipeMaps;
 import gregtech.apiOld.pattern.TraceabilityPredicate;
 import gregtech.apiOld.recipes.RecipeMap;

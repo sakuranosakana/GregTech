@@ -1,7 +1,7 @@
 package gregtech.apiOld.fluids;
 
 import gregtech.apiOld.GTValues;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.material.info.MaterialFlags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFire;

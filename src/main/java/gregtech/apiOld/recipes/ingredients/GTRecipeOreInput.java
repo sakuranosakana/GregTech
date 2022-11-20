@@ -1,6 +1,6 @@
 package gregtech.apiOld.recipes.ingredients;
 
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import net.minecraft.item.ItemStack;

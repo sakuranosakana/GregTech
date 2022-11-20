@@ -7,7 +7,7 @@ import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.apiOld.unification.material.MarkerMaterials.Tier;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.metatileentities.MetaTileEntities.*;

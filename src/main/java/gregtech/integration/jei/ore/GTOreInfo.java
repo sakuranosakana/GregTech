@@ -2,7 +2,7 @@ package gregtech.integration.jei.ore;
 
 import com.google.common.collect.ImmutableList;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.apiOld.worldgen.config.FillerConfigUtils;
 import gregtech.apiOld.worldgen.config.OreDepositDefinition;

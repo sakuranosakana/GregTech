@@ -1,8 +1,8 @@
 package gregtech.apiOld.fluids.fluidType;
 
 import crafttweaker.annotations.ZenRegister;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.internal.Material;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.util.GTLog;
 import net.minecraftforge.fluids.Fluid;
 import stanhebben.zenscript.annotations.ZenClass;

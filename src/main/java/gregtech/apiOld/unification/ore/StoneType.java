@@ -1,8 +1,8 @@
 package gregtech.apiOld.unification.ore;
 
 import com.google.common.base.Preconditions;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.internal.Material;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.util.GTControlledRegistry;
 import gregtech.common.ConfigHolder;
 import net.minecraft.block.SoundType;

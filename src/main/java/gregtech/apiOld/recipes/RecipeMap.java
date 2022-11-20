@@ -23,7 +23,7 @@ import gregtech.apiOld.recipes.crafttweaker.CTRecipeBuilder;
 import gregtech.apiOld.recipes.ingredients.GTRecipeInput;
 import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import gregtech.apiOld.recipes.map.*;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.util.*;
 import gregtech.common.ConfigHolder;

@@ -1,6 +1,7 @@
 package gregtech.apiOld.unification.stack;
 
 import com.google.common.collect.ImmutableList;
+import gregtech.api.material.MaterialStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;

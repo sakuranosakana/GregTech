@@ -1,7 +1,7 @@
 package gregtech.common.pipelike.fluidpipe.net;
 
 import gregtech.apiOld.pipenet.WorldPipeNet;
-import gregtech.apiOld.unification.material.properties.FluidPipeProperties;
+import gregtech.core.material.properties.FluidPipeProperties;
 import net.minecraft.world.World;
 
 public class WorldFluidPipeNet extends WorldPipeNet<FluidPipeProperties, FluidPipeNet> {

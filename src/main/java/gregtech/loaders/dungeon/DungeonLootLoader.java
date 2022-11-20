@@ -1,7 +1,7 @@
 package gregtech.loaders.dungeon;
 
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.util.GTLog;
 import gregtech.common.ConfigHolder;

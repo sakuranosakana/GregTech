@@ -2,7 +2,7 @@ package gregtech.common.pipelike.fluidpipe.tile;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.pipenet.block.material.TileEntityMaterialPipeBase;
-import gregtech.apiOld.unification.material.properties.FluidPipeProperties;
+import gregtech.core.material.properties.FluidPipeProperties;
 import gregtech.common.pipelike.fluidpipe.FluidPipeType;
 import gregtech.common.pipelike.fluidpipe.net.FluidPipeNet;
 import gregtech.common.pipelike.fluidpipe.net.WorldFluidPipeNet;

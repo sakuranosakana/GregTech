@@ -5,7 +5,7 @@ import gregtech.apiOld.GTValues;
 import gregtech.apiOld.pipenet.block.BlockPipe;
 import gregtech.apiOld.pipenet.block.IPipeType;
 import gregtech.apiOld.pipenet.tile.IPipeTile;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.pipelike.itempipe.ItemPipeType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

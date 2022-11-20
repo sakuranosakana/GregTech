@@ -9,7 +9,7 @@ import gregtech.apiOld.pipenet.block.BlockPipe;
 import gregtech.apiOld.pipenet.block.IPipeType;
 import gregtech.apiOld.pipenet.block.material.TileEntityMaterialPipeBase;
 import gregtech.apiOld.pipenet.tile.IPipeTile;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.common.pipelike.cable.Insulation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

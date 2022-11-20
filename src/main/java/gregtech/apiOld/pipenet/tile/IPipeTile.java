@@ -2,7 +2,7 @@ package gregtech.apiOld.pipenet.tile;
 
 import gregtech.apiOld.pipenet.block.BlockPipe;
 import gregtech.apiOld.pipenet.block.IPipeType;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;

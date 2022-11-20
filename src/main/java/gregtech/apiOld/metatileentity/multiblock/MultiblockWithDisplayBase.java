@@ -14,7 +14,7 @@ import gregtech.apiOld.gui.widgets.ImageCycleButtonWidget;
 import gregtech.apiOld.pattern.PatternMatchContext;
 import gregtech.apiOld.pattern.TraceabilityPredicate;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.common.ConfigHolder;

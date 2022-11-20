@@ -2,7 +2,7 @@ package gregtech;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.GregTechAPI;
-import gregtech.api.modules.ModuleContainerRegistryEvent;
+import gregtech.api.events.ModuleContainerRegistryEvent;
 import gregtech.client.utils.BloomEffectUtil;
 import gregtech.core.command.CommandManager;
 import gregtech.core.network.NetworkHandler;

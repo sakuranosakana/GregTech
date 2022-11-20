@@ -1,10 +1,11 @@
 package gregtech.apiOld.unification;
 
 import com.google.common.base.Joiner;
+import gregtech.api.material.MaterialStack;
 import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.unification.material.MarkerMaterial;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.internal.Material;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.*;
 import gregtech.apiOld.util.CustomModPriorityComparator;

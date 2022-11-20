@@ -3,9 +3,9 @@ package gregtech.common.items.behaviors;
 import gregtech.apiOld.items.metaitem.MetaItem;
 import gregtech.apiOld.items.metaitem.stats.IItemDurabilityManager;
 import gregtech.apiOld.items.metaitem.stats.IItemMaxStackSizeProvider;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
-import gregtech.apiOld.unification.material.properties.ToolProperty;
+import gregtech.core.material.internal.Material;
+import gregtech.core.material.properties.PropertyKey;
+import gregtech.core.material.properties.ToolProperty;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 

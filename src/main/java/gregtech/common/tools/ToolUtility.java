@@ -2,10 +2,10 @@ package gregtech.common.tools;
 
 import codechicken.lib.raytracer.RayTracer;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Materials;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.material.Materials;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.unification.ore.OrePrefix;
-import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.api.material.MaterialStack;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.apiOld.util.TaskScheduler;
 import gregtech.common.blocks.BlockOre;

@@ -10,7 +10,7 @@ import gregtech.apiOld.metatileentity.multiblock.MultiblockAbility;
 import gregtech.apiOld.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.apiOld.recipes.RecipeMap;
 import gregtech.apiOld.recipes.RecipeMaps;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.util.GTLog;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;

@@ -9,7 +9,7 @@ import crafttweaker.mc1120.item.MCItemStack;
 import crafttweaker.zenscript.IBracketHandler;
 import gregtech.apiOld.items.metaitem.MetaItem;
 import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.common.blocks.BlockCompressed;
 import gregtech.common.blocks.BlockFrame;
 import gregtech.common.blocks.MetaBlocks;

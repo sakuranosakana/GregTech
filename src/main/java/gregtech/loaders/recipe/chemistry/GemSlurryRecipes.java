@@ -3,7 +3,7 @@ package gregtech.loaders.recipe.chemistry;
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.CENTRIFUGE_RECIPES;
 import static gregtech.apiOld.recipes.RecipeMaps.MIXER_RECIPES;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.dust;
 import static gregtech.apiOld.unification.ore.OrePrefix.dustTiny;
 

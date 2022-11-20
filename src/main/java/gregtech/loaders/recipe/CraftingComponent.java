@@ -2,8 +2,8 @@ package gregtech.loaders.recipe;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
-import gregtech.apiOld.unification.material.Materials;
-import gregtech.apiOld.unification.material.properties.BlastProperty;
+import gregtech.material.Materials;
+import gregtech.core.material.properties.BlastProperty;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockGlassCasing;

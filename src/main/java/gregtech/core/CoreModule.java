@@ -1,6 +1,7 @@
 package gregtech.core;
 
 import crafttweaker.CraftTweakerAPI;
+import gregtech.api.events.MaterialEvent;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.block.IHeatingCoilBlockStats;
@@ -17,7 +18,6 @@ import gregtech.apiOld.recipes.RecipeMap;
 import gregtech.apiOld.recipes.recipeproperties.TemperatureProperty;
 import gregtech.apiOld.sound.GTSounds;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Materials;
 import gregtech.apiOld.util.CapesRegistry;
 import gregtech.apiOld.util.GTLog;
 import gregtech.apiOld.util.NBTUtil;
@@ -58,7 +58,6 @@ import javax.annotation.Nonnull;
 import java.util.Map;
 
 import static gregtech.apiOld.GregTechAPI.*;
-import static gregtech.apiOld.GregTechAPI.HEATING_COILS;
 
 @GregTechModule(
         moduleID       = GregTechModules.MODULE_CORE,
@@ -106,17 +105,11 @@ public class CoreModule implements IGregTechModule {
         SimpleCapabilityManager.init();
 
         /* Start Material Registration */
-
-        // First, register CEu Materials
         MATERIAL_REGISTRY.unfreeze();
-        GTLog.logger.info("Registering GTCEu Materials");
-        Materials.register();
+        GTLog.logger.info("Registering Materials");
+        MinecraftForge.EVENT_BUS.post(MaterialEvent.getRegisterEvent());
 
-        // Then, register addon Materials
-        GTLog.logger.info("Registering addon Materials");
-        MinecraftForge.EVENT_BUS.post(new GregTechAPI.MaterialEvent());
-
-        // Then, run CraftTweaker Material registration scripts
+        // run CraftTweaker Material registration scripts
         if (Loader.isModLoaded(GTValues.MODID_CT)) {
             GTLog.logger.info("Running early CraftTweaker initialization scripts...");
             runEarlyCraftTweakerScripts();
@@ -125,9 +118,8 @@ public class CoreModule implements IGregTechModule {
         // Fire Post-Material event, intended for when Materials need to be iterated over in-full before freezing
         // Block entirely new Materials from being added in the Post event
         MATERIAL_REGISTRY.closeRegistry();
-        MinecraftForge.EVENT_BUS.post(new GregTechAPI.PostMaterialEvent());
+        MinecraftForge.EVENT_BUS.post(MaterialEvent.getRegistryClosedEvent());
 
-        // Freeze Material Registry before processing Items, Blocks, and Fluids
         MATERIAL_REGISTRY.freeze();
         /* End Material Registration */
 

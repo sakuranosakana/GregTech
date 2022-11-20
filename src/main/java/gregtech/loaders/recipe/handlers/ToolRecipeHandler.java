@@ -8,10 +8,10 @@ import gregtech.apiOld.recipes.ModHandler;
 import gregtech.apiOld.recipes.RecipeMaps;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.material.MarkerMaterials;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.Materials;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
-import gregtech.apiOld.unification.material.properties.ToolProperty;
+import gregtech.core.material.internal.Material;
+import gregtech.material.Materials;
+import gregtech.core.material.properties.PropertyKey;
+import gregtech.core.material.properties.ToolProperty;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
@@ -27,8 +27,7 @@ import java.util.ArrayList;
 import java.util.function.Function;
 
 import static gregtech.apiOld.GTValues.*;
-import static gregtech.apiOld.unification.material.info.MaterialFlags.*;
-import static gregtech.apiOld.unification.material.properties.PropertyKey.GEM;
+import static gregtech.core.material.properties.PropertyKey.GEM;
 import static gregtech.common.items.MetaItems.*;
 
 public class ToolRecipeHandler {

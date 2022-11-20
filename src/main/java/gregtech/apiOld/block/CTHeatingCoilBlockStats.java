@@ -4,7 +4,7 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.block.IBlockState;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import gregtech.apiOld.GregTechAPI;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 

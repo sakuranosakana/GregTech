@@ -2,8 +2,8 @@ package gregtech.integration.jei.recipe.primitive;
 
 import com.google.common.collect.ImmutableList;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.internal.Material;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;

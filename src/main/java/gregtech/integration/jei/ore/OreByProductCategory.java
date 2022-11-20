@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.integration.jei.recipe.primitive.BasicRecipeCategory;
 import gregtech.integration.jei.utils.render.FluidStackTextRenderer;

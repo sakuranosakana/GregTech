@@ -3,7 +3,7 @@ package gregtech.loaders.recipe;
 import gregtech.apiOld.recipes.RecipeMaps;
 
 import static gregtech.apiOld.GTValues.*;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 
 public class FuelRecipes {
 

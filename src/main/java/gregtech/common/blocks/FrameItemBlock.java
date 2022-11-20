@@ -1,6 +1,6 @@
 package gregtech.common.blocks;
 
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;

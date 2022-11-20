@@ -1,7 +1,7 @@
 package gregtech.loaders.recipe;
 
 import gregtech.apiOld.recipes.RecipeMaps;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 
 import static gregtech.apiOld.GTValues.*;
 

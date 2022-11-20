@@ -2,6 +2,7 @@ package gregtech.apiOld.unification.material;
 
 import com.google.common.collect.HashBiMap;
 import gregtech.apiOld.GTValues;
+import gregtech.core.material.internal.Material;
 import net.minecraft.item.EnumDyeColor;
 
 public class MarkerMaterials {

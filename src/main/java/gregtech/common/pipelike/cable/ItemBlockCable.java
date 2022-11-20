@@ -3,7 +3,7 @@ package gregtech.common.pipelike.cable;
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.pipenet.block.material.BlockMaterialPipe;
 import gregtech.apiOld.pipenet.block.material.ItemBlockMaterialPipe;
-import gregtech.apiOld.unification.material.properties.WireProperties;
+import gregtech.core.material.properties.WireProperties;
 import gregtech.apiOld.util.GTUtility;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;

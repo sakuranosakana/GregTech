@@ -1,9 +1,9 @@
 package gregtech.apiOld.util;
 
 import gregtech.apiOld.fluids.fluidType.FluidTypes;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.Materials;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.internal.Material;
+import gregtech.material.Materials;
+import gregtech.core.material.properties.PropertyKey;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;

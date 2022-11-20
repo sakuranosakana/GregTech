@@ -1,7 +1,7 @@
 package gregtech.apiOld.pipenet.block.material;
 
 import gregtech.apiOld.pipenet.block.ItemBlockPipe;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;

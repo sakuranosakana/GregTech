@@ -4,7 +4,7 @@ import gregtech.apiOld.GTValues;
 import gregtech.apiOld.enchants.EnchantmentHardHammer;
 import gregtech.apiOld.items.armor.ArmorMetaItem;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.util.CapesRegistry;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.apiOld.util.VirtualTankRegistry;

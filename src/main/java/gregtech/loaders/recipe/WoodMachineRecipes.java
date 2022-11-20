@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import static gregtech.apiOld.GTValues.ULV;
 import static gregtech.apiOld.GTValues.VA;
 import static gregtech.apiOld.recipes.RecipeMaps.*;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.BIO_CHAFF;
 

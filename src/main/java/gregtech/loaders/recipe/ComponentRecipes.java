@@ -2,7 +2,7 @@ package gregtech.loaders.recipe;
 
 import gregtech.apiOld.recipes.ModHandler;
 import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import net.minecraft.init.Items;
 
@@ -12,7 +12,7 @@ import java.util.Map;
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 

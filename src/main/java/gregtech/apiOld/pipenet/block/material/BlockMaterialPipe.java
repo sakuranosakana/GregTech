@@ -7,7 +7,7 @@ import gregtech.apiOld.pipenet.block.BlockPipe;
 import gregtech.apiOld.pipenet.block.IPipeType;
 import gregtech.apiOld.pipenet.tile.IPipeTile;
 import gregtech.apiOld.pipenet.tile.TileEntityPipeBase;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import net.minecraft.item.ItemStack;
 

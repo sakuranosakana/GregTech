@@ -1,7 +1,7 @@
 package gregtech.client.model.modelfactories;
 
 import gregtech.client.model.ModelFactory;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.material.info.MaterialIconSet;
 import gregtech.apiOld.unification.material.info.MaterialIconType;
 import gregtech.common.blocks.BlockCompressed;

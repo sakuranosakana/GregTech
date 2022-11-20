@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLER_RECIPES;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockMetalCasing.MetalCasingType.TITANIUM_STABLE;
 import static gregtech.common.blocks.BlockMetalCasing.MetalCasingType.TUNGSTENSTEEL_ROBUST;

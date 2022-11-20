@@ -2,8 +2,8 @@ package gregtech.common.items;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.core.material.internal.Material;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.apiOld.util.GTLog;

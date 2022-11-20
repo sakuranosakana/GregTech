@@ -2,7 +2,7 @@ package gregtech.apiOld.fluids;
 
 import gregtech.apiOld.fluids.fluidType.FluidType;
 import gregtech.apiOld.fluids.fluidType.FluidTypes;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.util.FluidTooltipUtil;
 import gregtech.apiOld.util.GTUtility;
 import net.minecraft.client.resources.I18n;

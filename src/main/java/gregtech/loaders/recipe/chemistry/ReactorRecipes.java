@@ -3,7 +3,7 @@ package gregtech.loaders.recipe.chemistry;
 import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.material.MarkerMaterials;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.common.items.MetaItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,7 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.CHEMICAL_RECIPES;
 import static gregtech.apiOld.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 
 public class ReactorRecipes {

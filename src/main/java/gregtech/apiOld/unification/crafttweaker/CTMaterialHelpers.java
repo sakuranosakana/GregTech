@@ -5,8 +5,8 @@ import crafttweaker.CraftTweakerAPI;
 import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.fluids.fluidType.FluidType;
 import gregtech.apiOld.fluids.fluidType.FluidTypes;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.core.material.internal.Material;
+import gregtech.api.material.MaterialStack;
 
 import java.util.Arrays;
 import java.util.Objects;

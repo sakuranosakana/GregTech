@@ -1,7 +1,7 @@
 package gregtech;
 
 import gregtech.apiOld.fluids.MetaFluids;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
 import net.minecraft.client.resources.I18n;

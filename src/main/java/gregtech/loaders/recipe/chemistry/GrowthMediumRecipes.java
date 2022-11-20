@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.*;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.dust;
 import static gregtech.apiOld.unification.ore.OrePrefix.dustTiny;
 import static gregtech.common.items.MetaItems.*;

@@ -20,7 +20,7 @@ import gregtech.apiOld.pipenet.PipeNet;
 import gregtech.apiOld.pipenet.WorldPipeNet;
 import gregtech.apiOld.pipenet.tile.IPipeTile;
 import gregtech.apiOld.pipenet.tile.TileEntityPipeBase;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockFrame;

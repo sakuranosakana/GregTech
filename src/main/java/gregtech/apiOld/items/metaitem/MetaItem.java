@@ -17,7 +17,7 @@ import gregtech.apiOld.items.gui.PlayerInventoryHolder;
 import gregtech.apiOld.items.metaitem.stats.*;
 import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.ItemMaterialInfo;
 import gregtech.apiOld.util.LocalizationUtils;

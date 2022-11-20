@@ -1,11 +1,11 @@
 package gregtech.loaders.recipe.handlers;
 
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.properties.DustProperty;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.internal.Material;
+import gregtech.core.material.properties.DustProperty;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.unification.ore.OrePrefix;
-import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.api.material.MaterialStack;
 import gregtech.loaders.recipe.RecyclingRecipes;
 
 import java.util.ArrayList;

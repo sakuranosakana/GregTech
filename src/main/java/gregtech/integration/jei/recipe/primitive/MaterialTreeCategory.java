@@ -5,7 +5,7 @@ import gregtech.apiOld.GTValues;
 import gregtech.apiOld.gui.GuiTextures;
 import gregtech.apiOld.recipes.recipeproperties.TemperatureProperty;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.integration.jei.utils.render.DrawableRegistry;
 import mezz.jei.api.IGuiHelper;

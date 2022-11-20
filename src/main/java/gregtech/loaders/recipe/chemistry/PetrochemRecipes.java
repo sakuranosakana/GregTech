@@ -1,11 +1,11 @@
 package gregtech.loaders.recipe.chemistry;
 
 import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.*;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 
 public class PetrochemRecipes {

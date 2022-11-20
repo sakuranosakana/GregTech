@@ -4,10 +4,10 @@ import gregtech.apiOld.GregTechAPI;
 import gregtech.apiOld.recipes.RecipeBuilder;
 import gregtech.apiOld.recipes.RecipeMaps;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.internal.Material;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.unification.ore.OrePrefix;
-import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.api.material.MaterialStack;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -16,7 +16,6 @@ import java.util.List;
 
 import static gregtech.apiOld.GTValues.LV;
 import static gregtech.apiOld.GTValues.VA;
-import static gregtech.apiOld.unification.material.info.MaterialFlags.*;
 
 public class DecompositionRecipeHandler {
 

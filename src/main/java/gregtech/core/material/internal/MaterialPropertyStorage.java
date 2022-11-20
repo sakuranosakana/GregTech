@@ -1,0 +1,73 @@
+package gregtech.core.material.internal;
+
+import gregtech.api.material.IMaterialProperty;
+import gregtech.api.material.PropertyKey;
+
+import java.util.*;
+
+public class MaterialPropertyStorage {
+
+    private final Map<PropertyKey<? extends IMaterialProperty>, IMaterialProperty> propertyMap;
+    private Material material;
+
+    public MaterialPropertyStorage() {
+        propertyMap = new HashMap<>();
+    }
+
+    public boolean isEmpty() {
+        return propertyMap.isEmpty();
+    }
+
+    public Collection<IMaterialProperty> getProperties() {
+        return propertyMap.values();
+    }
+
+    public <T extends IMaterialProperty> T getProperty(PropertyKey<T> key) {
+        return key.cast(propertyMap.get(key));
+    }
+
+    public <T extends IMaterialProperty> boolean hasProperty(PropertyKey<T> key) {
+        return propertyMap.get(key) != null;
+    }
+
+    public <T extends IMaterialProperty> void setProperty(PropertyKey<T> key, IMaterialProperty value) {
+        if (value == null) throw new IllegalArgumentException("Material Property must not be null!");
+        if (hasProperty(key))
+            throw new IllegalArgumentException("Material Property " + key.toString() + " already registered!");
+        propertyMap.put(key, value);
+    }
+
+    public <T extends IMaterialProperty> void ensureSet(PropertyKey<T> key, boolean verify) {
+        if (!hasProperty(key)) {
+            propertyMap.put(key, key.constructDefault());
+            if (verify) verify();
+        }
+    }
+
+    public <T extends IMaterialProperty> void ensureSet(PropertyKey<T> key) {
+        ensureSet(key, false);
+    }
+
+    public void verify() {
+        List<IMaterialProperty> oldList;
+        do {
+            oldList = new ArrayList<>(propertyMap.values());
+            oldList.forEach(p -> p.verifyProperty(material));
+        } while (oldList.size() != propertyMap.size());
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        propertyMap.forEach((k, v) -> sb.append(k.toString()).append("\n"));
+        return sb.toString();
+    }
+}

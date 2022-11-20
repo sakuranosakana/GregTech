@@ -6,9 +6,9 @@ import gregtech.apiOld.recipes.builders.BlastRecipeBuilder;
 import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.material.MarkerMaterials;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.Materials;
-import gregtech.apiOld.unification.material.properties.*;
+import gregtech.core.material.internal.Material;
+import gregtech.material.Materials;
+import gregtech.core.material.properties.*;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.apiOld.util.GTUtility;
@@ -24,7 +24,6 @@ import java.util.List;
 
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.*;
-import static gregtech.apiOld.unification.material.info.MaterialFlags.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 
 public class MaterialRecipeHandler {

@@ -9,7 +9,7 @@ import gregtech.apiOld.recipes.builders.*;
 import gregtech.apiOld.recipes.ingredients.GTRecipeInput;
 import gregtech.apiOld.recipes.machines.*;
 import gregtech.apiOld.sound.GTSounds;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import net.minecraft.init.SoundEvents;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenProperty;

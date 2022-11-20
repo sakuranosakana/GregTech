@@ -4,8 +4,8 @@ import gregtech.apiOld.recipes.ModHandler;
 import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.core.material.internal.Material;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.apiOld.util.GTLog;
@@ -24,7 +24,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreIngredient;
 
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class CraftingRecipeLoader {

@@ -21,7 +21,7 @@ import gregtech.apiOld.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.apiOld.pattern.BlockPattern;
 import gregtech.apiOld.pattern.FactoryBlockPattern;
 import gregtech.apiOld.pattern.PatternMatchContext;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.util.GTTransferUtils;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;

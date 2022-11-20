@@ -1,7 +1,7 @@
 package gregtech.apiOld.block;
 
 import gregtech.apiOld.recipes.recipeproperties.TemperatureProperty;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

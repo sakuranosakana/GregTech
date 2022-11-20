@@ -6,7 +6,7 @@ import gregtech.apiOld.items.metaitem.MetaItem;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.pipenet.block.material.BlockMaterialPipe;
 import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.common.blocks.BlockCompressed;
 import gregtech.common.blocks.BlockFrame;

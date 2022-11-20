@@ -3,7 +3,7 @@ package gregtech.common.pipelike.itempipe.net;
 import gregtech.apiOld.cover.CoverBehavior;
 import gregtech.apiOld.pipenet.PipeNetWalker;
 import gregtech.apiOld.pipenet.tile.IPipeTile;
-import gregtech.apiOld.unification.material.properties.ItemPipeProperties;
+import gregtech.core.material.properties.ItemPipeProperties;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.common.covers.CoverItemFilter;
 import gregtech.common.covers.CoverShutter;

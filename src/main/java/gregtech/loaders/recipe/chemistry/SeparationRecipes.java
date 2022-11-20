@@ -20,7 +20,7 @@ import java.util.List;
 
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.*;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.PLANT_BALL;
 import static gregtech.common.items.MetaItems.STICKY_RESIN;

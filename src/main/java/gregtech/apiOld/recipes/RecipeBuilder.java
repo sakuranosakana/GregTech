@@ -20,7 +20,7 @@ import gregtech.apiOld.recipes.recipeproperties.IRecipePropertyStorage;
 import gregtech.apiOld.recipes.recipeproperties.RecipeProperty;
 import gregtech.apiOld.recipes.recipeproperties.RecipePropertyStorage;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.util.EnumValidationResult;
 import gregtech.apiOld.util.GTLog;

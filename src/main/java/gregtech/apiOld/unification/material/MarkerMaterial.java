@@ -1,6 +1,7 @@
 package gregtech.apiOld.unification.material;
 
 import gregtech.apiOld.unification.OreDictUnifier;
+import gregtech.core.material.internal.Material;
 
 /**
  * MarkerMaterial is type of material used for generic things like material re-registration and use in recipes

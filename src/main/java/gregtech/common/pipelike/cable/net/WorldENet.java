@@ -1,7 +1,7 @@
 package gregtech.common.pipelike.cable.net;
 
 import gregtech.apiOld.pipenet.WorldPipeNet;
-import gregtech.apiOld.unification.material.properties.WireProperties;
+import gregtech.core.material.properties.WireProperties;
 import net.minecraft.world.World;
 
 public class WorldENet extends WorldPipeNet<WireProperties, EnergyNet> {

@@ -4,7 +4,7 @@ import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.dust;
 
 public class LCRCombined {

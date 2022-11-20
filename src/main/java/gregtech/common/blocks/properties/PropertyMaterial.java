@@ -3,8 +3,8 @@ package gregtech.common.blocks.properties;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import gregtech.apiOld.GregTechAPI;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.core.material.internal.Material;
+import gregtech.material.Materials;
 import net.minecraft.block.properties.PropertyHelper;
 
 import javax.annotation.Nonnull;

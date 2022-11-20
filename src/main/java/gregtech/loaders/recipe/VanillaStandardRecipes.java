@@ -7,7 +7,7 @@ import gregtech.apiOld.recipes.ingredients.GTRecipeOreInput;
 import gregtech.apiOld.recipes.ingredients.IntCircuitIngredient;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.material.MarkerMaterials;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
@@ -23,7 +23,7 @@ import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.items.OreDictNames.cobblestone;
 import static gregtech.apiOld.items.OreDictNames.stoneCobble;
 import static gregtech.apiOld.recipes.RecipeMaps.*;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 

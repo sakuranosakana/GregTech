@@ -6,7 +6,7 @@ import gregtech.apiOld.items.metaitem.stats.IItemBehaviour;
 import gregtech.apiOld.items.toolitem.IToolStats;
 import gregtech.apiOld.pipenet.tile.IPipeTile;
 import gregtech.apiOld.pipenet.tile.TileEntityPipeBase;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.common.blocks.BlockFrame;
 import gregtech.common.blocks.MetaBlocks;

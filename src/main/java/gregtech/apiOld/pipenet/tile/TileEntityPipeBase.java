@@ -8,7 +8,7 @@ import gregtech.apiOld.pipenet.PipeNet;
 import gregtech.apiOld.pipenet.WorldPipeNet;
 import gregtech.apiOld.pipenet.block.BlockPipe;
 import gregtech.apiOld.pipenet.block.IPipeType;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;

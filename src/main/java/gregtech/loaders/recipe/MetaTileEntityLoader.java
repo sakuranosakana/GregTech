@@ -8,7 +8,7 @@ import gregtech.apiOld.recipes.ModHandler;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.material.MarkerMaterials;
 import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;

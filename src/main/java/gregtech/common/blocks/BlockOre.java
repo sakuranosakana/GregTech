@@ -2,9 +2,9 @@ package gregtech.common.blocks;
 
 import gregtech.apiOld.GTValues;
 import gregtech.apiOld.GregTechAPI;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.material.info.MaterialFlags;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.unification.ore.StoneType;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.apiOld.util.IBlockOre;

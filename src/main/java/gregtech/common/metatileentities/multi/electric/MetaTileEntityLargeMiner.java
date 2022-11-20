@@ -28,8 +28,8 @@ import gregtech.apiOld.pattern.FactoryBlockPattern;
 import gregtech.apiOld.pattern.PatternMatchContext;
 import gregtech.apiOld.recipes.RecipeMaps;
 import gregtech.apiOld.sound.GTSounds;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.core.material.internal.Material;
+import gregtech.material.Materials;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-import static gregtech.apiOld.unification.material.Materials.DrillingFluid;
+import static gregtech.material.Materials.DrillingFluid;
 
 public class MetaTileEntityLargeMiner extends MultiblockWithDisplayBase implements IMiner, IControllable, IDataInfoProvider {
 

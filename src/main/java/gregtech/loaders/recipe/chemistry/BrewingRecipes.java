@@ -1,12 +1,12 @@
 package gregtech.loaders.recipe.chemistry;
 
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import static gregtech.apiOld.recipes.RecipeMaps.BREWING_RECIPES;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.dust;
 import static gregtech.common.items.MetaItems.BIO_CHAFF;
 

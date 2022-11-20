@@ -9,7 +9,7 @@ import gregtech.apiOld.gui.widgets.*;
 import gregtech.apiOld.terminal.gui.widgets.DraggableScrollableWidgetGroup;
 import gregtech.apiOld.terminal.os.TerminalTheme;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.api.material.MaterialStack;
 import gregtech.apiOld.util.Position;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;

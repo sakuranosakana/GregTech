@@ -2,7 +2,7 @@ package gregtech.common.pipelike.itempipe.tile;
 
 import gregtech.apiOld.pipenet.block.material.TileEntityMaterialPipeBase;
 import gregtech.apiOld.pipenet.tile.IPipeTile;
-import gregtech.apiOld.unification.material.properties.ItemPipeProperties;
+import gregtech.core.material.properties.ItemPipeProperties;
 import gregtech.apiOld.util.FacingPos;
 import gregtech.common.pipelike.itempipe.ItemPipeType;
 import gregtech.common.pipelike.itempipe.net.ItemNetHandler;

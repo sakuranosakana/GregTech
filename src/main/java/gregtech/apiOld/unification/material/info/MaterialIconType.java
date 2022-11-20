@@ -2,6 +2,7 @@ package gregtech.apiOld.unification.material.info;
 
 import com.google.common.base.CaseFormat;
 import com.google.common.base.Preconditions;
+import gregtech.core.material.internal.MaterialIconSet;
 import gregtech.apiOld.GTValues;
 import net.minecraft.util.ResourceLocation;
 

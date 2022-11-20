@@ -1,7 +1,7 @@
 package gregtech.common.pipelike.cable;
 
 import gregtech.apiOld.pipenet.block.material.IMaterialPipeType;
-import gregtech.apiOld.unification.material.properties.WireProperties;
+import gregtech.core.material.properties.WireProperties;
 import gregtech.apiOld.unification.ore.OrePrefix;
 
 import javax.annotation.Nonnull;

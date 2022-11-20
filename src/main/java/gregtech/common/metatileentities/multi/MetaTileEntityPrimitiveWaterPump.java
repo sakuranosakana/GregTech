@@ -13,7 +13,7 @@ import gregtech.apiOld.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.apiOld.pattern.BlockPattern;
 import gregtech.apiOld.pattern.FactoryBlockPattern;
 import gregtech.apiOld.pattern.PatternMatchContext;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockSteamCasing;

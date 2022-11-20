@@ -6,7 +6,7 @@ import gregtech.core.network.packets.PacketProspecting;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.ore.StoneType;
-import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.api.material.MaterialStack;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.apiOld.util.Position;
 import gregtech.apiOld.util.Size;

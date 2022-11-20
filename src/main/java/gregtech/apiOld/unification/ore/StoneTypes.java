@@ -1,6 +1,6 @@
 package gregtech.apiOld.unification.ore;
 
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.common.blocks.BlockStoneSmooth;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.*;

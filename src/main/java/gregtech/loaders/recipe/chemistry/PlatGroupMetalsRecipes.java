@@ -2,7 +2,7 @@ package gregtech.loaders.recipe.chemistry;
 
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.*;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.crushedPurified;
 import static gregtech.apiOld.unification.ore.OrePrefix.dust;
 

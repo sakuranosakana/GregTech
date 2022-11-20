@@ -8,7 +8,7 @@ import gregtech.api.capability.IEnergyContainer;
 import gregtech.apiOld.metatileentity.IDataInfoProvider;
 import gregtech.apiOld.pipenet.block.BlockPipe;
 import gregtech.apiOld.pipenet.block.material.TileEntityMaterialPipeBase;
-import gregtech.apiOld.unification.material.properties.WireProperties;
+import gregtech.core.material.properties.WireProperties;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.apiOld.util.PerTickLongCounter;
 import gregtech.apiOld.util.TaskScheduler;

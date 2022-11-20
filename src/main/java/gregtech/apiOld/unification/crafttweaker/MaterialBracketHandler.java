@@ -5,7 +5,7 @@ import crafttweaker.annotations.BracketHandler;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.zenscript.IBracketHandler;
 import gregtech.apiOld.GregTechAPI;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import stanhebben.zenscript.compiler.IEnvironmentGlobal;
 import stanhebben.zenscript.expression.ExpressionCallStatic;
 import stanhebben.zenscript.expression.ExpressionString;

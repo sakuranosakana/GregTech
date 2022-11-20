@@ -3,7 +3,7 @@ package gregtech.common.pipelike.itempipe.net;
 import gregtech.apiOld.pipenet.Node;
 import gregtech.apiOld.pipenet.PipeNet;
 import gregtech.apiOld.pipenet.WorldPipeNet;
-import gregtech.apiOld.unification.material.properties.ItemPipeProperties;
+import gregtech.core.material.properties.ItemPipeProperties;
 import gregtech.apiOld.util.FacingPos;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

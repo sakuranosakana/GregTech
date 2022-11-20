@@ -3,7 +3,7 @@ package gregtech.common.pipelike.fluidpipe;
 import gregtech.apiOld.pipenet.block.material.BlockMaterialPipe;
 import gregtech.apiOld.pipenet.block.material.ItemBlockMaterialPipe;
 import gregtech.apiOld.recipes.ModHandler;
-import gregtech.apiOld.unification.material.properties.FluidPipeProperties;
+import gregtech.core.material.properties.FluidPipeProperties;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;

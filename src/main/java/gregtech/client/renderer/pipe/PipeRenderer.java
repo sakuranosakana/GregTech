@@ -22,7 +22,7 @@ import gregtech.apiOld.pipenet.block.ItemBlockPipe;
 import gregtech.apiOld.pipenet.block.material.BlockMaterialPipe;
 import gregtech.apiOld.pipenet.block.material.TileEntityMaterialPipeBase;
 import gregtech.apiOld.pipenet.tile.IPipeTile;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.material.info.MaterialIconType;
 import gregtech.apiOld.util.GTUtility;
 import gregtech.apiOld.util.ModCompatibility;

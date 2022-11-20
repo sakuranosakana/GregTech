@@ -5,13 +5,13 @@ import gregtech.apiOld.GTValues;
 import gregtech.apiOld.recipes.RecipeBuilder;
 import gregtech.apiOld.recipes.RecipeMaps;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.Materials;
-import gregtech.apiOld.unification.material.properties.BlastProperty;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.internal.Material;
+import gregtech.material.Materials;
+import gregtech.core.material.properties.BlastProperty;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.stack.ItemMaterialInfo;
-import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.api.material.MaterialStack;
 import gregtech.apiOld.unification.stack.UnificationEntry;
 import gregtech.apiOld.util.GTUtility;
 import net.minecraft.item.ItemStack;
@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 
 import static gregtech.apiOld.GTValues.L;
 import static gregtech.apiOld.GTValues.M;
-import static gregtech.apiOld.unification.material.info.MaterialFlags.*;
 
 public class RecyclingRecipes {
 

@@ -1,6 +1,6 @@
 package gregtech.apiOld.unification.stack;
 
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.unification.ore.OrePrefix;
 
 import javax.annotation.Nullable;

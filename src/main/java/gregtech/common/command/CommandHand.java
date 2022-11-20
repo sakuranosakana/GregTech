@@ -9,7 +9,7 @@ import gregtech.apiOld.items.toolitem.ToolMetaItem;
 import gregtech.apiOld.items.toolitem.ToolMetaItem.MetaToolValueItem;
 import gregtech.apiOld.unification.OreDictUnifier;
 import gregtech.apiOld.unification.ore.OrePrefix;
-import gregtech.apiOld.unification.stack.MaterialStack;
+import gregtech.api.material.MaterialStack;
 import gregtech.apiOld.util.CTRecipeHelper;
 import gregtech.apiOld.util.ClipboardUtil;
 import net.minecraft.command.CommandBase;

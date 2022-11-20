@@ -6,7 +6,7 @@ import com.google.common.collect.Tables;
 import gregtech.client.model.ModelFactory;
 import gregtech.apiOld.unification.material.info.MaterialIconSet;
 import gregtech.apiOld.unification.material.info.MaterialIconType;
-import gregtech.apiOld.unification.material.properties.PropertyKey;
+import gregtech.core.material.properties.PropertyKey;
 import gregtech.apiOld.unification.ore.StoneType;
 import gregtech.client.model.customtexture.CustomTexture;
 import gregtech.client.utils.BloomEffectUtil;

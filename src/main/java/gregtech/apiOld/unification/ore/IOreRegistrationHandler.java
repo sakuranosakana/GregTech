@@ -1,6 +1,6 @@
 package gregtech.apiOld.unification.ore;
 
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 
 @FunctionalInterface
 public interface IOreRegistrationHandler {

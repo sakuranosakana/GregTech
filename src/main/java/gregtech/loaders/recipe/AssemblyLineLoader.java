@@ -4,7 +4,7 @@ import gregtech.apiOld.unification.material.MarkerMaterials.Tier;
 
 import static gregtech.apiOld.GTValues.*;
 import static gregtech.apiOld.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.FUSION_COIL;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL;

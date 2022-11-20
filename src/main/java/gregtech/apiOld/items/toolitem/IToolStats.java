@@ -2,7 +2,7 @@ package gregtech.apiOld.items.toolitem;
 
 import gregtech.apiOld.enchants.EnchantmentData;
 import gregtech.apiOld.items.metaitem.MetaItem.MetaValueItem;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.common.ConfigHolder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;

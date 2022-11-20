@@ -4,7 +4,7 @@ import gregtech.apiOld.items.toolitem.IToolStats;
 import gregtech.apiOld.items.toolitem.ToolMetaItem;
 import gregtech.apiOld.items.toolitem.ToolMetaItem.MetaToolValueItem;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
+import gregtech.core.material.internal.Material;
 import gregtech.apiOld.util.function.Task;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;

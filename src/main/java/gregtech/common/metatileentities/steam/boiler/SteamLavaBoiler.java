@@ -12,7 +12,7 @@ import gregtech.apiOld.gui.ModularUI;
 import gregtech.apiOld.gui.widgets.TankWidget;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.apiOld.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;

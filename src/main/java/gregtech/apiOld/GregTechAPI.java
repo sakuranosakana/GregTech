@@ -4,15 +4,15 @@ import com.google.common.collect.Lists;
 import crafttweaker.annotations.ZenRegister;
 import gregtech.apiOld.block.IHeatingCoilBlockStats;
 import gregtech.apiOld.block.machines.BlockMachine;
-import gregtech.apiOld.command.ICommandManager;
+import gregtech.api.command.ICommandManager;
 import gregtech.apiOld.cover.CoverDefinition;
 import gregtech.apiOld.gui.UIFactory;
 import gregtech.apiOld.metatileentity.MetaTileEntity;
 import gregtech.api.modules.IModuleManager;
 import gregtech.api.network.INetworkHandler;
 import gregtech.apiOld.unification.OreDictUnifier;
-import gregtech.apiOld.unification.material.Material;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.core.material.internal.Material;
+import gregtech.material.Materials;
 import gregtech.apiOld.unification.ore.OrePrefix;
 import gregtech.apiOld.unification.ore.StoneType;
 import gregtech.apiOld.util.BaseCreativeTab;
@@ -70,21 +70,13 @@ public class GregTechAPI {
         }
 
         public void register(int id, String key, V value) {
-            if (registry != null) registry.register(id, new ResourceLocation(Loader.instance().activeModContainer().getModId(), key), value);
-        }
-    }
-
-    public static class MaterialEvent extends GenericEvent<Material> {
-
-        public MaterialEvent() {
-            super(Material.class);
-        }
-    }
-
-    public static class PostMaterialEvent extends GenericEvent<Material> {
-
-        public PostMaterialEvent() {
-            super(Material.class);
+            if (registry != null) {
+                String activeMod = Loader.instance().activeModContainer().getModId();
+                if (GTValues.MODID.equals(activeMod)) {
+                    activeMod = GregTechAPI.moduleManager.getLoadedContainer().getID();
+                }
+                registry.register(id, new ResourceLocation(activeMod, key), value);
+            }
         }
     }
 

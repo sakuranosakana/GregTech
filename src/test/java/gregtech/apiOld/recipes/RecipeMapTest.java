@@ -13,7 +13,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static org.junit.Assert.*;
 
 public class RecipeMapTest {

@@ -8,7 +8,7 @@ import net.minecraft.init.Items;
 import static gregtech.apiOld.GTValues.ULV;
 import static gregtech.apiOld.GTValues.VA;
 import static gregtech.apiOld.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES;
-import static gregtech.apiOld.unification.material.Materials.*;
+import static gregtech.material.Materials.*;
 import static gregtech.apiOld.unification.ore.OrePrefix.*;
 
 public class ChemicalBathRecipes {

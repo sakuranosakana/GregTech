@@ -7,7 +7,7 @@ import gregtech.apiOld.capability.impl.FluidTankList;
 import gregtech.apiOld.recipes.Recipe;
 import gregtech.apiOld.recipes.RecipeMap;
 import gregtech.apiOld.recipes.builders.BlastRecipeBuilder;
-import gregtech.apiOld.unification.material.Materials;
+import gregtech.material.Materials;
 import gregtech.apiOld.util.GTHashMaps;
 import gregtech.apiOld.util.OverlayedFluidHandler;
 import gregtech.apiOld.util.OverlayedItemHandler;

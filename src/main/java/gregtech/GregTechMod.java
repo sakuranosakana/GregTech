@@ -2,10 +2,10 @@ package gregtech;
 
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
-import gregtech.api.modules.ModuleContainerRegistryEvent;
+import gregtech.api.module.ModuleContainerRegistryEvent;
 import gregtech.client.utils.BloomEffectUtil;
-import gregtech.modules.GregTechModules;
-import gregtech.modules.ModuleManager;
+import gregtech.module.GregTechModules;
+import gregtech.module.ModuleManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;

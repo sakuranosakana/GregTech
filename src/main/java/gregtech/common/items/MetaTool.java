@@ -4,7 +4,7 @@ import gregtech.api.GTValues;
 import gregtech.api.items.ToolDictNames;
 import gregtech.api.items.metaitem.ElectricStats;
 import gregtech.api.items.toolitem.*;
-import gregtech.core.sound.GTSoundEvents;
+import gregtech.tool.sound.ToolSounds;
 import gregtech.common.ConfigHolder;
 import gregtech.common.tools.*;
 import gregtech.common.tools.largedrills.ToolDrills;
@@ -43,7 +43,7 @@ public class MetaTool extends ToolMetaItem<ToolMetaItem<?>.MetaToolValueItem> {
         SAW = addItem(5, "tool.saw").setToolStats(new ToolSaw())
                 .setFullRepairCost(2)
                 .addOreDict(ToolDictNames.craftingToolSaw)
-                .setSound(GTSoundEvents.SAW_TOOL);
+                .setSound(ToolSounds.SAW_TOOL);
 
         HARD_HAMMER = addItem(6, "tool.hard_hammer").setToolStats(new ToolHardHammer())
                 .setFullRepairCost(6)
@@ -55,18 +55,18 @@ public class MetaTool extends ToolMetaItem<ToolMetaItem<?>.MetaToolValueItem> {
                 .setFullRepairCost(6)
                 .addOreDict(ToolDictNames.craftingToolSoftHammer)
                 .addComponents(new SoftMalletItemStat())
-                .setSound(GTSoundEvents.SOFT_HAMMER_TOOL);
+                .setSound(ToolSounds.SOFT_HAMMER_TOOL);
 
         WRENCH = addItem(8, "tool.wrench").setToolStats(new ToolWrench())
                 .setFullRepairCost(6)
                 .addOreDict(ToolDictNames.craftingToolWrench)
                 .addComponents(new WrenchItemStat())
-                .setSound(GTSoundEvents.WRENCH_TOOL);
+                .setSound(ToolSounds.WRENCH_TOOL);
 
         FILE = addItem(9, "tool.file").setToolStats(new ToolFile())
                 .setFullRepairCost(2)
                 .addOreDict(ToolDictNames.craftingToolFile)
-                .setSound(GTSoundEvents.FILE_TOOL);
+                .setSound(ToolSounds.FILE_TOOL);
 
         CROWBAR = addItem(10, "tool.crowbar").setToolStats(new ToolCrowbar())
                 .setFullRepairCost(1.5)
@@ -77,33 +77,33 @@ public class MetaTool extends ToolMetaItem<ToolMetaItem<?>.MetaToolValueItem> {
                 .setFullRepairCost(1)
                 .addOreDict(ToolDictNames.craftingToolScrewdriver)
                 .addComponents(new ScrewdriverItemStat())
-                .setSound(GTSoundEvents.SCREWDRIVER_TOOL);
+                .setSound(ToolSounds.SCREWDRIVER_TOOL);
 
         MORTAR = addItem(12, "tool.mortar").setToolStats(new ToolMortar())
                 .setFullRepairCost(2)
                 .addOreDict(ToolDictNames.craftingToolMortar)
-                .setSound(GTSoundEvents.MORTAR_TOOL);
+                .setSound(ToolSounds.MORTAR_TOOL);
 
         WIRE_CUTTER = addItem(13, "tool.wire_cutter").setToolStats(new ToolWireCutter())
                 .setFullRepairCost(4.125)
                 .addOreDict(ToolDictNames.craftingToolWireCutter)
                 .addComponents(new CutterItemStat())
-                .setSound(GTSoundEvents.WIRECUTTER_TOOL);
+                .setSound(ToolSounds.WIRECUTTER_TOOL);
 
         BRANCH_CUTTER = addItem(14, "tool.branch_cutter").setToolStats(new ToolBranchCutter())
                 .setFullRepairCost(5.125)
                 .addOreDict(ToolDictNames.craftingToolBranchCutter)
-                .setSound(GTSoundEvents.WIRECUTTER_TOOL);
+                .setSound(ToolSounds.WIRECUTTER_TOOL);
 
         KNIFE = addItem(15, "tool.knife").setToolStats(new ToolKnife())
                 .setFullRepairCost(1.5)
                 .addOreDict(ToolDictNames.craftingToolBlade, ToolDictNames.craftingToolKnife)
-                .setSound(GTSoundEvents.SAW_TOOL);
+                .setSound(ToolSounds.SAW_TOOL);
 
         BUTCHERY_KNIFE = addItem(16, "tool.butchery_knife").setToolStats(new ToolButcheryKnife())
                 .setFullRepairCost(4.5)
                 .addOreDict(ToolDictNames.craftingToolBlade)
-                .setSound(GTSoundEvents.SAW_TOOL);
+                .setSound(ToolSounds.SAW_TOOL);
 
         SENSE = addItem(17, "tool.sense").setToolStats(new ToolSense())
                 .setFullRepairCost(3)
@@ -112,7 +112,7 @@ public class MetaTool extends ToolMetaItem<ToolMetaItem<?>.MetaToolValueItem> {
         PLUNGER = addItem(18, "tool.plunger").setToolStats(new ToolPlunger())
                 .setFullRepairCost(2)
                 .addOreDict(ToolDictNames.craftingToolPlunger)
-                .setSound(GTSoundEvents.PLUNGER_TOOL);
+                .setSound(ToolSounds.PLUNGER_TOOL);
 
         MINING_HAMMER = addItem(19, "tool.mining_hammer").setToolStats(new ToolMiningHammer())
                 .setFullRepairCost(6);
@@ -121,31 +121,31 @@ public class MetaTool extends ToolMetaItem<ToolMetaItem<?>.MetaToolValueItem> {
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolMiningDrill)
                 .addComponents(ElectricStats.createElectricItem(100000L, 1L))
-                .setSound(GTSoundEvents.DRILL_TOOL);
+                .setSound(ToolSounds.DRILL_TOOL);
 
         DRILL_MV = addItem(21, "tool.drill.mv").setToolStats(new ToolDrills.ToolDrillMV())
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolMiningDrill)
                 .addComponents(ElectricStats.createElectricItem(400000L, 2L))
-                .setSound(GTSoundEvents.DRILL_TOOL);
+                .setSound(ToolSounds.DRILL_TOOL);
 
         DRILL_HV = addItem(22, "tool.drill.hv").setToolStats(new ToolDrills.ToolDrillHV())
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolMiningDrill)
                 .addComponents(ElectricStats.createElectricItem(1600000L, 3L))
-                .setSound(GTSoundEvents.DRILL_TOOL);
+                .setSound(ToolSounds.DRILL_TOOL);
 
         DRILL_EV = addItem(23, "tool.drill.ev").setToolStats(new ToolDrills.ToolDrillEV())
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolMiningDrill)
                 .addComponents(ElectricStats.createElectricItem(6400000L, 4L))
-                .setSound(GTSoundEvents.DRILL_TOOL);
+                .setSound(ToolSounds.DRILL_TOOL);
 
         DRILL_IV = addItem(24, "tool.drill.iv").setToolStats(new ToolDrills.ToolDrillIV())
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolMiningDrill)
                 .addComponents(ElectricStats.createElectricItem(25600000L, 5L))
-                .setSound(GTSoundEvents.DRILL_TOOL);
+                .setSound(ToolSounds.DRILL_TOOL);
 
         if (!ConfigHolder.tools.enableHighTierDrills) {
             DRILL_EV.setInvisible();
@@ -157,55 +157,55 @@ public class MetaTool extends ToolMetaItem<ToolMetaItem<?>.MetaToolValueItem> {
                 .addOreDict(ToolDictNames.craftingToolSaw)
                 .addOreDict(ToolDictNames.craftingToolChainsaw)
                 .addComponents(ElectricStats.createElectricItem(100000L, GTValues.LV))
-                .setSound(GTSoundEvents.CHAINSAW_TOOL);
+                .setSound(ToolSounds.CHAINSAW_TOOL);
 
         CHAINSAW_MV = addItem(26, "tool.chainsaw.mv").setToolStats(new ToolChainsaw(GTValues.MV))
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolSaw)
                 .addOreDict(ToolDictNames.craftingToolChainsaw)
                 .addComponents(ElectricStats.createElectricItem(400000L, GTValues.MV))
-                .setSound(GTSoundEvents.CHAINSAW_TOOL);
+                .setSound(ToolSounds.CHAINSAW_TOOL);
 
         CHAINSAW_HV = addItem(27, "tool.chainsaw.hv").setToolStats(new ToolChainsaw(GTValues.HV))
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolSaw)
                 .addOreDict(ToolDictNames.craftingToolChainsaw)
                 .addComponents(ElectricStats.createElectricItem(1600000L, GTValues.HV))
-                .setSound(GTSoundEvents.CHAINSAW_TOOL);
+                .setSound(ToolSounds.CHAINSAW_TOOL);
 
         WRENCH_LV = addItem(28, "tool.wrench.lv").setToolStats(new ToolElectricWrench(GTValues.LV))
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolWrench)
                 .addComponents(new WrenchItemStat())
                 .addComponents(ElectricStats.createElectricItem(100000L, GTValues.LV))
-                .setSound(GTSoundEvents.WRENCH_TOOL);
+                .setSound(ToolSounds.WRENCH_TOOL);
 
         WRENCH_MV = addItem(29, "tool.wrench.mv").setToolStats(new ToolElectricWrench(GTValues.MV))
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolWrench)
                 .addComponents(new WrenchItemStat())
                 .addComponents(ElectricStats.createElectricItem(400000L, GTValues.MV))
-                .setSound(GTSoundEvents.WRENCH_TOOL);
+                .setSound(ToolSounds.WRENCH_TOOL);
 
         WRENCH_HV = addItem(30, "tool.wrench.hv").setToolStats(new ToolElectricWrench(GTValues.HV))
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolWrench)
                 .addComponents(new WrenchItemStat())
                 .addComponents(ElectricStats.createElectricItem(1600000L, GTValues.HV))
-                .setSound(GTSoundEvents.WRENCH_TOOL);
+                .setSound(ToolSounds.WRENCH_TOOL);
 
         SCREWDRIVER_LV = addItem(31, "tool.screwdriver.lv").setToolStats(new ToolScrewdriverLV())
                 .setFullRepairCost(1)
                 .addOreDict(ToolDictNames.craftingToolScrewdriver)
                 .addComponents(new ScrewdriverItemStat())
                 .addComponents(ElectricStats.createElectricItem(100000L, 1L))
-                .setSound(GTSoundEvents.SCREWDRIVER_TOOL);
+                .setSound(ToolSounds.SCREWDRIVER_TOOL);
 
         BUZZSAW = addItem(32, "tool.buzzsaw").setToolStats(new ToolBuzzSaw())
                 .setFullRepairCost(4)
                 .addOreDict(ToolDictNames.craftingToolSaw)
                 .addComponents(ElectricStats.createElectricItem(100000L, 1L))
-                .setSound(GTSoundEvents.CHAINSAW_TOOL);
+                .setSound(ToolSounds.CHAINSAW_TOOL);
     }
 
 }

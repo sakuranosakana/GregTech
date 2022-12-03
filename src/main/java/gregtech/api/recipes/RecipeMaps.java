@@ -8,10 +8,10 @@ import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.recipes.builders.*;
 import gregtech.api.recipes.ingredients.GTRecipeInput;
 import gregtech.api.recipes.machines.*;
-import gregtech.core.sound.GTSoundEvents;
 import gregtech.api.unification.material.Materials;
 import gregtech.common.ConfigHolder;
 import gregtech.common.items.MetaItems;
+import gregtech.core.sound.GTSoundEvents;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -134,7 +134,7 @@ public class RecipeMaps {
     @ZenProperty
     public static final RecipeMap<AssemblyLineRecipeBuilder> ASSEMBLY_LINE_RECIPES = new RecipeMapAssemblyLine("assembly_line", 4, 16, 1, 1, 0, 4, 0, 0, new AssemblyLineRecipeBuilder(), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, MoveType.HORIZONTAL)
-            .setSound(GTSoundEvents.ASSEMBLER);
+            .setSound(GTSoundEvents.ASSEMBLER)
             .onRecipeBuild(recipeBuilder -> {
                 if (!ConfigHolder.machines.enableResearch) return;
 

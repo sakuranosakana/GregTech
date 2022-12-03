@@ -8,15 +8,13 @@ import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.oredict.IOreDictEntry;
 import gregtech.api.recipes.RecipeBuilder;
+import gregtech.api.recipes.ingredients.CraftTweakerItemInputWrapper;
 import gregtech.api.recipes.ingredients.GTRecipeFluidInput;
-import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.recipes.ingredients.GTRecipeOreInput;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 

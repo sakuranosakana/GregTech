@@ -1,9 +1,9 @@
 package gregtech.common;
 
 import gregtech.api.GTValues;
-import gregtech.tools.enchants.EnchantmentHardHammer;
 import gregtech.api.items.armor.ArmorMetaItem;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.pipenet.longdist.LongDistanceNetwork;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.util.CapesRegistry;
 import gregtech.api.util.GTUtility;
@@ -14,6 +14,7 @@ import gregtech.common.items.armor.IStepAssist;
 import gregtech.common.items.behaviors.ToggleEnergyConsumerBehavior;
 import gregtech.common.metatileentities.multi.electric.centralmonitor.MetaTileEntityCentralMonitor;
 import gregtech.common.tools.ToolUtility;
+import gregtech.tools.enchants.EnchantmentHardHammer;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -221,11 +222,17 @@ public class EventHandlers {
     @SubscribeEvent
     public static void onWorldUnloadEvent(WorldEvent.Unload event) {
         BedrockFluidVeinSaveData.setDirty();
+        if (!event.getWorld().isRemote) {
+            LongDistanceNetwork.WorldData.get(event.getWorld()).markDirty();
+        }
     }
 
     @SubscribeEvent
     public static void onWorldSaveEvent(WorldEvent.Save event) {
         BedrockFluidVeinSaveData.setDirty();
+        if (!event.getWorld().isRemote) {
+            LongDistanceNetwork.WorldData.get(event.getWorld()).markDirty();
+        }
     }
 
     @SubscribeEvent

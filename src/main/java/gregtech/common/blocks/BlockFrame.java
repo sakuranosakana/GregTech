@@ -139,7 +139,7 @@ public final class BlockFrame extends DelayedStateBlock implements IModelSupplie
                 .forEach(blockState -> list.add(getItem(blockState)));
     }
 
-    public ItemStack getItem(IBlockState blockState) {
+    public static ItemStack getItem(IBlockState blockState) {
         return GTUtility.toItem(blockState);
     }
 

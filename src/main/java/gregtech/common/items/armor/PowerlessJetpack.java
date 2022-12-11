@@ -47,7 +47,7 @@ import java.util.Objects;
 
 public class PowerlessJetpack implements ISpecialArmorLogic, IArmorLogic, IJetpack {
 
-    public final int tankCapacity = 16000;
+    public static final int tankCapacity = 16000;
 
     private Recipe previousRecipe = null;
     private Recipe currentRecipe = null;
@@ -187,7 +187,7 @@ public class PowerlessJetpack implements ISpecialArmorLogic, IArmorLogic, IJetpa
         return burnTimer > 0 || currentRecipe != null;
     }
 
-    private IFluidHandlerItem getIFluidHandlerItem(@Nonnull ItemStack stack) {
+    private static IFluidHandlerItem getIFluidHandlerItem(@Nonnull ItemStack stack) {
         return stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
     }
 

@@ -276,7 +276,6 @@ public class CoreModule implements IGregTechModule {
                     world.setData(BedrockFluidVeinSaveData.dataName, saveData);
                 }
                 BedrockFluidVeinSaveData.setInstance(saveData);
-                //LongDistanceNetwork.WorldData.get(world);
             }
         }
     }
